@@ -1,0 +1,32 @@
+<p class="component-title">
+  users.component.ts
+</p>
+
+<div>
+  <p class="under-title">Get MySQL datas</p>
+  <p class="path-title">From: php script</p>
+
+  <mat-list>
+    <mat-list-item *ngFor="let _usersMysql of usersMysql">
+      <mat-icon matListIcon>person</mat-icon>
+      <p matLine>
+        <span class="demo-2">{{_usersMysql.id}}. {{_usersMysql.firstname}} {{_usersMysql.lastname}}</span> 
+      </p>
+    </mat-list-item>
+  </mat-list>
+  <hr>
+  <p class="under-title"> Get local JSON data </p>
+  <p class="path-title"> From: app/assets/users.json </p>
+  <mat-list>
+      <mat-list-item *ngFor="let _usersLocal of usersLocal">
+        <mat-icon matListIcon>person</mat-icon>
+        <p matLine>
+          <span class="demo-2">{{usersLocal.id}}. {{usersLocal.firstname}} {{usersLocal.lastname}}</span> 
+        </p>
+      </mat-list-item>
+    </mat-list>
+  <hr>
+  <p class="under-title"> Get local Type-Text data </p>
+  <p class="path-title"> From: app/assets/read.txt </p>
+  <p>{{textLocal}}</p>
+</div>
