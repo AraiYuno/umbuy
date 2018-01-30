@@ -18,14 +18,18 @@ import { PostUsersComponent } from './post-users/post-users.component';
 
 // import MysqlService class here to use it globally
 import { MysqlService } from './services/mysql.service';
+import { ViewAdsComponent } from './view-ads/view-ads.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
     AppComponent,
     GetUsersComponent,
-    PostUsersComponent
+    PostUsersComponent,
+    ViewAdsComponent
   ],
   imports: [
+    AngularFontAwesomeModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

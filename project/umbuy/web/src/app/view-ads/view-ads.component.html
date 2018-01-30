@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<div class="jumbotron">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+    </head>
+    <body>
+      <div class="container">
+        <div class="row">
+            <div *ngFor="let ad of advertisements" class="well well-lg">
+              <h3>{{ad.title}}</h3>
+              <br>
+              <p>{{ad.description}}</p>
+                <div id="displayPrice">
+                    <i class="fa fa-tags" aria-hidden="true"></i> {{ad.price}}$ 
+                    <br>
+                </div>
+                <img src="{{ad.imageUrl}}" class="img-thumbnail img-fluid" alt="{{ad.title}}">
+                <br>
+            </div> 
+        </div>
+      </div>
+    </body>
+</div>
+
+

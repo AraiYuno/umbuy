@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -7,13 +7,19 @@ import 'rxjs/add/operator/do';
 @Injectable()
 export class MysqlService{
 
-    constructor(public http: Http){
+    constructor(public http: HttpClient){
     }
 
-    private url:string = "http://localhost:3000/getusers";
+    private url:string;
 
     getUserData(){
-        return this.http.get(this.url).map((response: Response) => response.json());
+        this.url = "../../assets/user.json";
+        return this.http.get(this.url);
+    }
+
+    getAllAdvertisements(){
+        this.url = "http://localhost:3000/getAllAdvertisements";
+        return this.http.get(this.url);
     }
 
     /*

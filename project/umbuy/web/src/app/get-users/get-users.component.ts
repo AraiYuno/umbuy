@@ -20,11 +20,11 @@ export class GetUsersComponent implements OnInit {
   ngOnInit() {
    // this.getTextLocal();
    // this.getUsersMysql();
-   // this.getUsersMysql();
+  // this.getUsersMysql();
   }
-
-  /*private getUsersMysql(){
-    this._mysqlService.getMysqlUsersDatas()
+/*
+  private getUsersMysql(){
+    this._mysqlService.getUserData()
       .subscribe(
         res => this.usersMysql = res,
         err => console.error(err.status)
