@@ -1,4 +1,12 @@
-<<<<<<< HEAD
+## IMPORTANT
+Please make sure you install node_modules using: 
+1. npm install
+2. npm install express --save
+3. npm install mysql --save
+
+Then, you can configure start your local mysql server and develop your functionalities locally.
+
+
 # Umbuy
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
