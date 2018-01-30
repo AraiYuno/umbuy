@@ -7,4 +7,4 @@ team2 - Stefan, Brian, Kyle -> View/Add posts
 
 team3 - Ye, Murun, Yuan -> Searching
 
-These functionalities are to be done by Jan 6, 2018.
+These functionalities are to be done by Feb 6, 2018.
