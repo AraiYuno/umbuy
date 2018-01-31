@@ -8,17 +8,17 @@
     <body>
       <div class="jumbotron">
         <div class="container">
-          <a *ngFor="let ad of advertisements" href="/viewAdvertisement/{{ad.advertisementId}}">
+          <a *ngFor="let usr of user">
             <div class="row">
                 <div class="well well-lg">
                   <div id="displayPrice">
-                    <i class="fa fa-tags" aria-hidden="true"></i> {{ad.price}}$ 
+                    <i class="fa fa-tags" aria-hidden="true"></i> {{usr.firstName}}$ 
                     <br>
                   </div>
-                  <img src="{{ad.imageUrl}}" class="img-thumbnail img-fluid" alt="{{ad.title}}">
+                  <!-- <img src="{{ad.imageUrl}}" class="img-thumbnail img-fluid" alt="{{ad.title}}">
                   <h3>{{ad.title}}</h3>
                   <br>
-                  <p id="adDescription">{{ad.description}}</p>
+                  <p id="adDescription">{{ad.description}}</p> -->
                 </div>
             </div>
           </a>
