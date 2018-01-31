@@ -18,12 +18,14 @@ import { PostUsersComponent } from './post-users/post-users.component';
 
 // import MysqlService class here to use it globally
 import { MysqlService } from './services/mysql.service';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GetUsersComponent,
-    PostUsersComponent
+    PostUsersComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
