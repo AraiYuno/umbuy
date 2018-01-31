@@ -17,11 +17,13 @@ import { SearchComponent } from './search/search.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    HomeComponent
+    HomeComponent,
+    SearchComponent
   ],
   imports: [
     AngularFontAwesomeModule,
