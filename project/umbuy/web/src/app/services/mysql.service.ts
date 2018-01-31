@@ -1,44 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import { Advertisement } from '../api/advertisement';
+import { User } from '../api/user';
 
 @Injectable()
 export class MysqlService{
 
-    constructor(public http: Http){
+    constructor(public http: HttpClient){
     }
 
-    private url:string = "http://localhost:3000/getusers";
+    private url:string;
 
-    getUserData(){
-        return this.http.get(this.url).map((response: Response) => response.json());
+    getAllAdvertisements(){
+        this.url = "http://localhost:3000/getAllAdvertisements";
+        return this.http.get<Advertisement[]>(this.url);
     }
 
-    /*
-    public addMysqlUserDatas( _firstname: string, _lastname: string ){
-        const url = 'http://local:4000/post_users.php';
-        const headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        return this._http.post(url, {id: '', firstname: _firstname, lastname: _lastname}, {headers: headers})
-            .map((res: Response) => res.text())
-            .subscribe( res => { console.log(res.toString());
-            });
+    getAdvertisementById(advertisementId){
+        this.url = "http://localhost:3000/getAdvertisementById/"+advertisementId;
+        return this.http.get<Advertisement[]>(this.url);
     }
 
-    public getMysqlUsersDatas(){
-        return this._http.get('http://localhost:3000/getusers')
-            .map( rep => rep.json() );
+    getUserById(userId){
+        this.url = "http://localhost:3000/getUserById/"+userId;
+        return this.http.get<User[]>(this.url);
     }
-
-    public getLocalUsersData() {
-        return this._http.get('./assets/users.json')
-            .map( rep => rep.json() );
-    }
-
-    public getLocalTextDatas() {
-        return this._http.get('./assets/read.txt')
-            .map( rep => rep.text() );
-    }*/
 }
