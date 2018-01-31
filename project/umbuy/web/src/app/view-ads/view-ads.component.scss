@@ -6,21 +6,29 @@ h3{
 #displayPrice{
     vertical-align: top;
     float:right;
-    margin-top: -100px;
+    margin-top: -20px;
     font-size: 18px;
+    
 }
 
 .well{
     min-height: 250px;
+    background-color: #FBBB1B;
 }
 
 img{
     height:200px;
     float:right;
-    margin-top: -75px;
+    margin-top: 5px;
+    margin-right: -80px;
 }
 
 .fa-tags{
     position: relative;
     left: 100%;
+}
+
+#adDescription{
+    width: 800px;
+    word-wrap: break-word;
 }

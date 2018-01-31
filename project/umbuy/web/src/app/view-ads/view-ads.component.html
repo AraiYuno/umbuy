@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<div class="jumbotron">
     <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,22 +6,22 @@
       
     </head>
     <body>
-      <div class="container">
-        <div class="row">
-            <div *ngFor="let ad of advertisements" class="well well-lg">
-              <h3>{{ad.title}}</h3>
-              <br>
-              <p>{{ad.descriptio`n}}</p>
+      <div class="jumbotron">
+        <div class="container">
+          <div *ngFor="let ad of advertisements" class="row">
+              <div class="well well-lg">
                 <div id="displayPrice">
-                    <i class="fa fa-tags" aria-hidden="true"></i> {{ad.price}}$ 
-                    <br>
+                  <i class="fa fa-tags" aria-hidden="true"></i> {{ad.price}}$ 
+                  <br>
                 </div>
                 <img src="{{ad.imageUrl}}" class="img-thumbnail img-fluid" alt="{{ad.title}}">
+                <h3>{{ad.title}}</h3>
                 <br>
-            </div> 
+                <p id="adDescription">{{ad.description}}</p>
+              </div>
+          </div>
         </div>
       </div>
     </body>
-</div>
 
  

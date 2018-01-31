@@ -3,10 +3,11 @@ var mysql = require('mysql');
 var app = express();
 var sql;
 
+/* change to match your own database config for localhost */
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'coutures',
-    password: '*******',
+    password: '**********',
     database: '4350'
 });
 

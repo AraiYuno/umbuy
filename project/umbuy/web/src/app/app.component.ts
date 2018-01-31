@@ -12,10 +12,9 @@ export class AppComponent implements OnInit {
   constructor( private mysqlService: MysqlService){
   }
 
-  users = {};
   ngOnInit(){
-    this.mysqlService.getUserData().subscribe(responseUsers => this.users = responseUsers);
   }
+  
 }
 
 
