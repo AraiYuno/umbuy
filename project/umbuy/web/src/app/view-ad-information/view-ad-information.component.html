@@ -8,20 +8,29 @@
     <body>
       <div class="jumbotron">
         <div class="container">
-          <a *ngFor="let usr of user">
+          <div *ngFor="let ad of advertisement">
+            <h1>{{ad.title}}</h1>
+            <br><br>
             <div class="row">
-                <div class="well well-lg">
-                  <div id="displayPrice">
-                    <i class="fa fa-tags" aria-hidden="true"></i> {{usr.firstName}}$ 
+                <img src="{{ad.imageUrl}}" class="img-rounded" alt="{{ad.title}}" align="left">
+                <div *ngFor="let usr of user" class="row">
+                    <h2>Contact Information</h2>
+                    <h3>Name:&emsp;{{usr.firstName + " " + usr.lastName}}</h3>
+                    <h3>Email:&emsp;{{usr.umEmail}}</h3>
+                    <h3>Phone number:&emsp;{{usr.phoneNumber}}</h3>
                     <br>
-                  </div>
-                  <!-- <img src="{{ad.imageUrl}}" class="img-thumbnail img-fluid" alt="{{ad.title}}">
-                  <h3>{{ad.title}}</h3>
-                  <br>
-                  <p id="adDescription">{{ad.description}}</p> -->
+                    <h3>Created on:&emsp;{{created_on}}</h3>
+                <h3>Last Updated:&emsp;{{last_updated}}</h3>
                 </div>
+              
+                <h3 *ngIf="isDeleted">Deleted on:&emsp;{{deleted_on}}</h3>
             </div>
-          </a>
+            <h3 id="price"><i class="fa fa-tags" aria-hidden="true"></i>{{ad.price}}$ </h3>
+            <br>
+            <h2>Description</h2>
+            <h3 id="description">{{ad.description}}</h3>
+            <br>
+          </div>
         </div>
       </div>
     </body>

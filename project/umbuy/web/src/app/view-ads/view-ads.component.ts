@@ -13,6 +13,19 @@ export class ViewAdsComponent implements OnInit {
 
   constructor(private _mysqlService: MysqlService) { }
 
+  showReducedDescriptionLength(description, length){
+    var reducedString;
+
+    if(description.length < length){
+      reducedString = description;
+    }
+    else{
+      reducedString = description.substring(0, length);
+      reducedString = reducedString + "...";
+    }
+    return reducedString;
+  }
+  
   ngOnInit() {
     this._mysqlService.getAllAdvertisements()
       .subscribe(

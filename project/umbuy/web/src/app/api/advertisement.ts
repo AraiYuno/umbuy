@@ -4,6 +4,7 @@ export class Advertisement{
     title: string;
     description: string;
     price: DoubleRange;
+    created_on: Date;   
     last_updated: Date;
     deleted_on: Date;
     imageUrl: string;
