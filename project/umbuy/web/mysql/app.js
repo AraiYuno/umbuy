@@ -29,3 +29,5 @@ app.get('/addusers1', (req, res) => {
         res.send('Users are adasdsadded!');
     });
 });
+
+app.listen(3000, () => console.log('Example app listening on port 3000!'))
