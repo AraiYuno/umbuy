@@ -41,7 +41,7 @@ app.get('/getUserById/:id', (req, res) => {
     let sql = 'SELECT * FROM users WHERE userId = ' + req.params.id;
     let query = connection.query(sql,(err, result)=> {
         if( err ) throw err;
-	console.log(result);
+	    console.log(result);
         res.send(result);
     });
 });
