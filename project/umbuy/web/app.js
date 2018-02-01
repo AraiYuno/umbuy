@@ -6,7 +6,7 @@ var sql;
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'coutures',
-    password: '***********',
+    password: '**********',
     database: '4350'
 });
 
@@ -19,7 +19,7 @@ var connection = mysql.createConnection({
     port: 3306
 });*/
 
-app.get('/getAllAdvertisements', (req, res) => {
+app.get('/ads', (req, res) => {
     let sql = 'SELECT * FROM advertisements';
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
@@ -28,7 +28,7 @@ app.get('/getAllAdvertisements', (req, res) => {
     });
 });
 
-app.get('/getAdvertisementById/:id', (req, res) => {
+app.get('/ads/:id', (req, res) => {
     let sql = 'SELECT * FROM advertisements WHERE advertisementId = ' + req.params.id;
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
@@ -37,7 +37,7 @@ app.get('/getAdvertisementById/:id', (req, res) => {
     });
 });
 
-app.get('/getUserById/:id', (req, res) => {
+app.get('/users/:id', (req, res) => {
     let sql = 'SELECT * FROM users WHERE userId = ' + req.params.id;
     let query = connection.query(sql,(err, result)=> {
         if( err ) throw err;

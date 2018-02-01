@@ -15,17 +15,17 @@ export class MysqlService{
     private url:string;
 
     getAllAdvertisements(){
-        this.url = "http://localhost:3000/getAllAdvertisements";
+        this.url = "http://localhost:3000/ads";
         return this.http.get<Advertisement[]>(this.url);
     }
 
     getAdvertisementById(advertisementId){
-        this.url = "http://localhost:3000/getAdvertisementById/"+advertisementId;
+        this.url = "http://localhost:3000/ads/"+advertisementId;
         return this.http.get<Advertisement[]>(this.url);
     }
 
     getUserById(userId){
-        this.url = "http://localhost:3000/getUserById/"+userId;
+        this.url = "http://localhost:3000/users/"+userId;
         return this.http.get<User[]>(this.url);
     }
 }
