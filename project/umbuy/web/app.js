@@ -7,11 +7,17 @@ var sql;
 /* change to match your own database config for localhost */
 
 var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
+    host: 'ec2-18-217-173-154.us-east-2.compute.amazonaws.com',
+    user: 'ubuntu',
     /* scrach it to see your password */
-    password: "***********",
-    database: 'sampledb'
+    password: "team6best",
+    database: 'sampledb',
+    port: '3306'
+});
+
+connection.connect(function(err){
+    if (err) throw err;
+    console.log("good!");
 });
 
 app.use(function(req, res, next) {
