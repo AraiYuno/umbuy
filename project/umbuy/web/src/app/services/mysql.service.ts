@@ -16,23 +16,24 @@ export class MysqlService{
     private url:string;
 
     getAllAdvertisements(){
-        this.url = "http://localhost:3000/ads";
+        this.url = "http://ec2-18-217-173-154.us-east-2.compute.amazonaws.com:3000/ads";
         return this.http.get<Advertisement[]>(this.url);
     }
 
     getSearchResultByTitle(title : string){
-        this.url = "http://localhost:3000/ads/"+title;
+        this.url = "http://ec2-18-217-173-154.us-east-2.compute.amazonaws.com:3000/ads/"+title;
         //this.url = this.url + '?title='+title;
         console.log(this.url);
         return this.http.get<Advertisement[]>(this.url);
     }
+
     getAdvertisementById(advertisementId){
-        this.url = "http://localhost:3000/ads/"+advertisementId;
+        this.url = "http://ec2-18-217-173-154.us-east-2.compute.amazonaws.com:3000/ads/"+advertisementId;
         return this.http.get<Advertisement[]>(this.url);
     }
 
     getUserById(userId){
-        this.url = "http://localhost:3000/users/"+userId;
+        this.url = "http://ec2-18-217-173-154.us-east-2.compute.amazonaws.com:3000/users/"+userId;
         return this.http.get<User[]>(this.url);
     }
 }
