@@ -8,18 +8,20 @@
     <body>
       <div class="jumbotron">
         <div class="container">
-          <div *ngFor="let ad of advertisements" class="row">
-              <div class="well well-lg">
-                <div id="displayPrice">
-                  <i class="fa fa-tags" aria-hidden="true"></i> {{ad.price}}$ 
+          <a *ngFor="let ad of advertisements" href="/viewAdvertisement/{{ad.advertisementId}}">
+            <div class="row">
+                <div class="well well-lg">
+                  <div id="displayPrice">
+                    <i class="fa fa-tags" aria-hidden="true"></i>{{ad.price}}$ 
+                    <br>
+                  </div>
+                  <img src="{{ad.imageUrl}}" class="img-thumbnail img-fluid" alt="{{ad.title}}">
+                  <h3>{{ad.title}}</h3>
                   <br>
+                  <p id="adDescription">{{showReducedDescriptionLength(ad.description, 250)}}</p>
                 </div>
-                <img src="{{ad.imageUrl}}" class="img-thumbnail img-fluid" alt="{{ad.title}}">
-                <h3>{{ad.title}}</h3>
-                <br>
-                <p id="adDescription">{{ad.description}}</p>
-              </div>
-          </div>
+            </div>
+          </a>
         </div>
       </div>
     </body>

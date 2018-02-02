@@ -4,6 +4,7 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { Advertisement } from '../api/advertisement';
+import { User } from '../api/user';
 
 @Injectable()
 export class MysqlService{
@@ -14,7 +15,17 @@ export class MysqlService{
     private url:string;
 
     getAllAdvertisements(){
-        this.url = "http://localhost:3000/getAllAdvertisements";
+        this.url = "http://localhost:3000/ads";
         return this.http.get<Advertisement[]>(this.url);
+    }
+
+    getAdvertisementById(advertisementId){
+        this.url = "http://localhost:3000/ads/"+advertisementId;
+        return this.http.get<Advertisement[]>(this.url);
+    }
+
+    getUserById(userId){
+        this.url = "http://localhost:3000/users/"+userId;
+        return this.http.get<User[]>(this.url);
     }
 }

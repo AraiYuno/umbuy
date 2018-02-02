@@ -15,12 +15,12 @@ import { routingComponents } from './app-routing.module';
 import { MysqlService } from './services/mysql.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
+import { ViewAdInformationComponent } from './view-ad-information/view-ad-information.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents,
-    HomeComponent
+    routingComponents
   ],
   imports: [
     AngularFontAwesomeModule,

@@ -3,7 +3,6 @@ var mysql = require('mysql');
 var app = express();
 var sql;
 
-/* change to match your own database config for localhost */
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'coutures',
@@ -20,12 +19,29 @@ var connection = mysql.createConnection({
     port: 3306
 });*/
 
-/* Gets all advertisements and returns the data back to the mysql.service.ts */
-app.get('/getAllAdvertisements', (req, res) => {
+app.get('/ads', (req, res) => {
     let sql = 'SELECT * FROM advertisements';
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
         console.log(result);
+        res.send(result);
+    });
+});
+
+app.get('/ads/:id', (req, res) => {
+    let sql = 'SELECT * FROM advertisements WHERE advertisementId = ' + req.params.id;
+    let query = connection.query(sql, (err, result)=> {
+        if( err ) throw err;
+        console.log(result);
+        res.send(result);
+    });
+});
+
+app.get('/users/:id', (req, res) => {
+    let sql = 'SELECT * FROM users WHERE userId = ' + req.params.id;
+    let query = connection.query(sql,(err, result)=> {
+        if( err ) throw err;
+	    console.log(result);
         res.send(result);
     });
 });
