@@ -8,8 +8,8 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'viewAdvertisements', component: ViewAdsComponent},
-  {path: 'viewAdvertisement/:id', component: ViewAdInformationComponent},
+  {path: 'view/ads', component: ViewAdsComponent},
+  {path: 'view/ads/:id', component: ViewAdInformationComponent},
   {path: "**", component: PageNotFoundComponent}
 ];
 
@@ -17,5 +17,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, {useHash: false})],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
 export const routingComponents = [HomeComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent]
+export const routing = RouterModule.forRoot(routes);
