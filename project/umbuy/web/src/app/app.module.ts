@@ -10,6 +10,7 @@ import { MatButtonModule, MatCheckboxModule, MatIconModule, MatInputModule, MatM
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { routingComponents } from './app-routing.module';
+import { routing } from './app-routing.module';
 
 // import MysqlService class here to use it globally
 import { MysqlService } from './services/mysql.service';
@@ -40,7 +41,8 @@ import { ViewAdInformationComponent } from './view-ad-information/view-ad-inform
     MatMenuModule,
     MatCardModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    routing
   ],
   providers: [MysqlService],
   bootstrap: [AppComponent]
