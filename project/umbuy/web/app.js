@@ -4,8 +4,6 @@ var express = require('express');
 var app = express();
 var sql;
 
-/* change to match your own database config for localhost */
-
 var connection = mysql.createConnection({
     host: 'ec2-18-217-173-154.us-east-2.compute.amazonaws.com',
     user: 'ubuntu',
@@ -35,9 +33,8 @@ var connection = mysql.createConnection({
     port: 3306
 });*/
 
-/* Gets all advertisements and returns the data back to the mysql.service.ts */
-app.get('/getAllAdvertisements', (req, res) => {
-    let sql = 'SELECT * FROM test_search';
+app.get('/ads', (req, res) => {
+    let sql = 'SELECT * FROM advertisements';
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
         console.log(result);
@@ -46,8 +43,8 @@ app.get('/getAllAdvertisements', (req, res) => {
 });
 
 /* search all advertisements and returns the data back to the mysql.service.ts */
-app.get('/search', function(req, res){ //GET method to access DB and return results in JSON
-    let sql = 'SELECT * FROM test_search WHERE title LIKE "%' +req.query.title+'%"';
+app.get('/ads/:title', function(req, res){ 
+    let sql = 'SELECT * FROM test_search WHERE title LIKE "%' +req.params.title+'%"';
     console.log(sql);
     let query = connection.query(sql, (err, result)=>{
         if( err ) throw err;
@@ -57,5 +54,22 @@ app.get('/search', function(req, res){ //GET method to access DB and return resu
   });
 
 
+app.get('/ads/:id', (req, res) => {
+    let sql = 'SELECT * FROM advertisements WHERE advertisementId = ' + req.params.id;
+    let query = connection.query(sql, (err, result)=> {
+        if( err ) throw err;
+        console.log(result);
+        res.send(result);
+    });
+});
+
+app.get('/users/:id', (req, res) => {
+    let sql = 'SELECT * FROM users WHERE userId = ' + req.params.id;
+    let query = connection.query(sql,(err, result)=> {
+        if( err ) throw err;
+	    console.log(result);
+        res.send(result);
+    });
+});
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))

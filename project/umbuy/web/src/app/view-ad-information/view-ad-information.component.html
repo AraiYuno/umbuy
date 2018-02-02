@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+    </head>
+    <body>
+      <div class="jumbotron">
+        <div class="container">
+          <div *ngFor="let ad of advertisement">
+            <h1>{{ad.title}}</h1>
+            <br><br>
+            <div class="row">
+                <img src="{{ad.imageUrl}}" class="img-rounded" alt="{{ad.title}}" align="left">
+                <div *ngFor="let usr of user" class="row">
+                    <h2>Contact Information</h2>
+                    <h3>Name:&emsp;{{usr.firstName + " " + usr.lastName}}</h3>
+                    <h3>Email:&emsp;{{usr.umEmail}}</h3>
+                    <h3>Phone number:&emsp;{{usr.phoneNumber}}</h3>
+                    <br>
+                    <h3>Created on:&emsp;{{created_on}}</h3>
+                <h3>Last Updated:&emsp;{{last_updated}}</h3>
+                </div>
+              
+                <h3 *ngIf="isDeleted">Deleted on:&emsp;{{deleted_on}}</h3>
+            </div>
+            <h3 id="price"><i class="fa fa-tags" aria-hidden="true"></i>{{ad.price}}$ </h3>
+            <br>
+            <h2>Description</h2>
+            <h3 id="description">{{ad.description}}</h3>
+            <br>
+          </div>
+        </div>
+      </div>
+    </body>
+
+ 
