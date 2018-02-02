@@ -13,6 +13,14 @@ var connection = mysql.createConnection({
     port: '3306'
 });
 
+// var connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     /* scrach it to see your password */
+//     password: "yy283689291yy",
+//     database: 'sampledb'
+// });
+
 connection.connect(function(err){
     if (err) throw err;
     console.log("good!");
@@ -24,17 +32,15 @@ app.use(function(req, res, next) {
     next();
   });
 
-/*
-var connection = mysql.createConnection({
-    host: 'ec2-18-218-247-209.us-east-2.compute.amazonaws.com',
-    user: 'ec2-user',
-    password: 'team6best',
-    database: 'test',
-    port: 3306
-});*/
+app.use(express.static(__dirname + '/dist'));
+
+app.all('*', (req, res) => {
+    res.status(200).sendFile(__dirname + '/dist/index.html');
+});
 
 app.get('/ads', (req, res) => {
     let sql = 'SELECT * FROM advertisements';
+    console.log(sql);
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
         console.log(result);
@@ -48,14 +54,15 @@ app.get('/ads/:title', function(req, res){
     console.log(sql);
     let query = connection.query(sql, (err, result)=>{
         if( err ) throw err;
-        console.log(JSON.stringify(result));
-        res.send(JSON.stringify(result));
+        console.log(result);
+        res.send(result);
     });
   });
 
 
 app.get('/ads/:id', (req, res) => {
     let sql = 'SELECT * FROM advertisements WHERE advertisementId = ' + req.params.id;
+    console.log(sql);
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
         console.log(result);

@@ -20,9 +20,9 @@ export class MysqlService{
         return this.http.get<Advertisement[]>(this.url);
     }
 
-    getSearchResult(title : string){
-        this.url = "http://localhost:3000/ads/";
-        this.url = this.url + '?title='+title;
+    getSearchResultByTitle(title : string){
+        this.url = "http://localhost:3000/ads/"+title;
+        //this.url = this.url + '?title='+title;
         console.log(this.url);
         return this.http.get<Advertisement[]>(this.url);
     }

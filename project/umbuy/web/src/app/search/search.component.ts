@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   }
   getData(){
     console.log(this.title+">>>");
-    this._mysqlService.getSearchResult(this.title).subscribe(
+    this._mysqlService.getSearchResultByTitle(this.title).subscribe(
       res => this.result =res,
       err => console.log(err.status)
     );
