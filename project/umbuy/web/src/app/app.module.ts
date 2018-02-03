@@ -16,11 +16,13 @@ import { MysqlService } from './services/mysql.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
 import { ViewAdInformationComponent } from './view-ad-information/view-ad-information.component';
+import { CreateAdComponent } from './create-ad/create-ad.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    CreateAdComponent
   ],
   imports: [
     AngularFontAwesomeModule,

@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { Advertisement } from '../api/advertisement';
 import { User } from '../api/user';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class MysqlService{
@@ -13,6 +14,7 @@ export class MysqlService{
     }
 
     private url:string;
+    private pass:{};
 
     getAllAdvertisements(){
         this.url = "http://localhost:3000/getAllAdvertisements";
@@ -28,4 +30,9 @@ export class MysqlService{
         this.url = "http://localhost:3000/getUserById/"+userId;
         return this.http.get<User[]>(this.url);
     }
-}
+
+    createAd(advertisement){
+        this.url = "http://localhost:3000/createAd";
+        return this.http.post<Advertisement>(this.url, advertisement);
+    }
+} 
