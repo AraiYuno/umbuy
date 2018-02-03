@@ -4,6 +4,7 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { Advertisement } from '../api/advertisement';
+import { HttpParams } from '@angular/common/http';
 import { User } from '../api/user';
 
 @Injectable()
@@ -16,6 +17,13 @@ export class MysqlService{
 
     getAllAdvertisements(){
         this.url = "http://ec2-18-217-86-148.us-east-2.compute.amazonaws.com:9000/ads";
+        return this.http.get<Advertisement[]>(this.url);
+    }
+
+    getSearchResultByTitle(title : string){
+        this.url = "http://ec2-18-217-173-154.us-east-2.compute.amazonaws.com:3000/ads/"+title;
+        //this.url = this.url + '?title='+title;
+        console.log(this.url);
         return this.http.get<Advertisement[]>(this.url);
     }
 

@@ -14,14 +14,17 @@ import { routing } from './app-routing.module';
 
 // import MysqlService class here to use it globally
 import { MysqlService } from './services/mysql.service';
+import { SearchComponent } from './search/search.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
 import { ViewAdInformationComponent } from './view-ad-information/view-ad-information.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    SearchComponent
   ],
   imports: [
     AngularFontAwesomeModule,
