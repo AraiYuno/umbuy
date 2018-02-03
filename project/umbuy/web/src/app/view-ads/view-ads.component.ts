@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MysqlService } from '../services/mysql.service';
+import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../api/advertisement';
 
 @Component({
@@ -11,7 +11,7 @@ export class ViewAdsComponent implements OnInit {
 
   advertisements: Advertisement[];
 
-  constructor(private _mysqlService: MysqlService) { }
+  constructor(private _advertisementService: AdvertisementService) { }
 
   showReducedDescriptionLength(description, length){
     var reducedString;
@@ -27,7 +27,7 @@ export class ViewAdsComponent implements OnInit {
   }
   
   ngOnInit() {
-    this._mysqlService.getAllAdvertisements()
+    this._advertisementService.getAllAdvertisements()
       .subscribe(
         res => this.advertisements = res,
         err => console.error(err.status)

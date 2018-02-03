@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MysqlService } from './services/mysql.service';
 //import { SearchComponent } from './search/search.component';
 
 @Component({
@@ -10,7 +9,7 @@ import { MysqlService } from './services/mysql.service';
 export class AppComponent implements OnInit {
   title = 'Demo';
 
-  constructor( private mysqlService: MysqlService){
+  constructor(){
   }
 
   ngOnInit(){

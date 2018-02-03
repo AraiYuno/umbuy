@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MysqlService } from '../services/mysql.service';
+import { AdvertisementService } from '../services/advertisement.service';
 import { SearchResult } from '../api/test_search';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser/src/browser/title';
@@ -14,14 +14,14 @@ export class SearchComponent implements OnInit {
   title : string = '';
   result: SearchResult[];
 
-  constructor(private _mysqlService: MysqlService) { }
+  constructor(private _advertisementService: AdvertisementService) { }
 
   onKey(event : any){
     this.title = event.target.value;
   }
   getData(){
     console.log(this.title+">>>");
-    this._mysqlService.getSearchResultByTitle(this.title).subscribe(
+    this._advertisementService.getSearchResultByTitle(this.title).subscribe(
       res => this.result =res,
       err => console.log(err.status)
     );

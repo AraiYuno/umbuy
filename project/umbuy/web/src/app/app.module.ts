@@ -11,9 +11,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { routingComponents } from './app-routing.module';
 import { routing } from './app-routing.module';
-
-// import MysqlService class here to use it globally
-import { MysqlService } from './services/mysql.service';
+import { AdvertisementService } from './services/advertisement.service';
+import { UserService } from './services/user.service';
 import { SearchComponent } from './search/search.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
@@ -44,7 +43,7 @@ import { ViewAdInformationComponent } from './view-ad-information/view-ad-inform
     MatTabsModule,
     routing
   ],
-  providers: [MysqlService],
+  providers: [UserService, AdvertisementService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

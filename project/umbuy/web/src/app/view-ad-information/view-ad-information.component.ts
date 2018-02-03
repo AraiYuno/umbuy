@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MysqlService } from '../services/mysql.service';
+import { UserService } from '../services/user.service';
+import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../api/advertisement';
 import { User } from '../api/user';
 import { NgIf } from '@angular/common';
@@ -20,7 +21,7 @@ export class ViewAdInformationComponent implements OnInit {
   deleted_on: string;
   isDeleted: boolean;
 
-  constructor(private _mysqlService: MysqlService) {
+  constructor(private _advertisementService: AdvertisementService, private _userService: UserService) {
     this.pathNameUrl = window.location.pathname;
    }
   
@@ -79,11 +80,11 @@ export class ViewAdInformationComponent implements OnInit {
   ngOnInit() {
     this.currentAdvertisementId = this.getAdvertisementId(this.pathNameUrl);
 
-    this._mysqlService.getAdvertisementById(this.currentAdvertisementId)
+    this._advertisementService.getAdvertisementById(this.currentAdvertisementId)
       .subscribe(
         res => this.advertisement = res,
         err => console.error(err.status),
-        () => this._mysqlService.getUserById(this.advertisement[0].userId)
+        () => this._userService.getUserById(this.advertisement[0].userId)
                 .subscribe(
                   res => this.user = res,
                   err => console.error(err.status),

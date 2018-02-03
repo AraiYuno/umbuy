@@ -48,18 +48,6 @@ app.get('/ads', (req, res) => {
     });
 });
 
-/* search all advertisements and returns the data back to the mysql.service.ts */
-app.get('/ads/:title', function(req, res){ 
-    let sql = 'SELECT * FROM test_search WHERE title LIKE "%' +req.params.title+'%"';
-    console.log(sql);
-    let query = connection.query(sql, (err, result)=>{
-        if( err ) throw err;
-        console.log(result);
-        res.send(result);
-    });
-  });
-
-
 app.get('/ads/:id', (req, res) => {
     let sql = 'SELECT * FROM advertisements WHERE advertisementId = ' + req.params.id;
     console.log(sql);
@@ -69,6 +57,17 @@ app.get('/ads/:id', (req, res) => {
         res.send(result);
     });
 });
+
+/* search all advertisements and returns the data back to the advertisement.service.ts */
+app.get('/ads/:title', function(req, res){ 
+    let sql = 'SELECT * FROM test_search WHERE title LIKE "%' +req.params.title+'%"';
+    console.log(sql);
+    let query = connection.query(sql, (err, result)=>{
+        if( err ) throw err;
+        console.log(result);
+        res.send(result);
+    });
+  });
 
 app.get('/users/:id', (req, res) => {
     let sql = 'SELECT * FROM users WHERE userId = ' + req.params.id;
