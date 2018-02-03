@@ -1,0 +1,17 @@
+<!-- this design is taken from https://bootsnipp.com/snippets/featured/advanced-dropdown-search  -->
+<!-- it is open source under MIT license -->
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+            <div class="input-group" id="adv-search">
+                <input type="text" class="form-control" placeholder="Search for items" (keyup)="onKey($event)"/>
+
+                <div class="input-group-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"  (click)="getData()" ></span></button>
+                </div>
+            </div>
+          </div>
+        </div>
+	</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MysqlService } from './services/mysql.service';
+//import { SearchComponent } from './search/search.component';
 
 @Component({
   selector: 'app-root',
