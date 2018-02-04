@@ -12,7 +12,8 @@ import { Title } from '@angular/platform-browser/src/browser/title';
 })
 export class SearchComponent implements OnInit {
   title : string = '';
-  result: SearchResult[];
+  result: any[]= [];
+  message;
 
   constructor(private _advertisementService: AdvertisementService) { }
 
@@ -23,8 +24,8 @@ export class SearchComponent implements OnInit {
     console.log(this.title+">>>");
     this._advertisementService.getSearchResultByTitle(this.title).subscribe(
       res => this.result =res,
-      err => console.log(err.status)
-    );
+      err => this.message = err);
+    
     console.log(this.result);
   }
   ngOnInit() {
