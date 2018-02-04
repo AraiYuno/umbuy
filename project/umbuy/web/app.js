@@ -5,10 +5,10 @@ var app = express();
 var sql;
 
 var connection = mysql.createConnection({
-    host: 'ec2-18-217-173-154.us-east-2.compute.amazonaws.com',
-    user: 'ubuntu',
+    host: 'localhost',
+    user: 'root',
     /* scrach it to see your password */
-    password: "team6best",
+    password: "yy283689291yy",
     database: 'sampledb',
     port: '3306'
 });
