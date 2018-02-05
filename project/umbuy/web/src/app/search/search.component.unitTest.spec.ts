@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
-describe('SearchComponent', () => {
+fdescribe('SearchComponent', () => {
     let component: SearchComponent; 
     let service: AdvertisementService;
   
@@ -20,6 +20,8 @@ describe('SearchComponent', () => {
    let spy=spyOn(service, 'getSearchResultByTitle').and.callFake(t => {
          return Observable.empty();
      });
+
+     
 
          component.getData();
          

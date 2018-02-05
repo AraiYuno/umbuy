@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit {
   getData(){
     console.log(this.title+">>>");
     this._advertisementService.getSearchResultByTitle(this.title).subscribe(
-      res => this.result =res,
+      res => this.result.push(res),
       err => this.message = err);
     
     console.log(this.result);
