@@ -70,20 +70,6 @@ describe('ViewAdInformationComponent', () => {
 });
 
 
-  it('When ngOnInit() is called, currentAdvertisementId and pathNameUrl should be defined', () => {
-    fakeAsync(() =>  {
-      component.ngOnInit();
-      tick();
-
-      // when ngOnInit is called, the advertisementId should never be 0 and pathNameUrl shouldn't be undefined.
-      expect(component.pathNameUrl).toBeDefined();
-      expect(component.pathNameUrl).not.toEqual('');
-      expect(component.currentAdvertisementId).toBeDefined();
-      expect(component.currentAdvertisementId).toBeGreaterThan(0);
-    });
-  });
-
-
   it('When convertToTextDate() is called, corresponding format should be returned', () => {
     fakeAsync(() =>  {
       let text
