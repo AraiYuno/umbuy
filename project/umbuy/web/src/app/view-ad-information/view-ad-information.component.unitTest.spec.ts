@@ -1,8 +1,10 @@
-/*import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AdvertisementService } from '../services/advertisement.service';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from '../services/user.service';
 import { ViewAdInformationComponent } from './view-ad-information.component';
+import { HttpClient } from '@angular/common/http';
+import { HttpHandler } from '@angular/common/http';
 
 describe('ViewAdInformationComponent', () => {
   let component: ViewAdInformationComponent;
@@ -13,7 +15,7 @@ describe('ViewAdInformationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ViewAdInformationComponent ],
-      providers: [UserService, AdvertisementService]
+      providers: [UserService, AdvertisementService, HttpClient, HttpHandler]
     })
     .compileComponents();
   }));
@@ -29,4 +31,4 @@ describe('ViewAdInformationComponent', () => {
        .and.callThrough();
     expect(component).toBeTruthy();
   });
-});*/
+});

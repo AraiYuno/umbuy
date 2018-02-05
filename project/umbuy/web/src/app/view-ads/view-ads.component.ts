@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../api/advertisement';
+import { Routes, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-view-ads-component',
@@ -10,6 +12,7 @@ import { Advertisement } from '../api/advertisement';
 export class ViewAdsComponent implements OnInit {
 
   advertisements: Advertisement[];
+  message;
 
   constructor(private _advertisementService: AdvertisementService) { }
 
@@ -30,8 +33,9 @@ export class ViewAdsComponent implements OnInit {
     this._advertisementService.getAllAdvertisements()
       .subscribe(
         res => this.advertisements = res,
-        err => console.error(err.status)
+        err => this.message = err
       );  
+      console.log(this.message);
   }
 
 }
