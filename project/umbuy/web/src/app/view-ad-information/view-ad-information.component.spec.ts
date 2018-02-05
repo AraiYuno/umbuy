@@ -44,19 +44,20 @@ describe('ViewAdInformationComponent', () => {
 
 
   it('Should be able to retrieve an advertisement by its Id', () => {
-    async(() =>  {
+    fakeAsync(() =>  {
       component.ngOnInit();
       tick();
       let results;
       let spy=spyOn(advertisementService, 'getAdvertisementById').and.callFake(t => {
         return Observable.from([results]);
       });
+      expect(advertisementService.getAdvertisementById).toHaveBeenCalled();
     });
   });
     //Act
  //assert
  it('When getAdvertisementId() is called, it should retuan an advertisementId', () => {
-  async(() =>  {
+  fakeAsync(() =>  {
     component.ngOnInit();
     tick();
 
@@ -70,7 +71,7 @@ describe('ViewAdInformationComponent', () => {
 
 
   it('When ngOnInit() is called, currentAdvertisementId and pathNameUrl should be defined', () => {
-    async(() =>  {
+    fakeAsync(() =>  {
       component.ngOnInit();
       tick();
 
@@ -90,16 +91,15 @@ describe('ViewAdInformationComponent', () => {
       let spy=spyOn(component, 'convertToTextDate').and.callFake(t => {
         return Observable.from([text]);
       });
-      let text2:string = component.convertToTextDate('2018-01-01');
       tick();
-      expect(spy).toHaveBeenCalled();
+      expect(component.convertToTextDate).toHaveBeenCalled();
       // assert that the text matches the format
-      expect(spy).toMatch('Janaury 01, 2018');
+      expect(text).toMatch('Janaury 01, 2018');
     });
   });
 
   it('When ngOnInit() is called, currentAdvertisementId and pathNameUrl should be defined', () => {
-    async(() =>  {
+    fakeAsync(() =>  {
       component.ngOnInit();
       tick();
 
