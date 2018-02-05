@@ -10,3 +10,8 @@ export class Advertisement{
     imageUrl: string;
     category: string;
 }
+
+export class testAdvertisement{
+    id: number;
+    title: string;
+}

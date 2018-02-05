@@ -33,9 +33,10 @@ export class ViewAdsComponent implements OnInit {
     this._advertisementService.getAllAdvertisements()
       .subscribe(
         res => this.advertisements = res,
-        err => this.message = err
+        err => this.message = err,
       );  
       console.log(this.message);
+
   }
 
 }

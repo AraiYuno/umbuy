@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, OnInit } from '@angular/core';
 import { AdvertisementService } from '../services/advertisement.service';
 import { ViewAdsComponent } from './view-ads.component';
+import { SearchComponent } from '../search/search.component';
 import { Routes, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
@@ -28,36 +29,45 @@ describe('ViewAdsComponent', () => {
     service= new AdvertisementService(null);
     component= new ViewAdsComponent(service);
 
-    //fixture = TestBed.createComponent(ViewAdsComponent);
+    fixture = TestBed.createComponent(ViewAdsComponent);
     //component = fixture.componentInstance;
-    //fixture.detectChanges();
+    fixture.detectChanges();
   });
 
   
-  it('should create', () => {
+  it('should create ViewAdsComponent when initiated', () => {
     expect(component).toBeTruthy();
   });
 
 
   
-  it('When view-ads page is up, it should get getAlladvertisements to display them', () => {
+  it('When view-ads page is initiated, it should get getAlladvertisements to display them', () => {
     let spy=spyOn(service, 'getAllAdvertisements').and.callFake(t => {
       return Observable.empty();
     });
-
     component.ngOnInit(); 
     expect(spy).toHaveBeenCalled();
   });
 
+  it('should get the mock advertisement retrieved from the database on the server', () => {
+    let results;
+    //get the results
+    let spy=spyOn(service, 'getAllAdvertisements').and.callFake(t => {
+      return Observable.from([results]);
+    });
+    //Act
+     component.ngOnInit();
+     //assertion
+     expect(component.advertisements).toEqual(results);
+ });
+
   
-  it('should set message property if server return and error', () => {
+  it('Should display the correspoding error message if the server does not return the data properly', () => {
     let error='error';
-    //arrange
-  let spy=spyOn(service, 'getAllAdvertisements').and.returnValue(Observable.throw(error));
-   //Act
+    let spy=spyOn(service, 'getAllAdvertisements').and.returnValue(Observable.throw(error));
     component.ngOnInit();
     console.log(component.message);
-//assert
-   expect(component.message).toBe(error);
+    expect(component.message).toBe(error);
  });
+
 });
