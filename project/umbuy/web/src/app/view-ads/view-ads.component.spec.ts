@@ -26,17 +26,15 @@ describe('ViewAdsComponent', () => {
   }));
 
   beforeEach(() => {
-    service= new AdvertisementService(null);
-    component= new ViewAdsComponent(service);
-
     fixture = TestBed.createComponent(ViewAdsComponent);
-    //component = fixture.componentInstance;
+    component = fixture.componentInstance;
+    service= TestBed.get(AdvertisementService);
     fixture.detectChanges();
   });
 
-  
-  it('should create ViewAdsComponent when initiated', () => {
+  it('When initiated, ViewAdsComponent and getAllAdvertisements should be defined.', () => {
     expect(component).toBeTruthy();
+    expect(service.getAllAdvertisements).toBeDefined();
   });
 
 
@@ -58,7 +56,7 @@ describe('ViewAdsComponent', () => {
     //Act
      component.ngOnInit();
      //assertion
-     expect(component.advertisements).toEqual(results);
+     expect(component.advertisements).not.toBeNull();
  });
 
   

@@ -10,6 +10,7 @@ import { ViewAdsComponent } from '../view-ads/view-ads.component';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
+import { Advertisement } from '../api/advertisement';
 
 describe('ViewAdInformationComponent', () => {
   let component: ViewAdInformationComponent;
@@ -17,6 +18,7 @@ describe('ViewAdInformationComponent', () => {
   let advertisementService: AdvertisementService;
   let userService: UserService;
   let viewAdsComponent: ViewAdsComponent;
+  let tempAd: Advertisement;  
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,14 +30,14 @@ describe('ViewAdInformationComponent', () => {
   }));
 
   beforeEach(() => {
-    advertisementService= new AdvertisementService(null);
-    userService = new UserService(null);
+    advertisementService= TestBed.get(AdvertisementService);
+    userService = TestBed.get(UserService);
     component= new ViewAdInformationComponent(advertisementService, userService);
-    viewAdsComponent= new ViewAdsComponent(advertisementService);
 
     //fixture = TestBed.createComponent(ViewAdInformationComponent);
     //component = fixture.componentInstance;
     //fixture.detectChanges();
+    
   });
 
   it('should create ViewAdInformationComponent app when initiated', () => {
@@ -43,44 +45,44 @@ describe('ViewAdInformationComponent', () => {
   });
 
 
-  it('Should be able to retrieve an advertisement by its Id', () => {
-    fakeAsync(() =>  {
+  it('getAdvertisementId() should be getting the id with a given path', () => {
+    //fakeAsync(() =>  {
       component.ngOnInit();
-      tick();
+      //tick();
       let results;
+      // after calling advertisementService getAdvertisementById function fakedly, 
       let spy=spyOn(advertisementService, 'getAdvertisementById').and.callFake(t => {
         return Observable.from([results]);
       });
-      expect(advertisementService.getAdvertisementById).toHaveBeenCalled();
-    });
+      // we should be able to retrieve the advertisementId by calling getAdvertisementId() in the component.
+      expect(component.getAdvertisementId('view/ads/1')).toMatch("1");
+    //});
   });
-    //Act
- //assert
- it('When getAdvertisementId() is called, it should retuan an advertisementId', () => {
-  fakeAsync(() =>  {
-    component.ngOnInit();
-    tick();
-
-    expect(component.pathNameUrl).toBeDefined();
-    expect(component.pathNameUrl).not.toEqual('');
-    expect(component.currentAdvertisementId).toBeDefined();
-    expect(component.currentAdvertisementId).toBeGreaterThan(0);
-  });
-    // when the ngInit is called, 
-});
 
 
   it('When convertToTextDate() is called, corresponding format should be returned', () => {
     fakeAsync(() =>  {
-      let text
+      let tempAd = { 
+        id: 1,
+        userId: 1,
+        title: 'iphone',
+        description: 'A great iphone for a great price',
+        price: 75.19,
+        created_on: new Date('2018-01-01'),
+        last_updated: new Date('2018-01-01'),
+        deleted_on: new Date(),
+        imageUrl: 'http',
+        category: 'electronics'
+      };
+      let text;
       // pass a sample date to the function
-      let spy=spyOn(component, 'convertToTextDate').and.callFake(t => {
+      let spy=spyOn(advertisementService, 'getAllAdvertisements').and.callFake(t => {
         return Observable.from([text]);
       });
+      component.ngOnInit();
       tick();
-      expect(component.convertToTextDate).toHaveBeenCalled();
       // assert that the text matches the format
-      expect(text).toMatch('Janaury 01, 2018');
+      expect(component.convertDatesToText(tempAd)).toMatch('Janaury 01, 2018');
     });
   });
 
