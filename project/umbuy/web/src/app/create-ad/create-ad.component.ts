@@ -38,7 +38,7 @@ export class CreateAdComponent implements OnInit {
     this.newAd.last_updated = null;
 
     // TODO: change so that users can add photos from their own file. 
-    this.newAd.imageUrl = 'yo'; 
+    this.newAd.imageUrl = 'https://myanimelist.cdn-dena.com/images/characters/9/310307.jpg'; //default
     this.newAd.category = this.category;
 
     console.log(this.newAd);
