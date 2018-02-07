@@ -11,21 +11,21 @@ import { Title } from '@angular/platform-browser/src/browser/title';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  title : string = '';
+  title = '';
   result: any[]= [];
   message;
 
   constructor(private _advertisementService: AdvertisementService) { }
 
-  onKey(event : any){
+  onKey(event: any) {
     this.title = event.target.value;
   }
-  getData(){
-    console.log(this.title+">>>");
+  getData() {
+    console.log(this.title + '>>>');
     this._advertisementService.getSearchResultByTitle(this.title).subscribe(
       res => this.result.push(res),
       err => this.message = err);
-    
+
     console.log(this.result);
   }
   ngOnInit() {
