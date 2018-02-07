@@ -30,15 +30,16 @@ export class CreateAdComponent implements OnInit {
 
   createAd(){
 
+    // TODO: change so that we take userid from logged in user
     this.newAd.userId = 1;
     this.newAd.title = this.title;
     this.newAd.description = this.description;
     this.newAd.price = this.price;
     this.newAd.last_updated = null;
-    this.newAd.imageUrl = 'yo';
-    this.newAd.category = this.category;
-    
 
+    // TODO: change so that users can add photos from their own file. 
+    this.newAd.imageUrl = 'yo'; 
+    this.newAd.category = this.category;
 
     console.log(this.newAd);
     this._mysqlService.createAd(this.newAd).subscribe(

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
@@ -11,28 +11,19 @@ import { Observable } from 'rxjs/Observable';
 export class MysqlService{
 
     constructor(public http: HttpClient){
+        if(isDevMode()){
+            this.host = "http://localhost:3000";
+        }
+        else{
+            this.host = "http://ec2-18-217-86-148.us-east-2.compute.amazonaws.com:9000";
+        }
     }
 
     private url:string;
-    private pass:{};
-
-    getAllAdvertisements(){
-        this.url = "http://localhost:3000/getAllAdvertisements";
-        return this.http.get<Advertisement[]>(this.url);
-    }
-
-    getAdvertisementById(advertisementId){
-        this.url = "http://localhost:3000/getAdvertisementById/"+advertisementId;
-        return this.http.get<Advertisement[]>(this.url);
-    }
-
-    getUserById(userId){
-        this.url = "http://localhost:3000/getUserById/"+userId;
-        return this.http.get<User[]>(this.url);
-    }
+    private host:string;
 
     createAd(advertisement){
-        this.url = "http://localhost:3000/createAd";
+        this.url = this.host + "/createAd";
         return this.http.post<Advertisement>(this.url, advertisement);
     }
 } 

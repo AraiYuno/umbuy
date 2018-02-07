@@ -21,5 +21,5 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule { }
-export const routingComponents = [HomeComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent]
+export const routingComponents = [HomeComponent, CreateAdComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent]
 export const routing = RouterModule.forRoot(routes);

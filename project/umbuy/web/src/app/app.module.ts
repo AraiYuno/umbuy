@@ -20,6 +20,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
 import { ViewAdInformationComponent } from './view-ad-information/view-ad-information.component';
 import { CreateAdComponent } from './create-ad/create-ad.component';
+import { MysqlService } from './services/mysql.service';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { CreateAdComponent } from './create-ad/create-ad.component';
     MatTabsModule,
     routing
   ],
-  providers: [UserService, AdvertisementService],
+  providers: [UserService, AdvertisementService, MysqlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
