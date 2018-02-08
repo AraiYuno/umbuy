@@ -1,17 +1,30 @@
-
+var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var express = require('express'); 
 var app = express();
 var sql;
 
-// var connection = mysql.createConnection({
-//     host: 'ec2-18-217-173-154.us-east-2.compute.amazonaws.com',
-//     user: 'ubuntu',
-//     /* scrach it to see your password */
-//     password: "team6best",
-//     database: 'sampledb',
-//     port: '3306'
-// });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+/*var connection = mysql.createConnection({
+    host: 'ec2-18-217-173-154.us-east-2.compute.amazonaws.com',
+    user: 'ubuntu',
+    // scrach it to see your password 
+    password: "team6best",
+    database: 'sampledb',
+    port: '3306'
+});*/
+
+ var connection = mysql.createConnection({
+     host: 'localhost',
+     user: 'root',
+     // scrach it to see your password 
+     password: "rawr28",
+     database: 'sampledb'
+});
+
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -37,6 +50,7 @@ app.use(function(req, res, next) {
 // app.all('*', (req, res) => {
 //     res.status(200).sendFile(__dirname + 'dist/index.html');
 // });
+
 
 app.get('/ads', (req, res) => {
     let sql = 'SELECT * FROM advertisements';
@@ -76,14 +90,23 @@ app.get('/users/:id', (req, res) => {
     });
 });
 
-app.get('/addusers1', (req, res) => {
-    let user = {id: 2, value:'Patel'};
-    let sql = 'INSERT INTO ss SET ?';
-    let query = connection.query(sql, user, (err, result)=> {
-        if( err ) throw err;
+app.post('/createAd', (req, res) => {
+    console.log(req.body);
+    // code 201 for creating object
+    res.status(201).send(req.body);
+
+    var advertisementId = 0;
+    var userId = req.body.userId;
+    var title = req.body.title;
+    var desc = req.body.description;
+    var price = req.body.price;
+    // var create = req.body.created_on ;
+    // var last_update = req.body.last_updated;
+    var url = req.body.imageUrl;
+    var cate = req.body.category;
+    connection.query("INSERT INTO advertisements (advertisementId, title, userId, description, price, imageUrl, category) VALUES (?, ?, ?, ?, ?, ?, ?)", [advertisementId, title, userId, desc, price, url, cate], (err, result)=>{
         console.log(result);
-        res.send('Users are adasdsadded!');
     });
 });
 
-app.listen(9000, () => console.log('Example app listening on port 9000!'))
+app.listen(3000, () => console.log('Example app listening on port 3000 dafsdf!'))

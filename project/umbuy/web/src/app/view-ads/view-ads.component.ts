@@ -3,6 +3,8 @@ import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../api/advertisement';
 import { ShareSearchResultService } from '../services/shareSearchResult.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Routes, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-view-ads-component',
@@ -12,6 +14,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class ViewAdsComponent implements OnInit {
 
   advertisements: Advertisement[];
+  message;
 
   constructor(private _advertisementService: AdvertisementService, private _shareSearchResultService: ShareSearchResultService) { }
 
@@ -32,9 +35,11 @@ export class ViewAdsComponent implements OnInit {
     this._advertisementService.getAllAdvertisements()
       .subscribe(
         res => this.advertisements = res,
-        err => console.error(err.status)
+        err => this.message = err,
       );  
     this._shareSearchResultService.currentMessage.subscribe(message => this.advertisements = message);
+    console.log(this.message);
+
   }
 
 }

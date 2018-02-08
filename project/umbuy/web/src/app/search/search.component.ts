@@ -13,13 +13,13 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  title : string = '';
+  title = '';
   result: any[]= [];
   message;
 
   constructor(private _advertisementService: AdvertisementService, private _shareSearchResultService : ShareSearchResultService) { }
 
-  onKey(event : any){
+  onKey(event: any) {
     this.title = event.target.value;
   }
   getData(){

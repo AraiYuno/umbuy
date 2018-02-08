@@ -21,6 +21,8 @@ export class ViewAdInformationComponent implements OnInit {
   deleted_on: string;
   isDeleted: boolean;
 
+  message; 
+
   constructor(private _advertisementService: AdvertisementService, private _userService: UserService) {
     this.pathNameUrl = window.location.pathname;
    }
@@ -83,7 +85,7 @@ export class ViewAdInformationComponent implements OnInit {
     this._advertisementService.getAdvertisementById(this.currentAdvertisementId)
       .subscribe(
         res => this.advertisement = res,
-        err => console.error(err.status),
+        err => this.message = err,
         () => this._userService.getUserById(this.advertisement[0].userId)
                 .subscribe(
                   res => this.user = res,
