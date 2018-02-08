@@ -40,26 +40,15 @@ describe('ViewAdInformationComponent', () => {
       description: 'A great iphone for a great price',
       price: 75,
       created_on: new Date('2018-01-02'),
-<<<<<<< HEAD
       last_updated: new Date('2018-01-02'),
       deleted_on: null,
       imageUrl: 'http',
       category: 'electronics'
     };
-=======
-      last_updated: new Date('2018-01-01'),
-      deleted_on: new Date(),
-      imageUrl: 'http',
-      category: 'electronics'
-    };
-    //fixture = TestBed.createComponent(ViewAdInformationComponent);
-    //component = fixture.componentInstance;
->>>>>>> b5be2dc698a72c366f0d7e28c7a7e6dd7a3cfbbf
   });
 
 
   it('getAdvertisementId() should be getting the id with a given path', () => {
-<<<<<<< HEAD
     // after calling advertisementService getAdvertisementById function fakedly, 
     let spy=spyOn(advertisementService, 'getAdvertisementById').and.callFake(t => {
       return Observable.from([this.tempAd]);
@@ -83,45 +72,10 @@ describe('ViewAdInformationComponent', () => {
     expect(component.test_deleted_on).toMatch('');
     expect(component.test_isDeleted).toBeFalsy();
   }); // afterEach
-=======
-    //fakeAsync(() =>  {
-      //tick();
-    
-      // after calling advertisementService getAdvertisementById function fakedly, 
-      let spy=spyOn(advertisementService, 'getAdvertisementById').and.callFake(t => {
-        return Observable.from([tempAd]);
-      });
-      // we should be able to retrieve the advertisementId by calling getAdvertisementId() in the component.
-      expect(component.getAdvertisementId('view/ads/1')).toContain(String(this.tempAd.id));
-    //});
-  });
-
-  afterEach(()=>{
-    
-    it('When convertToTextDate() is called, corresponding format should be returned', () => {
-      //fakeAsync(() =>  {
-
-        // mock ad info
-        // faked call for getting an advertisement
-        let spy=spyOn(advertisementService, 'getAdvertisementById').and.callFake(t => {
-          return Observable.from([this.tempAd]);
-        });
-
-        //ACT: call the converDatestoText function
-        component.convertDatesToText(this.tempAd);
-        //tick();
-        //ASSERT: see if the created_on from the component matches with the expected output
-        expect(component.testDate).toMatch("January 1, 2018");
-      //});
-    });
-  }); // afterEach
-
->>>>>>> b5be2dc698a72c366f0d7e28c7a7e6dd7a3cfbbf
   afterEach(()=>{});
     
 
   it('When convertToTextDate() is called, Date object should be converted to text', () => {
-<<<<<<< HEAD
     // faked call for getting an advertisement
     let spy=spyOn(advertisementService, 'getAdvertisementById').and.callFake(t => {
       return Observable.from([this.tempAd]);
@@ -132,21 +86,6 @@ describe('ViewAdInformationComponent', () => {
     //ASSERT: see if the created_on from the component matches with the expected output
     //TODO: Why is convertToTextDate() returning input date - 1 ?
     expect(component.testDate).toMatch("January 1, 2018");
-=======
-    //fakeAsync(() =>  {
-      // faked call for getting an advertisement
-      let spy=spyOn(advertisementService, 'getAdvertisementById').and.callFake(t => {
-        return Observable.from([this.tempAd]);
-      });
-
-      //ACT: call the converDatestoText function
-      component.convertToTextDate(this.tempAd.created_on);
-      //tick();
-      //ASSERT: see if the created_on from the component matches with the expected output
-      //TODO: Why is convertToTextDate() returning input date - 1 ?
-      expect(component.testDate).toMatch("January 1, 2018");
-    //});
->>>>>>> b5be2dc698a72c366f0d7e28c7a7e6dd7a3cfbbf
   });
 
 });

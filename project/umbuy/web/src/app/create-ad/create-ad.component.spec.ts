@@ -21,10 +21,5 @@ describe('CreateAdComponent', () => {
 
   /*it('should create', () => {
     expect(component).toBeTruthy();
-<<<<<<< HEAD
   });
 });*/
-=======
-  });*/
-});
->>>>>>> b5be2dc698a72c366f0d7e28c7a7e6dd7a3cfbbf
