@@ -23,16 +23,11 @@ export class SearchComponent implements OnInit {
 
   filter(){
     if(this.allAds !== null){
-      console.log(this.query);
-      console.log(this.allAds);
       this.filteredAds = this.allAds;
       this.filteredAds = (this.query) ?
       this.filteredAds.filter(p => p.title.toLowerCase().includes(this.query.toLowerCase())) :
       this.filteredAds;
       this.shareMessage();
-    }else{
-      alert("view ads first");
-      this.query = "";
     }
   }
 
