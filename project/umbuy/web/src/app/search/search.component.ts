@@ -3,8 +3,9 @@ import { AdvertisementService } from '../services/advertisement.service';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser/src/browser/title';
 import { Advertisement } from '../api/advertisement';
-import { ShareSearchResultService } from '../services/shareSearchResult.service';
+import { FilterResultService } from '../services/filterResult.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { AllResultService } from '../services/allResult.service';
 
 
 @Component({
@@ -13,34 +14,35 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  title = '';
-  result: any[]= [];
+  query = '';
+  allAds: Advertisement[] = [];
+  filteredAds: Advertisement[]= [];
   message;
 
-  constructor(private _advertisementService: AdvertisementService, private _shareSearchResultService : ShareSearchResultService) { }
+  constructor(private _advertisementService: AdvertisementService, private _filterResultService : FilterResultService, private _allResultService : AllResultService) { }
 
-  onKey(event: any) {
-    this.title = event.target.value;
-  }
-  getData(){
-    this.result = [];
-    console.log(this.title+">>>");
-    this._advertisementService.getSearchResultByTitle(this.title).subscribe(
-      
-      res => {for (let entry of res) {
-        this.result.push(entry); 
-      }},
-      err => this.message = err,
-      ()=>this.shareMessage());
-    
+  filter(){
+    if(this.allAds !== null){
+      console.log(this.query);
+      console.log(this.allAds);
+      this.filteredAds = this.allAds;
+      this.filteredAds = (this.query) ?
+      this.filteredAds.filter(p => p.title.toLowerCase().includes(this.query.toLowerCase())) :
+      this.filteredAds;
+      this.shareMessage();
+    }else{
+      alert("view ads first");
+      this.query = "";
+    }
   }
 
   ngOnInit() {
-    this._shareSearchResultService.currentMessage.subscribe(result => this.result = result);
+    this._filterResultService.currentMessage.subscribe(filteredAds => this.filteredAds = filteredAds);
+    this._allResultService.currentMessage.subscribe(allAds => this.allAds = allAds);
   }
 
   shareMessage(){
-    this._shareSearchResultService.changeMessage(this.result);
+    this._filterResultService.changeMessage(this.filteredAds);
   }
 
 }

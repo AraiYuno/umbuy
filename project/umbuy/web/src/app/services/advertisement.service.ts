@@ -27,11 +27,6 @@ export class AdvertisementService{
         return this.http.get<Advertisement[]>(this.url);
     }
 
-    getSearchResultByTitle(title : string){
-        this.url = this.host + "/ads/" + title;
-        return this.http.get<Advertisement[]>(this.url);
-    }
-
     getAdvertisementById(advertisementId){
         this.url = this.host + "/ads/" + advertisementId;
         return this.http.get<Advertisement[]>(this.url);
