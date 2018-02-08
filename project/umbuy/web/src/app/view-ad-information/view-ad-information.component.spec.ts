@@ -32,11 +32,11 @@ describe('ViewAdInformationComponent', () => {
   beforeEach(() => {
     advertisementService= TestBed.get(AdvertisementService);
     userService = TestBed.get(UserService);
-    component= new ViewAdInformationComponent(advertisementService, userService);
+    component= fixture.componentInstance;
 
     //fixture = TestBed.createComponent(ViewAdInformationComponent);
     //component = fixture.componentInstance;
-    //fixture.detectChanges();
+    fixture.detectChanges();
     
   });
 
