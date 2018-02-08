@@ -4,22 +4,22 @@ var express = require('express');
 var app = express();
 var sql;
 
-var connection = mysql.createConnection({
-    host: 'ec2-18-217-173-154.us-east-2.compute.amazonaws.com',
-    user: 'ubuntu',
-    /* scrach it to see your password */
-    password: "team6best",
-    database: 'sampledb',
-    port: '3306'
-});
-
 // var connection = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
+//     host: 'ec2-18-217-173-154.us-east-2.compute.amazonaws.com',
+//     user: 'ubuntu',
 //     /* scrach it to see your password */
-//     password: "yy283689291yy",
-//     database: 'sampledb'
+//     password: "team6best",
+//     database: 'sampledb',
+//     port: '3306'
 // });
+
+var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    /* scrach it to see your password */
+    password: "yy283689291yy",
+    database: 'sampledb'
+});
 
 connection.connect(function(err){
     if (err) throw err;
@@ -32,14 +32,14 @@ app.use(function(req, res, next) {
     next();
   });
 
-app.use(express.static(__dirname + '/dist'));
+// app.use(express.static(__dirname + '/dist'));
 
-app.all('*', (req, res) => {
-    res.status(200).sendFile(__dirname + '/dist/index.html');
-});
+// app.all('*', (req, res) => {
+//     res.status(200).sendFile(__dirname + 'dist/index.html');
+// });
 
 app.get('/ads', (req, res) => {
-    let sql = 'SELECT * FROM advertisements';
+    let sql = 'SELECT * FROM test_search';
     console.log(sql);
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
@@ -86,4 +86,4 @@ app.get('/addusers1', (req, res) => {
     });
 });
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(9000, () => console.log('Example app listening on port 9000!'))

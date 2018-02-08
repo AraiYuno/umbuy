@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../api/advertisement';
+import { SearchService } from '../services/search.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-view-ads-component',
@@ -11,7 +13,7 @@ export class ViewAdsComponent implements OnInit {
 
   advertisements: Advertisement[];
 
-  constructor(private _advertisementService: AdvertisementService) { }
+  constructor(private _advertisementService: AdvertisementService, private _shareSearchResultService: SearchService) { }
 
   showReducedDescriptionLength(description, length){
     var reducedString;
@@ -32,6 +34,7 @@ export class ViewAdsComponent implements OnInit {
         res => this.advertisements = res,
         err => console.error(err.status)
       );  
+    this._shareSearchResultService.currentMessage.subscribe(message => this.advertisements = message);
   }
 
 }
