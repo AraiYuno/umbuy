@@ -21,7 +21,9 @@ export class ViewAdInformationComponent implements OnInit {
   deleted_on: string;
   isDeleted: boolean;
 
-  message; 
+  //Testing purposes
+  message;
+  testDate: string;
 
   constructor(private _advertisementService: AdvertisementService, private _userService: UserService) {
     this.pathNameUrl = window.location.pathname;
@@ -59,6 +61,8 @@ export class ViewAdInformationComponent implements OnInit {
   }
 
   /* Will date in a date in the format YYYY-MM-DD and convert to MM DD, YYYY such as May 1, 2018 */
+
+  //TODO: Why are you passing data object as a parameter but create a new Data object again, Stefan?
   convertToTextDate(date){
     var tempDate = new Date(date);
     var months = ["January", "February", "March", "April", "May", "June", "July", "August",
@@ -75,7 +79,7 @@ export class ViewAdInformationComponent implements OnInit {
     month = months[month];
     
     stringDate = month + " " + day + ", " + year;
-    
+    this.testDate = stringDate;
     return stringDate;
   }
 
@@ -93,6 +97,5 @@ export class ViewAdInformationComponent implements OnInit {
                   () => this.convertDatesToText(this.advertisement[0])
                 )
       ) /* After data is back for advertisement, execute getUserById*/  
-  }  
+  }
 }
-
