@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 /*import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+=======
+>>>>>>> b5be2dc698a72c366f0d7e28c7a7e6dd7a3cfbbf
 import { SearchComponent } from './search.component';
 import { AdvertisementService } from '../services/advertisement.service';
 import { ShareSearchResultService } from '../services/shareSearchResult.service'
@@ -20,7 +23,7 @@ describe('SearchComponent', () => {
   
     });
   
-    it('should call the server save the changed when the method is called ', () => {
+    /*it('should call the server save the changed when the method is called ', () => {
         //arrange
    let spy=spyOn(adService, 'getSearchResultByTitle').and.callFake(t => {
          return Observable.empty();
@@ -59,7 +62,7 @@ describe('SearchComponent', () => {
      });
      
      //test onKey() 
-    xit('should return the title when onkey method is calling', () => {
+    it('should return the title when onkey method is calling', () => {
         let result=" ";
         //Act
         component.onKey(result);
@@ -67,7 +70,10 @@ describe('SearchComponent', () => {
    
     //assert
        expect(component.title).toBe("");
-     });
-    });
+     });*/
+});
   
+<<<<<<< HEAD
 */
+=======
+>>>>>>> b5be2dc698a72c366f0d7e28c7a7e6dd7a3cfbbf
