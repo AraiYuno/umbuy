@@ -8,16 +8,16 @@ var sql;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-/*var connection = mysql.createConnection({
+var connection = mysql.createConnection({
     host: 'ec2-18-217-173-154.us-east-2.compute.amazonaws.com',
     user: 'ubuntu',
     // scrach it to see your password 
     password: "team6best",
     database: 'sampledb',
     port: '3306'
-});*/
+});
 
- var connection = mysql.createConnection({
+/*var connection = mysql.createConnection({
      host: 'localhost',
      user: 'root',
      // scrach it to see your password 
@@ -25,6 +25,13 @@ app.use(bodyParser.urlencoded({extended: false}));
      database: 'sampledb'
 });
 
+
+var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: "yy283689291yy",
+    database: 'sampledb'
+});*/
 
 connection.connect(function(err){
     if (err) throw err;
@@ -37,11 +44,12 @@ app.use(function(req, res, next) {
     next();
   });
 
-/*app.use(express.static(__dirname + '/dist'));
+// app.use(express.static(__dirname + '/dist'));
 
-app.all('*', (req, res) => {
-    res.status(200).sendFile(__dirname + '/dist/index.html');
-});*/
+// app.all('*', (req, res) => {
+//     res.status(200).sendFile(__dirname + 'dist/index.html');
+// });
+
 
 app.get('/ads', (req, res) => {
     let sql = 'SELECT * FROM advertisements';
@@ -64,7 +72,7 @@ app.get('/ads/:id(\\d+)', (req, res) => {
 
 /* search all advertisements and returns the data back to the advertisement.service.ts */
 app.get('/ads/:title', function(req, res){ 
-    let sql = 'SELECT * FROM test_search WHERE title LIKE "%' +req.params.title+'%"';
+    let sql = 'SELECT * FROM advertisements WHERE title LIKE "%' +req.params.title+'%"';
     let query = connection.query(sql, (err, result)=>{
         if( err ) throw err;
         console.log(result);

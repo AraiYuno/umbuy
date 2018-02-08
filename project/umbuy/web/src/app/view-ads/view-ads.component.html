@@ -1,5 +1,3 @@
-i work
-
 <!DOCTYPE html>
     <head>
       <meta charset="utf-8">
@@ -8,9 +6,10 @@ i work
       
     </head>
     <body>
+      
       <div class="jumbotron">
         <div class="container">
-          <a *ngFor="let ad of advertisements" [routerLink]="['/view', 'ads', ad.advertisementId]">
+          <a *ngFor="let ad of filteredAds" [routerLink]="['/view', 'ads', ad.advertisementId]">
             <div class="row">
                 <div class="well well-lg">
                   <div id="displayPrice">

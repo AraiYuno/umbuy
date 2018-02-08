@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AdvertisementService } from '../services/advertisement.service';
-import { SearchResult } from '../api/test_search';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser/src/browser/title';
+import { Advertisement } from '../api/advertisement';
+import { FilterResultService } from '../services/filterResult.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { AllResultService } from '../services/allResult.service';
 
 
 @Component({
@@ -11,25 +14,31 @@ import { Title } from '@angular/platform-browser/src/browser/title';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  title = '';
-  result: any[]= [];
+  query = '';
+  allAds: Advertisement[] = [];
+  filteredAds: Advertisement[]= [];
   message;
 
-  constructor(private _advertisementService: AdvertisementService) { }
+  constructor(private _advertisementService: AdvertisementService, private _filterResultService : FilterResultService, private _allResultService : AllResultService) { }
 
-  onKey(event: any) {
-    this.title = event.target.value;
+  filter(){
+    if(this.allAds !== null){
+      this.filteredAds = this.allAds;
+      this.filteredAds = (this.query) ?
+      this.filteredAds.filter(p => p.title.toLowerCase().includes(this.query.toLowerCase())) :
+      this.filteredAds;
+      this.shareMessage();
+    }
   }
-  getData() {
-    console.log(this.title + '>>>');
-    this._advertisementService.getSearchResultByTitle(this.title).subscribe(
-      res => this.result = res,
-      err => this.message = err);
 
-    console.log(this.result);
-  }
   ngOnInit() {
+    this._filterResultService.currentMessage.subscribe(filteredAds => this.filteredAds = filteredAds);
+    this._allResultService.currentMessage.subscribe(allAds => this.allAds = allAds);
+  }
 
+  shareMessage(){
+    this._filterResultService.changeMessage(this.filteredAds);
   }
 
 }
+

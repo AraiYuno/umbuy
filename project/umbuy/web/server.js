@@ -5,10 +5,12 @@ var app = express();
 var sql;
 
 var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'rawr28',
-    database: 'sampledb'
+    host: 'ec2-18-217-86-148.us-east-2.compute.amazonaws.com',
+    //host: 'localhost',
+    user: 'kyle',
+    password: 'team6best',
+    database: 'sampledb',
+    port: 3306
 });
 
 app.use(bodyParser.json());
@@ -22,8 +24,30 @@ var connection = mysql.createConnection({
     database: 'test',
     port: 3306
 });*/
+connection.connect(function(err){
+  if( err ) throw err;
+  console.log("Connected!");
+});
 
-app.get('/getAllAdvertisements', (req, res) => {
+app.use(function(erq, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requrested-With, Content-Type, Accept");
+  next();
+});
+
+app.use(express.static(__dirname + '/dist'));
+
+app.get('/', (req, res) => {
+  res.status(200).sendFile(__dirname + '/dist/index.html');
+  console.log(req);
+});
+
+/*
+app.route('/').get(function(req, res ){
+  return res.sendFile(path.join(config.root, '/dist/index.html'));
+});*/
+
+app.get('/ads', (req, res) => {
     let sql = 'SELECT * FROM advertisements';
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
@@ -32,7 +56,7 @@ app.get('/getAllAdvertisements', (req, res) => {
     });
 });
 
-app.get('/getAdvertisementById/:id', (req, res) => {
+app.get('/ads/:id', (req, res) => {
     let sql = 'SELECT * FROM advertisements WHERE advertisementId = ' + req.params.id;
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
@@ -41,7 +65,16 @@ app.get('/getAdvertisementById/:id', (req, res) => {
     });
 });
 
-app.get('/getUserById/:id', (req, res) => {
+app.get('/ads/:title', function(req, res){ 
+    let sql = 'SELECT * FROM advertisements WHERE title LIKE "%' +req.params.title+'%"';
+    let query = connection.query(sql, (err, result)=>{
+        if( err ) throw err;
+        console.log(result);
+        res.send(result);
+    });
+  });
+
+app.get('/users/:id', (req, res) => {
     let sql = 'SELECT * FROM users WHERE userId = ' + req.params.id;
     let query = connection.query(sql,(err, result)=> {
         if( err ) throw err;
@@ -53,7 +86,7 @@ app.get('/getUserById/:id', (req, res) => {
 app.post('/createAd', (req, res) => {
     console.log(req.body);
     // code 201 for creating object
-    res.send(201, req.body);
+    res.status(201).send(req.body);
 
     var advertisementId = 0;
     var userId = req.body.userId;
@@ -69,5 +102,4 @@ app.post('/createAd', (req, res) => {
     });
 });
 
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(9000, () => console.log('Example app listening on port 9000!'))

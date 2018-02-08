@@ -18,9 +18,13 @@ import { UserService } from './services/user.service';
 import { SearchComponent } from './search/search.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
+import { FilterResultService } from './services/filterResult.service';
 import { ViewAdInformationComponent } from './view-ad-information/view-ad-information.component';
+import { ViewAdsComponent } from './view-ads/view-ads.component';
 import { CreateAdComponent } from './create-ad/create-ad.component';
 import { MysqlService } from './services/mysql.service';
+import { AllResultService } from './services/allResult.service'
+import { Routes, RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -28,12 +32,14 @@ import { MysqlService } from './services/mysql.service';
     AppComponent,
     routingComponents,
     SearchComponent,
-    CreateAdComponent
+    CreateAdComponent,
+    ViewAdsComponent
   ],
   imports: [
     AngularFontAwesomeModule,
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
@@ -48,7 +54,7 @@ import { MysqlService } from './services/mysql.service';
     MatTabsModule,
     routing
   ],
-  providers: [UserService, AdvertisementService, MysqlService],
+  providers: [UserService, AdvertisementService, FilterResultService, AllResultService, MysqlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

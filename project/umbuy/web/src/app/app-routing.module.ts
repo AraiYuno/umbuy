@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { ViewAdsComponent } from './view-ads/view-ads.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ViewAdInformationComponent } from './view-ad-information/view-ad-information.component';
@@ -21,5 +21,5 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule { }
-export const routingComponents = [HomeComponent, CreateAdComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent]
+export const routingComponents = [HomeComponent, CreateAdComponent, AppComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent]
 export const routing = RouterModule.forRoot(routes);

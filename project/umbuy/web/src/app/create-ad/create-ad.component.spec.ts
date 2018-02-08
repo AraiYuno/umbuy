@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+/*import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateAdComponent } from './create-ad.component';
 
@@ -21,5 +21,5 @@ describe('CreateAdComponent', () => {
 
   /*it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
-});
+  });
+});*/

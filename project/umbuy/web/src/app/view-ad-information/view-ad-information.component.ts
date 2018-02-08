@@ -21,10 +21,13 @@ export class ViewAdInformationComponent implements OnInit {
   deleted_on: string;
   isDeleted: boolean;
 
-  //Testing purposes
-  message;
+  // Testing Purposes
+  message; 
+  test_created_on: string;
+  test_last_updated: string;
+  test_deleted_on: string;
+  test_isDeleted: string;
   testDate: string;
-
   constructor(private _advertisementService: AdvertisementService, private _userService: UserService) {
     this.pathNameUrl = window.location.pathname;
    }
@@ -58,6 +61,10 @@ export class ViewAdInformationComponent implements OnInit {
     else{
       this.isDeleted = false;
     }
+    this.test_created_on = this.created_on;
+    this.test_deleted_on = this.deleted_on;
+    this.test_isDeleted = this.deleted_on;
+    this.test_last_updated = this.last_updated;
   }
 
   /* Will date in a date in the format YYYY-MM-DD and convert to MM DD, YYYY such as May 1, 2018 */
