@@ -3,7 +3,7 @@ import { Advertisement } from '../api/advertisement';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
-export class SearchService {
+export class ShareSearchResultService {
 
   private searchResult : BehaviorSubject<Advertisement[]> = new BehaviorSubject<Advertisement[]>(null);
   currentMessage = this.searchResult.asObservable();

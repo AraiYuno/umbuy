@@ -14,7 +14,7 @@ export class AdvertisementService{
 
     constructor(public http: HttpClient){
         if(isDevMode()){
-            this.host = "http://localhost:9000";
+            this.host = "http://ec2-18-217-86-148.us-east-2.compute.amazonaws.com:9000";
         }
         else{
             this.host = "http://ec2-18-217-86-148.us-east-2.compute.amazonaws.com:9000";

@@ -3,7 +3,7 @@ import { AdvertisementService } from '../services/advertisement.service';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser/src/browser/title';
 import { Advertisement } from '../api/advertisement';
-import { SearchService } from '../services/search.service';
+import { ShareSearchResultService } from '../services/shareSearchResult.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
   result: any[]= [];
   message;
 
-  constructor(private _advertisementService: AdvertisementService, private _shareSearchResultService : SearchService) { }
+  constructor(private _advertisementService: AdvertisementService, private _shareSearchResultService : ShareSearchResultService) { }
 
   onKey(event : any){
     this.title = event.target.value;
@@ -30,8 +30,8 @@ export class SearchComponent implements OnInit {
       res => {for (let entry of res) {
         this.result.push(entry); 
       }},
-      err => this.message = err);
-      this.shareMessage();
+      err => this.message = err,
+      ()=>this.shareMessage());
     
   }
 

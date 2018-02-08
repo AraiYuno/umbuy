@@ -16,7 +16,7 @@ import { UserService } from './services/user.service';
 import { SearchComponent } from './search/search.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomeComponent } from './home/home.component';
-import { SearchService } from './services/search.service';
+import { ShareSearchResultService } from './services/shareSearchResult.service';
 import { ViewAdInformationComponent } from './view-ad-information/view-ad-information.component';
 
 
@@ -44,7 +44,7 @@ import { ViewAdInformationComponent } from './view-ad-information/view-ad-inform
     MatTabsModule,
     routing
   ],
-  providers: [UserService, AdvertisementService, SearchService],
+  providers: [UserService, AdvertisementService, ShareSearchResultService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

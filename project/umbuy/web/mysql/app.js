@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
 // });
 
 app.get('/ads', (req, res) => {
-    let sql = 'SELECT * FROM test_search';
+    let sql = 'SELECT * FROM advertisements';
     console.log(sql);
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
@@ -59,7 +59,7 @@ app.get('/ads/:id(\\d+)', (req, res) => {
 
 /* search all advertisements and returns the data back to the advertisement.service.ts */
 app.get('/ads/:title', function(req, res){ 
-    let sql = 'SELECT * FROM test_search WHERE title LIKE "%' +req.params.title+'%"';
+    let sql = 'SELECT * FROM advertisements WHERE title LIKE "%' +req.params.title+'%"';
     let query = connection.query(sql, (err, result)=>{
         if( err ) throw err;
         console.log(result);
