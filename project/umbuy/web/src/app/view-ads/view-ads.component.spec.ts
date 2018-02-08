@@ -27,7 +27,7 @@ describe('ViewAdsComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterModule],
       declarations: [ ViewAdsComponent ],
-      providers: [AdvertisementService, FilterResultService, AllResultService, HttpClient, HttpHandler]
+      providers: [AdvertisementService, FilterResultService, AllResultService, HttpClient, HttpHandler, RouterModule]
     })
     .compileComponents();
   }));

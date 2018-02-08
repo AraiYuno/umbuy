@@ -60,6 +60,8 @@ describe('ViewAdInformationComponent', () => {
   afterEach(()=>{});
   
   it('When convertToDatestoText() is called, corresponding format should be returned', () => {
+
+    //ARRANGE: call getAdvertisementById 
     let spy=spyOn(advertisementService, 'getAdvertisementById').and.callFake(t => {
       return Observable.from([this.tempAd]);
     });

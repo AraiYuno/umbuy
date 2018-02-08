@@ -11,7 +11,7 @@ export class Advertisement{
     category: string;
 }
 
-export class testAdvertisement{
+export class TestAdvertisement{
     id: number;
     title: string;
 }

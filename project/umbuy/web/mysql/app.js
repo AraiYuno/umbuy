@@ -8,16 +8,16 @@ var sql;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-/*var connection = mysql.createConnection({
+var connection = mysql.createConnection({
     host: 'ec2-18-217-173-154.us-east-2.compute.amazonaws.com',
     user: 'ubuntu',
     // scrach it to see your password 
     password: "team6best",
     database: 'sampledb',
     port: '3306'
-});*/
+});
 
- var connection = mysql.createConnection({
+/*var connection = mysql.createConnection({
      host: 'localhost',
      user: 'root',
      // scrach it to see your password 
@@ -29,10 +29,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    /* scrach it to see your password */
     password: "yy283689291yy",
     database: 'sampledb'
-});
+});*/
 
 connection.connect(function(err){
     if (err) throw err;
