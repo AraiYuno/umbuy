@@ -16,6 +16,9 @@ export class ViewAdsComponent implements OnInit {
 
   advertisements: Advertisement[];
   filteredAds: Advertisement[];
+
+  //Testing Purposes
+  test_shorted_description: string;
   message;
 
   constructor(private _advertisementService: AdvertisementService, private _filterResultService: FilterResultService, private _allResultService: AllResultService) { }
@@ -30,6 +33,7 @@ export class ViewAdsComponent implements OnInit {
       reducedString = description.substring(0, length);
       reducedString = reducedString + "...";
     }
+    this.test_shorted_description = reducedString;
     return reducedString;
   }
   

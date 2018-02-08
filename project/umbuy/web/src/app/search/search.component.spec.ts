@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+/*import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SearchComponent } from './search.component';
 import { AdvertisementService } from '../services/advertisement.service';
@@ -33,7 +33,7 @@ describe('SearchComponent', () => {
   
      });
     
-    /*it('should get the result return from the server', () => {
+    it('should get the result return from the server', () => {
         let results={title: 'iphone',id:1};
         //arrange
       let spy=spyOn(service, 'getSearchResultByTitle').and.callFake(t => {
@@ -44,7 +44,7 @@ describe('SearchComponent', () => {
          console.log(component.result);
     //assert
         expect(component.result.indexOf(results)).toBeGreaterThan(-1);
-     });*/
+     });
     
   
     it('should set message property if server return and error', () => {
@@ -70,3 +70,4 @@ describe('SearchComponent', () => {
      });
     });
   
+*/
