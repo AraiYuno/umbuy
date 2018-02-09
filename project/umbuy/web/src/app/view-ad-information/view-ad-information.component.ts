@@ -83,7 +83,6 @@ export class ViewAdInformationComponent implements OnInit {
     month = months[month];
     
     stringDate = month + " " + day + ", " + year;
-    this.testDate = stringDate;
     return stringDate;
   }
 
