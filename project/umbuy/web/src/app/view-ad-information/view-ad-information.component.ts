@@ -20,13 +20,8 @@ export class ViewAdInformationComponent implements OnInit {
   last_updated: string;
   deleted_on: string;
   isDeleted: boolean;
+  message: string;
 
-  // Testing Purposes
-  message; 
-  test_created_on: string;
-  test_last_updated: string;
-  test_deleted_on: string;
-  test_isDeleted: string;
   constructor(private _advertisementService: AdvertisementService, private _userService: UserService) {
     this.pathNameUrl = window.location.pathname;
    }
@@ -60,15 +55,11 @@ export class ViewAdInformationComponent implements OnInit {
     else{
       this.isDeleted = false;
     }
-    this.test_created_on = this.created_on;
-    this.test_deleted_on = this.deleted_on;
-    this.test_isDeleted = this.deleted_on;
-    this.test_last_updated = this.last_updated;
+
   }
 
   /* Takes in a string date (string_date) in formate YYYY-MM-DD and convert to MM DD, YYYY such as May 1, 2018 */
   convertToTextDate(string_date){
-    var date = new Date(string_date);
     var months = ["January", "February", "March", "April", "May", "June", "July", "August",
                   "September", "October", "November", "December"];
     var stringDate;
@@ -76,13 +67,14 @@ export class ViewAdInformationComponent implements OnInit {
     var month;
     var year;
 
-    day = date.getDate();
-    month = date.getMonth();
-    year = date.getFullYear();
+    var date = new Date(string_date);
+    day = date.getUTCDate();
+    month = date.getUTCMonth();
+    year = date.getUTCFullYear();
     
     month = months[month];
-    
     stringDate = month + " " + day + ", " + year;
+    
     return stringDate;
   }
 

@@ -39,8 +39,8 @@ describe('ViewAdInformationComponent', () => {
       title: 'iphone',
       description: 'A great iphone for a great price',
       price: 75,
-      created_on: new Date('2018-01-02'),
-      last_updated: new Date('2018-01-02'),
+      created_on: '2018-01-01',
+      last_updated: '2018-01-01',
       deleted_on: null,
       imageUrl: 'http',
       category: 'electronics'
@@ -69,10 +69,10 @@ describe('ViewAdInformationComponent', () => {
     //ACT: call the converDatestoText function
     component.convertDatesToText(this.tempAd);
     //ASSERT: see if the created_on from the component matches with the expected output
-    expect(component.test_created_on).toMatch("January 1, 2018");
-    expect(component.test_last_updated).toMatch('January 1, 2018');
-    expect(component.test_deleted_on).toMatch('');
-    expect(component.test_isDeleted).toBeFalsy();
+    expect(component.created_on).toMatch("January 1, 2018");
+    expect(component.last_updated).toMatch('January 1, 2018');
+    expect(component.deleted_on).toMatch('');
+    expect(component.isDeleted).toBeFalsy();
   }); // afterEach
   afterEach(()=>{});
     
@@ -84,7 +84,7 @@ describe('ViewAdInformationComponent', () => {
     });
 
     //ACT: call the converDatestoText function
-    let testDate = component.convertToTextDate(this.tempAd.created_on);
+    let testDate = component.convertToTextDate("2018-01-01");
     
     //ASSERT: see if the created_on from the component matches with the expected output
     //TODO: Why is convertToTextDate() returning input date - 1 ?
