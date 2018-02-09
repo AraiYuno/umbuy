@@ -8,6 +8,7 @@ var sql;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+/*
 var connection = mysql.createConnection({
     host: 'ec2-18-217-173-154.us-east-2.compute.amazonaws.com',
     user: 'ubuntu',
@@ -16,22 +17,15 @@ var connection = mysql.createConnection({
     database: 'sampledb',
     port: '3306'
 });
-
-/*var connection = mysql.createConnection({
-     host: 'localhost',
-     user: 'root',
-     // scrach it to see your password 
-     password: "rawr28",
-     database: 'sampledb'
-});
-
+*/
 
 var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: "yy283689291yy",
-    database: 'sampledb'
-});*/
+     host: '127.0.0.1',
+     user: 'coutures',
+     // scrach it to see your password 
+     password: "cherry14",
+     database: '4350'
+});
 
 connection.connect(function(err){
     if (err) throw err;
@@ -108,4 +102,4 @@ app.post('/createAd', (req, res) => {
     });
 });
 
-app.listen(3000, () => console.log('Example app listening on port 3000 dafsdf!'))
+app.listen(3000, () => console.log('Example app listening on port 3000!'))

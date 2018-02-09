@@ -84,10 +84,11 @@ describe('ViewAdInformationComponent', () => {
     });
 
     //ACT: call the converDatestoText function
-    component.convertToTextDate(this.tempAd.created_on);
+    let testDate = component.convertToTextDate(this.tempAd.created_on);
+    
     //ASSERT: see if the created_on from the component matches with the expected output
     //TODO: Why is convertToTextDate() returning input date - 1 ?
-    expect(component.testDate).toMatch("January 1, 2018");
+    expect(testDate).toMatch("January 1, 2018");
   });
 
 });

@@ -27,14 +27,13 @@ export class ViewAdInformationComponent implements OnInit {
   test_last_updated: string;
   test_deleted_on: string;
   test_isDeleted: string;
-  testDate: string;
   constructor(private _advertisementService: AdvertisementService, private _userService: UserService) {
     this.pathNameUrl = window.location.pathname;
    }
   
   /* Given the path name of the url (everything in url after port number or host name (if port is not there))
    * will return the advertisement id from the path name of the url.
-   * Input: Will look something like /viewAdvertisement/:id
+   * Input: Will look something like /view/ads/:id
    * Output: id
    */
   getAdvertisementId(pathnameUrl: string){
@@ -67,11 +66,9 @@ export class ViewAdInformationComponent implements OnInit {
     this.test_last_updated = this.last_updated;
   }
 
-  /* Will date in a date in the format YYYY-MM-DD and convert to MM DD, YYYY such as May 1, 2018 */
-
-  //TODO: Why are you passing data object as a parameter but create a new Data object again, Stefan?
-  convertToTextDate(date){
-    var tempDate = new Date(date);
+  /* Takes in a string date (string_date) in formate YYYY-MM-DD and convert to MM DD, YYYY such as May 1, 2018 */
+  convertToTextDate(string_date){
+    var date = new Date(string_date);
     var months = ["January", "February", "March", "April", "May", "June", "July", "August",
                   "September", "October", "November", "December"];
     var stringDate;
@@ -79,9 +76,9 @@ export class ViewAdInformationComponent implements OnInit {
     var month;
     var year;
 
-    day = tempDate.getDate();
-    month = tempDate.getMonth();
-    year = tempDate.getFullYear();
+    day = date.getDate();
+    month = date.getMonth();
+    year = date.getFullYear();
     
     month = months[month];
     
