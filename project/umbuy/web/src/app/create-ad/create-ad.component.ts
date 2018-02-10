@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { User } from '../api/user';
 import { MysqlService } from '../services/mysql.service';
 import { Advertisement } from '../api/advertisement';
+import * as AWS from 'aws-sdk';
 
 @Component({
   selector: 'app-create-ad',
@@ -23,6 +24,18 @@ export class CreateAdComponent implements OnInit {
   newAd : Advertisement = new Advertisement();
   res : any;
 
+  // Adding picture to S3
+  image;    // this is to store the current image file.
+  acceptedMimeTypes = [ // currently allowd types of images
+    'image/gif',
+    'image/jpeg',
+    'image/png'
+  ];
+
+  @ViewChild('fileInput') fileInput: ElementRef;
+  fileDataUri = '';
+  errorMsg = '';
+
   constructor(private _mysqlService : MysqlService) { }
 
   ngOnInit() {
@@ -38,7 +51,7 @@ export class CreateAdComponent implements OnInit {
     this.newAd.last_updated = null;
 
     // TODO: change so that users can add photos from their own file. 
-    this.newAd.imageUrl = 'https://myanimelist.cdn-dena.com/images/characters/9/310307.jpg'; //default
+    this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
     this.newAd.category = this.category;
 
     console.log(this.newAd);
@@ -47,5 +60,63 @@ export class CreateAdComponent implements OnInit {
       res => this.res = res,
       err => console.error(err.status)
     )
+  }
+  
+  //===========================================================================================
+  // TODO: uploading multiplic pictures on snapshot 2
+  // Author: Kyle
+  //   this function uploads the input file to S3.
+  //===========================================================================================
+  uploadFile(fileInput: any) {
+    const AWSService = AWS;
+    const region = 'us-east-1';
+    const bucketName = 'kyleteam6best';
+    const IdentityPoolId = 'us-east-1:76f4b57f-b1aa-4d3a-9212-dc2dd92e10aa';
+    const file = fileInput.target.files[0];
+  //Configures the AWS service and initial authorization
+    AWSService.config.update({
+      region: region,
+      credentials: new AWSService.CognitoIdentityCredentials({
+        IdentityPoolId: IdentityPoolId
+      })
+    });
+  //adds the S3 service, make sure the api version and bucket are correct
+    const s3 = new AWSService.S3({
+      apiVersion: '2006-03-01',
+      params: { Bucket: bucketName}
+    });
+  //I store this in a variable for retrieval later
+    this.image = file;
+    s3.upload({ Key: file.name, Bucket: bucketName, Body: file, ACL: 'public-read'}, function (err, data) {
+     if (err) {
+       console.log(err, 'there was an error uploading your file');
+     }
+   });
+  }
+
+  //===========================================================================================
+  // Author: Kyle
+  //   this function shows you a preview of the picture selected by the user.
+  //===========================================================================================
+  previewFile() {
+    const file = this.fileInput.nativeElement.files[0];
+    if (file && this.validateFile(file)) {
+
+      const reader = new FileReader();
+      reader.readAsDataURL(this.fileInput.nativeElement.files[0]);
+      reader.onload = () => {
+        this.fileDataUri = reader.result;
+      }
+    } else {
+      this.errorMsg = 'File must be jpg, png, or gif and cannot be exceed 500 KB in size'
+    }
+  }
+
+  //===========================================================================================
+  // Author: Kyle
+  //   this function checks if the input file is valid or invalid.
+  //===========================================================================================
+  validateFile(file) {
+    return this.acceptedMimeTypes.includes(file.type) && file.size < 500000;
   }
 }

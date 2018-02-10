@@ -1,11 +1,16 @@
 <div class="create ad">
-  <p class="sm">Use this form to create an advertisement</p>
-  <form>
+  <p class="sm">Create a New Advertisement</p>
+  <form method="post" enctype="multipart/form-data">
     <input type="text" class="txt" name="title" placeholder="Title" [(ngModel)]="title">
     <input type="text" class="txt" name="description" placeholder="Description" [(ngModel)]="description">
     <input type="number" class="double" name="price" placeholder="Price" [(ngModel)]="price">
     <input type="text" class="txt" name="category" placeholder="category" [(ngModel)]="category">    
 
-    <input type="submit" class="btn" value="Add User" (click)="createAd()">
+    <img [src]="fileDataUri">
+    <p *ngIf="errorMsg" style="color:red">{{errorMsg}}</p>
+    <br>
+    <input type="file" name="imageUpload" value="imageUpload" id="image"  
+           (change)="previewFile()" (change)="uploadFile($event)"#fileInput>
+    <input type="submit" class="btn" value="POST NOW" (click)="createAd()">
   </form>
 </div>
