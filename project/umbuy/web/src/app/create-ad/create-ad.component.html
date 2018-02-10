@@ -1,21 +1,35 @@
-<div class="create ad">
-  <p class="sm">Create a New Advertisement</p>
-  <form method="post" enctype="multipart/form-data">
-    <input type="text" class="txt" name="title" placeholder="Title" [(ngModel)]="title">
-    <input type="text" class="txt" name="description" placeholder="Description" [(ngModel)]="description">
-    <input type="number" class="double" name="price" placeholder="Price" [(ngModel)]="price">
-    <input type="text" class="txt" name="category" placeholder="category" [(ngModel)]="category">    
+<div class="container">
+  <div class="row">
+    <h1>Create a New Advertisement</h1>
+    <div class="col-md-8 col-centered">
+      <div class="create ad">
+        <form method="post" enctype="multipart/form-data">
+          <div class="form-group"> <!-- Name field -->
+            <label class="control-label" for="title">Title<span class="asteriskField">*</span></label>
+            <input type="text" class="txt form-control" name="title" placeholder="Title" [(ngModel)]="title">
 
-    <img [src]="fileDataUri">
-    <p *ngIf="errorMsg" style="color:red">{{errorMsg}}</p>
-    <br>
-    <input type="file" name="imageUpload" value="imageUpload" id="image"  
-           (change)="previewFile()" (change)="uploadFile($event)"#fileInput>
+            <label class="control-label" for="price">Price<span class="asteriskField">*</span></label>
+            <input type="number" class="double form-control" name="price" placeholder="Price" [(ngModel)]="price">
 
-    <p *ngIf="!createAdSuccess" style="color:red">{{validAdMsg}}</p>
-    <button *ngIf="!createAdSuccess && !postSuccess" class="postBtn" id="postBtn" (click)="this.activateSubmit()" >Validate Advertisement</button>
-    <input *ngIf="createAdSuccess && !postSuccess"  type="submit" class="postBtn" value="POST NOW" 
-           (click)="createAd()">
-  </form>
-  <button *ngIf="postSuccess" class="postBtn" id="postBtn" [routerLink]="['']" >Back to Homepage</button>
+            <label class="control-label" for="category">Category</label>
+            <input type="text" class="txt form-control" name="category" placeholder="Category" [(ngModel)]="category">
+
+            <label class="control-label" for="description">Description</label>
+		        <textarea class="txt form-control" cols="50" name="description" rows="15" [(ngModel)]="description"></textarea>
+          </div>
+
+          <img [src]="fileDataUri">
+          <p *ngIf="errorMsg" style="color:red">{{errorMsg}}</p>
+          <br>
+          <input type="file" class="btn btn-default" name="imageUpload" 
+                (change)="previewFile()" (change)="uploadFile($event)"#fileInput>
+
+          <p *ngIf="!createAdSuccess && !postSuccess" style="color:red">{{validAdMsg}}</p>
+          <button *ngIf="!createAdSuccess && !postSuccess" class="postBtn" id="postBtn" (click)="activateSubmit()" >Validate Advertisement</button>
+        </form>
+        <input *ngIf="createAdSuccess && !postSuccess"  type="submit" class="postBtn" value="POST NOW" 
+            (click)="createAd()" [routerLink]="['']">
+      </div>
+    </div>
+  </div>
 </div>

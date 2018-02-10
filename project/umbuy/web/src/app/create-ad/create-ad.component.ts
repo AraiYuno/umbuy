@@ -40,9 +40,10 @@ export class CreateAdComponent implements OnInit {
   hasImage = false;
 
   validAdMsg;
+
+  //button switches
   createAdSuccess = false;
   postSuccess = false;
-  backtoHome = false;
 
   constructor(private _advertisementService : AdvertisementService, private _router: Router) { }
 
@@ -69,19 +70,42 @@ export class CreateAdComponent implements OnInit {
       res => this.res = res,
       err => this.error = err,
     )
+
     if( this.createAdSuccess ){
       this.postSuccess = true;
       this.createAdSuccess = false;
     }
   }
 
+  //===========================================================================================
+  // Athor: Kyle Ahn
+  // backToHomePage()
+  //   this function routes users back to the home page
+  //===========================================================================================
   backToHomePage(){
     this._router.navigate([""]);
+  }
+
+  //===========================================================================================
+  // Athor: Kyle Ahn
+  // activateSubmit()
+  //   this function validates the new advertisement's information
+  //===========================================================================================
+  activateSubmit(){
+    if( this.title != null && this.description != null && this.price != null && this.category != ''){
+      this.createAdSuccess = true;
+      this.validAdMsg = '';
+    }
+    else{
+      this.createAdSuccess = false;
+      this.validAdMsg = "Please fill in all the fields. Image is optional";
+    }
   }
   
   //===========================================================================================
   // TODO: uploading multiplic pictures on snapshot 2
-  // Author: Kyle
+  // Author: Kyle Ahn
+  // uploadFile(fileInput: any)
   //   this function uploads the input file to S3.
   //===========================================================================================
   uploadFile(fileInput: any) {
@@ -111,17 +135,6 @@ export class CreateAdComponent implements OnInit {
    });
   }
 
-  activateSubmit(){
-    if( this.title != null && this.description != null && this.price != null && this.category != ''){
-      this.createAdSuccess = true;
-      this.validAdMsg = '';
-    }
-    else{
-      this.createAdSuccess = false;
-      this.validAdMsg = "Please fill in all the fields. Image is optional";
-    }
-  }
-
   //===========================================================================================
   // Author: Kyle
   //   this function shows you a preview of the picture selected by the user.
@@ -136,8 +149,9 @@ export class CreateAdComponent implements OnInit {
       reader.onload = () => {
         this.fileDataUri = reader.result;
       }
+      this.errorMsg = '';
     } else {
-      this.errorMsg = 'File must be jpg, png, or gif and cannot be exceed 500 KB in size'
+      this.errorMsg = 'File must be jpg, png, or gif and cannot be exceed 500 KB in size';
     }
   }
 
@@ -146,6 +160,6 @@ export class CreateAdComponent implements OnInit {
   //   this function checks if the input file is valid or invalid.
   //===========================================================================================
   validateFile(file) {
-    return this.acceptedMimeTypes.includes(file.type) && file.size < 500000;
+    return this.acceptedMimeTypes.includes(file.type) && file.size < 5000000;
   }
 }
