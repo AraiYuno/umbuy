@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateAdComponent } from './create-ad.component';
-import { MysqlService } from '../services/mysql.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
@@ -12,16 +11,19 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { AdvertisementService } from '../services/advertisement.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CreateAdComponent', () => {
   let component: CreateAdComponent;
   let fixture: ComponentFixture<CreateAdComponent>;
+  let router: Router;
   let service: AdvertisementService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterModule, FormsModule],
+      imports: [RouterModule, FormsModule, RouterTestingModule],
       declarations: [ CreateAdComponent ],
       providers: [AdvertisementService, User, Advertisement, HttpClient, HttpHandler]
     })
@@ -31,7 +33,8 @@ describe('CreateAdComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CreateAdComponent);
     service = TestBed.get(AdvertisementService);
-    component = new CreateAdComponent(service);
+    router = TestBed.get(Router);
+    component = new CreateAdComponent(service, router);
   });
 
   it('should create', () => {
@@ -58,7 +61,7 @@ describe('CreateAdComponent', () => {
       title: 'luffy', 
       description: 'test', 
       price: 23.14,
-      imageUrl: 'https://myanimelist.cdn-dena.com/images/characters/9/310307.jpg',
+      imageUrl: 'https://s3.amazonaws.com/kyleteam6best/default.jpg',
       category: ' test'
     };
     let spy = spyOn(service, 'createAd').and.returnValue( Observable.from([newAd])); 
