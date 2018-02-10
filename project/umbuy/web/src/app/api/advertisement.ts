@@ -1,5 +1,5 @@
 export class Advertisement{
-    id: number;
+    advertisementId: number;
     userId: number;
     title: string;
     description: string;
@@ -9,9 +9,4 @@ export class Advertisement{
     deleted_on: Date;
     imageUrl: string;
     category: string;
-}
-
-export class TestAdvertisement{
-    id: number;
-    title: string;
 }

@@ -1,94 +1,174 @@
-import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { AdvertisementService } from '../services/advertisement.service';
-import { Observable } from 'rxjs/Observable';
-import { UserService } from '../services/user.service';
+import { async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { By } from '@angular/platform-browser';
 import { ViewAdInformationComponent } from './view-ad-information.component';
-import { Routes, RouterModule } from '@angular/router';
+import { AdvertisementService } from '../services/advertisement.service';
+import { UserService } from '../services/user.service';
+import { Routes, RouterModule, Router} from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
-import { ViewAdsComponent } from '../view-ads/view-ads.component';
 import { Advertisement } from '../api/advertisement';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/observable/empty';
-import 'rxjs/add/observable/throw';
+import { User } from '../api/user';
+import { RouterTestingModule } from '@angular/router/testing';
+
 
 describe('ViewAdInformationComponent', () => {
   let component: ViewAdInformationComponent;
   let fixture: ComponentFixture<ViewAdInformationComponent>;
   let advertisementService: AdvertisementService;
   let userService: UserService;
-  let viewAdsComponent: ViewAdsComponent;
-  let tempAd: Advertisement;  
+  let tempAd: Advertisement; 
+  let tempUser: User; 
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterModule],
-      declarations: [ ViewAdInformationComponent ],
-      providers: [AdvertisementService, UserService, HttpClient, HttpHandler]
+      imports: [RouterModule, RouterTestingModule],
+      declarations: [ ViewAdInformationComponent],
+      providers: [AdvertisementService, UserService, HttpClient, HttpHandler, RouterModule]
     })
     .compileComponents();
+ 
   }));
 
   beforeEach(() => {
-    advertisementService= TestBed.get(AdvertisementService);
-    userService = TestBed.get(UserService);
-    component= new ViewAdInformationComponent(advertisementService, userService);
+    fixture = TestBed.createComponent(ViewAdInformationComponent);
+    component = fixture.componentInstance;
+    
     this.tempAd = { 
-      id: 1,
-      userId: 1,
-      title: 'iphone',
-      description: 'A great iphone for a great price',
-      price: 75,
-      created_on: '2018-01-01',
-      last_updated: '2018-01-01',
-      deleted_on: null,
-      imageUrl: 'http',
-      category: 'electronics'
+      "advertisementId": 1,
+      "userId": 1,
+      "title": 'iphone',
+      "description": 'A great iphone for a great price',
+      "price": 75,
+      "created_on": '2018-01-01',
+      "last_updated": '2018-01-01',
+      "deleted_on": null,
+      "imageUrl": 'http://alink.com',
+      "category": 'electronics'
+    };
+
+    this.tempUser = { 
+      "userId": 1,
+      "firstName": "Bob",
+      "lastName": 'LeBob',
+      "umEmail": 'bob@myumanitoba.ca',
+      "phoneNumber": 2049876543
     };
   });
 
+  it('should render the ad information of the ad', () => {
+    component.advertisement = this.tempAd;
+    component.user = this.tempUser;
+    component.created_on = component.convertToTextDate(component.advertisement.created_on);
+    component.last_updated = component.convertToTextDate(component.advertisement.last_updated);
+    //component.advertisement.deleted_on is null
+    component.deleted_on = component.convertToTextDate(component.advertisement.deleted_on);
+    fixture.detectChanges();
 
-  it('getAdvertisementId() should be getting the id with a given path', () => {
-    // after calling advertisementService getAdvertisementById function fakedly, 
-    let spy=spyOn(advertisementService, 'getAdvertisementById').and.callFake(t => {
-      return Observable.from([this.tempAd]);
-      });
-      // we should be able to retrieve the advertisementId by calling getAdvertisementId() in the component.
-    expect(component.getAdvertisementId('view/ads/1')).toContain(String(this.tempAd.id));
+    //ad's title
+    let debugElement = fixture.debugElement.query(By.css('#title'));
+    let titleElement: HTMLElement = debugElement.nativeElement;
+    expect(titleElement.innerText).toBe("iphone");
+
+    //ad's description
+    debugElement = fixture.debugElement.query(By.css('#description'));
+    let descriptionElement: HTMLElement = debugElement.nativeElement;
+    expect(descriptionElement.innerText).toContain("a great price");
+
+    //ad's src attribute in image
+    debugElement = fixture.debugElement.query(By.css('#image'));
+    let srcElement: HTMLElement = debugElement.nativeElement;
+    expect(srcElement.getAttribute('src')).toBe("http://alink.com");
+
+    //ad's alt attribute in image
+    debugElement = fixture.debugElement.query(By.css('#image'));
+    let altElement: HTMLElement = debugElement.nativeElement;
+    expect(altElement.getAttribute('alt')).toBe("iphone");
+
+    //ad's created on date
+    debugElement = fixture.debugElement.query(By.css('#created_on'));
+    let createdOnElement: HTMLElement = debugElement.nativeElement;
+    expect(createdOnElement.innerText).toContain("January 1, 2018");
+
+    //ad's last updated on date
+    debugElement = fixture.debugElement.query(By.css('#last_updated'));
+    let lastUpdatedOnElement: HTMLElement = debugElement.nativeElement;
+    expect(lastUpdatedOnElement.innerText).toContain("January 1, 2018");
+
+    //component.advertisement.deleted_on is null
+    debugElement = fixture.debugElement.query(By.css('#deleted_on'));
+    //element with id deleted_on should be hidden
+    expect(debugElement).toBe(null);
+
+    //display the deleted date if date is not null
+    component.deleted_on = component.convertToTextDate('2018-01-01');
+    component.isDeleted = true;
+
+    fixture.detectChanges();
+
+    debugElement = fixture.debugElement.query(By.css('#deleted_on'));
+    let deletedOnElement: HTMLElement = debugElement.nativeElement;
+    //element with id deleted_on should be visible
+    expect(deletedOnElement.innerHTML).toContain("January 1, 2018");
+
+    //ad's price
+    debugElement = fixture.debugElement.query(By.css('#price'));
+    let priceElement: HTMLElement = debugElement.nativeElement;
+    expect(priceElement.innerHTML).toContain("75");
+
+    //ad's category
+    debugElement = fixture.debugElement.query(By.css('#category'));
+    let categoryElement: HTMLElement = debugElement.nativeElement;
+    expect(categoryElement.innerHTML).toContain("electronics");
   });
 
-  afterEach(()=>{});
+  it('should render the user information of the ad', () => {
+    component.advertisement = this.tempAd;
+    component.user = this.tempUser;
+
+    fixture.detectChanges();
+
+    //user's full name
+    let debugElement = fixture.debugElement.query(By.css('#userFullName'));
+    let nameElement: HTMLElement = debugElement.nativeElement;
+    expect(nameElement.innerHTML).toContain("Bob LeBob");
+
+    //user's email
+    debugElement = fixture.debugElement.query(By.css('#userEmail'));
+    let emailElement: HTMLElement = debugElement.nativeElement;
+    expect(emailElement.innerHTML).toContain("bob@myumanitoba.ca");
+
+    //user's phone number
+    debugElement = fixture.debugElement.query(By.css('#userPhoneNumber'));
+    let phoneNumberElement: HTMLElement = debugElement.nativeElement;
+    expect(phoneNumberElement.innerHTML).toContain("2049876543");
+  });
+
+  it('should get the ad with a given advertisement id from advertisementService', () => {
+    let service = TestBed.get(AdvertisementService);
+    spyOn(service, 'getAdvertisementById').and.returnValue(Observable.from([this.tempAd]));
+    let ad = service.getAdvertisementById(this.tempAd.advertisementId);
   
-  it('When convertToDatestoText() is called, corresponding format should be returned', () => {
+    expect(ad.array.length).toBe(1);
+    expect(ad.array[0].advertisementId).toBe(this.tempAd.advertisementId);
+  });
 
-    //ARRANGE: call getAdvertisementById 
-    let spy=spyOn(advertisementService, 'getAdvertisementById').and.callFake(t => {
-      return Observable.from([this.tempAd]);
-    });
+  it('should get the user with a given user id from userService', () => {
+    let service = TestBed.get(UserService);
+    spyOn(service, 'getUserById').and.returnValue(Observable.from([this.tempUser]));
+    let user = service.getUserById(this.tempUser.userId);
+  
+    expect(user.array.length).toBe(1);
+    expect(user.array[0].userId).toBe(this.tempUser.userId);
+  });
 
-    //ACT: call the converDatestoText function
-    component.convertDatesToText(this.tempAd);
-    //ASSERT: see if the created_on from the component matches with the expected output
-    expect(component.created_on).toMatch("January 1, 2018");
-    expect(component.last_updated).toMatch('January 1, 2018');
-    expect(component.deleted_on).toMatch('');
-    expect(component.isDeleted).toBeFalsy();
-  }); // afterEach
-  afterEach(()=>{});
-    
+  it('should call router with /view/ads/{{advertisementId}}', () => {
+    let router = TestBed.get(Router);
+    let spy = spyOn(router, 'navigate');
 
-  it('When convertToTextDate() is called, Date object should be converted to text', () => {
-    // faked call for getting an advertisement
-    let spy=spyOn(advertisementService, 'getAdvertisementById').and.callFake(t => {
-      return Observable.from([this.tempAd]);
-    });
-
-    //ACT: call the converDatestoText function
-    let testDate = component.convertToTextDate("2018-01-01");
-    
-    //ASSERT: see if the created_on from the component matches with the expected output
-    //TODO: Why is convertToTextDate() returning input date - 1 ?
-    expect(testDate).toMatch("January 1, 2018");
+    router.navigate(['/view/ads/' + this.tempAd.advertisementId]);
+    expect(spy).toHaveBeenCalledWith(['/view/ads/1']); 
   });
 
 });

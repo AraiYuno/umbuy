@@ -15,25 +15,15 @@ import { routingComponents } from './app-routing.module';
 import { routing } from './app-routing.module';
 import { AdvertisementService } from './services/advertisement.service';
 import { UserService } from './services/user.service';
-import { SearchComponent } from './search/search.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { HomeComponent } from './home/home.component';
 import { FilterResultService } from './services/filterResult.service';
-import { ViewAdInformationComponent } from './view-ad-information/view-ad-information.component';
-import { ViewAdsComponent } from './view-ads/view-ads.component';
-import { CreateAdComponent } from './create-ad/create-ad.component';
-import { MysqlService } from './services/mysql.service';
 import { AllResultService } from './services/allResult.service'
 import { Routes, RouterModule } from '@angular/router';
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents,
-    SearchComponent,
-    CreateAdComponent,
-    ViewAdsComponent
+    routingComponents
   ],
   imports: [
     AngularFontAwesomeModule,
@@ -54,7 +44,7 @@ import { Routes, RouterModule } from '@angular/router';
     MatTabsModule,
     routing
   ],
-  providers: [UserService, AdvertisementService, FilterResultService, AllResultService, MysqlService],
+  providers: [UserService, AdvertisementService, FilterResultService, AllResultService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

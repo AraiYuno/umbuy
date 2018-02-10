@@ -6,8 +6,9 @@ import { ViewAdInformationComponent } from './view-ad-information/view-ad-inform
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CreateAdComponent } from './create-ad/create-ad.component';
+import { SearchComponent } from './search/search.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'view/ads', component: ViewAdsComponent},
   {path: 'view/ads/:id', component: ViewAdInformationComponent},
@@ -21,5 +22,5 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule { }
-export const routingComponents = [HomeComponent, CreateAdComponent, AppComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent]
+export const routingComponents = [HomeComponent, CreateAdComponent, AppComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent, SearchComponent]
 export const routing = RouterModule.forRoot(routes);

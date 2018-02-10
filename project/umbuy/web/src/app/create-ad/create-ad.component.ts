@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../api/user';
-import { MysqlService } from '../services/mysql.service';
+import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../api/advertisement';
 
 @Component({
@@ -23,7 +23,7 @@ export class CreateAdComponent implements OnInit {
   newAd : Advertisement = new Advertisement();
   res : any;
 
-  constructor(private _mysqlService : MysqlService) { }
+  constructor(private _advertisementService : AdvertisementService) { }
 
   ngOnInit() {
   }
@@ -41,9 +41,7 @@ export class CreateAdComponent implements OnInit {
     this.newAd.imageUrl = 'https://myanimelist.cdn-dena.com/images/characters/9/310307.jpg'; //default
     this.newAd.category = this.category;
 
-    console.log(this.newAd);
-    this._mysqlService.createAd(this.newAd).subscribe(
-      
+    this._advertisementService.createAd(this.newAd).subscribe(
       res => this.res = res,
       err => console.error(err.status)
     )
