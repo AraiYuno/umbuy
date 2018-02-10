@@ -23,6 +23,6 @@ export class UserService{
 
     getUserById(userId){
         this.url = this.host + "/users/"+userId;
-        return this.http.get<User[]>(this.url);
+        return this.http.get<User>(this.url);
     }
 }

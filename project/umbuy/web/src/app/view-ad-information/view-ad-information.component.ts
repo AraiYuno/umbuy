@@ -12,8 +12,8 @@ import { NgIf } from '@angular/common';
 })
 export class ViewAdInformationComponent implements OnInit {
 
-  advertisement: Advertisement[];
-  user: User[];
+  advertisement: Advertisement;
+  user: User;
   pathNameUrl: string;
   currentAdvertisementId: number;
   created_on: string;
@@ -83,13 +83,13 @@ export class ViewAdInformationComponent implements OnInit {
 
     this._advertisementService.getAdvertisementById(this.currentAdvertisementId)
       .subscribe(
-        res => this.advertisement = res,
+        res => this.advertisement = res[0],
         err => this.message = err,
-        () => this._userService.getUserById(this.advertisement[0].userId)
+        () => this._userService.getUserById(this.advertisement.userId)
                 .subscribe(
-                  res => this.user = res,
+                  res => this.user = res[0],
                   err => console.error(err.status),
-                  () => this.convertDatesToText(this.advertisement[0])
+                  () => this.convertDatesToText(this.advertisement)
                 )
       ) /* After data is back for advertisement, execute getUserById*/  
   }
