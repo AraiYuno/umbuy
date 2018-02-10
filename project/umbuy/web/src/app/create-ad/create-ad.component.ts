@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { User } from '../api/user';
 import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../api/advertisement';
+import { Router } from '@angular/router';
 import * as AWS from 'aws-sdk';
 
 @Component({
@@ -35,12 +36,18 @@ export class CreateAdComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
   fileDataUri = '';
   errorMsg = '';
+  hasImage = false;
 
-  constructor(private _advertisementService : AdvertisementService) { }
+  validAdMsg;
+  createAdSuccess = false;
+  postSuccess = false;
+  backtoHome = false;
+
+  constructor(private _advertisementService : AdvertisementService, private _router: Router) { }
 
   ngOnInit() {
   }
-
+  
   createAd(){
 
     // TODO: change so that we take userid from logged in user
@@ -49,15 +56,25 @@ export class CreateAdComponent implements OnInit {
     this.newAd.description = this.description;
     this.newAd.price = this.price;
     this.newAd.last_updated = null;
-
-    // TODO: change so that users can add photos from their own file. 
-    this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
+    // TODO: Users should be able to upload multiple images.
+    if( this.hasImage == true )
+      this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
+    else
+      this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/default.jpg';
     this.newAd.category = this.category;
-
+    // To validate the new advertisement
     this._advertisementService.createAd(this.newAd).subscribe(
       res => this.res = res,
       err => console.error(err.status)
     )
+    if( this.createAdSuccess ){
+      this.postSuccess = true;
+      this.createAdSuccess = false;
+    }
+  }
+
+  backToHomePage(){
+    this._router.navigate([""]);
   }
   
   //===========================================================================================
@@ -92,14 +109,26 @@ export class CreateAdComponent implements OnInit {
    });
   }
 
+  activateSubmit(){
+    if( this.title != null && this.description != null && this.price != null && this.category != ''){
+      this.createAdSuccess = true;
+      this.validAdMsg = '';
+    }
+    else{
+      this.createAdSuccess = false;
+      this.validAdMsg = "Please fill in all the fields. Image is optional";
+    }
+  }
+
   //===========================================================================================
   // Author: Kyle
   //   this function shows you a preview of the picture selected by the user.
   //===========================================================================================
   previewFile() {
+    // activate the submit button
     const file = this.fileInput.nativeElement.files[0];
     if (file && this.validateFile(file)) {
-
+      this.hasImage = true;
       const reader = new FileReader();
       reader.readAsDataURL(this.fileInput.nativeElement.files[0]);
       reader.onload = () => {
