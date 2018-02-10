@@ -32,4 +32,8 @@ export class AdvertisementService{
         return this.http.get<Advertisement[]>(this.url);
     }
 
+    createAd(advertisement){
+        this.url = this.host + "/createAd";
+        return this.http.post<Advertisement>(this.url, advertisement);
+    }
 }

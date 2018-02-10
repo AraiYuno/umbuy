@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { User } from '../api/user';
-import { MysqlService } from '../services/mysql.service';
 import { Advertisement } from '../api/advertisement';
+import { AdvertisementService } from '../services/advertisement.service';
 
 @Component({
   selector: 'app-create-ad',
@@ -22,8 +22,9 @@ export class CreateAdComponent implements OnInit {
 
   newAd : Advertisement = new Advertisement();
   res : any;
+  error: any
 
-  constructor(private _mysqlService : MysqlService) { }
+  constructor(private _advertisementService : AdvertisementService) { }
 
   ngOnInit() {
   }
@@ -42,10 +43,10 @@ export class CreateAdComponent implements OnInit {
     this.newAd.category = this.category;
 
     console.log(this.newAd);
-    this._mysqlService.createAd(this.newAd).subscribe(
+    this._advertisementService.createAd(this.newAd).subscribe(
       
       res => this.res = res,
-      err => console.error(err.status)
+      err => this.error = err,
     )
   }
 }
