@@ -1,13 +1,3 @@
-#hoverbutton {
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-}
-
-#hoverbutton:hover {
-    background-color: #4CAF50; /* Green */
-    color: white;
-}
-
 .postBtn{
     height: 4em;
     width: 30em;
@@ -18,4 +8,9 @@
 .postBtn:hover {
     background-color: #4CAF50; /* Green */
     color: white;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
 }
