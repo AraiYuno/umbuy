@@ -1,0 +1,21 @@
+#hoverbutton {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+#hoverbutton:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.postBtn{
+    height: 4em;
+    width: 30em;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.postBtn:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
