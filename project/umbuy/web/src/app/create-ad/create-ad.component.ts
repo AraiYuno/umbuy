@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { User } from '../api/user';
-import { MysqlService } from '../services/mysql.service';
+import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../api/advertisement';
 import * as AWS from 'aws-sdk';
 
@@ -36,7 +36,7 @@ export class CreateAdComponent implements OnInit {
   fileDataUri = '';
   errorMsg = '';
 
-  constructor(private _mysqlService : MysqlService) { }
+  constructor(private _advertisementService : AdvertisementService) { }
 
   ngOnInit() {
   }
@@ -54,9 +54,7 @@ export class CreateAdComponent implements OnInit {
     this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
     this.newAd.category = this.category;
 
-    console.log(this.newAd);
-    this._mysqlService.createAd(this.newAd).subscribe(
-      
+    this._advertisementService.createAd(this.newAd).subscribe(
       res => this.res = res,
       err => console.error(err.status)
     )

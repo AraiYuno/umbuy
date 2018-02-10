@@ -4,7 +4,6 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { Advertisement } from '../api/advertisement';
-import { SearchResult } from '../api/test_search';
 import { HttpParams } from '@angular/common/http';
 
 @Injectable()
@@ -21,6 +20,10 @@ export class AdvertisementService{
         }
     }
 
+    createAd(advertisement){
+        this.url = this.host + "/createAd";
+        return this.http.post<Advertisement>(this.url, advertisement);
+    }
 
     getAllAdvertisements(){
         this.url = this.host + "/ads";
@@ -29,7 +32,7 @@ export class AdvertisementService{
 
     getAdvertisementById(advertisementId){
         this.url = this.host + "/ads/" + advertisementId;
-        return this.http.get<Advertisement[]>(this.url);
+        return this.http.get<Advertisement>(this.url);
     }
 
 }
