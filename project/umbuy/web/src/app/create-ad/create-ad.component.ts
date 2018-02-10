@@ -147,8 +147,9 @@ export class CreateAdComponent implements OnInit {
       reader.onload = () => {
         this.fileDataUri = reader.result;
       }
+      this.errorMsg = '';
     } else {
-      this.errorMsg = 'File must be jpg, png, or gif and cannot be exceed 500 KB in size'
+      this.errorMsg = 'File must be jpg, png, or gif and cannot be exceed 500 KB in size';
     }
   }
 
@@ -157,6 +158,6 @@ export class CreateAdComponent implements OnInit {
   //   this function checks if the input file is valid or invalid.
   //===========================================================================================
   validateFile(file) {
-    return this.acceptedMimeTypes.includes(file.type) && file.size < 500000;
+    return this.acceptedMimeTypes.includes(file.type) && file.size < 5000000;
   }
 }

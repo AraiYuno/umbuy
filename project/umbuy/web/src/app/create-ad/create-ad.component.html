@@ -12,7 +12,7 @@
     <input type="file" name="imageUpload" value="imageUpload" id="image"  
            (change)="previewFile()" (change)="uploadFile($event)"#fileInput>
 
-    <p *ngIf="!createAdSuccess" style="color:red">{{validAdMsg}}</p>
+    <p *ngIf="!createAdSuccess && !postSuccess" style="color:red">{{validAdMsg}}</p>
     <button *ngIf="!createAdSuccess && !postSuccess" class="postBtn" id="postBtn" (click)="activateSubmit()" >Validate Advertisement</button>
   </form>
   <input *ngIf="createAdSuccess && !postSuccess"  type="submit" class="postBtn" value="POST NOW" 
