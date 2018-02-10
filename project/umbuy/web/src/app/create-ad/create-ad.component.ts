@@ -39,9 +39,10 @@ export class CreateAdComponent implements OnInit {
   hasImage = false;
 
   validAdMsg;
+
+  //button switches
   createAdSuccess = false;
   postSuccess = false;
-  backtoHome = false;
 
   constructor(private _advertisementService : AdvertisementService, private _router: Router) { }
 
@@ -67,19 +68,42 @@ export class CreateAdComponent implements OnInit {
       res => this.res = res,
       err => console.error(err.status)
     )
+
     if( this.createAdSuccess ){
       this.postSuccess = true;
       this.createAdSuccess = false;
     }
   }
 
+  //===========================================================================================
+  // Athor: Kyle Ahn
+  // backToHomePage()
+  //   this function routes users back to the home page
+  //===========================================================================================
   backToHomePage(){
     this._router.navigate([""]);
+  }
+
+  //===========================================================================================
+  // Athor: Kyle Ahn
+  // activateSubmit()
+  //   this function validates the new advertisement's information
+  //===========================================================================================
+  activateSubmit(){
+    if( this.title != null && this.description != null && this.price != null && this.category != ''){
+      this.createAdSuccess = true;
+      this.validAdMsg = '';
+    }
+    else{
+      this.createAdSuccess = false;
+      this.validAdMsg = "Please fill in all the fields. Image is optional";
+    }
   }
   
   //===========================================================================================
   // TODO: uploading multiplic pictures on snapshot 2
-  // Author: Kyle
+  // Author: Kyle Ahn
+  // uploadFile(fileInput: any)
   //   this function uploads the input file to S3.
   //===========================================================================================
   uploadFile(fileInput: any) {
@@ -107,17 +131,6 @@ export class CreateAdComponent implements OnInit {
        console.log(err, 'there was an error uploading your file');
      }
    });
-  }
-
-  activateSubmit(){
-    if( this.title != null && this.description != null && this.price != null && this.category != ''){
-      this.createAdSuccess = true;
-      this.validAdMsg = '';
-    }
-    else{
-      this.createAdSuccess = false;
-      this.validAdMsg = "Please fill in all the fields. Image is optional";
-    }
   }
 
   //===========================================================================================
