@@ -11,6 +11,10 @@ export class AdvertisementService{
     private url:string;
     private host:string;
 
+    // Testing purposes
+    ads;
+    ad;
+
     constructor(public http: HttpClient){
         if(isDevMode()){
             this.host = "http://ec2-18-217-86-148.us-east-2.compute.amazonaws.com:9000";
@@ -27,11 +31,13 @@ export class AdvertisementService{
 
     getAllAdvertisements(){
         this.url = this.host + "/ads";
+        this.ads = this.http.get<Advertisement[]>(this.url);
         return this.http.get<Advertisement[]>(this.url);
     }
 
     getAdvertisementById(advertisementId){
         this.url = this.host + "/ads/" + advertisementId;
+        this.ad = this.http.get<Advertisement>(this.url);
         return this.http.get<Advertisement>(this.url);
     }
 

@@ -99,7 +99,7 @@ describe('ViewAdsComponent Unit Tests', () => {
     // ACT: Call ngOnInit and set the filteredAds Advertisement [] to be ready
     let spy=spyOn(component, 'ngOnInit').and.callFake(t => {
         return Observable.from([this.tempAd]);
-      });
+    });
 
     component.filteredAds = this.tempAd;
     fixture.detectChanges();
