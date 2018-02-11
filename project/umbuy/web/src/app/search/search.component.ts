@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AdvertisementService } from '../services/advertisement.service';
-import { HttpClient } from '@angular/common/http';
-import { Title } from '@angular/platform-browser/src/browser/title';
 import { Advertisement } from '../api/advertisement';
 import { FilterResultService } from '../services/filterResult.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
