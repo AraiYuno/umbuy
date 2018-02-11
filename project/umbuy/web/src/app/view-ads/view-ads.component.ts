@@ -17,6 +17,7 @@ export class ViewAdsComponent implements OnInit {
   advertisements: Advertisement[];
   filteredAds: Advertisement[];
 
+  
   //Testing Purposes
   test_shorted_description: string;
   message;
