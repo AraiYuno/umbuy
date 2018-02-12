@@ -6,6 +6,7 @@ import { AllResultService } from '../services/allResult.service';
 
 
 @Component({
+  
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']

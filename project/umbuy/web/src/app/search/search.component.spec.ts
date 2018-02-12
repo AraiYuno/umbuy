@@ -12,16 +12,19 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AllResultService } from '../services/allResult.service';
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import { Advertisement } from '../api/advertisement';
+import 'rxjs/add/observable/from';
 
-describe('SearchComponent', () => {
+describe('SearchComponent Integration Tests', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
+  let newAdevertisement: Advertisement;
   
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SearchComponent ],
-      imports: [FormsModule],
+      imports: [FormsModule,RouterModule,RouterTestingModule],
       providers: [AdvertisementService, AllResultService,FilterResultService, HttpClient, HttpHandler, RouterModule]
     })
     .compileComponents();
@@ -34,7 +37,7 @@ describe('SearchComponent', () => {
     
     this.INI_Adevertisement = [
       { 
-      id: 1,
+      advertisementId: 1,
       userId: 1,
       title: 'iphone',
       description: 'A great iphone for a great price',
@@ -46,8 +49,8 @@ describe('SearchComponent', () => {
       category: 'education'
     },
     { 
-      id: 2,
-      userId: 1,
+      advertisementId: 2,
+      userId: 2,
       title: 'book',
       description: 'A great book for a great price',
       price: 100,
@@ -56,12 +59,11 @@ describe('SearchComponent', () => {
       deleted_on: null,
       imageUrl: 'http/ads',
       category: 'eletronic'
-    }  
-  ];
-    
+    }]; 
   });
 
 
+ 
 
   it('should bind the search input to the correct property', () => {   
     fixture.detectChanges();
@@ -91,17 +93,26 @@ describe('SearchComponent', () => {
     
     expect(component.filter).toHaveBeenCalled();
   });
-  // xit('should call the filter method when keyup', () => {
-  //   fixture.detectChanges();
-  //   let title= 'iphone';
-  //   //get the input
-  //  let inputField=fixture.debugElement.query(By.css('.form-control'));
-  //   inputField.triggerEventHandler('keyup','title')
+ 
+  it('should find the proper advertiement when call the keyup to do the query by title', () => {
+   
+    component.allAds=this.INI_Adevertisement;
+   
+    //get the input
+   let inputField=fixture.debugElement.query(By.css('.form-control'));
+    inputField.triggerEventHandler('keyup','iphone');
+    expect(component.filteredAds).toContain(this.INI_Adevertisement[0]);
+    expect(component.filteredAds.length).toBe(2);
+  });
 
+  it('should load filterAds from the server', () => {
+    //faked service
+    let service=TestBed.get(FilterResultService,AllResultService);
+    spyOn(service,'changeMessage').and.returnValue(Observable.from([[this.INI_Adevertisement]]));
+    component.filteredAds=this.INI_Adevertisement;
+   
+    //assertion
+     expect(component.filteredAds.length).toBe(2);
+   });
 
-  
-
-    
-  //   expect(component.filteredAds).toContain('iphone');
-  // });
 });

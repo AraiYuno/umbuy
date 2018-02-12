@@ -9,7 +9,7 @@ import { Advertisement } from '../api/advertisement';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
-describe('SearchComponent', () => {
+describe('SearchComponent Unit Tests', () => {
     let component: SearchComponent;
     let service1: FilterResultService;
     let service2: AllResultService;
@@ -45,12 +45,10 @@ describe('SearchComponent', () => {
             deleted_on: null,
             imageUrl: 'http',
             category: 'education'
-        }
-        ];
-
+        }];
     });
     //test for shareMessage();
-    it('should set fileter ads returned from the server', () => {
+    it('should set fileter advertisement returned from the server', () => {
         // arrange part, want create fake 
         let spy=spyOn(service1, 'changeMessage').and.callFake(() => {
                 return Observable.empty();
@@ -122,7 +120,6 @@ describe('SearchComponent', () => {
 
     it('should find length 0 array if allAds is empty', () => {    
         // arrange part, want create fake 
-        console.log(this.newAdevertisement);
         component.allAds = [];
          
         this.query= null; 
@@ -132,51 +129,6 @@ describe('SearchComponent', () => {
         
     });
 
-  
-
-
-    
-//    xit('should get the result return from the server', () => {
-//         const results = {title: '1', id: 1};
-//         // arrange
-//       const spy = spyOn(adService, 'getSearchResultByTitle').and.callFake(t => {
-//          return Observable.from([results]);
-//      });
-//        // Act
-//          component.getData();
-//          console.log(component.result);
-//     // assert
-//         expect(component.result.indexOf(results)).toBeGreaterThan(-1);
-//      });
-
-//     xit('should set message property if server return and error', () => {
-//         const error = 'error';
-//         // arrange
-//       const spy = spyOn(adService, 'getSearchResultByTitle').and.returnValue(Observable.throw(error));
-//        // Act
-//         component.getData();
-//         console.log(component.message);
-//     // assert
-//        expect(component.message).toBe(error);
-//      });
-
- //test for fliterResultService.changeMessage 
-//  it('should set search filer  with result return from the server', () => {
-
-//     let filterAdvertisement=[
-//       {id:1 ,title: 'a'},
-//       {id:2, title: 'b'}
-//     ]
-//         // arrange part, want create fake 
-//    spyOn(service1, 'changeMessage').and.callFake(() => {
-//          return Observable.from([filterAdvertisement])
-//      });
-
-
-//          component.shareMessage();
-//           // assert
-//          expect(component.filteredAds).toBe(2);
-//       console.log(component.filteredAds.length);
     });
 
   
