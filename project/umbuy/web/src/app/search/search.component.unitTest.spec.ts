@@ -5,43 +5,56 @@ import { AllResultService } from '../services/allResult.service';
 import { FilterResultService } from '../services/filterResult.service';
 import { HttpClient} from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Advertisement } from '../api/advertisement';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
-fdescribe('SearchComponent', () => {
+describe('SearchComponent', () => {
     let component: SearchComponent;
-    let service1: AdvertisementService;
-    let service2: FilterResultService;
-    let service3: AllResultService;
+    let service1: FilterResultService;
+    let service2: AllResultService;
+    let newAdevertisement: Advertisement;
     
     beforeEach(() => {
         //All service return simple Observable
-        service1= new AdvertisementService(null);
-        service2 = new FilterResultService();
-        service3 = new AllResultService();
-        component= new SearchComponent(service1,service2,service3);
+        service1 = new FilterResultService();
+        service2 = new AllResultService();
+        component= new SearchComponent(service1,service2);
 
 
-    const INI_Adevertisement = { 
-        id: 1,
-        userId: 1,
-        title: 'iphone',
-        description: 'A great iphone for a great price',
-        price: 200,
-        created_on: new Date('2018-02-02'),
-        last_updated: new Date('2018-02-02'),
-        deleted_on: null,
-        imageUrl: 'http',
-        category: 'education'
-      };
+        this.newAdevertisement = [
+            { 
+            advertisementId: 1,
+            userId: 1,
+            title: 'iphone',
+            description: 'A great iphone for a great price',
+            price: 200,
+            created_on: new Date('2018-02-02'),
+            last_updated: new Date('2018-02-02'),
+            deleted_on: null,
+            imageUrl: 'http',
+            category: 'electronic'
+        },
+        { advertisementId: 2,
+            userId: 2,
+            title: 'book',
+            description: 'A great iphone for a great price',
+            price: 100,
+            created_on: new Date('2018-01-02'),
+            last_updated: new Date('2018-01-02'),
+            deleted_on: null,
+            imageUrl: 'http',
+            category: 'education'
+        }
+        ];
 
     });
     //test for shareMessage();
     it('should set fileter ads returned from the server', () => {
         // arrange part, want create fake 
-   let spy=spyOn(service2, 'changeMessage').and.callFake(() => {
-         return Observable.empty();
-     });
+        let spy=spyOn(service1, 'changeMessage').and.callFake(() => {
+                return Observable.empty();
+            });
 
 
          component.shareMessage();
@@ -49,19 +62,88 @@ fdescribe('SearchComponent', () => {
          expect(spy).toHaveBeenCalled();
     
      });
-    //test for filter() with null values
-    it('should alert with "view add first" when the allAds is null', () => {
+  
+     //test for filter() with null values
+    it('should find the Ads based on query', () => {
+
+          
         // arrange part, want create fake 
-         component.allAds=null;
-         spyOn(window,'alert');
-     
-
-
-         component.filter();
+        console.log(this.newAdevertisement);
+        component.allAds = this.newAdevertisement;
+         
+        this.query='ip'; 
+        component.filter();
+        console.log(component.allAds);
+        console.log(component.filteredAds);
           // assert
-          expect(window.alert).toHaveBeenCalledWith('view ads first'); 
+        expect(component.filteredAds).toContain(this.newAdevertisement[0]); 
+         
     
     });
+
+    it('should find all the Ads based on non-existing query', () => {
+
+          
+        // arrange part, want create fake 
+        console.log(this.newAdevertisement);
+        component.allAds = this.newAdevertisement;
+         
+        this.query='ips'; 
+        component.filter();
+        console.log(component.allAds);
+        console.log(component.filteredAds);
+          // assert
+        expect(component.filteredAds).toBe(this.newAdevertisement); 
+         
+    
+    });
+
+    it('should find all the Ads based on empty query', () => {
+
+          
+        // arrange part, want create fake 
+        console.log(this.newAdevertisement);
+        component.allAds = this.newAdevertisement;
+         
+        this.query= ''; 
+        component.filter();
+        console.log(component.allAds);
+        console.log(component.filteredAds);
+          // assert
+        expect(component.filteredAds).toBe(this.newAdevertisement); 
+         
+    
+    });
+
+    it('should find all the Ads based on null query', () => {    
+        // arrange part, want create fake 
+        console.log(this.newAdevertisement);
+        component.allAds = this.newAdevertisement;
+         
+        this.query= null; 
+        component.filter();
+        console.log(component.allAds);
+        console.log(component.filteredAds);
+          // assert
+        expect(component.filteredAds).toBe(this.newAdevertisement); 
+        
+    });
+    
+    it('should find length 0 array if allAds is empty', () => {    
+        // arrange part, want create fake 
+        console.log(this.newAdevertisement);
+        component.allAds = [];
+         
+        this.query= null; 
+        component.filter();
+        console.log(component.allAds);
+        console.log(component.filteredAds);
+          // assert
+        expect(component.filteredAds.length).toBe(0); 
+        
+    });
+
+  
 
 
     
@@ -97,7 +179,7 @@ fdescribe('SearchComponent', () => {
 //       {id:2, title: 'b'}
 //     ]
 //         // arrange part, want create fake 
-//    spyOn(service2, 'changeMessage').and.callFake(() => {
+//    spyOn(service1, 'changeMessage').and.callFake(() => {
 //          return Observable.from([filterAdvertisement])
 //      });
 
