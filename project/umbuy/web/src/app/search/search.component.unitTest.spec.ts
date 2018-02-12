@@ -68,13 +68,11 @@ describe('SearchComponent', () => {
 
           
         // arrange part, want create fake 
-        console.log(this.newAdevertisement);
         component.allAds = this.newAdevertisement;
          
         this.query='ip'; 
         component.filter();
-        console.log(component.allAds);
-        console.log(component.filteredAds);
+    
           // assert
         expect(component.filteredAds).toContain(this.newAdevertisement[0]); 
          
@@ -85,13 +83,11 @@ describe('SearchComponent', () => {
 
           
         // arrange part, want create fake 
-        console.log(this.newAdevertisement);
         component.allAds = this.newAdevertisement;
          
         this.query='ips'; 
         component.filter();
-        console.log(component.allAds);
-        console.log(component.filteredAds);
+    
           // assert
         expect(component.filteredAds).toBe(this.newAdevertisement); 
          
@@ -102,13 +98,10 @@ describe('SearchComponent', () => {
 
           
         // arrange part, want create fake 
-        console.log(this.newAdevertisement);
         component.allAds = this.newAdevertisement;
          
         this.query= ''; 
         component.filter();
-        console.log(component.allAds);
-        console.log(component.filteredAds);
           // assert
         expect(component.filteredAds).toBe(this.newAdevertisement); 
          
@@ -117,18 +110,16 @@ describe('SearchComponent', () => {
 
     it('should find all the Ads based on null query', () => {    
         // arrange part, want create fake 
-        console.log(this.newAdevertisement);
+     
         component.allAds = this.newAdevertisement;
          
         this.query= null; 
         component.filter();
-        console.log(component.allAds);
-        console.log(component.filteredAds);
           // assert
         expect(component.filteredAds).toBe(this.newAdevertisement); 
         
     });
-    
+
     it('should find length 0 array if allAds is empty', () => {    
         // arrange part, want create fake 
         console.log(this.newAdevertisement);
@@ -136,8 +127,6 @@ describe('SearchComponent', () => {
          
         this.query= null; 
         component.filter();
-        console.log(component.allAds);
-        console.log(component.filteredAds);
           // assert
         expect(component.filteredAds.length).toBe(0); 
         
