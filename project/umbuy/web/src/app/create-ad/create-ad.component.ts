@@ -24,6 +24,7 @@ export class CreateAdComponent implements OnInit {
 
   newAd : Advertisement = new Advertisement();
   res : any;
+  error: any
 
   // Adding picture to S3
   image;    // this is to store the current image file.
@@ -63,10 +64,11 @@ export class CreateAdComponent implements OnInit {
     else
       this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/default.jpg';
     this.newAd.category = this.category;
+    
     // To validate the new advertisement
     this._advertisementService.createAd(this.newAd).subscribe(
       res => this.res = res,
-      err => console.error(err.status)
+      err => this.error = err,
     )
 
     if( this.createAdSuccess ){

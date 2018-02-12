@@ -40,5 +40,4 @@ export class AdvertisementService{
         this.ad = this.http.get<Advertisement>(this.url);
         return this.http.get<Advertisement>(this.url);
     }
-
 }

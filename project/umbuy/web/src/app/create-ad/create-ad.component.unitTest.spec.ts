@@ -1,8 +1,7 @@
-import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateAdComponent } from './create-ad.component';
-import { Observable } from 'rxjs';
-import { By } from '@angular/platform-browser';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
@@ -15,13 +14,6 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { AdvertisementService } from '../services/advertisement.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { debug } from 'util';
-
-// fake router
-class RouterStub {
-  navigate(params){
-  }
-}
 
 describe('CreateAdComponent', () => {
   let component: CreateAdComponent;
@@ -34,9 +26,7 @@ describe('CreateAdComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterModule, FormsModule, RouterTestingModule],
       declarations: [ CreateAdComponent ],
-      providers: [AdvertisementService, User, Advertisement, HttpClient, HttpHandler,
-        { provide: Router, useClass: RouterStub}
-      ]
+      providers: [AdvertisementService, User, Advertisement, HttpClient, HttpHandler]
     })
     .compileComponents();
   }));
@@ -45,12 +35,10 @@ describe('CreateAdComponent', () => {
     fixture = TestBed.createComponent(CreateAdComponent);
     service = TestBed.get(AdvertisementService);
     router = TestBed.get(Router);
-    // component = new CreateAdComponent(service, router);
-    component = fixture.componentInstance;
-
+    component = new CreateAdComponent(service, router);
     newAd = { 
       userId: 1, 
-      title: 'test', 
+      title: 'luffy', 
       description: 'test', 
       price: 23.14,
       imageUrl: 'https://s3.amazonaws.com/kyleteam6best/default.jpg',
@@ -58,38 +46,49 @@ describe('CreateAdComponent', () => {
     };
   });
 
-  it('should redirect the user back to the home page after validating advertisement', () => {
-    let spy = spyOn(router, 'navigate');
-
-    component.backToHomePage();
-
-    expect(spy).toHaveBeenCalledWith(['']);
-    
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
-  it('should add the new  returned from the server', () => {
+  it('should call server to save the changes when an advertisement is created', () => {
     // arrange
-    let spy = spyOn(service, 'createAd').and.returnValue( Observable.from([newAd])); 
+    let spy = spyOn(service, 'createAd').and.callFake(ad => {
+      return Observable.empty();
+    });
 
     // act
     component.createAd();
 
     // assert
-    expect(component.res).toBe(newAd);
+    expect(spy).toHaveBeenCalled();
   });
   
-  it('should set the message property if server returns an error when adding a new advertisement', () => {
-    let error = 'error from the server'
-    // arrange
-    let spy = spyOn(service, 'createAd').and.returnValue( Observable.throw(error)); 
 
-    // act
-    component.createAd();
+  it ('should fail when given empty parameters for advertisement input fields', () => {
+   
+    component.activateSubmit();
 
-    // assert
-    expect(component.error).toBe(error);
+    expect(component.createAdSuccess).toBeFalsy();
+    expect(component.validAdMsg).toContain('fill');
   });
+
   
-  // TODO two way binding test and button click event testsng
-  
+  it ('should succeed when given valid parameters for advertisement input fields', () => {
+    component.title = 'somethign';
+    component.description = 'test';
+    component.price = 20;
+    component.category = 'test';
+
+    component.activateSubmit();
+
+    expect(component.createAdSuccess).toBeTruthy();
+    expect(component.validAdMsg).toBe('');
+  });
+
+
+  //TODO UNIT TESTS FOR
+  // backToHomePage
+  // uploadFile
+  // previewFile
+  // validateFile
 });

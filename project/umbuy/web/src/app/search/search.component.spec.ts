@@ -1,72 +1,118 @@
-/*import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
 import { SearchComponent } from './search.component';
 import { AdvertisementService } from '../services/advertisement.service';
-import { ShareSearchResultService } from '../services/shareSearchResult.service'
+import { FilterResultService } from '../services/filterResult.service';
+import { Routes, RouterModule, Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { HttpHandler } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AllResultService } from '../services/allResult.service';
+import {CommonModule} from "@angular/common";
+import {FormsModule} from "@angular/forms";
+import { Advertisement } from '../api/advertisement';
 import 'rxjs/add/observable/from';
-import 'rxjs/add/observable/empty';
-import 'rxjs/add/observable/throw';
-describe('SearchComponent', () => {
-    let component: SearchComponent; 
-    let adService: AdvertisementService;
-    let shareService: ShareSearchResultService;
-  
-    beforeEach(() => {
-      
-      adService= new AdvertisementService(null);
-      shareService = new ShareSearchResultService();
-      component= new SearchComponent(adService, shareService);
-  
-    });
-  
-    /*it('should call the server save the changed when the method is called ', () => {
-        //arrange
-   let spy=spyOn(adService, 'getSearchResultByTitle').and.callFake(t => {
-         return Observable.empty();
-     });
 
-         component.getData();
-         
-          //assert
-         expect(spy).toHaveBeenCalled();
+describe('SearchComponent Integration Tests', () => {
+  let component: SearchComponent;
+  let fixture: ComponentFixture<SearchComponent>;
+  let newAdevertisement: Advertisement;
   
-     });
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ SearchComponent ],
+      imports: [FormsModule,RouterModule,RouterTestingModule],
+      providers: [AdvertisementService, AllResultService,FilterResultService, HttpClient, HttpHandler, RouterModule]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
     
-    it('should get the result return from the server', () => {
-        let results={title: 'iphone',id:1};
-        //arrange
-      let spy=spyOn(service, 'getSearchResultByTitle').and.callFake(t => {
-         return Observable.from([results]);
-     });
-       //Act
-         component.getData();
-         console.log(component.result);
-    //assert
-        expect(component.result.indexOf(results)).toBeGreaterThan(-1);
-     });
+    fixture = TestBed.createComponent(SearchComponent);
+    component = fixture.componentInstance;
     
-  
-    it('should set message property if server return and error', () => {
-        let error='error';
-        //arrange
-      let spy=spyOn(adService, 'getSearchResultByTitle').and.returnValue(Observable.throw(error));
-       //Act
-        component.getData();
-        console.log(component.message);
-    //assert
-       expect(component.message).toBe(error);
-     });
-     
-     //test onKey() 
-    it('should return the title when onkey method is calling', () => {
-        let result=" ";
-        //Act
-        component.onKey(result);
-        
+    this.INI_Adevertisement = [
+      { 
+      advertisementId: 1,
+      userId: 1,
+      title: 'iphone',
+      description: 'A great iphone for a great price',
+      price: 200,
+      created_on: new Date('2018-02-02'),
+      last_updated: new Date('2018-02-02'),
+      deleted_on: null,
+      imageUrl: 'http',
+      category: 'education'
+    },
+    { 
+      advertisementId: 2,
+      userId: 2,
+      title: 'book',
+      description: 'A great book for a great price',
+      price: 100,
+      created_on: new Date('2018-01-02'),
+      last_updated: new Date('2018-01-02'),
+      deleted_on: null,
+      imageUrl: 'http/ads',
+      category: 'eletronic'
+    }]; 
+  });
+
+
+ 
+
+  it('should bind the search input to the correct property', () => {   
+    fixture.detectChanges();
+    //get the input
+      
+    let input = fixture.debugElement.query(By.css('#inputBox'));
+    let inputElement = input.nativeElement;
+
+    inputElement.value = 'iphone';
+
+   inputElement.dispatchEvent(new Event('input'));
+
+    
+    expect(component.query).toBe('iphone');
+  });
+
+  it('should call the filter method when keyup', () => {
+     spyOn(component, 'filter');
+    fixture.detectChanges();
+    //get the input
+    let input = fixture.debugElement.query(By.css('.form-control'));
+    let inputElement = input.nativeElement;
+
+
+   inputElement.dispatchEvent(new Event('keyup'));
+
+    
+    expect(component.filter).toHaveBeenCalled();
+  });
+ 
+  it('should find the proper advertiement when call the keyup to do the query by title', () => {
    
-    //assert
-       expect(component.title).toBe("");
-     });
-});*/
-  
+    component.allAds=this.INI_Adevertisement;
+   
+    //get the input
+   let inputField=fixture.debugElement.query(By.css('.form-control'));
+    inputField.triggerEventHandler('keyup','iphone');
+    expect(component.filteredAds).toContain(this.INI_Adevertisement[0]);
+    expect(component.filteredAds.length).toBe(2);
+  });
+
+  it('should load filterAds from the server', () => {
+    //faked service
+    let service=TestBed.get(FilterResultService,AllResultService);
+    spyOn(service,'changeMessage').and.returnValue(Observable.from([[this.INI_Adevertisement]]));
+    component.filteredAds=this.INI_Adevertisement;
+   
+    //assertion
+     expect(component.filteredAds.length).toBe(2);
+   });
+
+});
