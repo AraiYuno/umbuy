@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AdvertisementService } from '../services/advertisement.service';
-import { HttpClient } from '@angular/common/http';
-import { Title } from '@angular/platform-browser/src/browser/title';
 import { Advertisement } from '../api/advertisement';
 import { FilterResultService } from '../services/filterResult.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -9,17 +6,18 @@ import { AllResultService } from '../services/allResult.service';
 
 
 @Component({
+  
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
   query = '';
-  allAds: Advertisement[] = [];
-  filteredAds: Advertisement[]= [];
+  allAds: Advertisement[] =[];
+  filteredAds: Advertisement[]=[];
   message;
 
-  constructor(private _advertisementService: AdvertisementService, private _filterResultService : FilterResultService, private _allResultService : AllResultService) { }
+  constructor(private _filterResultService : FilterResultService, private _allResultService : AllResultService) {  }
 
   filter(){
     if(this.allAds !== null){

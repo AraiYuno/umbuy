@@ -66,8 +66,7 @@ describe('ViewAdsComponent Unit Tests', () => {
 
 
   it('When ViewAdComponent is initiated, advertisements should be defined.', () => {
-    //fakeAsync(() =>  {
-      //tick();
+    
     
       // after calling advertisementService getAdvertisementById function fakedly, 
       let spy=spyOn(advertisementService, 'getAllAdvertisements').and.callFake(t => {
