@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 server.js
 node_modules/
-platforms/android
+platforms/

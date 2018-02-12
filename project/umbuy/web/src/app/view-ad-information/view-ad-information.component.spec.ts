@@ -13,7 +13,7 @@ import { User } from '../api/user';
 import { RouterTestingModule } from '@angular/router/testing';
 
 
-describe('ViewAdInformationComponent', () => {
+describe('ViewAdInformationComponent Integration Tests', () => {
   let component: ViewAdInformationComponent;
   let fixture: ComponentFixture<ViewAdInformationComponent>;
   let advertisementService: AdvertisementService;
