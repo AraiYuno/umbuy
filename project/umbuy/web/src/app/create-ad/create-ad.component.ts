@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import * as AWS from 'aws-sdk';
 
 @Component({
-  providers: [],
   selector: 'app-create-ad',
   templateUrl: './create-ad.component.html',
   styleUrls: ['./create-ad.component.scss']
