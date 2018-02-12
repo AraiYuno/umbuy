@@ -6,16 +6,16 @@
         <form method="post" enctype="multipart/form-data">
           <div class="form-group"> <!-- Name field -->
             <label class="control-label" for="title">Title<span class="asteriskField">*</span></label>
-            <input type="text" class="txt form-control" name="title" placeholder="Title" [(ngModel)]="title">
+            <input type="text" class="txt form-control" name="title" value={{title}} placeholder="Title" [(ngModel)]="title">
 
             <label class="control-label" for="price">Price<span class="asteriskField">*</span></label>
-            <input type="number" class="double form-control" name="price" placeholder="Price" [(ngModel)]="price">
+            <input type="number" class="double form-control" name="price" value={{price}} placeholder="Price" [(ngModel)]="price">
 
             <label class="control-label" for="category">Category</label>
-            <input type="text" class="txt form-control" name="category" placeholder="Category" [(ngModel)]="category">
+            <input type="text" class="txt form-control" name="category" value={{category}} placeholder="Category" [(ngModel)]="category">
 
             <label class="control-label" for="description">Description</label>
-		        <textarea class="txt form-control" cols="50" name="description" rows="15" [(ngModel)]="description"></textarea>
+		        <textarea class="txt form-control" cols="50" name="description" value={{description}} rows="15" [(ngModel)]="description"></textarea>
           </div>
 
           <img [src]="fileDataUri">
