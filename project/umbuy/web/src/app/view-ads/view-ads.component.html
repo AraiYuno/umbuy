@@ -13,13 +13,13 @@
             <div class="row">
                 <div class="well well-lg">
                   <div id="displayPrice">
-                    <i class="fa fa-tags" aria-hidden="true"></i>{{ad?.price}}$ 
+                    <i id="price" class="fa fa-tags" aria-hidden="true">${{ad?.price}} </i>
                     <br>
                   </div>
-                  <img src="{{ad?.imageUrl}}" class="img-thumbnail img-fluid" alt="{{ad?.title}}">
-                  <h3>{{ad.title}}</h3>
+                  <img id="image" src="{{ad?.imageUrl}}" class="img-thumbnail img-fluid" alt="{{ad?.title}}">
+                  <h3 id="title">{{ad.title}}</h3>
                   <br>
-                  <p id="adDescription">{{showReducedDescriptionLength(ad?.description, 250)}}</p>
+                  <p id="description">{{showReducedDescriptionLength(ad?.description, 250)}}</p>
                 </div>
             </div>
           </a>

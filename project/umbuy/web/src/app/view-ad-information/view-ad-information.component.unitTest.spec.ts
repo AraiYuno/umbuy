@@ -12,7 +12,7 @@ import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
 
-describe('ViewAdInformationComponent', () => {
+describe('ViewAdInformationComponent Unit Tests', () => {
   let component: ViewAdInformationComponent;
   let fixture: ComponentFixture<ViewAdInformationComponent>;
   let advertisementService: AdvertisementService;

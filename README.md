@@ -1,7 +1,5 @@
 # 4350-project-group6
 2018 Winter COMP 4350 Project, University of Manitoba
-<<<<<<< HEAD
-=======
 
 Updated on Feb 5, 2018.
 The working web app are currently in the devBranch, not master since we have not merged the android app yet.
@@ -18,4 +16,3 @@ team2 - Stefan, Brian, Kyle -> View/Add posts
 team3 - Ye, Murun, Yuan -> Searching
 
 These functionalities are to be done by Feb 6, 2018.
->>>>>>> 2b619005f49508798008586e98e7e2a159c5bba2

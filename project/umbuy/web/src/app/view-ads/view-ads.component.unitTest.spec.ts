@@ -14,7 +14,7 @@ import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
 
-describe('ViewAdsComponent', () => {
+describe('ViewAdsComponent Unit Tests', () => {
   let component: ViewAdsComponent;
   let advertisementService: AdvertisementService
   let allResultService: AllResultService;
@@ -39,22 +39,33 @@ describe('ViewAdsComponent', () => {
     allResultService = TestBed.get(AllResultService);
     component= new ViewAdsComponent(advertisementService, filterResultService, allResultService);
 
-    this.tempAd = { 
-      id: 1,
-      userId: 1,
-      title: 'iphone',
-      description: 'A great iphone for a great price',
-      price: 75,
-      created_on: new Date('2018-01-02'),
-      last_updated: new Date('2018-01-02'),
-      deleted_on: null,
-      imageUrl: 'http',
-      category: 'electronics'
-    };
+    this.tempAd = [{ 
+      "advertisementId": 1,
+      "userId": 1,
+      "title": 'iphone',
+      "description": 'A great iphone for a great price',
+      "price": 75,
+      "created_on": '2018-01-01',
+      "last_updated": '2018-01-01',
+      "deleted_on": null,
+      "imageUrl": 'http://alink.com',
+      "category": 'electronics'
+    }, {
+      "advertisementId": 2,
+      "userId": 1,
+      "title": 'Galaxy',
+      "description": 'A great Galaxy for a great price',
+      "price": 75,
+      "created_on": '2018-01-01',
+      "last_updated": '2018-01-01',
+      "deleted_on": null,
+      "imageUrl": 'http://alink.com',
+      "category": 'electronics'
+    }];
   });
 
 
-  it('When ViewAdComponent is initiated, filteredAds and advertisements should be defined.', () => {
+  it('When ViewAdComponent is initiated, advertisements should be defined.', () => {
     //fakeAsync(() =>  {
       //tick();
     
@@ -63,10 +74,10 @@ describe('ViewAdsComponent', () => {
         return Observable.from([this.tempAd]);
       });
 
-      component.ngOnInit();
+      component.advertisements = this.tempAd;
+
       // we should be able to retrieve the advertisementId by calling getAdvertisementId() in the component.
-      expect(component.filteredAds).toBeDefined();
-      expect(component.advertisements).toBeDefined();
+      expect(component.advertisements[0].title).toMatch("iphone");
     //});
   });
 
@@ -77,8 +88,26 @@ describe('ViewAdsComponent', () => {
     });
 
     // ACT: call the testing function
-    component.showReducedDescriptionLength(this.tempAd.description, 7);
+    component.showReducedDescriptionLength(this.tempAd[0].description, 7);
     //ASSERT: we should be able to retrieve the advertisementId by calling getAdvertisementId() in the component.
     expect(component.test_shorted_description).toMatch('A great...');
   });
+
+  it('filetedAds list should be defined after ngOnInit successfully is called', () => {
+    expect(component.filteredAds).toBeUndefined();
+    // ARRANGE: set an array of advertisements 
+    // ACT: Call ngOnInit and set the filteredAds Advertisement [] to be ready
+    let spy=spyOn(component, 'ngOnInit').and.callFake(t => {
+        return Observable.from([this.tempAd]);
+    });
+
+    component.filteredAds = this.tempAd;
+    fixture.detectChanges();
+
+    // ASSERT: make sure that the first object's title is 'iphone' as desired
+    //         make sure that the second object's title is 'Galaxy' as desired.
+    expect(component.filteredAds[0].title).toMatch("iphone");
+    expect(component.filteredAds[1].title).toMatch("Galaxy");
+  });
+
 });
