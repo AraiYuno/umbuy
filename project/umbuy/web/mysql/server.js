@@ -1,36 +1,46 @@
 var bodyParser = require('body-parser');
+var express = require('express');
 var mysql = require('mysql');
-var express = require('express'); 
 var app = express();
 var sql;
 
+/* This file is used for server testing */
+var connection = mysql.createConnection({
+    host: 'ec2-18-217-86-148.us-east-2.compute.amazonaws.com',
+    user: 'kyle',
+    password: 'team6best',
+    database: 'sampledb',
+    port: 3306
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-/* This file is used for localhost testing */
-var connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'coutures',
-    password: "cherry14",
-    database: 'project4350',
-    port: '3306'
-});
-
 connection.connect(function(err){
-    if (err) throw err;
-    console.log("good!");
+  if( err ) throw err;
+  console.log("Connected!");
 });
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+app.use(function(erq, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requrested-With, Content-Type, Accept");
+  next();
+});
+
+app.use(express.static(__dirname + '/dist'));
+
+app.get('/', (req, res) => {
+  res.status(200).sendFile(__dirname + '/dist/index.html');
+  console.log(req);
+});
+
+/*
+app.route('/').get(function(req, res ){
+  return res.sendFile(path.join(config.root, '/dist/index.html'));
+});*/
 
 app.get('/ads', (req, res) => {
     let sql = 'SELECT * FROM advertisements';
-    console.log(sql);
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
         console.log(result);
@@ -38,7 +48,7 @@ app.get('/ads', (req, res) => {
     });
 });
 
-app.get('/ads/:id(\\d+)', (req, res) => {
+app.get('/ads/:id', (req, res) => {
     let sql = 'SELECT * FROM advertisements WHERE advertisementId = ' + req.params.id;
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
@@ -47,7 +57,6 @@ app.get('/ads/:id(\\d+)', (req, res) => {
     });
 });
 
-/* search all advertisements and returns the data back to the advertisement.service.ts */
 app.get('/ads/:title', function(req, res){ 
     let sql = 'SELECT * FROM advertisements WHERE title LIKE "%' +req.params.title+'%"';
     let query = connection.query(sql, (err, result)=>{
@@ -67,6 +76,7 @@ app.get('/users/:id', (req, res) => {
 });
 
 app.post('/createAd', (req, res) => {
+    console.log(req.body);
     // code 201 for creating object
     res.status(201).send(req.body);
 
@@ -82,4 +92,4 @@ app.post('/createAd', (req, res) => {
     });
 });
 
-app.listen(3000, () => console.log('Listening on port 3000!'))
+app.listen(9000, () => console.log('Listening on port 9000!'))
