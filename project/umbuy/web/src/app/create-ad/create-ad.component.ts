@@ -15,9 +15,7 @@ export class CreateAdComponent implements OnInit {
   userId: number = 1;
   title: string;
   description: string;
-  price: number;
-  created_on: Date = new Date();   
-  last_updated: Date;
+  price: number; 
   deleted_on: Date;
   imageUrl: string;
   category: string;
@@ -34,7 +32,7 @@ export class CreateAdComponent implements OnInit {
     'image/png'
   ];
 
-  @ViewChild('fileInput') fileInput: ElementRef;
+  @ViewChild('fileInput') fileInput: any;
   fileDataUri = '';
   errorMsg = '';
   hasImage = false;
@@ -57,7 +55,7 @@ export class CreateAdComponent implements OnInit {
     this.newAd.title = this.title;
     this.newAd.description = this.description;
     this.newAd.price = this.price;
-    this.newAd.last_updated = null;
+    
     //  Users should be able to upload multiple images.
     if( this.hasImage == true )
       this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
@@ -108,12 +106,12 @@ export class CreateAdComponent implements OnInit {
   // uploadFile(fileInput: any)
   //   this function uploads the input file to S3.
   //===========================================================================================
-  uploadFile(fileInput: any) {
+  uploadFile() {
     const AWSService = AWS;
     const region = 'us-east-1';
     const bucketName = 'kyleteam6best';
     const IdentityPoolId = 'us-east-1:76f4b57f-b1aa-4d3a-9212-dc2dd92e10aa';
-    const file = fileInput.target.files[0];
+    const file = this.image;
   //Configures the AWS service and initial authorization
     AWSService.config.update({
       region: region,
@@ -127,7 +125,6 @@ export class CreateAdComponent implements OnInit {
       params: { Bucket: bucketName}
     });
   //I store this in a variable for retrieval later
-    this.image = file;
     s3.upload({ Key: file.name, Bucket: bucketName, Body: file, ACL: 'public-read'}, function (err, data) {
      if (err) {
        console.log(err, 'there was an error uploading your file');
@@ -142,6 +139,7 @@ export class CreateAdComponent implements OnInit {
   previewFile() {
     // activate the submit button
     const file = this.fileInput.nativeElement.files[0];
+    this.image = file;
     if (file && this.validateFile(file)) {
       this.hasImage = true;
       const reader = new FileReader();

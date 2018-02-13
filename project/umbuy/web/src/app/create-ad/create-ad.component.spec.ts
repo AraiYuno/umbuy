@@ -126,7 +126,7 @@ describe('CreateAdComponent Integration Test', () => {
   //test for (change) previewFile && uploadFile
   it('should not get image when no image has posted', () => {
     spyOn(component,'previewFile');
-    spyOn(component,'uploadFile');
+   spyOn(component,'uploadFile');
     fixture.detectChanges(); 
     fixture.whenStable().then(() => {
      let input = fixture.debugElement.query(By.css('input[name="imageUpload"]'));
@@ -166,7 +166,7 @@ describe('CreateAdComponent Integration Test', () => {
     
    });
 
-  it('should redirect the user back to the home page after validating advertisement', () => {
+  it('should redirect the user back to the home page after post advertisement', () => {
 
     let spy = spyOn(router, 'navigate');
 

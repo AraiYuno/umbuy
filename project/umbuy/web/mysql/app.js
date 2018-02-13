@@ -8,24 +8,14 @@ var sql;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-
+/* This file is used for localhost testing */
 var connection = mysql.createConnection({
-    host: 'ec2-18-217-173-154.us-east-2.compute.amazonaws.com',
-    user: 'ubuntu',
-    // scrach it to see your password 
-    password: "team6best",
-    database: 'sampledb',
+    host: '127.0.0.1',
+    user: 'username',
+    password: "password",
+    database: 'project4350',
     port: '3306'
 });
-
-
-/*var connection = mysql.createConnection({
-     host: '127.0.0.1',
-     user: 'coutures',
-     // scrach it to see your password 
-     password: "cherry14",
-     database: '4350'
-});*/
 
 connection.connect(function(err){
     if (err) throw err;
@@ -37,13 +27,6 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
-
-// app.use(express.static(__dirname + '/dist'));
-
-// app.all('*', (req, res) => {
-//     res.status(200).sendFile(__dirname + 'dist/index.html');
-// });
-
 
 app.get('/ads', (req, res) => {
     let sql = 'SELECT * FROM advertisements';
@@ -84,7 +67,6 @@ app.get('/users/:id', (req, res) => {
 });
 
 app.post('/createAd', (req, res) => {
-    console.log(req.body);
     // code 201 for creating object
     res.status(201).send(req.body);
 
@@ -93,8 +75,6 @@ app.post('/createAd', (req, res) => {
     var title = req.body.title;
     var desc = req.body.description;
     var price = req.body.price;
-    // var create = req.body.created_on ;
-    // var last_update = req.body.last_updated;
     var url = req.body.imageUrl;
     var cate = req.body.category;
     connection.query("INSERT INTO advertisements (advertisementId, title, userId, description, price, imageUrl, category) VALUES (?, ?, ?, ?, ?, ?, ?)", [advertisementId, title, userId, desc, price, url, cate], (err, result)=>{
@@ -102,4 +82,4 @@ app.post('/createAd', (req, res) => {
     });
 });
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(3000, () => console.log('Listening on port 3000!'))
