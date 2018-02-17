@@ -12,6 +12,7 @@ export const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'view/ads', component: ViewAdsComponent},
   {path: 'view/ads/:id', component: ViewAdInformationComponent},
+  {path: 'callback', component:HomeComponent },
   {path: 'createAd', component: CreateAdComponent},
   {path: "**", component: PageNotFoundComponent}
 ];
