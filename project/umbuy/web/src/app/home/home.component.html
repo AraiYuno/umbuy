@@ -6,7 +6,7 @@
       <link href='//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet'/>
   </head>
 
-  <body *ngIf="auth.isAuthenticated()">
+  <body *ngIf="login_check()">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
@@ -18,9 +18,5 @@
     </div>
   </body>
 
-
-  <h4 *ngIf="!auth.isAuthenticated()">
-    You are not logged in! Please <a (click)="auth.login()">Log In</a> to view the ads.
-  </h4>
 
   
