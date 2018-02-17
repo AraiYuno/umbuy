@@ -4,6 +4,7 @@ import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../api/advertisement';
 import { User } from '../api/user';
 import { NgIf } from '@angular/common';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-view-ad-information',
@@ -22,7 +23,7 @@ export class ViewAdInformationComponent implements OnInit {
   isDeleted: boolean;
   message: string;
 
-  constructor(private _advertisementService: AdvertisementService, private _userService: UserService) {
+  constructor(private _advertisementService: AdvertisementService, private _userService: UserService,public auth: AuthService ) {
     this.pathNameUrl = window.location.pathname;
    }
   

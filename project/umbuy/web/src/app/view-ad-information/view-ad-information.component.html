@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       
     </head>
-    <body>
+    <body *ngIf="auth.isAuthenticated()">
       <div class="jumbotron">
         <div class="container">
           <div>
@@ -36,4 +36,10 @@
       </div>
     </body>
 
- 
+    <h4 *ngIf="!auth.isAuthenticated()">
+      You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+      
+
+    </h4>
+
+

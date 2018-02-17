@@ -6,14 +6,21 @@
       <link href='//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet'/>
   </head>
 
-  <body>
+  <body *ngIf="auth.isAuthenticated()">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
             
-            <a id="createAdBtn" [routerLink]="['/createAd']" class="btn btn-default">Create an Advertisement</a>
+            <a [routerLink]="['/createAd']" class="btn btn-default">Create an Advertisement</a>
         </div>
         <app-view-ads-component></app-view-ads-component>
       </div>
     </div>
   </body>
+
+
+  <h4 *ngIf="!auth.isAuthenticated()">
+    You are not logged in! Please <a (click)="auth.login()">Log In</a> to view the ads.
+  </h4>
+
+  

@@ -5,7 +5,10 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       
     </head>
-    <body>
+
+    <h3 class="Profile Name "> HI {{ profile?.nickname }}</h3>
+    <h3 class="Email Adress"> Your Email Address: {{ profile?.name }}</h3>
+    <body *ngIf="auth.isAuthenticated()" >
       
       <div class="jumbotron">
         <div class="container">
@@ -25,6 +28,17 @@
           </a>
         </div>
       </div>
+      
+
     </body>
+
+    <pre class="full-profile">{{ profile | json }}</pre>
+
+    <h4 *ngIf="!auth.isAuthenticated()">
+      You are not logged in! Please <a (click)="auth.login()">Log In</a> to continue.
+      
+
+    </h4>
+
 
  

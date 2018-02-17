@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "angular-font-awesome": "^3.1.2",
+    "auth0-js": "^9.2.3",
     "aws-sdk": "^2.192.0",
     "bootstrap": "^3.3.7",
     "bootswatch": "^4.0.0",
