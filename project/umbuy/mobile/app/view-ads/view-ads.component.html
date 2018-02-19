@@ -17,11 +17,11 @@
 <StackLayout class="page">
         <ListView [items]="advertisements" class="list-group">
             <ng-template let-item="item">
-                <GridLayout class="list-group-item" rows="auto" columns="auto, *">
+                <GridLayout class="list-group-item" rows="auto" columns="auto, *"
+                [nsRouterLink]="['/view', 'ads', item.advertisementId]">
                     <Image row="0" col="0" src="{{item?.imageUrl}}" class="thumb img-rounded"></Image>
                     <StackLayout row="0" col="1" >
-                        <Label [text]="item.title"  class="list-group-item-heading" 
-                            [nsRouterLink]="['/view', 'ads', item.advertisementId]" ></Label>
+                        <Label [text]="item.title"  class="list-group-item-heading"></Label>
                         <Label class="list-group-item-text" [text]="item.price"></Label>
                     </StackLayout>
                 </GridLayout>
