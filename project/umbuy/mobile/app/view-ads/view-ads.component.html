@@ -2,18 +2,6 @@
 <ActionBar title="VIEW-ADS" class="action-bar">
 </ActionBar>
 
-<GridLayout tkExampleTitle tkToggleNavButton>
-        <RadListView [items]="advertisements">
-            <ng-template let-item="item">
-                <StackLayout orientation="vertical">
-                    <Label class="nameLabel" [text]="item.title"></Label>
-                    <Label class="descriptionLabel" [text]="item.price"></Label>
-                </StackLayout>
-            </ng-template>
-        </RadListView>
-</GridLayout>
-
-
 <StackLayout class="page">
         <ListView [items]="advertisements" class="list-group">
             <ng-template let-item="item">

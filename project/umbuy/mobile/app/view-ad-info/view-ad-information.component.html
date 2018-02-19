@@ -1,10 +1,14 @@
 <ActionBar title="View-Ad-Info" class="action-bar"></ActionBar>
-<FlexboxLayout flexDirection="column" class="page">
-    <FlexboxLayout class="m-15">
-        <Label class="h2" [text]="advertisement.advertisementId"></Label>
-    </FlexboxLayout>
-    <FlexboxLayout class="m-15">
-        <Label class="h2" [text]="advertisement.title"></Label>
-    </FlexboxLayout>
-    <Label [text]="advertisement.description"></Label>
-</FlexboxLayout>
+
+<StackLayout>
+    <image width="50%" height="50%"
+        [src]=advertisement.imageUrl class="imgBorder"></image>
+    <ScrollView orientation="vertical">
+        <StackLayout>
+            <HtmlView html="Name: "></HtmlView>
+            <Label class="h2" [text]="user.firstName"></Label>
+            <Label class="h2" [text]="advertisement.title"></Label>
+            <Label [text]="advertisement.description"></Label>
+        </StackLayout>
+    </ScrollView>
+</StackLayout>
