@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
-import { Advertisement } from '../api/advertisement';
-import { User } from '../api/user';
-import { UserService } from "../services/user.service";
-import { AdvertisementService } from "../services/advertisement.service";
+import { Advertisement } from '../../api/advertisement';
+import { User } from '../../api/user';
+import { UserService } from "../../services/user.service";
+import { AdvertisementService } from "../../services/advertisement.service";
 
 @Component({
     selector: "mobile-view-ad-information",

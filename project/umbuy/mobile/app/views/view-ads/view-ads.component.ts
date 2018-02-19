@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
-import { Advertisement } from '../api/advertisement';
-import { AdvertisementService } from "../services/advertisement.service";
+import { Advertisement } from '../../api/advertisement';
+import { AdvertisementService } from "../../services/advertisement.service";
 
 @Component({
     selector: "mobile-view-ads",
