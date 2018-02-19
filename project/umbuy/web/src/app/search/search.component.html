@@ -4,17 +4,17 @@
 <body *ngIf="auth.isAuthenticated()" >
         <div class="container">
                 <div class="row">
-                        <div class="col-md-12">
-                    <div class="input-group" id="adv-search">
-                        <input id="inputBox" [(ngModel)]="query" type="text" class="form-control" placeholder="Search for items" (keyup)="filter()"/>
+                    <div class="col-md-12">
+                        <div class="input-group" id="adv-search">
+                            <input id="inputBox" [(ngModel)]="query" type="text" class="form-control" placeholder="Search for items" (keyup)="filter()"/>
         
-                        <div class="input-group-btn">
-                            <!-- <div class="btn-group" role="group"> -->
-                                <button  class="btn btn-primary" disabled><span class="glyphicon glyphicon-search" ></span></button>
+                            <div class="input-group-btn">
+                                <!-- <div class="btn-group" role="group"> -->
+                                    <button  class="btn btn-primary" disabled><span class="glyphicon glyphicon-search" ></span></button>
+                            </div>
                         </div>
                     </div>
-                  </div>
                 </div>
-            </div>
+        </div>
             
-            </body>
+</body>

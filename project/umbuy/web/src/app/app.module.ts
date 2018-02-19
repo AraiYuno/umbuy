@@ -20,11 +20,13 @@ import { FilterResultService } from './services/filterResult.service';
 import { AllResultService } from './services/allResult.service'
 import { Routes, RouterModule } from '@angular/router';
 import { AuthService } from './auth/auth.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
+    UserProfileComponent,
   ],
   imports: [
     AngularFontAwesomeModule,
@@ -43,9 +45,9 @@ import { AuthService } from './auth/auth.service';
     MatCardModule,
     MatListModule,
     MatTabsModule,
-    routing
+    routing,
   ],
-  providers: [UserService, AdvertisementService, FilterResultService, AllResultService,AuthService],
+  providers: [UserService, AdvertisementService, FilterResultService, AllResultService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
