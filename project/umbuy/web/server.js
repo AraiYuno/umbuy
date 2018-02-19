@@ -54,9 +54,12 @@ app.get('/', (req, res) => {
 app.get('/ads', (req, res) => {
     let sql = 'SELECT * FROM advertisements';
     let query = connection.query(sql, (err, result)=> {
-        if( err ) throw err;
-        console.log(result);
-        res.send(result);
+        if( err ){
+            console.log(err);
+        } else{
+            console.log(result);
+            res.send(result);
+        }
     });
 });
 
@@ -64,9 +67,12 @@ app.get('/ads/:id', (req, res) => {
     let sql = 'SELECT * FROM advertisements WHERE advertisementId = ' + req.params.id;
     console.log(sql);
     let query = connection.query(sql, (err, result)=> {
-        if( err ) throw err;
-        console.log(result);
-        res.send(result);
+        if( err ){
+            console.log(err);
+        } else{
+            console.log(result);
+            res.send(result);
+        }
     });
 });
 
@@ -74,18 +80,24 @@ app.get('/search/:title', function(req, res){
     let sql = 'SELECT * FROM advertisements WHERE title LIKE "%' +req.params.title+'%"';
     console.log(sql);
     let query = connection.query(sql, (err, result)=>{
-        if( err ) throw err;
-        console.log(result);
-        res.send(result);
+        if( err ){
+            console.log(err);
+        } else{
+            console.log(result);
+            res.send(result);
+        }
     });
   });
 
 app.get('/users/:id', (req, res) => {
     let sql = 'SELECT * FROM users WHERE userId = ' + req.params.id;
     let query = connection.query(sql,(err, result)=> {
-        if( err ) throw err;
+        if( err ){
+            console.log(err);
+        } else{
             console.log(result);
-        res.send(result);
+            res.send(result);
+        }
     });
 });
 
@@ -102,7 +114,12 @@ app.post('/createAd', (req, res) => {
     var url = req.body.imageUrl;
     var cate = req.body.category;
     connection.query("INSERT INTO advertisements (advertisementId, title, userId, description, price, imageUrl, category) VALUES (?, ?, ?, ?, ?, ?, ?)", [advertisementId, title, userId, desc, price, url, cate], (err, result)=>{
-        console.log(result);
+        if( err ){
+            console.log(err);
+        } else{
+            console.log(result);
+            res.send(result);
+        }
     });
 });
 
