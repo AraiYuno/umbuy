@@ -6,8 +6,8 @@ import { AppComponent } from "./app.component";
 import { AdvertisementService } from "./services/advertisement.service";
 import { UserService } from "./services/user.service";
 
-import { ViewAdsComponent } from "./view-ads/view-ads.component";
-import { ViewAdInformationComponent } from "./view-ad-info/view-ad-information.component";
+import { ViewAdsComponent } from "./views/view-ads/view-ads.component";
+import { ViewAdInformationComponent } from "./views/view-ad-info/view-ad-information.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
