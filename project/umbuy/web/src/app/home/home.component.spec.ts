@@ -19,13 +19,4 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  /*it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(HomeComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));*/
-
-  /*it('should create', () => {
-    expect(component).toBeTruthy();
-  });*/
 });

@@ -90,6 +90,4 @@ describe('CreateAdComponent', () => {
     expect(component.error).toBe(error);
   });
   
-  // TODO two way binding test and button click event testsng
-  
 });

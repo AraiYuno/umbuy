@@ -85,10 +85,4 @@ describe('CreateAdComponent', () => {
     expect(component.validAdMsg).toBe('');
   });
 
-
-  //TODO UNIT TESTS FOR
-  // backToHomePage
-  // uploadFile
-  // previewFile
-  // validateFile
 });
