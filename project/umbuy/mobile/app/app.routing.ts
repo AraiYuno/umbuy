@@ -2,8 +2,8 @@ import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { Routes } from "@angular/router";
 
-import { ViewAdInformationComponent } from "./item/view-ad-information.component";
-import { ViewAdsComponent } from "./item/view-ads.component";
+import { ViewAdInformationComponent } from "./view-ad-info/view-ad-information.component";
+import { ViewAdsComponent } from "./view-ads/view-ads.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "view/ads", pathMatch: "full" },

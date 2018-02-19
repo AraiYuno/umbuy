@@ -17,11 +17,9 @@ export class ViewAdsComponent implements OnInit {
     // Angular knows about this service because it is included in your app’s main NgModule, defined in app.module.ts.
     constructor(private _advertisementService: AdvertisementService) { }
 
+    // TODO: Once advertisements is defined, every time we go back to the /view/ads routing,
+    // it says that advertisements is undefined, but we can access the data (?)
     ngOnInit(){
-        this.extractData();
-    }
-
-    extractData(){
         this._advertisementService.getAllAdvertisements()
             .subscribe((result) => {
                 this.advertisements = result;
