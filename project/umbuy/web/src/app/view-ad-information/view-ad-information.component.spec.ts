@@ -62,6 +62,7 @@ describe('ViewAdInformationComponent Integration Tests', () => {
     component.user = this.tempUser;
     component.created_on = component.convertToTextDate(component.advertisement.created_on);
     component.last_updated = component.convertToTextDate(component.advertisement.last_updated);
+    //component.advertisement.deleted_on is null
     component.deleted_on = component.convertToTextDate(component.advertisement.deleted_on);
     fixture.detectChanges();
 

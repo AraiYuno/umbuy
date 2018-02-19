@@ -50,13 +50,13 @@ export class CreateAdComponent implements OnInit {
   
   createAd(){
 
-    // change so that we take userid from logged in user
+    // TODO: change so that we take userid from logged in user
     this.newAd.userId = 1;
     this.newAd.title = this.title;
     this.newAd.description = this.description;
     this.newAd.price = this.price;
     
-    //  Users should be able to upload multiple images.
+    // TODO: Users should be able to upload multiple images.
     if( this.hasImage == true )
       this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
     else
@@ -101,7 +101,7 @@ export class CreateAdComponent implements OnInit {
   }
   
   //===========================================================================================
-  //  uploading multiplic pictures on snapshot 2
+  // TODO: uploading multiplic pictures on snapshot 2
   // Author: Kyle Ahn
   // uploadFile(fileInput: any)
   //   this function uploads the input file to S3.

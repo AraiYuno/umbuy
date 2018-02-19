@@ -15,13 +15,12 @@ import { Router } from '@angular/router';
 import { AdvertisementService } from '../services/advertisement.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('CreateAdComponent Unit Tests', () => {
+describe('CreateAdComponent', () => {
   let component: CreateAdComponent;
   let fixture: ComponentFixture<CreateAdComponent>;
   let router: Router;
   let service: AdvertisementService;
   let newAd;
-  let fakeFile = [];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -45,23 +44,11 @@ describe('CreateAdComponent Unit Tests', () => {
       imageUrl: 'https://s3.amazonaws.com/kyleteam6best/default.jpg',
       category: ' test'
     };
-    fakeFile = [
-      {
-        type: 'test/txt',
-        size: 5000000-1
-      },
-      {
-        type: 'image/jpeg',
-        size: 5000000 + 1
-      },
-      {
-        type: 'image/jpeg',
-        size: 5000000 - 1
-      },
-    ]
   });
 
-
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
   it('should call server to save the changes when an advertisement is created', () => {
     // arrange
@@ -99,22 +86,9 @@ describe('CreateAdComponent Unit Tests', () => {
   });
 
 
-  //UNIT TESTS FOR
+  //TODO UNIT TESTS FOR
+  // backToHomePage
   // uploadFile
   // previewFile
   // validateFile
-  it ('should fail when given non valid file type for given file', () => {
-
-    expect(component.validateFile(fakeFile[0])).toBeFalsy();
-  });
- 
-  it ('should fail when given file size for given file exceeds 500KB', () => {
- 
-    expect(component.validateFile(fakeFile[1])).toBeFalsy();
-  });
- 
-  it ('should succeed when given file size for given file don\'t exceed 500KB AND correct file type', () => {
- 
-    expect(component.validateFile(fakeFile[2])).toBeTruthy();
-  });
 });

@@ -4,12 +4,12 @@
     <div class="col-md-8 col-centered">
       <div class="create ad">
         <form method="post" enctype="multipart/form-data">
-          <div class="form-group"> 
+          <div class="form-group"> <!-- Name field -->
             <label class="control-label" for="title">Title<span class="asteriskField">*</span></label>
             <input type="text" class="txt form-control" name="title" placeholder="Title" [(ngModel)]="title">
 
             <label class="control-label" for="price">Price<span class="asteriskField">*</span></label>
-            <input  type="number" class="double form-control" name="price" placeholder="Price" [(ngModel)]="price">
+            <input type="number" class="double form-control" name="price" placeholder="Price" [(ngModel)]="price">
 
             <label class="control-label" for="category">Category</label>
             <input type="text" class="txt form-control" name="category"  placeholder="Category" [(ngModel)]="category">

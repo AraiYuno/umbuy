@@ -87,7 +87,7 @@ describe('ViewAdInformationComponent Unit Tests', () => {
     let testDate = component.convertToTextDate("2018-01-01");
     
     //ASSERT: see if the created_on from the component matches with the expected output
-    //: Why is convertToTextDate() returning input date - 1 ?
+    //TODO: Why is convertToTextDate() returning input date - 1 ?
     expect(testDate).toMatch("January 1, 2018");
   });
 
