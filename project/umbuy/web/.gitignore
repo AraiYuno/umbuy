@@ -40,5 +40,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-server.js
+# server.js
 node_modules/
