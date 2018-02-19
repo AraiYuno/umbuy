@@ -1,0 +1,12 @@
+
+<ActionBar title="VIEW-ADS" class="action-bar">
+</ActionBar>
+
+<StackLayout class="page">
+    <ListView [items]="advertisements" class="list-group">
+        <ng-template let-item="item">
+            <Label [nsRouterLink]="['/view', 'ads', item.advertisementId]" [text]="item.title"
+                class="list-group-item"></Label>
+        </ng-template>
+    </ListView>
+</StackLayout>

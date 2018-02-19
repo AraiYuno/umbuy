@@ -1,0 +1,10 @@
+<ActionBar title="View-Ad-Info" class="action-bar"></ActionBar>
+<FlexboxLayout flexDirection="column" class="page">
+    <FlexboxLayout class="m-15">
+        <Label class="h2" [text]="advertisement.advertisementId"></Label>
+    </FlexboxLayout>
+    <FlexboxLayout class="m-15">
+        <Label class="h2" [text]="advertisement.title"></Label>
+    </FlexboxLayout>
+    <Label [text]="advertisement.description"></Label>
+</FlexboxLayout>

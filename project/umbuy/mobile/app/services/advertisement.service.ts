@@ -1,10 +1,10 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
+import { Advertisement } from '../api/advertisement';
+import { HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
-import { Advertisement } from '../api/advertisement';
-import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class AdvertisementService{
@@ -17,7 +17,7 @@ export class AdvertisementService{
 
     constructor(public http: HttpClient){
         if(isDevMode()){
-            this.host = "http://localhost:3000";
+            this.host = "http://ec2-18-217-86-148.us-east-2.compute.amazonaws.com:9000";
         }
         else{
             this.host = "http://ec2-18-217-86-148.us-east-2.compute.amazonaws.com:9000";
