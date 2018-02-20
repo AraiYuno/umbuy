@@ -16,12 +16,11 @@ import 'rxjs/add/observable/throw';
 
 describe('ViewAdsComponent Unit Tests', () => {
   let component: ViewAdsComponent;
-  let advertisementService: AdvertisementService
+  let advertisementService: AdvertisementService;
   let allResultService: AllResultService;
   let filterResultService: FilterResultService;
   let fixture: ComponentFixture<ViewAdsComponent>;
-
-  let tempAd: Advertisement;  
+  let tempAd: Advertisement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
