@@ -19,11 +19,14 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FilterResultService } from './services/filterResult.service';
 import { AllResultService } from './services/allResult.service'
 import { Routes, RouterModule } from '@angular/router';
+import { AuthService } from './auth/auth.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    UserProfileComponent,
   ],
   imports: [
     AngularFontAwesomeModule,
@@ -42,9 +45,9 @@ import { Routes, RouterModule } from '@angular/router';
     MatCardModule,
     MatListModule,
     MatTabsModule,
-    routing
+    routing,
   ],
-  providers: [UserService, AdvertisementService, FilterResultService, AllResultService],
+  providers: [UserService, AdvertisementService, FilterResultService, AllResultService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

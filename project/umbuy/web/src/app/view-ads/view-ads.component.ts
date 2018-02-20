@@ -5,7 +5,7 @@ import { FilterResultService } from '../services/filterResult.service';
 import { AllResultService } from '../services/allResult.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Routes, RouterModule } from '@angular/router';
-
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-view-ads-component',
@@ -16,13 +16,13 @@ export class ViewAdsComponent implements OnInit {
 
   advertisements: Advertisement[];
   filteredAds: Advertisement[];
-
+  profile: any;
   
   //Testing Purposes
   test_shorted_description: string;
   message;
 
-  constructor(private _advertisementService: AdvertisementService, private _filterResultService: FilterResultService, private _allResultService: AllResultService) { }
+  constructor(private _advertisementService: AdvertisementService, private _filterResultService: FilterResultService, private _allResultService: AllResultService,public auth: AuthService) { }
 
   showReducedDescriptionLength(description, length){
     var reducedString;
@@ -47,7 +47,12 @@ export class ViewAdsComponent implements OnInit {
                 this._allResultService.changeMessage(this.advertisements)}
       );  
     this._filterResultService.currentMessage.subscribe(filteredAds => this.filteredAds = filteredAds);
- 
+    console.log(this.message);
+      
+      this.auth.getProfile((err, profile) => {
+        this.profile = profile;
+      });
+    
   }
 
 }

@@ -1,3 +1,4 @@
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { ViewAdsComponent } from './view-ads/view-ads.component';
@@ -12,8 +13,10 @@ export const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'view/ads', component: ViewAdsComponent},
   {path: 'view/ads/:id', component: ViewAdInformationComponent},
+  {path: 'callback', component: HomeComponent },
   {path: 'createAd', component: CreateAdComponent},
-  {path: "**", component: PageNotFoundComponent}
+  {path: 'profile', component: UserProfileComponent},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
@@ -22,5 +25,5 @@ export const routes: Routes = [
 })
 
 export class AppRoutingModule { }
-export const routingComponents = [HomeComponent, CreateAdComponent, AppComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent, SearchComponent]
+export const routingComponents = [HomeComponent, CreateAdComponent, AppComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent, SearchComponent, UserProfileComponent];
 export const routing = RouterModule.forRoot(routes);
