@@ -25,6 +25,8 @@ export class CreateAdComponent implements OnInit {
 
   newAd : Advertisement = new Advertisement();
   res : any;
+  error: any;
+
 
   // Adding picture to S3
   image;    // this is to store the current image file.
