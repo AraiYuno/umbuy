@@ -46,3 +46,10 @@ platforms/
 
 # js files
 /app/*.js
+/app/services/*.js
+/app/api/*.js
+/app/views/create-ad/*.js
+/app/views/home/*.js
+/app/views/search/*.js
+/app/views/view-ads/*.js
+/app/views/view-ad-info/*.js
