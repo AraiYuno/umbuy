@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Advertisement } from "../../api/advertisement"
 import { AdvertisementService } from '../../services/advertisement.service';
 import { Router } from '@angular/router';
-import * as AWS from 'aws-sdk';
+// import * as AWS from 'aws-sdk';
 
 @Component({
     selector: "mobile-createAd",
@@ -41,7 +41,7 @@ export class CreateAdComponent implements OnInit {
 
     ngOnInit() { }
 
-    postAdvertisement(args){
+    postAdvertisement(){
         var isValid;
     
         isValid = this.validate();
@@ -104,51 +104,51 @@ export class CreateAdComponent implements OnInit {
         this._router.navigate([""]);
       }
 
-      uploadFile() {
-        const AWSService = AWS;
-        const region = 'us-east-1';
-        const bucketName = 'kyleteam6best';
-        const IdentityPoolId = 'us-east-1:76f4b57f-b1aa-4d3a-9212-dc2dd92e10aa';
-        const file = this.image;
-      //Configures the AWS service and initial authorization
-        AWSService.config.update({
-          region: region,
-          credentials: new AWSService.CognitoIdentityCredentials({
-            IdentityPoolId: IdentityPoolId
-          })
-        });
-      //adds the S3 service, make sure the api version and bucket are correct
-        const s3 = new AWSService.S3({
-          apiVersion: '2006-03-01',
-          params: { Bucket: bucketName}
-        });
-      //I store this in a variable for retrieval later
-        s3.upload({ Key: file.name, Bucket: bucketName, Body: file, ACL: 'public-read'}, function (err, data) {
-         if (err) {
-           console.log(err, 'there was an error uploading your file');
-         }
-       });
-      }
+    //   uploadFile() {
+    //     const AWSService = AWS;
+    //     const region = 'us-east-1';
+    //     const bucketName = 'kyleteam6best';
+    //     const IdentityPoolId = 'us-east-1:76f4b57f-b1aa-4d3a-9212-dc2dd92e10aa';
+    //     const file = this.image;
+    //   //Configures the AWS service and initial authorization
+    //     AWSService.config.update({
+    //       region: region,
+    //       credentials: new AWSService.CognitoIdentityCredentials({
+    //         IdentityPoolId: IdentityPoolId
+    //       })
+    //     });
+    //   //adds the S3 service, make sure the api version and bucket are correct
+    //     const s3 = new AWSService.S3({
+    //       apiVersion: '2006-03-01',
+    //       params: { Bucket: bucketName}
+    //     });
+    //   //I store this in a variable for retrieval later
+    //     s3.upload({ Key: file.name, Bucket: bucketName, Body: file, ACL: 'public-read'}, function (err, data) {
+    //      if (err) {
+    //        console.log(err, 'there was an error uploading your file');
+    //      }
+    //    });
+    //   }
     
-      previewFile() {
-        // activate the submit button
-        const file = this.fileInput.nativeElement.files[0];
-        this.image = file;
-        if (file && this.validateFile(file)) {
-          this.hasImage = true;
-          const reader = new FileReader();
-          reader.readAsDataURL(this.fileInput.nativeElement.files[0]);
-          reader.onload = () => {
-            this.fileDataUri = reader.result;
-          }
-          this.errorMsg = '';
-        } else {
-          this.errorMsg = 'File must be jpg, png, or gif and cannot be exceed 500 KB in size';
-        }
-      }
+    //   previewFile() {
+    //     // activate the submit button
+    //     const file = this.fileInput.nativeElement.files[0];
+    //     this.image = file;
+    //     if (file && this.validateFile(file)) {
+    //       this.hasImage = true;
+    //       const reader = new FileReader();
+    //       reader.readAsDataURL(this.fileInput.nativeElement.files[0]);
+    //       reader.onload = () => {
+    //         this.fileDataUri = reader.result;
+    //       }
+    //       this.errorMsg = '';
+    //     } else {
+    //       this.errorMsg = 'File must be jpg, png, or gif and cannot be exceed 500 KB in size';
+    //     }
+    //   }
     
-      validateFile(file) {
-        return this.acceptedMimeTypes.includes(file.type) && file.size < 5000000;
-      }
+    //   validateFile(file) {
+    //     return this.acceptedMimeTypes.includes(file.type) && file.size < 5000000;
+    //   }
 
 }
