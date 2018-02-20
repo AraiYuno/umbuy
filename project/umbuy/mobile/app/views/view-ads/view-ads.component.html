@@ -1,30 +1,14 @@
-
-<ActionBar title="VIEW-ADS" class="action-bar">
-</ActionBar>
-
-<GridLayout tkExampleTitle tkToggleNavButton>
-        <RadListView [items]="advertisements">
-            <ng-template let-item="item">
-                <StackLayout orientation="vertical">
-                    <Label class="nameLabel" [text]="item.title"></Label>
-                    <Label class="descriptionLabel" [text]="item.price"></Label>
-                </StackLayout>
-            </ng-template>
-        </RadListView>
-</GridLayout>
-
-
 <StackLayout class="page">
-        <ListView [items]="advertisements" class="list-group">
-            <ng-template let-item="item">
-                <GridLayout class="list-group-item" rows="auto" columns="auto, *"
-                [nsRouterLink]="['/view', 'ads', item.advertisementId]">
-                    <Image row="0" col="0" src="{{item?.imageUrl}}" class="thumb img-rounded"></Image>
-                    <StackLayout row="0" col="1" >
-                        <Label [text]="item.title"  class="list-group-item-heading"></Label>
-                        <Label class="list-group-item-text" [text]="item.price"></Label>
-                    </StackLayout>
-                </GridLayout>
-            </ng-template>
-        </ListView>
-    </StackLayout>
+    <ListView [items]="advertisements" class="list-group">
+        <ng-template let-item="item">
+            <GridLayout class="list-group-item" rows="auto" columns="auto, *"
+            [nsRouterLink]="['/view', 'ads', item.advertisementId]">
+                <Image row="0" col="0" src="{{item?.imageUrl}}" class="thumb img-rounded"></Image>
+                <StackLayout row="0" col="1" >
+                    <Label [text]="item.title"  class="list-group-item-heading"></Label>
+                    <Label class="list-group-item-text" [text]="item.price"></Label>
+                </StackLayout>
+            </GridLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>

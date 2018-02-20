@@ -19,16 +19,16 @@
           </div>
 
           <img [src]="fileDataUri">
-          <p *ngIf="errorMsg" style="color:red">{{errorMsg}}</p>
-          <br>
+          <!-- <p *ngIf="errorMsg" style="color:red">{{errorMsg}}</p>
+          <br> -->
           <input type="file" id="inpuImage" class="btn btn-default" name="imageUpload" 
-                (change)="previewFile()" #fileInput >
+                (change)="previewFile()" #fileInput>
 
-          <p *ngIf="!createAdSuccess && !postSuccess" style="color:red">{{validAdMsg}}</p>
-          <button *ngIf="!createAdSuccess && !postSuccess" class="postBtn" id="postBtn" (click)="activateSubmit()" >Validate Advertisement</button>
+          <!-- <p *ngIf="!createAdSuccess && !postSuccess" style="color:red">{{validAdMsg}}</p>
+          <button *ngIf="!createAdSuccess && !postSuccess" class="postBtn" id="postBtn" (click)="activateSubmit()" >Validate Advertisement</button> -->
         </form>
-        <input *ngIf="createAdSuccess && !postSuccess"  type="submit" class="postBtn" value="POST NOW" 
-            (click)="createAd()" (click)="uploadFile()" [routerLink]="['']">
+        <!-- <input *ngIf="createAdSuccess && !postSuccess"  type="submit" class="postBtn" value="POST NOW" 
+            (click)="createAd()" (click)="uploadFile()" [routerLink]="['']"> -->
       </div>
     </div>
   </div>

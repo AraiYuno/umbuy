@@ -8,9 +8,10 @@ import { UserService } from "./services/user.service";
 
 import { ViewAdsComponent } from "./views/view-ads/view-ads.component";
 import { ViewAdInformationComponent } from "./views/view-ad-info/view-ad-information.component";
-
+import { HomeComponent } from "./views/home/home.component";
+import { CreateAdComponent } from "./views/create-ad/create-ad.component";
 // Uncomment and add to NgModule imports if you need to use two-way binding
-// import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 import { NativeScriptHttpModule } from "nativescript-angular/http";
@@ -24,12 +25,15 @@ import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
         NativeScriptModule,
         AppRoutingModule,
         NativeScriptHttpModule,
-        NativeScriptHttpClientModule
+        NativeScriptHttpClientModule,
+        NativeScriptFormsModule
     ],
     declarations: [
         AppComponent,
         ViewAdsComponent,
-        ViewAdInformationComponent
+        ViewAdInformationComponent,
+        HomeComponent,
+        CreateAdComponent
     ],
     providers: [
         AdvertisementService,
