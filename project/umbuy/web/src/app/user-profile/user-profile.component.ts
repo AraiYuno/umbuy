@@ -39,4 +39,7 @@ export class UserProfileComponent implements OnInit {
   getPhoneNo() {
     return this.profile['https://metadata/user_metadata']['phone'];
   }
-}
+
+  getEmail() {
+   return this.profile.name;
+ }}

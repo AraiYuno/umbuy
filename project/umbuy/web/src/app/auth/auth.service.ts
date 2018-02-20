@@ -32,7 +32,7 @@ export class AuthService {
       } else if (err) {
         this.router.navigate(['/']);
         console.log(err);
-        alert(`Error: ${err.error}. Please use Univserity of Manitoba Email to sign up `);
+        alert(`Error: ${err.errorDescription}.`);
       }
     });
   }

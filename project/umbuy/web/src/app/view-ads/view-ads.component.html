@@ -2,14 +2,9 @@
     <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      
+      <meta name="viewport" content="width=device-width, initial-scale=1">   
     </head>
-
-    <h3 class="Profile Name "> HI {{ profile?.nickname }}</h3>
-    <h3 class="Email Adress"> Your Email Address: {{ profile?.name }}</h3>
     <body *ngIf="auth.isAuthenticated()" >
-      
       <div class="jumbotron">
         <div class="container">
           <a *ngFor="let ad of filteredAds" [routerLink]="['/view', 'ads', ad.advertisementId]">
@@ -28,11 +23,7 @@
           </a>
         </div>
       </div>
-      
-
     </body>
-
-    <pre class="full-profile">{{ profile | json }}</pre>
 
 
 
