@@ -3,7 +3,8 @@
 </ActionBar>
 
 <StackLayout class="page">
-        <ListView [items]="advertisements" class="list-group">
+    <app-search></app-search>
+    <ListView [items]="filteredAds" class="list-group">
             <ng-template let-item="item">
                 <GridLayout class="list-group-item" rows="auto" columns="auto, *"
                 [nsRouterLink]="['/view', 'ads', item.advertisementId]">

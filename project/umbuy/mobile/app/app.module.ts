@@ -8,13 +8,18 @@ import { UserService } from "./services/user.service";
 
 import { ViewAdsComponent } from "./views/view-ads/view-ads.component";
 import { ViewAdInformationComponent } from "./views/view-ad-info/view-ad-information.component";
+import { SearchComponent } from "./views/search/search.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
-// import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+
+import { FilterResultService } from './services/filterResult.service';
+import { AllResultService } from './services/allResult.service'
+
 
 @NgModule({
     bootstrap: [
@@ -24,18 +29,22 @@ import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
         NativeScriptModule,
         AppRoutingModule,
         NativeScriptHttpModule,
-        NativeScriptHttpClientModule
+        NativeScriptHttpClientModule,
+        NativeScriptFormsModule
     ],
     declarations: [
         AppComponent,
         ViewAdsComponent,
-        ViewAdInformationComponent
+        ViewAdInformationComponent,
+        SearchComponent
     ],
     providers: [
         AdvertisementService,
         UserService,
         NativeScriptHttpModule,
-        NativeScriptHttpClientModule
+        NativeScriptHttpClientModule,
+        FilterResultService,
+        AllResultService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
