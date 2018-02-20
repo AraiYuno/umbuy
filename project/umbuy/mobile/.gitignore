@@ -43,3 +43,6 @@ Thumbs.db
 server.js
 node_modules/
 platforms/
+
+# js files
+/app/*.js
