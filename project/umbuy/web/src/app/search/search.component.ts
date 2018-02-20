@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AdvertisementService } from '../services/advertisement.service';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser/src/browser/title';
 import { Advertisement } from '../api/advertisement';
 import { FilterResultService } from '../services/filterResult.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AllResultService } from '../services/allResult.service';
-import { AuthService } from '../auth/auth.service';
+
 
 
 @Component({
@@ -20,7 +19,7 @@ export class SearchComponent implements OnInit {
   filteredAds: Advertisement[]= [];
   message;
 
-  constructor(private _advertisementService: AdvertisementService, private _filterResultService : FilterResultService, private _allResultService : AllResultService,public auth: AuthService) { }
+  constructor( private _filterResultService : FilterResultService, private _allResultService : AllResultService) { }
 
   filter(){
     if(this.allAds !== null){
