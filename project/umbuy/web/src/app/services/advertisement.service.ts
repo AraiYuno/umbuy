@@ -25,6 +25,7 @@ export class AdvertisementService{
     }
 
     createAd(advertisement){
+        alert("here");
         this.url = this.host + "/createAd";
         return this.http.post<Advertisement>(this.url, advertisement);
     }

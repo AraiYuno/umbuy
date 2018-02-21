@@ -45,7 +45,7 @@ export class CreateAdComponent implements OnInit {
   createAdSuccess = false;
   postSuccess = false;
 
-  constructor(private _advertisementService : AdvertisementService, private _router: Router,public auth: AuthService) { }
+  constructor(private _advertisementService : AdvertisementService, private _router: Router, private auth: AuthService) { }
 
   ngOnInit() {
     this.auth.getProfile((err, profile) => {
@@ -70,7 +70,8 @@ export class CreateAdComponent implements OnInit {
     // To validate the new advertisement
     this._advertisementService.createAd(this.newAd).subscribe(
       res => this.res = res,
-      err => console.error(err.status)
+      err => console.error(err.status),
+      () => this.backToHomePage()
     )
 
     if( this.createAdSuccess ){

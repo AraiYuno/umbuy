@@ -23,7 +23,7 @@
                     <h3 id="last_updated">Last Updated:&emsp;{{last_updated}}</h3>
                     <br><br><br>
                     <button *ngIf="!createAdSuccess && !postSuccess" class="btn btn-primary" (click)="activateSubmit()" >Validate Advertisement</button>
-                    <button *ngIf="createAdSuccess && !postSuccess" class="btn btn-primary" (click)="editAdvertisement()" [routerLink]="['/view', 'ads', 'user', userId]">Save advertisement</button> <br><br>
+                    <button *ngIf="createAdSuccess && !postSuccess" class="btn btn-primary" (click)="editAdvertisement()">Save advertisement</button> <br><br>
                     <div id="imageElements">
                         <input type="file" class="btn btn-default" name="imageUpload" 
                         (change)="previewFile()" (change)="uploadFile($event)"#fileInput>

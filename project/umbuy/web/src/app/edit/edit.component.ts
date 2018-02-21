@@ -6,6 +6,7 @@ import { User } from '../api/user';
 import { NgIf } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
 import * as AWS from 'aws-sdk';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
@@ -52,7 +53,7 @@ export class EditComponent implements OnInit {
   createAdSuccess = false;
   postSuccess = false;
 
-  constructor(private _advertisementService: AdvertisementService, private _userService: UserService,public auth: AuthService ) {
+  constructor(private _advertisementService: AdvertisementService, private _userService: UserService,private auth: AuthService, private _router: Router ) {
     this.pathNameUrl = window.location.pathname;
    }
   
@@ -67,7 +68,8 @@ export class EditComponent implements OnInit {
       ) /* After data is back for advertisement, execute getUserById*/  
 
     this.auth.getProfile((err, profile) => {
-      this.userId = profile['https://metadata/identities'][0]['user_id'];
+      this.userId = profile.sub;
+      alert(this.userId);
     });
   }
 
@@ -148,7 +150,8 @@ export class EditComponent implements OnInit {
     // To validate the new advertisement
     this._advertisementService.editAdvertisement(this.newAd).subscribe(
       res => this.res = res,
-      err => console.error(err.status)
+      err => console.error(err.status),
+      ()=> this.backToMyAdsPage()
     )
 
   }
@@ -221,5 +224,9 @@ export class EditComponent implements OnInit {
   //===========================================================================================
   validateFile(file) {
     return this.acceptedMimeTypes.includes(file.type) && file.size < 5000000;
+  }
+
+  backToMyAdsPage(){
+    this._router.navigate(["/view/ads/user/" + this.userId ]);
   }
 }
