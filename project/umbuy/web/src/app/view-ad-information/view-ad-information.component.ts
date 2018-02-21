@@ -30,13 +30,6 @@ export class ViewAdInformationComponent implements OnInit {
    }
 
    ngOnInit() {
-    var currentUrl = window.location.pathname;
-
-    //if user wants to edit ad
-    if(currentUrl.indexOf("edit") != -1){ 
-      this.editable = true;
-    }
-
     this.currentAdvertisementId = this.getAdvertisementId(this.pathNameUrl);
 
     this._advertisementService.getAdvertisementById(this.currentAdvertisementId)
@@ -48,15 +41,11 @@ export class ViewAdInformationComponent implements OnInit {
                   res => this.user = res,
                   err => console.error(err.status),
                   () => this.auth.getProfile((err, profile) => {
-                    var userId = profile['sub'];
-                    //if has /edit in url and current user made the
-                    if(this.editable && userId === this.advertisement.userId){
+                    var userId = profile.sub;
+                    //if current user made the ad, they can edit it
+                    if(userId === this.advertisement.userId){
                       this.editable = true;
-                    }
-                    else{
-                      this.editable = false;
-                    }
-                    
+                    }   
                   })
                 )}
                 

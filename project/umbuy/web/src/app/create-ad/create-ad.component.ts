@@ -67,7 +67,7 @@ export class CreateAdComponent implements OnInit {
     else
       this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/default.jpg';
     this.newAd.category = this.category;
-    // To validate the new advertisement
+    
     this._advertisementService.createAd(this.newAd).subscribe(
       res => this.res = res,
       err => console.error(err.status),
@@ -145,6 +145,7 @@ export class CreateAdComponent implements OnInit {
   previewFile() {
     // activate the submit button
     const file = this.fileInput.nativeElement.files[0];
+    
     if (file && this.validateFile(file)) {
       this.hasImage = true;
       const reader = new FileReader();

@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       
     </head>
-    <body *ngIf="auth.isAuthenticated()">
+    <body *ngIf="auth.isAuthenticated() && editable">
       <div class="jumbotron">
         <div class="container">
           <div>

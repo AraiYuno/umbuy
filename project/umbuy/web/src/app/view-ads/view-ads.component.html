@@ -7,23 +7,7 @@
     <body *ngIf="auth.isAuthenticated()" >
       <app-search *ngIf="specificUser"></app-search>
       <div class="jumbotron">
-        <div *ngIf="specificUser;else viewAll" class="container">
-          <a *ngFor="let ad of filteredAds" [routerLink]="['/view', 'ads', 'edit', ad.advertisementId]">
-            <div class="row">
-                <div class="well well-lg">
-                  <div id="displayPrice">
-                    <i id="price" class="fa fa-tags" aria-hidden="true">${{ad?.price}} </i>
-                    <br>
-                  </div>
-                  <img id="image" src="{{ad?.imageUrl}}" class="img-thumbnail img-fluid" alt="{{ad?.title}}">
-                  <h3 id="title">{{ad.title}}</h3>
-                  <br>
-                  <p id="description">{{showReducedDescriptionLength(ad?.description, 250)}}</p>
-                </div>
-            </div>
-          </a>
-        </div>
-        <ng-template #viewAll class="container">
+        <div class="container">
             <a *ngFor="let ad of filteredAds" [routerLink]="['/view', 'ads', ad.advertisementId]">
               <div class="row">
                   <div class="well well-lg">
@@ -38,7 +22,7 @@
                   </div>
               </div>
             </a>
-        </ng-template>
+          </div>
       </div>
     </body>
 

@@ -20,7 +20,7 @@ export class EditComponent implements OnInit {
   pathNameUrl: string;
   isDeleted: boolean;
   message: string;
-  
+  editable: boolean = false;
   
   title: string;
   description: string;
@@ -65,11 +65,15 @@ export class EditComponent implements OnInit {
         res => this.advertisement = res[0],
         err => this.message = err,
         () => this.initializeFields(this.advertisement)
-      ) /* After data is back for advertisement, execute getUserById*/  
+      )  
 
     this.auth.getProfile((err, profile) => {
       this.userId = profile.sub;
-      alert(this.userId);
+
+      //if current user made the ad, they can edit it
+      if(this.userId === this.advertisement.userId){
+        this.editable = true;
+      }
     });
   }
 
@@ -146,8 +150,8 @@ export class EditComponent implements OnInit {
     if( this.hasImage == true )
       this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
     else
-      this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/default.jpg';
-    // To validate the new advertisement
+      this.newAd.imageUrl = this.imageUrl; //if the user didn't change picture, keep the same
+    
     this._advertisementService.editAdvertisement(this.newAd).subscribe(
       res => this.res = res,
       err => console.error(err.status),

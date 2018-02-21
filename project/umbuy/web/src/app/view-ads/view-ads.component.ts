@@ -17,7 +17,6 @@ export class ViewAdsComponent implements OnInit {
   advertisements: Advertisement[];
   filteredAds: Advertisement[];
   userProfile: any;
-  specificUser: boolean = false; //if /user in url, show all the ads that user made
   profile: any;
 
   //Testing Purposes
@@ -31,7 +30,6 @@ export class ViewAdsComponent implements OnInit {
     var userId: string;
   
     if(currentUrl.indexOf("user") != -1){
-      this.specificUser = true;
       userId = this.getAdvertisementId(currentUrl);
       this._advertisementService.getAdvertisementsByUserId(userId)
       .subscribe(
