@@ -1,31 +1,39 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { User } from '../api/user';
+import { UserService } from '../services/user.service';
 import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../api/advertisement';
-import { Router } from '@angular/router';
-import * as AWS from 'aws-sdk';
+import { User } from '../api/user';
+import { NgIf } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
+import * as AWS from 'aws-sdk';
 
 @Component({
-  selector: 'app-create-ad',
-  templateUrl: './create-ad.component.html',
-  styleUrls: ['./create-ad.component.scss']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss']
 })
-export class CreateAdComponent implements OnInit {
-
+export class EditComponent implements OnInit {
+  advertisement: Advertisement;
+  user: User;
   userId: string;
+  pathNameUrl: string;
+  isDeleted: boolean;
+  message: string;
+  
+  
   title: string;
   description: string;
   price: number;
   imageUrl: string;
   category: string;
-
   newAd : Advertisement = new Advertisement();
   res : any;
   error: any;
-  userProfile: any;
-
-
+  currentAdvertisementId: number;
+  created_on: Date;
+  last_updated: Date;
+  deleted_on: Date;
+  
   // Adding picture to S3
   image;    // this is to store the current image file.
   acceptedMimeTypes = [ // currently allowd types of images
@@ -35,7 +43,6 @@ export class CreateAdComponent implements OnInit {
   ];
 
   @ViewChild('fileInput') fileInput: ElementRef;
-  fileDataUri = '';
   errorMsg = '';
   hasImage = false;
 
@@ -45,54 +52,77 @@ export class CreateAdComponent implements OnInit {
   createAdSuccess = false;
   postSuccess = false;
 
-  constructor(private _advertisementService : AdvertisementService, private _router: Router,public auth: AuthService) { }
+  constructor(private _advertisementService: AdvertisementService, private _userService: UserService,public auth: AuthService ) {
+    this.pathNameUrl = window.location.pathname;
+   }
+  
+   ngOnInit() {
+    this.currentAdvertisementId = this.getAdvertisementId(this.pathNameUrl);
 
-  ngOnInit() {
+    this._advertisementService.getAdvertisementById(this.currentAdvertisementId)
+      .subscribe(
+        res => this.advertisement = res[0],
+        err => this.message = err,
+        () => this.initializeFields(this.advertisement)
+      ) /* After data is back for advertisement, execute getUserById*/  
+
     this.auth.getProfile((err, profile) => {
-      this.userProfile = profile;
+      this.userId = profile['https://metadata/identities'][0]['user_id'];
     });
   }
-  
-  createAd(){
 
-    // TODO: change so that we take userid from logged in user
-    this.newAd.userId = this.auth.getUserId();
-    this.newAd.title = this.title;
-    this.newAd.description = this.description;
-    this.newAd.price = this.price;
-    this.newAd.last_updated = null;
-    // TODO: Users should be able to upload multiple images.
-    if( this.hasImage == true )
-      this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
-    else
-      this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/default.jpg';
-    this.newAd.category = this.category;
-    // To validate the new advertisement
-    this._advertisementService.createAd(this.newAd).subscribe(
-      res => this.res = res,
-      err => console.error(err.status)
-    )
+  /* Given the path name of the url (everything in url after port number or host name (if port is not there))
+   * will return the advertisement id from the path name of the url.
+   * Input: Will look something like /view/ads/:id
+   * Output: id
+   */
+  getAdvertisementId(pathnameUrl: string){
+    var splittedParts;
+    var splittedParts_length: number;
+    var id: number;
+   
+    splittedParts = pathnameUrl.split("/");
+    splittedParts_length = splittedParts.length;
+    
+    id = splittedParts[splittedParts_length-1];
+    
+    return id;
+  }
 
-    if( this.createAdSuccess ){
-      this.postSuccess = true;
-      this.createAdSuccess = false;
+  convertDatesToText(advertisement){
+    this.created_on = this.convertToTextDate(advertisement.created_on);
+    this.last_updated = this.convertToTextDate(advertisement.last_updated);
+
+    if(advertisement.deleted_on != null){
+      this.deleted_on = this.convertToTextDate(advertisement.deleted_on);
+      this.isDeleted = true;
     }
+    else{
+      this.isDeleted = false;
+    }
+
   }
 
-  //===========================================================================================
-  // Athor: Kyle Ahn
-  // backToHomePage()
-  //   this function routes users back to the home page
-  //===========================================================================================
-  backToHomePage(){
-    this._router.navigate([""]);
+  /* Takes in a string date (string_date) in formate YYYY-MM-DD and convert to MM DD, YYYY such as May 1, 2018 */
+  convertToTextDate(string_date){
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August",
+                  "September", "October", "November", "December"];
+    var stringDate;
+    var day;
+    var month;
+    var year;
+
+    var date = new Date(string_date);
+    day = date.getUTCDate();
+    month = date.getUTCMonth();
+    year = date.getUTCFullYear();
+    
+    month = months[month];
+    stringDate = month + " " + day + ", " + year;
+    
+    return stringDate;
   }
 
-  //===========================================================================================
-  // Athor: Kyle Ahn
-  // activateSubmit()
-  //   this function validates the new advertisement's information
-  //===========================================================================================
   activateSubmit(){
     if( this.title != null && this.description != null && this.price != null && this.category != ''){
       this.createAdSuccess = true;
@@ -103,7 +133,35 @@ export class CreateAdComponent implements OnInit {
       this.validAdMsg = "Please fill in all the fields. Image is optional";
     }
   }
-  
+
+  editAdvertisement(){
+    this.newAd.advertisementId = this.currentAdvertisementId;
+    this.newAd.title = this.title;
+    this.newAd.description = this.description;
+    this.newAd.price = this.price;
+    this.newAd.category = this.category;
+    // TODO: Users should be able to upload multiple images.
+    if( this.hasImage == true )
+      this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
+    else
+      this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/default.jpg';
+    // To validate the new advertisement
+    this._advertisementService.editAdvertisement(this.newAd).subscribe(
+      res => this.res = res,
+      err => console.error(err.status)
+    )
+
+  }
+
+  initializeFields(advertisement){
+    this.convertDatesToText(this.advertisement)
+    this.title = advertisement.title;
+    this.price = advertisement.price;
+    this.description = advertisement.description;
+    this.category = advertisement.category;
+    this.imageUrl = advertisement.imageUrl;
+  }
+
   //===========================================================================================
   // TODO: uploading multiplic pictures on snapshot 2
   // Author: Kyle Ahn
@@ -149,7 +207,7 @@ export class CreateAdComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(this.fileInput.nativeElement.files[0]);
       reader.onload = () => {
-        this.fileDataUri = reader.result;
+        this.imageUrl = reader.result;
       }
       this.errorMsg = '';
     } else {

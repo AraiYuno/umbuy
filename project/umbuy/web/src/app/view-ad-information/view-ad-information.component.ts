@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../api/advertisement';
@@ -17,11 +17,13 @@ export class ViewAdInformationComponent implements OnInit {
   user: User;
   pathNameUrl: string;
   currentAdvertisementId: number;
-  created_on: string;
-  last_updated: string;
-  deleted_on: string;
+  created_on: Date;
+  last_updated: Date;
+  deleted_on: Date;
   isDeleted: boolean;
   message: string;
+  userProfile: any;
+  editable: boolean = false;
 
   constructor(private _advertisementService: AdvertisementService, private _userService: UserService,public auth: AuthService ) {
     this.pathNameUrl = window.location.pathname;
@@ -80,18 +82,26 @@ export class ViewAdInformationComponent implements OnInit {
   }
 
   ngOnInit() {
+    var currentUrl = window.location.pathname;
+
+    //if user wants to edit ad
+    if(currentUrl.indexOf("edit") != -1){ 
+      this.editable = true;
+    }
+
     this.currentAdvertisementId = this.getAdvertisementId(this.pathNameUrl);
 
     this._advertisementService.getAdvertisementById(this.currentAdvertisementId)
       .subscribe(
         res => this.advertisement = res[0],
         err => this.message = err,
-        () => this._userService.getUserById(this.advertisement.userId)
-                .subscribe(
-                  res => this.user = res[0],
-                  err => console.error(err.status),
-                  () => this.convertDatesToText(this.advertisement)
-                )
+        () => this.convertDatesToText(this.advertisement)
+        // () => this._userService.getUserById(this.advertisement.userId)
+        //         .subscribe(
+        //           res => this.user = res[0],
+        //           err => console.error(err.status),
+        //           () =>
+                
       ) /* After data is back for advertisement, execute getUserById*/  
   }
 }

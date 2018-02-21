@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 var connection = mysql.createConnection({
     host: '127.0.0.1',
     user: 'coutures',
-    password: "***********",
+    password: "cherry14",
     database: 'project4350',
     port: '3306'
 });
@@ -47,6 +47,16 @@ app.get('/ads/:id(\\d+)', (req, res) => {
     });
 });
 
+app.get('/ads/user/:userId', (req, res) => {
+    let sql = 'SELECT * FROM advertisements WHERE userId = ' + '"' + req.params.userId + '"';
+    console.log(sql);
+    let query = connection.query(sql, (err, result)=> {
+        if( err ) throw err;
+        console.log(result);
+        res.send(result);
+    });
+});
+
 /* search all advertisements and returns the data back to the advertisement.service.ts */
 app.get('/ads/:title', function(req, res){ 
     let sql = 'SELECT * FROM advertisements WHERE title LIKE "%' +req.params.title+'%"';
@@ -57,7 +67,7 @@ app.get('/ads/:title', function(req, res){
     });
   });
 
-app.get('/users/:id', (req, res) => {
+app.get('/users/:id(\\d+)', (req, res) => {
     let sql = 'SELECT * FROM users WHERE userId = ' + req.params.id;
     let query = connection.query(sql,(err, result)=> {
         if( err ) throw err;
@@ -78,6 +88,24 @@ app.post('/createAd', (req, res) => {
     var url = req.body.imageUrl;
     var cate = req.body.category;
     connection.query("INSERT INTO advertisements (advertisementId, title, userId, description, price, imageUrl, category) VALUES (?, ?, ?, ?, ?, ?, ?)", [advertisementId, title, userId, desc, price, url, cate], (err, result)=>{
+        console.log(result);
+    });
+});
+
+app.post('/editAd', (req, res) => {
+    // code 201 for creating object
+    res.status(201).send(req.body);
+
+    var adId = req.body.advertisementId;
+    var ad_title = req.body.title;
+    var desc = req.body.description;
+    var price = req.body.price;
+    var url = req.body.imageUrl;
+    var cate = req.body.category;
+    var sql = "UPDATE advertisements SET title = " + "'" + ad_title + "', description = " +
+                "'" + desc + "', price = " + price + ", imageUrl = " + "'" + url + 
+                "', category = " + "'" + cate + "'" + "WHERE advertisementId = " +adId;
+    connection.query(sql, (err, result)=>{
         console.log(result);
     });
 });

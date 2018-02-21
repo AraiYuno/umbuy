@@ -26,4 +26,11 @@ export class UserService{
         this.url = this.host + "/users/"+userId;
         return this.http.get<User>(this.url);
     }
+
+    getUserIdByEmail(email){
+        this.url = this.host + "/users/"+email;
+        return this.http.get<number>(this.url);
+    }
+
+    
 }
