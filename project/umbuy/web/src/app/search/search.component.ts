@@ -5,8 +5,7 @@ import { Advertisement } from '../api/advertisement';
 import { FilterResultService } from '../services/filterResult.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AllResultService } from '../services/allResult.service';
-
-
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-search',
@@ -19,7 +18,7 @@ export class SearchComponent implements OnInit {
   filteredAds: Advertisement[]= [];
   message;
 
-  constructor( private _filterResultService : FilterResultService, private _allResultService : AllResultService) { }
+  constructor( private _filterResultService : FilterResultService, private _allResultService : AllResultService, private auth: AuthService) { }
 
   filter(){
     if(this.allAds !== null){

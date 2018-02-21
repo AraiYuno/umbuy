@@ -25,7 +25,7 @@ export class ViewAdInformationComponent implements OnInit {
   userProfile: any;
   editable: boolean = false;
 
-  constructor(private _advertisementService: AdvertisementService, private _userService: UserService,public auth: AuthService ) {
+  constructor(private _advertisementService: AdvertisementService, private _userService: UserService,private auth: AuthService ) {
     this.pathNameUrl = window.location.pathname;
    }
   

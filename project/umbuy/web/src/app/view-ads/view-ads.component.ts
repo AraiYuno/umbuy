@@ -17,13 +17,13 @@ export class ViewAdsComponent implements OnInit {
   advertisements: Advertisement[];
   filteredAds: Advertisement[];
   userProfile: any;
-  specificUser: boolean = false; //if /user in url, show all ads that user made
+  specificUser: boolean = false; //if /user in url, show all the ads that user made
 
   //Testing Purposes
   test_shorted_description: string;
   message;
 
-  constructor(private _advertisementService: AdvertisementService, private _filterResultService: FilterResultService, private _allResultService: AllResultService,public auth: AuthService) { }
+  constructor(private _advertisementService: AdvertisementService, private _filterResultService: FilterResultService, private _allResultService: AllResultService, private auth: AuthService) { }
 
   ngOnInit() {
     var currentUrl = window.location.pathname;

@@ -17,50 +17,31 @@ export class UserProfileComponent implements OnInit {
   userProfile: any;
   userId: string;
   errMessage: string;
+  picture: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
 
-  constructor(public auth: AuthService, public _userService: UserService,public router: Router) { }
+  constructor(private auth: AuthService, private _userService: UserService, private router: Router) { }
 
   ngOnInit() {   
     this.auth.getProfile((err, profile) => {
-      this.userProfile = profile;
-      this.userId= this.userProfile['sub'];
+      this.userId = profile['sub'];
+      this.picture = profile['picture'];
+      this.firstName = profile['https://metadata/user_metadata']['FirstName'];
+      this.lastName = profile['https://metadata/user_metadata']['LastName'];
+      this.email = profile.name;
+      this.phoneNumber = profile['https://metadata/user_metadata']['phone'];
     });
 
   }
   
-  setProfile(profile){
-    this.userProfile = profile;
- }
-
-  getUserData() {
-    return JSON.stringify(this.userProfile);
-  }
-
-  getNickName() {
-    return this.userProfile['nickname'];
-  }
-
-  getFirstName() {
-    return this.userProfile['https://metadata/user_metadata']['FirstName'];
-  }
-  getLastName() {
-    return this.userProfile['https://metadata/user_metadata']['LastName'];
-  }
-
-  getPicture() {
-    return this.userProfile['picture'];
-  }
-  getPhoneNo() {
-    return this.userProfile['https://metadata/user_metadata']['phone'];
-  }
-
   goHome() {
     this.router.navigate(['/']);
   }
 
 
-  getEmail() {
-   return this.userProfile.name;
- }
+
 
 }
