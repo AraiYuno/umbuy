@@ -14,7 +14,7 @@ import { AuthService } from '../auth/auth.service';
 export class ViewAdInformationComponent implements OnInit {
 
   advertisement: Advertisement;
-  user: User;
+  user: any;
   pathNameUrl: string;
   currentAdvertisementId: number;
   created_on: Date;
@@ -95,13 +95,12 @@ export class ViewAdInformationComponent implements OnInit {
       .subscribe(
         res => this.advertisement = res[0],
         err => this.message = err,
-        () => this.convertDatesToText(this.advertisement)
-        // () => this._userService.getUserById(this.advertisement.userId)
-        //         .subscribe(
-        //           res => this.user = res[0],
-        //           err => console.error(err.status),
-        //           () =>
+        () => {this.convertDatesToText(this.advertisement);this._userService.getUserById(this.advertisement.userId)
+                .subscribe(
+                  res => this.user = res,
+                  err => console.error(err.status)
+                )}
                 
-      ) /* After data is back for advertisement, execute getUserById*/  
+      ); /* After data is back for advertisement, execute getUserById*/  
   }
 }

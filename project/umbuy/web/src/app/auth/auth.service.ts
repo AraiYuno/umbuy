@@ -77,7 +77,7 @@ export class AuthService {
   }
 
   public getUserId(){
-    return this.userProfile['https://metadata/identities'][0]['user_id']
+    return this.userProfile['sub'];
   }
 
 }

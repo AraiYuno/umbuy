@@ -17,7 +17,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {   
     this.auth.getProfile((err, profile) => {
       this.userProfile = profile;
-      this.userId= this.userProfile['https://metadata/identities'][0]['user_id'];
+      this.userId= this.userProfile['sub'];
     });
 
   }

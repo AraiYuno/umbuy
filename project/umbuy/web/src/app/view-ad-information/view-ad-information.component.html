@@ -15,9 +15,9 @@
                 <img id="image" src="{{advertisement?.imageUrl}}" class="img-rounded" alt="{{advertisement?.title}}" align="left">
                 <div class="row">
                     <h2>Contact Information</h2>
-                    <h3 id="userFullName">Name:&emsp;{{user?.firstName + " " + user?.lastName}}</h3>
-                    <h3 id="userEmail">Email:&emsp;{{user?.umEmail}}</h3>
-                    <h3 id="userPhoneNumber">Phone number:&emsp;{{user?.phoneNumber}}</h3>
+                    <h3 id="userFullName">Name:&emsp;{{user['user_metadata']['FirstName'] + " " + user['user_metadata']['LastName']}}</h3>
+                    <h3 id="userEmail">Email:&emsp;{{user['email']}}</h3>
+                    <h3 id="userPhoneNumber">Phone number:&emsp;{{user['user_metadata']['phone']}}</h3>
                     <br>
                     <h3 id="created_on">Created on:&emsp;{{created_on}}</h3>
                     <h3 id="last_updated">Last Updated:&emsp;{{last_updated}}</h3>
