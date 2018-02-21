@@ -28,6 +28,40 @@ export class ViewAdInformationComponent implements OnInit {
   constructor(private _advertisementService: AdvertisementService, private _userService: UserService,private auth: AuthService ) {
     this.pathNameUrl = window.location.pathname;
    }
+
+   ngOnInit() {
+    var currentUrl = window.location.pathname;
+
+    //if user wants to edit ad
+    if(currentUrl.indexOf("edit") != -1){ 
+      this.editable = true;
+    }
+
+    this.currentAdvertisementId = this.getAdvertisementId(this.pathNameUrl);
+
+    this._advertisementService.getAdvertisementById(this.currentAdvertisementId)
+      .subscribe(
+        res => this.advertisement = res[0],
+        err => this.message = err,
+        () => {this.convertDatesToText(this.advertisement);this._userService.getUserById(this.advertisement.userId)
+                .subscribe(
+                  res => this.user = res,
+                  err => console.error(err.status),
+                  () => this.auth.getProfile((err, profile) => {
+                    var userId = profile['sub'];
+                    //if has /edit in url and current user made the
+                    if(this.editable && userId === this.advertisement.userId){
+                      this.editable = true;
+                    }
+                    else{
+                      this.editable = false;
+                    }
+                    
+                  })
+                )}
+                
+      ); /* After data is back for advertisement, execute getUserById*/  
+  }
   
   /* Given the path name of the url (everything in url after port number or host name (if port is not there))
    * will return the advertisement id from the path name of the url.
@@ -81,26 +115,4 @@ export class ViewAdInformationComponent implements OnInit {
     return stringDate;
   }
 
-  ngOnInit() {
-    var currentUrl = window.location.pathname;
-
-    //if user wants to edit ad
-    if(currentUrl.indexOf("edit") != -1){ 
-      this.editable = true;
-    }
-
-    this.currentAdvertisementId = this.getAdvertisementId(this.pathNameUrl);
-
-    this._advertisementService.getAdvertisementById(this.currentAdvertisementId)
-      .subscribe(
-        res => this.advertisement = res[0],
-        err => this.message = err,
-        () => {this.convertDatesToText(this.advertisement);this._userService.getUserById(this.advertisement.userId)
-                .subscribe(
-                  res => this.user = res,
-                  err => console.error(err.status)
-                )}
-                
-      ); /* After data is back for advertisement, execute getUserById*/  
-  }
 }

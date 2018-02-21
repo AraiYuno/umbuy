@@ -13,8 +13,6 @@ import { UserService } from '../services/user.service';
 export class UserProfileComponent implements OnInit {
 
   profile: any;
-
-  userProfile: any;
   userId: string;
   errMessage: string;
   picture: string;
@@ -27,8 +25,8 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {   
     this.auth.getProfile((err, profile) => {
-      this.userId = profile['sub'];
-      this.picture = profile['picture'];
+      this.userId = profile.sub;
+      this.picture = profile.picture;
       this.firstName = profile['https://metadata/user_metadata']['FirstName'];
       this.lastName = profile['https://metadata/user_metadata']['LastName'];
       this.email = profile.name;
