@@ -1,10 +1,10 @@
 <ActionBar title="View-Ad-Info" class="action-bar"></ActionBar>
-
-<StackLayout>
+           
+<StackLayout *ngIf="advertisement">
     <image width="50%" height="50%"
-        [src]=advertisement.imageUrl class="imgBorder"></image>
+        [src]="advertisement.imageUrl" class="imgBorder"></image>
     <ScrollView orientation="vertical">
-        <StackLayout>
+        <StackLayout *ngIf="user">
             <HtmlView html="Name: "></HtmlView>
             <Label class="h2" [text]="user.firstName"></Label>
             <Label class="h2" [text]="advertisement.title"></Label>
@@ -12,3 +12,5 @@
         </StackLayout>
     </ScrollView>
 </StackLayout>
+
+         

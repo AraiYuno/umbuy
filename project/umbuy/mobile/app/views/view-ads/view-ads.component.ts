@@ -28,7 +28,8 @@ export class ViewAdsComponent implements OnInit {
         .subscribe(
             res => this.advertisements = this.filteredAds = res,
             err => this.message = err,
-            () => {this._filterResultService.changeMessage(this.filteredAds);
+            () => { 
+                    this._filterResultService.changeMessage(this.filteredAds);
                     this._allResultService.changeMessage(this.advertisements)}
           ); 
         this._filterResultService.currentMessage.subscribe(filteredAds => this.filteredAds = filteredAds);

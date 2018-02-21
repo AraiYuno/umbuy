@@ -1,19 +1,18 @@
 
-<ActionBar title="Create advertisement" class="action-bar">
+<ActionBar title="Create  anadvertisement" class="action-bar">
 </ActionBar>
 
-<Page>
-    <StackLayout orientation="vertical">
-        <label text="Title*"></label>
-        <TextField id="adTitle" hint="Title" autocorrect="false" [(ngModel)]="title"></TextField>
-        <label text="Price*"></label>
-        <TextField id="adPrice" hint="Price" autocorrect="false" keyboardType="number" [(ngModel)]="price"></TextField>
-        <label text="Category*"></label>
-        <TextField id="adCategory" hint="Category" autocorrect="false" [(ngModel)]="category"></TextField>
-        <label text="Description*"></label>
-        <TextView id="adDescription" hint="Description" autocorrect="false" [(ngModel)]="description"></TextView>
-        <!-- Set up for amazon s3 -->
-        <Image [src]="fileDataUri" stretch ="none"></Image>
-        <Button text="Post Advertisement" (tap)="postAdvertisement()"></Button>
-    </StackLayout>
-</Page>
+
+<StackLayout orientation="vertical">
+    <Label text="Title*"></Label>
+    <TextField id="adTitle" hint="Title" autocorrect="false" [(ngModel)]="title"></TextField>
+    <Label text="Price*"></Label>
+    <TextField id="adPrice" hint="Price" autocorrect="false" keyboardType="number" [(ngModel)]="price"></TextField>
+    <Label text="Category*"></Label>
+    <TextField id="adCategory" hint="Category" autocorrect="false" [(ngModel)]="category"></TextField>
+    <Label text="Description*"></Label>
+    <TextView id="adDescription" hint="Description" autocorrect="false" [(ngModel)]="description"></TextView>
+    <!-- Set up for amazon s3 -->
+    <!-- <Image [src]="fileDataUri" stretch ="none"></Image> -->
+    <Button text="Post Advertisement" (tap)="postAdvertisement()"></Button>
+</StackLayout>
