@@ -18,7 +18,6 @@ export const routes: Routes = [
   {path: 'view/ads', component: ViewAdsComponent},
   {path: 'view/ads/:id', component: ViewAdInformationComponent},
   {path: 'view/ads/user/:id', component: ViewAdsComponent},
-  {path: 'view/ads/edit/:id', component: ViewAdInformationComponent},
   {path: 'callback', component: HomeComponent },
   {path: 'createAd', component: CreateAdComponent},
   {path: 'profile', component: UserProfileComponent},
