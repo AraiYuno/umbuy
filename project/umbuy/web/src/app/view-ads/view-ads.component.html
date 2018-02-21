@@ -5,6 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">   
     </head>
     <body *ngIf="auth.isAuthenticated()" >
+      <app-search *ngIf="specificUser"></app-search>
       <div class="jumbotron">
         <div *ngIf="specificUser;else viewAll" class="container">
           <a *ngFor="let ad of filteredAds" [routerLink]="['/view', 'ads', 'edit', ad.advertisementId]">
