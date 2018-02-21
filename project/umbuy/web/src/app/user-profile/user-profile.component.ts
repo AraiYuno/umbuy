@@ -1,5 +1,6 @@
 import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
   profile: any;
-  constructor(public auth: AuthService) { }
+  constructor(public auth: AuthService,public router: Router) { }
 
   ngOnInit() {
           
@@ -39,6 +40,11 @@ export class UserProfileComponent implements OnInit {
   getPhoneNo() {
     return this.profile['https://metadata/user_metadata']['phone'];
   }
+
+  goHome() {
+    this.router.navigate(['/']);
+  }
+
 
   getEmail() {
    return this.profile.name;

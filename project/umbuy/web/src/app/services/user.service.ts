@@ -19,6 +19,7 @@ export class UserService{
         }
         else{
             this.host = "http://ec2-18-217-86-148.us-east-2.compute.amazonaws.com:9000";
+            
         }
     }
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AUTH_CONFIG } from './auth0-variables';
 import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
+import { error } from 'util';
 
 @Injectable()
 export class AuthService {
@@ -30,9 +31,17 @@ export class AuthService {
         this.setSession(authResult);
         this.router.navigate(['/']);
       } else if (err) {
-        this.router.navigate(['/']);
-        console.log(err);
-        alert(`Error: ${err.errorDescription}.`);
+          if (err.errorDescription == "Please verify your email before logging in."){
+
+            this.router.navigate(['/verifyEmail']);
+            console.log(err);
+          }
+          else{
+            this.router.navigate(['/']);
+            console.log(err);
+            alert(`Error: ${err.errorDescription}.`);
+
+          }
       }
     });
   }

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CreateAdComponent } from './create-ad/create-ad.component';
 import { SearchComponent } from './search/search.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -16,6 +17,7 @@ export const routes: Routes = [
   {path: 'callback', component: HomeComponent },
   {path: 'createAd', component: CreateAdComponent},
   {path: 'profile', component: UserProfileComponent},
+  {path: 'verifyEmail', component: VerifyEmailComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

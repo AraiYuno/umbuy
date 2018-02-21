@@ -45,3 +45,9 @@
         </div>
       </div>
     </div>
+
+    <body *ngIf="!auth.isAuthenticated()">
+      <div>
+        {{goHome()}}
+      </div>
+    </body>

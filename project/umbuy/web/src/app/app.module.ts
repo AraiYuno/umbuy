@@ -21,12 +21,14 @@ import { AllResultService } from './services/allResult.service'
 import { Routes, RouterModule } from '@angular/router';
 import { AuthService } from './auth/auth.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     UserProfileComponent,
+    VerifyEmailComponent,
   ],
   imports: [
     AngularFontAwesomeModule,
