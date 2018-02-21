@@ -30,8 +30,19 @@ export class AdvertisementService{
         return this.http.post<Advertisement>(this.url, advertisement);
     }
 
+    editAdvertisement(advertisement){
+        this.url = this.host + "/editAd";
+        return this.http.post<Advertisement>(this.url, advertisement);
+    }
+
     getAllAdvertisements(){
         this.url = this.host + "/ads";
+        this.ads = this.http.get<Advertisement[]>(this.url);
+        return this.http.get<Advertisement[]>(this.url);
+    }
+
+    getAdvertisementsByUserId(userId){
+        this.url = this.host + "/ads/user/" + userId;
         this.ads = this.http.get<Advertisement[]>(this.url);
         return this.http.get<Advertisement[]>(this.url);
     }

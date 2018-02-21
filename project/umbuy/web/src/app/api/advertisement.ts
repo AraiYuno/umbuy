@@ -1,6 +1,6 @@
 export class Advertisement{
     advertisementId: number;
-    userId: number;
+    userId: string;
     title: string;
     description: string;
     price: number;

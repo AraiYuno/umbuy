@@ -8,12 +8,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CreateAdComponent } from './create-ad/create-ad.component';
 import { SearchComponent } from './search/search.component';
+
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { EditComponent } from './edit/edit.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'edit/:id', component: EditComponent},
   {path: 'view/ads', component: ViewAdsComponent},
   {path: 'view/ads/:id', component: ViewAdInformationComponent},
+  {path: 'view/ads/user/:id', component: ViewAdsComponent},
+  {path: 'view/ads/edit/:id', component: ViewAdInformationComponent},
   {path: 'callback', component: HomeComponent },
   {path: 'createAd', component: CreateAdComponent},
   {path: 'profile', component: UserProfileComponent},
@@ -27,5 +32,5 @@ export const routes: Routes = [
 })
 
 export class AppRoutingModule { }
-export const routingComponents = [HomeComponent, CreateAdComponent, AppComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent, SearchComponent, UserProfileComponent];
+export const routingComponents = [HomeComponent, CreateAdComponent, AppComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent, SearchComponent, UserProfileComponent, EditComponent];
 export const routing = RouterModule.forRoot(routes);

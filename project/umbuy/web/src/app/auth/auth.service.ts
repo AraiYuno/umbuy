@@ -85,4 +85,8 @@ export class AuthService {
     return new Date().getTime() < expiresAt;
   }
 
+  public getUserId(){
+    return this.userProfile['https://metadata/identities'][0]['user_id']
+  }
+
 }

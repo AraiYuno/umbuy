@@ -29,6 +29,7 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
     routingComponents,
     UserProfileComponent,
     VerifyEmailComponent,
+    routingComponents
   ],
   imports: [
     AngularFontAwesomeModule,

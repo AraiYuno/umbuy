@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+    </head>
+    <body *ngIf="auth.isAuthenticated()">
+      <div class="jumbotron">
+        <div class="container">
+          <div>
+            <h1 id="title">Title:</h1><input type="text" class="txt form-control" name="title" [(ngModel)]="title">
+            <br><br>
+            <div class="row">
+                <img src="{{imageUrl}}">
+                <div class="row">
+                    <h2>Contact Information</h2>
+                    <h3 id="userFullName">Name:&emsp;{{user?.firstName + " " + user?.lastName}}</h3>
+                    <h3 id="userEmail">Email:&emsp;{{user?.umEmail}}</h3>
+                    <h3 id="userPhoneNumber">Phone number:&emsp;{{user?.phoneNumber}}</h3>
+                    <br>
+                    <h3 id="created_on">Created on:&emsp;{{created_on}}</h3>
+                    <h3 id="last_updated">Last Updated:&emsp;{{last_updated}}</h3>
+                    <br><br><br>
+                    <button *ngIf="!createAdSuccess && !postSuccess" class="btn btn-primary" (click)="activateSubmit()" >Validate Advertisement</button>
+                    <button *ngIf="createAdSuccess && !postSuccess" class="btn btn-primary" (click)="editAdvertisement()" [routerLink]="['/view', 'ads', 'user', userId]">Save advertisement</button> <br><br>
+                    <div id="imageElements">
+                        <input type="file" class="btn btn-default" name="imageUpload" 
+                        (change)="previewFile()" (change)="uploadFile($event)"#fileInput>
+                        <p *ngIf="errorMsg" style="color:red">{{errorMsg}}</p>
+                        <p *ngIf="!createAdSuccess && !postSuccess" style="color:red">{{validAdMsg}}</p>
+                    </div>
+                    
+                </div>
+                <h3 id="deleted_on" *ngIf="isDeleted">Deleted on:&emsp;{{deleted_on}}</h3>
+            </div>
+            <h3>Price:</h3><input id="price" type="number" class="double form-control" name="price" [(ngModel)]="price">
+            <h3>Category:</h3><input id="category" type="text" class="txt form-control" name="category" [(ngModel)]="category">
+            <br>
+            <h2>Description:</h2>
+            <textarea class="txt form-control" cols="50" name="description" rows="15" [(ngModel)]="description"></textarea>
+            <br>
+          </div>
+        </div>
+      </div>
+    </body>
+
+

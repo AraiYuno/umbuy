@@ -1,0 +1,32 @@
+img{
+    float: left;
+    height:400px;
+    max-width: 600px;
+    padding-right: 100px; 
+}
+
+.jumbotron{
+    background-color: #FBBB1B;
+}
+
+h1{
+    font-weight: bold;
+    font-size: 40px;
+}
+
+h2{
+    font-weight: bold;
+    margin-top: -5px;
+}
+
+#description{
+    float: left; 
+}
+
+#price, #category{
+    max-width: 385px;
+}
+
+#imageElements{
+    padding-left: 15px;
+}
