@@ -20,13 +20,11 @@ import { FilterResultService } from './services/filterResult.service';
 import { AllResultService } from './services/allResult.service'
 import { Routes, RouterModule } from '@angular/router';
 import { AuthService } from './auth/auth.service';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents,
-    UserProfileComponent,
+    routingComponents
   ],
   imports: [
     AngularFontAwesomeModule,

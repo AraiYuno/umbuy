@@ -1,5 +1,6 @@
 import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,39 +8,48 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  profile: any;
-  constructor(public auth: AuthService) { }
+  userProfile: any;
+  userId: string;
+  errMessage: string;
 
-  ngOnInit() {
-          
+  constructor(public auth: AuthService, public _userService: UserService) { }
+
+  ngOnInit() {   
     this.auth.getProfile((err, profile) => {
-      this.profile = profile;
-      
+      this.userProfile = profile;
+      this.userId= this.userProfile['https://metadata/identities'][0]['user_id'];
     });
+
   }
+  
+  setProfile(profile){
+    this.userProfile = profile;
+ }
 
   getUserData() {
-    return JSON.stringify(this.profile);
+    return JSON.stringify(this.userProfile);
   }
 
   getNickName() {
-    return this.profile['nickname'];
+    return this.userProfile['nickname'];
   }
 
   getFirstName() {
-    return this.profile['https://metadata/user_metadata']['FirstName'];
+    return this.userProfile['https://metadata/user_metadata']['FirstName'];
   }
   getLastName() {
-    return this.profile['https://metadata/user_metadata']['LastName'];
+    return this.userProfile['https://metadata/user_metadata']['LastName'];
   }
 
   getPicture() {
-    return this.profile['picture'];
+    return this.userProfile['picture'];
   }
   getPhoneNo() {
-    return this.profile['https://metadata/user_metadata']['phone'];
+    return this.userProfile['https://metadata/user_metadata']['phone'];
   }
 
   getEmail() {
-   return this.profile.name;
- }}
+   return this.userProfile.name;
+ }
+
+}
