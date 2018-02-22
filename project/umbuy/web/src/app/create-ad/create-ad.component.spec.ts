@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import { AdvertisementService } from '../services/advertisement.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { debug } from 'util';
+import { AuthService } from '../auth/auth.service';
 
 // fake router
 class RouterStub {
@@ -28,13 +29,14 @@ describe('CreateAdComponent', () => {
   let fixture: ComponentFixture<CreateAdComponent>;
   let router: Router;
   let service: AdvertisementService;
+  let authService: AuthService;
   let newAd;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterModule, FormsModule, RouterTestingModule],
       declarations: [ CreateAdComponent ],
-      providers: [AdvertisementService, User, Advertisement, HttpClient, HttpHandler,
+      providers: [AdvertisementService, AuthService, User, Advertisement, HttpClient, HttpHandler,
         { provide: Router, useClass: RouterStub}
       ]
     })
@@ -45,8 +47,8 @@ describe('CreateAdComponent', () => {
     fixture = TestBed.createComponent(CreateAdComponent);
     service = TestBed.get(AdvertisementService);
     router = TestBed.get(Router);
-    // component = new CreateAdComponent(service, router);
     component = fixture.componentInstance;
+    authService = TestBed.get(AuthService);
 
     newAd = { 
       userId: 1, 

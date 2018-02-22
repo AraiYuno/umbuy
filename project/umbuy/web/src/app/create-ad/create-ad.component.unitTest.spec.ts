@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AuthService } from '../auth/auth.service';
 import { CreateAdComponent } from './create-ad.component';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
@@ -20,13 +20,14 @@ describe('CreateAdComponent', () => {
   let fixture: ComponentFixture<CreateAdComponent>;
   let router: Router;
   let service: AdvertisementService;
+  let authService: AuthService;
   let newAd;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterModule, FormsModule, RouterTestingModule],
       declarations: [ CreateAdComponent ],
-      providers: [AdvertisementService, User, Advertisement, HttpClient, HttpHandler]
+      providers: [AdvertisementService, AuthService, User, Advertisement, HttpClient, HttpHandler]
     })
     .compileComponents();
   }));
@@ -35,14 +36,15 @@ describe('CreateAdComponent', () => {
     fixture = TestBed.createComponent(CreateAdComponent);
     service = TestBed.get(AdvertisementService);
     router = TestBed.get(Router);
-    component = new CreateAdComponent(service, router);
+    authService = TestBed.get(authService);
+    component = new CreateAdComponent(service, router, authService);
     newAd = { 
-      userId: 1, 
-      title: 'luffy', 
-      description: 'test', 
-      price: 23.14,
-      imageUrl: 'https://s3.amazonaws.com/kyleteam6best/default.jpg',
-      category: ' test'
+      "userId": 'auth0|5a8cfd24f5c8213cb27d5ec2', 
+      "title": 'luffy', 
+      "description": 'test', 
+      "price": 23.14,
+      "imageUrl": 'https://s3.amazonaws.com/kyleteam6best/default.jpg',
+      "category": ' test'
     };
   });
 

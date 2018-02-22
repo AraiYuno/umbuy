@@ -18,7 +18,7 @@ export class ViewAdsComponent implements OnInit {
   filteredAds: Advertisement[];
   userProfile: any;
   profile: any;
-
+  specificUser: boolean = false;
   //Testing Purposes
   test_shorted_description: string;
   message;
@@ -30,6 +30,7 @@ export class ViewAdsComponent implements OnInit {
     var userId: string;
   
     if(currentUrl.indexOf("user") != -1){
+      this.specificUser = true;
       userId = this.getAdvertisementId(currentUrl);
       this._advertisementService.getAdvertisementsByUserId(userId)
       .subscribe(

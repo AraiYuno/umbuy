@@ -60,6 +60,18 @@ describe('ViewAdsComponent Integration Tests', () => {
         }];
     });
 
+    it('When ViewAdComponent is initiated, advertisements should be defined.', () => {
+        // after calling advertisementService getAdvertisementById function fakedly, 
+        let spy=spyOn(advertisementService, 'getAllAdvertisements').and.callFake(t => {
+          return Observable.from([this.tempAd]);
+        });
+  
+        component.advertisements = this.tempAd;
+  
+        // we should be able to retrieve the advertisementId by calling getAdvertisementId() in the component.
+        expect(component.advertisements[0].title).toMatch("iphone");
+      //});
+    });
       
     it('should render a list of advertisement with its title, price, image and short description', () => {
         // ARRANGE: set an array of advertisements 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdvertisementService } from '../services/advertisement.service';
 import { FilterResultService } from '../services/filterResult.service';
 import { AllResultService } from '../services/allResult.service';
+import { AuthService } from '../auth/auth.service';
 import { ViewAdsComponent } from './view-ads.component';
 import { SearchComponent } from '../search/search.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -10,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
 import { Advertisement } from '../api/advertisement';
+import { FormsModule } from '@angular/forms';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
@@ -19,14 +21,15 @@ describe('ViewAdsComponent Unit Tests', () => {
   let advertisementService: AdvertisementService;
   let allResultService: AllResultService;
   let filterResultService: FilterResultService;
+  let authService: AuthService;
   let fixture: ComponentFixture<ViewAdsComponent>;
   let tempAd: Advertisement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterModule],
-      declarations: [ ViewAdsComponent ],
-      providers: [AdvertisementService, FilterResultService, AllResultService, HttpClient, HttpHandler, RouterModule]
+      imports: [RouterModule, FormsModule],
+      declarations: [ ViewAdsComponent, SearchComponent ],
+      providers: [AdvertisementService, FilterResultService, AllResultService, AuthService, HttpClient, HttpHandler, RouterModule]
     })
     .compileComponents();
   }));
@@ -36,11 +39,12 @@ describe('ViewAdsComponent Unit Tests', () => {
     advertisementService= TestBed.get(AdvertisementService);
     filterResultService = TestBed.get(FilterResultService);
     allResultService = TestBed.get(AllResultService);
-    component= new ViewAdsComponent(advertisementService, filterResultService, allResultService);
+    authService = TestBed.get(AuthService);
+    component= new ViewAdsComponent(advertisementService, filterResultService, allResultService, authService);
 
     this.tempAd = [{ 
       "advertisementId": 1,
-      "userId": 1,
+      "userId": "auth0|5a8cfd24f5c8213cb27d5ec2",
       "title": 'iphone',
       "description": 'A great iphone for a great price',
       "price": 75,
@@ -51,7 +55,7 @@ describe('ViewAdsComponent Unit Tests', () => {
       "category": 'electronics'
     }, {
       "advertisementId": 2,
-      "userId": 1,
+      "userId": "auth0|5a8c83dc5c679b178110477c",
       "title": 'Galaxy',
       "description": 'A great Galaxy for a great price',
       "price": 75,
@@ -61,22 +65,6 @@ describe('ViewAdsComponent Unit Tests', () => {
       "imageUrl": 'http://alink.com',
       "category": 'electronics'
     }];
-  });
-
-
-  it('When ViewAdComponent is initiated, advertisements should be defined.', () => {
-    
-    
-      // after calling advertisementService getAdvertisementById function fakedly, 
-      let spy=spyOn(advertisementService, 'getAllAdvertisements').and.callFake(t => {
-        return Observable.from([this.tempAd]);
-      });
-
-      component.advertisements = this.tempAd;
-
-      // we should be able to retrieve the advertisementId by calling getAdvertisementId() in the component.
-      expect(component.advertisements[0].title).toMatch("iphone");
-    //});
   });
 
   it('showReducedDescriptionLength() should display shorted description', () => {
@@ -91,7 +79,7 @@ describe('ViewAdsComponent Unit Tests', () => {
     expect(component.test_shorted_description).toMatch('A great...');
   });
 
-  it('filetedAds list should be defined after ngOnInit successfully is called', () => {
+  it('filteredAds list should be defined after ngOnInit successfully is called', () => {
     expect(component.filteredAds).toBeUndefined();
     // ARRANGE: set an array of advertisements 
     // ACT: Call ngOnInit and set the filteredAds Advertisement [] to be ready

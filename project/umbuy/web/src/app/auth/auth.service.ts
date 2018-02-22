@@ -86,7 +86,7 @@ export class AuthService {
   }
 
   public getUserId(){
-    return this.userProfile['sub'];
+    return this.userProfile.sub;
   }
 
 }
