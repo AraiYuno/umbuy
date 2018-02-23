@@ -32,7 +32,7 @@ describe('ViewAdsComponent Unit Tests', () => {
       imports: [RouterModule, FormsModule, RouterTestingModule],
       declarations: [ ViewAdsComponent, SearchComponent ],
       providers: [AdvertisementService, FilterResultService, AuthService, AllResultService, HttpClient, HttpHandler,
-        { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); }]
+        { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate");} }]
     })
     .compileComponents();
   }));
@@ -87,7 +87,7 @@ describe('ViewAdsComponent Unit Tests', () => {
   it('showReducedDescriptionLength() should display shorted description', () => {
     // ACT: call the testing function
     component.showReducedDescriptionLength(this.tempAd[0].description, 7);
-    
+
     //ASSERT: we should be able to retrieve the advertisementId by calling getAdvertisementId() in the component.
     expect(component.test_shorted_description).toMatch('A great...');
   });
