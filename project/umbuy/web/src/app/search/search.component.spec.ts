@@ -98,31 +98,34 @@ describe('SearchComponent Integration Tests', () => {
     let inputElement = input.nativeElement;
 
 
-   inputElement.dispatchEvent(new Event('keyup'));
+    inputElement.dispatchEvent(new Event('keyup'));
 
     
     expect(component.filter).toHaveBeenCalled();
   });
  
   it('should find the proper advertiement when call the keyup to do the query by title', () => {
-    component.allAds = this.advertisements;
+    
     spyOn(authService, 'isAuthenticated').and.returnValue(true);
     
     fixture.detectChanges();
     //get the input
-    let inputField=fixture.debugElement.query(By.css('.form-control'));3
-   
-    inputField.triggerEventHandler('keyup','iphone');
-    //expect(component.filteredAds).toContain(this.advertisements[0]);
-    expect(component.filteredAds.length).toBe(2);
+    let input=fixture.debugElement.query(By.css('.form-control'));
+    let inputElement = input.nativeElement;
+    component.allAds = this.advertisements;
+    component.query = 'iphone';
+    inputElement.dispatchEvent(new Event('keyup'));
+    expect(component.filteredAds).toContain(this.advertisements[0]);
+    expect(component.filteredAds.length).toBe(1);
   });
 
   it('should load filterAds from the server', () => {
     //faked service
-    let service=TestBed.get(FilterResultService,AllResultService);
-    spyOn(service,'changeMessage').and.returnValue(Observable.from([[this.advertisements]]));
-  
-    component.filteredAds =  this.advertisements;
+    spyOn(authService, 'isAuthenticated').and.returnValue(true);
+    
+    fixture.detectChanges();
+    let service=TestBed.get(FilterResultService);
+    service.changeMessage(this.advertisements);
    
     //assertion
      expect(component.filteredAds.length).toBe(2);
