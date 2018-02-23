@@ -29,7 +29,7 @@ describe('ViewAdsComponent Integration Tests', () => {
       TestBed.configureTestingModule({
         imports: [RouterModule, RouterTestingModule, FormsModule ],
         declarations: [ ViewAdsComponent, SearchComponent ],
-        providers: [AdvertisementService, FilterResultService, AuthService, AllResultService, HttpClient, HttpHandler, RouterModule ]
+        providers: [AdvertisementService, FilterResultService, AuthService, AllResultService, HttpClient, HttpHandler]
       })
       .compileComponents();
     }));
@@ -37,6 +37,7 @@ describe('ViewAdsComponent Integration Tests', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ViewAdsComponent);
         authService = TestBed.get(AuthService);
+        advertisementService = TestBed.get(AdvertisementService);
         component = fixture.componentInstance;
         
         this.tempAds = [{ 
@@ -52,7 +53,7 @@ describe('ViewAdsComponent Integration Tests', () => {
           "category": 'electronics'
         }, {
           "advertisementId": 2,
-          "userId": 1,
+          "userId": 'auth0|5a8cfd24f5c8213cb27d5ec2',
           "title": 'Galaxy',
           "description": 'A great Galaxy for a great price',
           "price": 90,
@@ -118,8 +119,17 @@ describe('ViewAdsComponent Integration Tests', () => {
 
     it('should get the ads with when gellAllAdvertisements() is called', () => {
         // ARRANGE: use a faked service and get a list of advertisements
-        let service = TestBed.get(AdvertisementService);
-        spyOn(service, 'getAllAdvertisements').and.returnValue(Observable.from([this.tempAds]));
+        spyOn(advertisementService, 'getAllAdvertisements').and.returnValue(Observable.from([this.tempAds]));
+        component.advertisements = this.tempAds;
+      
+        // ASSERTION: advertisements length must be 2 because the faked list has 2 advertisements.
+        expect(component.advertisements.length).toBe(2);
+    });
+
+    it('should get the ads of the user when getAdvertisementsByUserId() is called', () => {
+        // ARRANGE: use a faked service and get a list of advertisements
+        spyOn(advertisementService, 'getAdvertisementsByUserId').and.returnValue(Observable.from([this.tempAds]));
+
         component.advertisements = this.tempAds;
       
         // ASSERTION: advertisements length must be 2 because the faked list has 2 advertisements.

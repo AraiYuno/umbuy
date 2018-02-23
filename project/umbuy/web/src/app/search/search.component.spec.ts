@@ -16,7 +16,7 @@ import {FormsModule} from "@angular/forms";
 import { Advertisement } from '../api/advertisement';
 import 'rxjs/add/observable/from';
 
-fdescribe('SearchComponent Integration Tests', () => {
+describe('SearchComponent Integration Tests', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
   let filterResultService: FilterResultService;

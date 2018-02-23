@@ -20,20 +20,22 @@ describe('ViewAdInformationComponent Integration Tests', () => {
   let advertisementService: AdvertisementService;
   let authService: AuthService;
   let userService: UserService;
+  let router: Router;
  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterModule, RouterTestingModule],
       declarations: [ ViewAdInformationComponent],
-      providers: [AdvertisementService, AuthService, UserService, HttpClient, HttpHandler, RouterModule]
+      providers: [AdvertisementService, AuthService, UserService, HttpClient, HttpHandler]
     })
     .compileComponents();
  
   }));
 
   beforeEach(() => {
-    authService = TestBed.get(AuthService);
     fixture = TestBed.createComponent(ViewAdInformationComponent);
+    authService = TestBed.get(AuthService);
+    router = TestBed.get(Router);
     component = fixture.componentInstance;
     
     this.tempAd = { 
@@ -104,7 +106,7 @@ describe('ViewAdInformationComponent Integration Tests', () => {
     //component.advertisement.deleted_on is null
     debugElement = fixture.debugElement.query(By.css('#deleted_on'));
     //element with id deleted_on should be hidden
-    expect(debugElement).toBe(null);
+    expect(debugElement).toBeNull();
 
     //display the deleted date if date is not null
     component.deleted_on = component.convertToTextDate('2018-01-01');
@@ -174,6 +176,46 @@ describe('ViewAdInformationComponent Integration Tests', () => {
 
     router.navigate(['/view/ads/' + this.tempAd.advertisementId]);
     expect(spy).toHaveBeenCalledWith(['/view/ads/1']); 
+  });
+
+  it('should show the edit button if the logged in user made the advertisement', () => {
+    //the user created the advertisement
+    component.editable = true;
+
+    spyOn(authService, 'isAuthenticated').and.returnValue(true);
+    fixture.detectChanges();
+
+    //edit button should be visible
+    let debugElement = fixture.debugElement.query(By.css('#editButton'));
+
+    let editElement: HTMLElement = debugElement.nativeElement;
+  
+    expect(debugElement).toBeTruthy();
+    
+  });
+
+  it('should not show the edit button if the logged in user did not make the advertisement', () => {
+    //the user did not make the advertisement
+    component.editable = false;
+
+    spyOn(authService, 'isAuthenticated').and.returnValue(true);
+    fixture.detectChanges();
+
+    //edit button should not be visible
+    let debugElement = fixture.debugElement.query(By.css('#editButton'));
+    expect(debugElement).toBeNull(); 
+  });
+
+  it('should call router with /edit/1', () => {
+    // Arrange: set up component's userId
+    var advertisementId = this.tempAd.advertisementId;
+    
+    // ACT: navigate to 'view/ads'
+    let spy = spyOn(router, 'navigate');
+    router.navigate(['/edit/' + advertisementId]);
+
+    // ASSERTION: router should have been called with /view/ads
+    expect(spy).toHaveBeenCalledWith(['/edit/1']); 
   });
 
 });
