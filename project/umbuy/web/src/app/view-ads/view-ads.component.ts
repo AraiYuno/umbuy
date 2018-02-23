@@ -32,6 +32,7 @@ export class ViewAdsComponent implements OnInit {
     if(currentUrl.indexOf("user") != -1){
       this.specificUser = true;
       userId = this.getAdvertisementId(currentUrl);
+      
       this._advertisementService.getAdvertisementsByUserId(userId)
       .subscribe(
         res => this.advertisements = this.filteredAds = res,

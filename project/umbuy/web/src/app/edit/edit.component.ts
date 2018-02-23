@@ -64,17 +64,22 @@ export class EditComponent implements OnInit {
       .subscribe(
         res => this.advertisement = res[0],
         err => this.message = err,
-        () => {this.initializeFields(this.advertisement); this.convertDatesToText(this.advertisement);}
+        () => {this.initializeFields(this.advertisement); this.convertDatesToText(this.advertisement);
+              this._userService.getUserById(this.advertisement.userId)
+              .subscribe(
+                res => this.user = res,
+                err => this.error = err,
+                () => this.auth.getProfile((err, profile) => {
+                    this.userId = profile.sub;
+
+                    //if current user made the ad, they can edit it
+                    if(this.userId === this.advertisement.userId){
+                      this.editable = true;
+                    }   
+                })
+              )}
       )  
 
-    this.auth.getProfile((err, profile) => {
-      this.userId = profile.sub;
-
-      //if current user made the ad, they can edit it
-      if(this.userId === this.advertisement.userId){
-        this.editable = true;
-      }
-    });
   }
 
   /* Given the path name of the url (everything in url after port number or host name (if port is not there))
@@ -158,7 +163,7 @@ export class EditComponent implements OnInit {
     
     this._advertisementService.editAdvertisement(this.newAd).subscribe(
       res => this.res = res,
-      err => console.error(err.status),
+      err => this.error = err,
       ()=> this.backToMyAdsPage()
     )
 

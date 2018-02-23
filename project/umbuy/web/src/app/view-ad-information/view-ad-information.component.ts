@@ -42,12 +42,12 @@ export class ViewAdInformationComponent implements OnInit {
                   res => this.user = res,
                   err => this.error = err,
                   () => this.auth.getProfile((err, profile) => {
-                    var userId = profile.sub;
-                    //if current user made the ad, they can edit it
-                    if(userId === this.advertisement.userId){
-                      this.editable = true;
-                    }   
-                  })
+                          var userId = profile.sub;
+                          //if current user made the ad, they can edit it
+                          if(userId === this.advertisement.userId){
+                            this.editable = true;
+                          }   
+                        })
                 )}
                 
       ); /* After data is back for advertisement, execute getUserById*/  
