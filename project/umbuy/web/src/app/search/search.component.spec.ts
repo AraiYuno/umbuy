@@ -16,7 +16,7 @@ import {FormsModule} from "@angular/forms";
 import { Advertisement } from '../api/advertisement';
 import 'rxjs/add/observable/from';
 
-describe('SearchComponent Integration Tests', () => {
+fdescribe('SearchComponent Integration Tests', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
   let filterResultService: FilterResultService;
@@ -129,6 +129,18 @@ describe('SearchComponent Integration Tests', () => {
    
     //assertion
      expect(component.filteredAds.length).toBe(2);
+   });
+
+   it('should load allAds from the server', () => {
+    //faked service
+    spyOn(authService, 'isAuthenticated').and.returnValue(true);
+    
+    fixture.detectChanges();
+    let service=TestBed.get(AllResultService);
+    service.changeMessage(this.advertisements);
+   
+    //assertion
+     expect(component.allAds.length).toBe(2);
    });
 
 });
