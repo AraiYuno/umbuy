@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 import { AdvertisementService } from '../services/advertisement.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('CreateAdComponent', () => {
+describe('CreateAdComponent Unit Tests', () => {
   let component: CreateAdComponent;
   let fixture: ComponentFixture<CreateAdComponent>;
   let router: Router;
@@ -34,9 +34,9 @@ describe('CreateAdComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CreateAdComponent);
-    service = TestBed.get(AdvertisementService);
+    service = new AdvertisementService(null);
+    authService = new AuthService(null);
     router = TestBed.get(Router);
-    authService = TestBed.get(authService);
     component = new CreateAdComponent(service, router, authService);
     newAd = { 
       "userId": 'auth0|5a8cfd24f5c8213cb27d5ec2', 
@@ -87,10 +87,4 @@ describe('CreateAdComponent', () => {
     expect(component.validAdMsg).toBe('');
   });
 
-
-  //TODO UNIT TESTS FOR
-  // backToHomePage
-  // uploadFile
-  // previewFile
-  // validateFile
 });

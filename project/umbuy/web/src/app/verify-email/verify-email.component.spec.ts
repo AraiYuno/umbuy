@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VerifyEmailComponent } from './verify-email.component';
+import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 describe('VerifyEmailComponent', () => {
   let component: VerifyEmailComponent;
@@ -8,7 +10,8 @@ describe('VerifyEmailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VerifyEmailComponent ]
+      declarations: [ VerifyEmailComponent ],
+      providers: [AuthService, { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate")} }]
     })
     .compileComponents();
   }));

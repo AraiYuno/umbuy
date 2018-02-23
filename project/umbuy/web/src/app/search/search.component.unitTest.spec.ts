@@ -9,17 +9,21 @@ import { Advertisement } from '../api/advertisement';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
+import { AuthService } from '../auth/auth.service';
+
 describe('SearchComponent Unit Tests', () => {
     let component: SearchComponent;
     let service1: FilterResultService;
     let service2: AllResultService;
+    let authService: AuthService;
     let newAdevertisement: Advertisement;
     
     beforeEach(() => {
         //All service return simple Observable
         service1 = new FilterResultService();
         service2 = new AllResultService();
-        component= new SearchComponent(service1,service2);
+        authService = new AuthService(null);
+        component= new SearchComponent(service1,service2, authService);
 
 
         this.newAdevertisement = [

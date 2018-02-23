@@ -23,8 +23,6 @@ export class CreateAdComponent implements OnInit {
   newAd : Advertisement = new Advertisement();
   res : any;
   error: any;
-  userProfile: any;
-
 
   // Adding picture to S3
   image;    // this is to store the current image file.
@@ -49,14 +47,14 @@ export class CreateAdComponent implements OnInit {
 
   ngOnInit() {
     this.auth.getProfile((err, profile) => {
-      this.userProfile = profile;
+      this.userId = profile.sub;
     });
   }
   
   createAd(){
 
     // TODO: change so that we take userid from logged in user
-    this.newAd.userId = this.auth.getUserId();
+    this.newAd.userId = this.userId;
     this.newAd.title = this.title;
     this.newAd.description = this.description;
     this.newAd.price = this.price;
@@ -70,7 +68,7 @@ export class CreateAdComponent implements OnInit {
     
     this._advertisementService.createAd(this.newAd).subscribe(
       res => this.res = res,
-      err => console.error(err.status),
+      err => this.error = err,
       () => this.backToHomePage()
     )
 

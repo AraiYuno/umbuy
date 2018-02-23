@@ -31,9 +31,9 @@ export class EditComponent implements OnInit {
   res : any;
   error: any;
   currentAdvertisementId: number;
-  created_on: Date;
-  last_updated: Date;
-  deleted_on: Date;
+  created_on: string;
+  last_updated: string;
+  deleted_on: string;
   
   // Adding picture to S3
   image;    // this is to store the current image file.
@@ -53,18 +53,18 @@ export class EditComponent implements OnInit {
   createAdSuccess = false;
   postSuccess = false;
 
-  constructor(private _advertisementService: AdvertisementService, private _userService: UserService,private auth: AuthService, private _router: Router ) {
+  constructor(public _advertisementService: AdvertisementService, public _userService: UserService, public auth: AuthService, public _router: Router ) {
     this.pathNameUrl = window.location.pathname;
    }
   
    ngOnInit() {
-    this.currentAdvertisementId = this.getAdvertisementId(this.pathNameUrl);
+    this.currentAdvertisementId = parseInt(this.getAdvertisementId(this.pathNameUrl));
 
     this._advertisementService.getAdvertisementById(this.currentAdvertisementId)
       .subscribe(
         res => this.advertisement = res[0],
         err => this.message = err,
-        () => this.initializeFields(this.advertisement)
+        () => {this.initializeFields(this.advertisement); this.convertDatesToText(this.advertisement);}
       )  
 
     this.auth.getProfile((err, profile) => {
@@ -85,13 +85,13 @@ export class EditComponent implements OnInit {
   getAdvertisementId(pathnameUrl: string){
     var splittedParts;
     var splittedParts_length: number;
-    var id: number;
+    var id: string;
    
     splittedParts = pathnameUrl.split("/");
     splittedParts_length = splittedParts.length;
     
     id = splittedParts[splittedParts_length-1];
-    
+
     return id;
   }
 
@@ -109,11 +109,11 @@ export class EditComponent implements OnInit {
 
   }
 
-  /* Takes in a string date (string_date) in formate YYYY-MM-DD and convert to MM DD, YYYY such as May 1, 2018 */
+  /* Takes in a string date (string_date) in format YYYY-MM-DD and convert to MM DD, YYYY such as May 1, 2018 */
   convertToTextDate(string_date){
     var months = ["January", "February", "March", "April", "May", "June", "July", "August",
                   "September", "October", "November", "December"];
-    var stringDate;
+    var stringDate="";
     var day;
     var month;
     var year;
@@ -140,6 +140,10 @@ export class EditComponent implements OnInit {
     }
   }
 
+  backToMyAdsPage(){
+    this._router.navigate(["/view/ads/user/" + this.userId ]);
+  }
+
   editAdvertisement(){
     this.newAd.advertisementId = this.currentAdvertisementId;
     this.newAd.title = this.title;
@@ -161,12 +165,19 @@ export class EditComponent implements OnInit {
   }
 
   initializeFields(advertisement){
-    this.convertDatesToText(this.advertisement)
     this.title = advertisement.title;
     this.price = advertisement.price;
     this.description = advertisement.description;
     this.category = advertisement.category;
     this.imageUrl = advertisement.imageUrl;
+  }
+
+  //===========================================================================================
+  // Author: Kyle
+  //   this function checks if the input file is valid or invalid.
+  //===========================================================================================
+  validateFile(file) {
+    return this.acceptedMimeTypes.includes(file.type) && file.size < 5000000;
   }
 
   //===========================================================================================
@@ -222,15 +233,4 @@ export class EditComponent implements OnInit {
     }
   }
 
-  //===========================================================================================
-  // Author: Kyle
-  //   this function checks if the input file is valid or invalid.
-  //===========================================================================================
-  validateFile(file) {
-    return this.acceptedMimeTypes.includes(file.type) && file.size < 5000000;
-  }
-
-  backToMyAdsPage(){
-    this._router.navigate(["/view/ads/user/" + this.userId ]);
-  }
 }

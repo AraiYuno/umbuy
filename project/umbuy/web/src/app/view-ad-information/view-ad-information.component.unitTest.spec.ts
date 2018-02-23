@@ -3,7 +3,7 @@ import { AdvertisementService } from '../services/advertisement.service';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from '../services/user.service';
 import { ViewAdInformationComponent } from './view-ad-information.component';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
 import { ViewAdsComponent } from '../view-ads/view-ads.component';
@@ -11,6 +11,8 @@ import { Advertisement } from '../api/advertisement';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
+import { AuthService } from '../auth/auth.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ViewAdInformationComponent Unit Tests', () => {
   let component: ViewAdInformationComponent;
@@ -19,12 +21,14 @@ describe('ViewAdInformationComponent Unit Tests', () => {
   let userService: UserService;
   let viewAdsComponent: ViewAdsComponent;
   let tempAd: Advertisement;  
+  let authService: AuthService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterModule],
+      imports: [RouterModule, RouterTestingModule],
       declarations: [ ViewAdInformationComponent ],
-      providers: [AdvertisementService, UserService, HttpClient, HttpHandler]
+      providers: [AdvertisementService, UserService, AuthService, HttpClient, HttpHandler,
+            { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate")} }]
     })
     .compileComponents();
   }));
@@ -32,10 +36,11 @@ describe('ViewAdInformationComponent Unit Tests', () => {
   beforeEach(() => {
     advertisementService= TestBed.get(AdvertisementService);
     userService = TestBed.get(UserService);
-    component= new ViewAdInformationComponent(advertisementService, userService);
+    authService = TestBed.get(AuthService);
+    component= new ViewAdInformationComponent(advertisementService, userService, authService);
     this.tempAd = { 
       "advertisementId": 1,
-      "userId": 1,
+      "userId": 'auth0|5a8cfd24f5c8213cb27d5ec2',
       "title": 'iphone',
       "description": 'A great iphone for a great price',
       "price": 75,

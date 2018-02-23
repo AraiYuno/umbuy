@@ -12,6 +12,9 @@ import { ViewAdsComponent } from './view-ads.component';
 import { HttpClient } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { SearchComponent } from '../search/search.component';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../auth/auth.service'
 
 describe('ViewAdsComponent Integration Tests', () => {
     let component: ViewAdsComponent;
@@ -19,25 +22,26 @@ describe('ViewAdsComponent Integration Tests', () => {
     let allResultService: AllResultService;
     let filterResultService: FilterResultService;
     let fixture: ComponentFixture<ViewAdsComponent>;
-  
+    let authService: AuthService;
     let tempAds: Advertisement [];  
   
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        imports: [RouterModule, RouterTestingModule ],
-        declarations: [ ViewAdsComponent ],
-        providers: [AdvertisementService, FilterResultService, AllResultService, HttpClient, HttpHandler, RouterModule ]
+        imports: [RouterModule, RouterTestingModule, FormsModule ],
+        declarations: [ ViewAdsComponent, SearchComponent ],
+        providers: [AdvertisementService, FilterResultService, AuthService, AllResultService, HttpClient, HttpHandler, RouterModule ]
       })
       .compileComponents();
     }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ViewAdsComponent);
+        authService = TestBed.get(AuthService);
         component = fixture.componentInstance;
         
         this.tempAds = [{ 
           "advertisementId": 1,
-          "userId": 1,
+          "userId": 'auth0|5a8cfd24f5c8213cb27d5ec2',
           "title": 'iphone',
           "description": 'A great iphone for a great price',
           "price": 75,
@@ -59,20 +63,7 @@ describe('ViewAdsComponent Integration Tests', () => {
           "category": 'electronics'
         }];
     });
-
-    it('When ViewAdComponent is initiated, advertisements should be defined.', () => {
-        // after calling advertisementService getAdvertisementById function fakedly, 
-        let spy=spyOn(advertisementService, 'getAllAdvertisements').and.callFake(t => {
-          return Observable.from([this.tempAd]);
-        });
-  
-        component.advertisements = this.tempAd;
-  
-        // we should be able to retrieve the advertisementId by calling getAdvertisementId() in the component.
-        expect(component.advertisements[0].title).toMatch("iphone");
-      //});
-    });
-      
+ 
     it('should render a list of advertisement with its title, price, image and short description', () => {
         // ARRANGE: set an array of advertisements 
         // ACT: Call ngOnInit and set the filteredAds Advertisement [] to be ready
@@ -80,6 +71,8 @@ describe('ViewAdsComponent Integration Tests', () => {
             return Observable.from([this.tempAds]);
           });
 
+        spyOn(authService, 'isAuthenticated').and.returnValue(true);
+        
         component.filteredAds = this.tempAds;
         fixture.detectChanges();
     
