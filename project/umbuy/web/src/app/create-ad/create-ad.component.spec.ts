@@ -24,11 +24,11 @@ class RouterStub {
   }
 }
 
-describe('CreateAdComponent', () => {
+describe('CreateAdComponent Integration Tests', () => {
   let component: CreateAdComponent;
   let fixture: ComponentFixture<CreateAdComponent>;
   let router: Router;
-  let service: AdvertisementService;
+  let advertisementService: AdvertisementService;
   let authService: AuthService;
   let newAd;
 
@@ -45,13 +45,13 @@ describe('CreateAdComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CreateAdComponent);
-    service = TestBed.get(AdvertisementService);
+    advertisementService = TestBed.get(AdvertisementService);
     router = TestBed.get(Router);
-    component = fixture.componentInstance;
     authService = TestBed.get(AuthService);
+    component = fixture.componentInstance;
 
     newAd = { 
-      userId: 1, 
+      userId: 'auth0|5a8cfd24f5c8213cb27d5ec2', 
       title: 'test', 
       description: 'test', 
       price: 23.14,
@@ -60,6 +60,10 @@ describe('CreateAdComponent', () => {
     };
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+  
   it('should redirect the user back to the home page after validating advertisement', () => {
     let spy = spyOn(router, 'navigate');
 
@@ -69,9 +73,9 @@ describe('CreateAdComponent', () => {
     
   });
 
-  it('should add the new  returned from the server', () => {
+  it('should create the ad and return from the server', () => {
     // arrange
-    let spy = spyOn(service, 'createAd').and.returnValue( Observable.from([newAd])); 
+    let spy = spyOn(advertisementService, 'createAd').and.returnValue( Observable.from([newAd]));
 
     // act
     component.createAd();
@@ -83,7 +87,7 @@ describe('CreateAdComponent', () => {
   it('should set the message property if server returns an error when adding a new advertisement', () => {
     let error = 'error from the server'
     // arrange
-    let spy = spyOn(service, 'createAd').and.returnValue( Observable.throw(error)); 
+    let spy = spyOn(advertisementService, 'createAd').and.returnValue( Observable.throw(error)); 
 
     // act
     component.createAd();

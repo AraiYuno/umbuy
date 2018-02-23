@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
       return true;
     }
     else {
-      //this.router.navigate(['/']);
       return false;
     }
   }

@@ -17,20 +17,21 @@ export class ViewAdInformationComponent implements OnInit {
   user: any;
   pathNameUrl: string;
   currentAdvertisementId: number;
-  created_on: Date;
-  last_updated: Date;
-  deleted_on: Date;
+  created_on: string;
+  last_updated: string;
+  deleted_on: string;
   isDeleted: boolean;
   message: string;
   userProfile: any;
   editable: boolean = false;
+  error: any;
 
-  constructor(private _advertisementService: AdvertisementService, private _userService: UserService,private auth: AuthService ) {
+  constructor(private _advertisementService: AdvertisementService, private _userService: UserService, private auth: AuthService ) {
     this.pathNameUrl = window.location.pathname;
    }
 
    ngOnInit() {
-    this.currentAdvertisementId = this.getAdvertisementId(this.pathNameUrl);
+    this.currentAdvertisementId = parseInt(this.getAdvertisementId(this.pathNameUrl));
 
     this._advertisementService.getAdvertisementById(this.currentAdvertisementId)
       .subscribe(
@@ -39,7 +40,7 @@ export class ViewAdInformationComponent implements OnInit {
         () => {this.convertDatesToText(this.advertisement);this._userService.getUserById(this.advertisement.userId)
                 .subscribe(
                   res => this.user = res,
-                  err => console.error(err.status),
+                  err => this.error = err,
                   () => this.auth.getProfile((err, profile) => {
                     var userId = profile.sub;
                     //if current user made the ad, they can edit it
@@ -60,7 +61,7 @@ export class ViewAdInformationComponent implements OnInit {
   getAdvertisementId(pathnameUrl: string){
     var splittedParts;
     var splittedParts_length: number;
-    var id: number;
+    var id: string;
    
     splittedParts = pathnameUrl.split("/");
     splittedParts_length = splittedParts.length;

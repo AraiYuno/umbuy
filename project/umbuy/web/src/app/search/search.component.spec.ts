@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchComponent } from './search.component';
 import { AdvertisementService } from '../services/advertisement.service';
 import { FilterResultService } from '../services/filterResult.service';
+import { AuthService } from '../auth/auth.service';
 import { Routes, RouterModule, Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
@@ -18,14 +19,15 @@ import 'rxjs/add/observable/from';
 describe('SearchComponent Integration Tests', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
-  let newAdevertisement: Advertisement;
-  
+  let filterResultService: FilterResultService;
+  let allResultService: AllResultService;
+  let authService: AuthService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SearchComponent ],
-      imports: [FormsModule,RouterModule,RouterTestingModule],
-      providers: [AdvertisementService, AllResultService,FilterResultService, HttpClient, HttpHandler, RouterModule]
+      imports: [FormsModule, RouterModule, RouterTestingModule],
+      providers: [AdvertisementService, AllResultService, AuthService, FilterResultService, HttpClient, HttpHandler]
     })
     .compileComponents();
   }));
@@ -33,12 +35,15 @@ describe('SearchComponent Integration Tests', () => {
   beforeEach(() => {
     
     fixture = TestBed.createComponent(SearchComponent);
+    filterResultService = TestBed.get(FilterResultService);
+    allResultService = TestBed.get(AllResultService);
+    authService = TestBed.get(AuthService);
     component = fixture.componentInstance;
     
-    this.INI_Adevertisement = [
+    this.advertisements = [
       { 
       advertisementId: 1,
-      userId: 1,
+      userId: 'auth0|5a8cfd24f5c8213cb27d5ec2',
       title: 'iphone',
       description: 'A great iphone for a great price',
       price: 200,
@@ -50,7 +55,7 @@ describe('SearchComponent Integration Tests', () => {
     },
     { 
       advertisementId: 2,
-      userId: 2,
+      userId: 'auth0|5a8cfd24f5c8213cb27d5ec2',
       title: 'book',
       description: 'A great book for a great price',
       price: 100,
@@ -62,14 +67,18 @@ describe('SearchComponent Integration Tests', () => {
     }]; 
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
- 
+  it('should bind the search input to the correct property', () => {
+    spyOn(authService, 'isAuthenticated').and.returnValue(true);
 
-  it('should bind the search input to the correct property', () => {   
     fixture.detectChanges();
     //get the input
       
     let input = fixture.debugElement.query(By.css('#inputBox'));
+    
     let inputElement = input.nativeElement;
 
     inputElement.value = 'iphone';
@@ -82,7 +91,8 @@ describe('SearchComponent Integration Tests', () => {
 
   it('should call the filter method when keyup', () => {
      spyOn(component, 'filter');
-    fixture.detectChanges();
+     spyOn(authService, 'isAuthenticated').and.returnValue(true);
+     fixture.detectChanges();
     //get the input
     let input = fixture.debugElement.query(By.css('.form-control'));
     let inputElement = input.nativeElement;
@@ -95,21 +105,24 @@ describe('SearchComponent Integration Tests', () => {
   });
  
   it('should find the proper advertiement when call the keyup to do the query by title', () => {
-   
-    component.allAds=this.INI_Adevertisement;
-   
+    component.allAds = this.advertisements;
+    spyOn(authService, 'isAuthenticated').and.returnValue(true);
+    
+    fixture.detectChanges();
     //get the input
-   let inputField=fixture.debugElement.query(By.css('.form-control'));
+    let inputField=fixture.debugElement.query(By.css('.form-control'));3
+   
     inputField.triggerEventHandler('keyup','iphone');
-    expect(component.filteredAds).toContain(this.INI_Adevertisement[0]);
+    //expect(component.filteredAds).toContain(this.advertisements[0]);
     expect(component.filteredAds.length).toBe(2);
   });
 
   it('should load filterAds from the server', () => {
     //faked service
     let service=TestBed.get(FilterResultService,AllResultService);
-    spyOn(service,'changeMessage').and.returnValue(Observable.from([[this.INI_Adevertisement]]));
-    component.filteredAds=this.INI_Adevertisement;
+    spyOn(service,'changeMessage').and.returnValue(Observable.from([[this.advertisements]]));
+  
+    component.filteredAds =  this.advertisements;
    
     //assertion
      expect(component.filteredAds.length).toBe(2);

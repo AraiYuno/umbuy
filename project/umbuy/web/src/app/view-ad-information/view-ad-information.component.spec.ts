@@ -11,33 +11,34 @@ import { HttpHandler } from '@angular/common/http';
 import { Advertisement } from '../api/advertisement';
 import { User } from '../api/user';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AuthService } from '../auth/auth.service';
 
 
 describe('ViewAdInformationComponent Integration Tests', () => {
   let component: ViewAdInformationComponent;
   let fixture: ComponentFixture<ViewAdInformationComponent>;
   let advertisementService: AdvertisementService;
+  let authService: AuthService;
   let userService: UserService;
-  let tempAd: Advertisement; 
-  let tempUser: User; 
-
+ 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterModule, RouterTestingModule],
       declarations: [ ViewAdInformationComponent],
-      providers: [AdvertisementService, UserService, HttpClient, HttpHandler, RouterModule]
+      providers: [AdvertisementService, AuthService, UserService, HttpClient, HttpHandler, RouterModule]
     })
     .compileComponents();
  
   }));
 
   beforeEach(() => {
+    authService = TestBed.get(AuthService);
     fixture = TestBed.createComponent(ViewAdInformationComponent);
     component = fixture.componentInstance;
     
     this.tempAd = { 
       "advertisementId": 1,
-      "userId": 1,
+      "userId": 'auth0|5a8cfd24f5c8213cb27d5ec2',
       "title": 'iphone',
       "description": 'A great iphone for a great price',
       "price": 75,
@@ -49,19 +50,23 @@ describe('ViewAdInformationComponent Integration Tests', () => {
     };
 
     this.tempUser = { 
-      "userId": 1,
-      "firstName": "Bob",
-      "lastName": 'LeBob',
-      "umEmail": 'bob@myumanitoba.ca',
-      "phoneNumber": 2049876543
+      "email":"bob@myumanitoba.ca",
+      "user_metadata":{"FirstName":"Bob",
+                        "LastName":"Bob LeBob",
+                        "phone":"2049876543"},
+      "picture":"http://alink.com",
+      "user_id":"auth0|5a8c83dc5c679b178110477c"
     };
   });
 
   it('should render the ad information of the ad', () => {
+    spyOn(authService, 'isAuthenticated').and.returnValue(true);
+
     component.advertisement = this.tempAd;
     component.user = this.tempUser;
     component.created_on = component.convertToTextDate(component.advertisement.created_on);
     component.last_updated = component.convertToTextDate(component.advertisement.last_updated);
+
     //component.advertisement.deleted_on is null
     component.deleted_on = component.convertToTextDate(component.advertisement.deleted_on);
     fixture.detectChanges();
@@ -124,9 +129,9 @@ describe('ViewAdInformationComponent Integration Tests', () => {
   });
 
   it('should render the user information of the ad', () => {
+    spyOn(authService, 'isAuthenticated').and.returnValue(true);
     component.advertisement = this.tempAd;
     component.user = this.tempUser;
-
     fixture.detectChanges();
 
     //user's full name
