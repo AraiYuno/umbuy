@@ -155,7 +155,7 @@ export class EditComponent implements OnInit {
     this.newAd.description = this.description;
     this.newAd.price = this.price;
     this.newAd.category = this.category;
-    // TODO: Users should be able to upload multiple images.
+    
     if( this.hasImage == true )
       this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
     else

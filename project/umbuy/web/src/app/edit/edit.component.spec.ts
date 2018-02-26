@@ -106,75 +106,24 @@ describe('EditComponent Integration Tests', () => {
     expect(component.error).toBe(error);
   });
   
-  // it('should render the ad information of the ad', () => {
-  //   spyOn(authService, 'isAuthenticated').and.returnValue(true);
+  it('should send the ad information that is rendered on the screen to the database', () => {
+    component.currentAdvertisementId = this.tempAd.advertisementId;
+    component.title = this.tempAd.title;
+    component.description = this.tempAd.description;
+    component.price = this.tempAd.price;
+    component.category = this.tempAd.category;
+    component.imageUrl = this.tempAd.imageUrl;
+    component.editAdvertisement();
+    fixture.detectChanges();
 
-  //   component.advertisement = this.tempAd;
-  //   component.user = this.tempUser;
-  //   component.created_on = component.convertToTextDate(component.advertisement.created_on);
-  //   component.last_updated = component.convertToTextDate(component.advertisement.last_updated);
-
-  //   //component.advertisement.deleted_on is null
-  //   component.deleted_on = component.convertToTextDate(component.advertisement.deleted_on);
-  //   fixture.detectChanges();
-
-  //   //ad's title
-  //   let debugElement = fixture.debugElement.query(By.css('#title'));
-  //   let titleElement: HTMLElement = debugElement.nativeElement;
-  //   expect(titleElement.innerText).toBe("iphone");
-
-  //   //ad's description
-  //   debugElement = fixture.debugElement.query(By.css('#description'));
-  //   let descriptionElement: HTMLElement = debugElement.nativeElement;
-  //   expect(descriptionElement.innerText).toContain("a great price");
-
-  //   //ad's src attribute in image
-  //   debugElement = fixture.debugElement.query(By.css('#image'));
-  //   let srcElement: HTMLElement = debugElement.nativeElement;
-  //   expect(srcElement.getAttribute('src')).toBe("http://alink.com");
-
-  //   //ad's alt attribute in image
-  //   debugElement = fixture.debugElement.query(By.css('#image'));
-  //   let altElement: HTMLElement = debugElement.nativeElement;
-  //   expect(altElement.getAttribute('alt')).toBe("iphone");
-
-  //   //ad's created on date
-  //   debugElement = fixture.debugElement.query(By.css('#created_on'));
-  //   let createdOnElement: HTMLElement = debugElement.nativeElement;
-  //   expect(createdOnElement.innerText).toContain("January 1, 2018");
-
-  //   //ad's last updated on date
-  //   debugElement = fixture.debugElement.query(By.css('#last_updated'));
-  //   let lastUpdatedOnElement: HTMLElement = debugElement.nativeElement;
-  //   expect(lastUpdatedOnElement.innerText).toContain("January 1, 2018");
-
-  //   //component.advertisement.deleted_on is null
-  //   debugElement = fixture.debugElement.query(By.css('#deleted_on'));
-  //   //element with id deleted_on should be hidden
-  //   expect(debugElement).toBeNull();
-
-  //   //display the deleted date if date is not null
-  //   component.deleted_on = component.convertToTextDate('2018-01-01');
-  //   component.isDeleted = true;
-
-  //   fixture.detectChanges();
-
-  //   debugElement = fixture.debugElement.query(By.css('#deleted_on'));
-  //   let deletedOnElement: HTMLElement = debugElement.nativeElement;
-  //   //element with id deleted_on should be visible
-  //   expect(deletedOnElement.innerHTML).toContain("January 1, 2018");
-
-  //   //ad's price
-  //   debugElement = fixture.debugElement.query(By.css('#price'));
-  //   let priceElement: HTMLElement = debugElement.nativeElement;
-  //   expect(priceElement.innerHTML).toContain("75");
-
-  //   //ad's category
-  //   debugElement = fixture.debugElement.query(By.css('#category'));
-  //   let categoryElement: HTMLElement = debugElement.nativeElement;
-  //   expect(categoryElement.innerHTML).toContain("electronics");
-  // });
-
+    expect(component.newAd.advertisementId).toBe(this.tempAd.advertisementId);
+    expect(component.newAd.title).toBe(this.tempAd.title);
+    expect(component.newAd.description).toBe(this.tempAd.description);
+    expect(component.newAd.price).toBe(this.tempAd.price);
+    expect(component.newAd.category).toBe(this.tempAd.category);
+    expect(component.newAd.imageUrl).toBe(this.tempAd.imageUrl);
+  });
+ 
   it('should render the user information of the ad', () => {
     component.editable = true;
     component.advertisement = this.tempAd;

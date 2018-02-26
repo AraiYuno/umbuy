@@ -18,6 +18,12 @@ import { Component, OnInit } from '@angular/core';
 import { FilterResultService } from '../services/filterResult.service';
 import { AllResultService } from '../services/allResult.service';
 
+// fake router
+class RouterStub {
+  navigate(params){
+  }
+}
+
 describe('EditComponent Unit Tests', () => {
   let component: EditComponent;
   let fixture: ComponentFixture<EditComponent>;
@@ -27,13 +33,13 @@ describe('EditComponent Unit Tests', () => {
   let advertisementService: AdvertisementService;
   let userService: UserService;
   let authService: AuthService;
-  let ad1, ad2;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterModule, FormsModule, RouterTestingModule],
       declarations: [ EditComponent ],
-      providers: [AdvertisementService, FilterResultService, UserService, AuthService, AllResultService, HttpClient, HttpHandler, RouterModule]
+      providers: [AdvertisementService, FilterResultService, UserService, AuthService, AllResultService, HttpClient, HttpHandler,
+        { provide: Router, useClass: RouterStub}]
     })
     .compileComponents();
   }));
@@ -45,7 +51,7 @@ describe('EditComponent Unit Tests', () => {
     authService = new AuthService(null);
     router = TestBed.get(Router);
     component = new EditComponent(advertisementService, userService, authService, router);
-    ad1 = {
+    this.ad1 = {
       "advertisementId": 1,
       "userId": 'auth0|5a8cfd24f5c8213cb27d5ec2',
       "title": 'iphone',
@@ -57,7 +63,7 @@ describe('EditComponent Unit Tests', () => {
       "imageUrl": 'https://s3.amazonaws.com/kyleteam6best/default.jpg',
       "category": 'electronics'
     };
-    ad2 = {
+    this.ad2 = {
       "advertisementId": 1,
       "userId": 'auth0|5a8cfd24f5c8213cb27d5ec2',
       "title": 'iphone',
@@ -77,10 +83,10 @@ describe('EditComponent Unit Tests', () => {
 
     // ACT: Call ngOnInit and set the advertisement to be ready
     let spy=spyOn(component, 'ngOnInit').and.callFake(t => {
-        return Observable.from([ad1]);
+        return Observable.from([this.ad1]);
     });
 
-    component.advertisement = ad1;
+    component.advertisement = this.ad1;
     
     // ASSERT: make sure that the object's title is iphone as desired
     expect(component.advertisement.title).toMatch("iphone");
@@ -95,7 +101,7 @@ describe('EditComponent Unit Tests', () => {
   });
 
   it('should convert the created_on, last_updated and deleted_on dates to string date', () => {
-    component.convertDatesToText(ad2);
+    component.convertDatesToText(this.ad2);
     
     expect(component.created_on).toBe("January 1, 2018");
     expect(component.last_updated).toBe("January 2, 2018");
@@ -104,7 +110,7 @@ describe('EditComponent Unit Tests', () => {
   });
 
   it('should change isDeleted to false if deleted_on is null', () => {
-    component.convertDatesToText(ad1);
+    component.convertDatesToText(this.ad1);
      
     expect(component.isDeleted).toBe(false); 
   });
@@ -118,10 +124,10 @@ describe('EditComponent Unit Tests', () => {
   });
 
   it('should be a successful ad and validAdMsg should be empty when activate Submit', () => {
-    component.title = ad1.title;
-    component.description = ad1.description;
-    component.price = ad1.price;
-    component.category = ad1.category;
+    component.title = this.ad1.title;
+    component.description = this.ad1.description;
+    component.price = this.ad1.price;
+    component.category = this.ad1.category;
   
     
     component.activateSubmit();
@@ -141,7 +147,7 @@ describe('EditComponent Unit Tests', () => {
    
   it('should initialize the variables of the advertisement', () => {
     
-    component.initializeFields(ad2);
+    component.initializeFields(this.ad2);
      
     expect(component.title).toBe("iphone");
     expect(component.price).toBe(75);
@@ -151,7 +157,9 @@ describe('EditComponent Unit Tests', () => {
   });
 
   it('should call advertisement Service editAdvertisement to edit ad', () => {
-    // arrange part, want create fake 
+    // arrange part, want create fake
+    component.userId = this.ad1.userId;
+    
     let spy=spyOn(advertisementService, 'editAdvertisement').and.callFake(() => {
             return Observable.empty();
         });
@@ -163,10 +171,5 @@ describe('EditComponent Unit Tests', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  /* 
-  Need to write tests for:
-  - validateFile
-  - uploadFile
-  - previewFile
-  */
+  
 });

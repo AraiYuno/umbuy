@@ -14,6 +14,12 @@ import { AuthService } from '../auth/auth.service'
 import { UserProfileComponent } from './user-profile.component';
 import { UserService } from '../services/user.service';
 
+// fake router
+class RouterStub {
+  navigate(params){
+  }
+}
+
 describe('UserProfileComponent Integration Tests', () => {
   let component: UserProfileComponent;
   let fixture: ComponentFixture<UserProfileComponent>;
@@ -24,7 +30,8 @@ describe('UserProfileComponent Integration Tests', () => {
     TestBed.configureTestingModule({
       imports: [RouterModule, RouterTestingModule, FormsModule ],
         declarations: [ UserProfileComponent ],
-        providers: [AdvertisementService, AuthService, UserService, HttpClient, HttpHandler]
+        providers: [AdvertisementService, AuthService, UserService, HttpClient, HttpHandler,
+          { provide: Router, useClass: RouterStub}]
       })
     .compileComponents();
   }));
@@ -67,7 +74,7 @@ describe('UserProfileComponent Integration Tests', () => {
     let spy = spyOn(router, 'navigate');
     router.navigate(['/view/ads/user/' + userId]);
 
-    // ASSERTION: router should have been called with /view/ads
+    // ASSERTION: router should have been called with /view/ads/user/auth0|5a8cfd24f5c8213cb27d5ec2
     expect(spy).toHaveBeenCalledWith(['/view/ads/user/auth0|5a8cfd24f5c8213cb27d5ec2']); 
   });
   
