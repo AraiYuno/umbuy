@@ -76,40 +76,4 @@ describe('Service: AdvertisementService', () => {
             }
         });
     }
-
-    it('search should return SearchItems', fakeAsync(() => { 
-  
-        /*let response = {
-            "resultCount": 1,
-            "results": [
-            { 
-                "advertisementId": 1,
-                "userId": 1,
-                "title": 'iphone',
-                "description": 'A great iphone for a great price',
-                "price": 75,
-                "created_on": '2018-01-01',
-                "last_updated": '2018-01-01',
-                "deleted_on": null,
-                "imageUrl": 'http://alink.com',
-                "category": 'electronics'
-            }]
-        };
-        // When the request subscribes for results on a connection, return a fake response
-        backend.connections.subscribe(connection => {
-            connection.mockRespond(new Response(<ResponseOptions>{
-                body: JSON.stringify(response)
-            }));
-        });
-
-        service.getAdvertisementById(0);
-
-        tick();
-        // Perform a request and make sure we get the response we expect
-        expect( service.ad ).toBeDefined();
-
-        // TODO: How would we do a string matching to confirm that ad is a correct info from the mock server?
-        */
-    }));
-
 });

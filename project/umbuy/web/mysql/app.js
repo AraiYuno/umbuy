@@ -96,6 +96,7 @@ app.post('/createAd', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
 app.post('/editAd', (req, res) => {
     // code 201 for creating object
     res.status(201).send(req.body);
@@ -115,3 +116,6 @@ app.post('/editAd', (req, res) => {
 });
 
 app.listen(3000, () => console.log('Listening on port 3000!'))
+=======
+app.listen(3000, () => console.log('Listening on port 3000!'))
+>>>>>>> 906d69bcade188037307b78e8184ccd3d8ee07f8

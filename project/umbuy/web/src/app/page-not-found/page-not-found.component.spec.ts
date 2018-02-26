@@ -6,6 +6,7 @@ describe('PageNotFoundComponent', () => {
   let component: PageNotFoundComponent;
   let fixture: ComponentFixture<PageNotFoundComponent>;
 
+<<<<<<< HEAD
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PageNotFoundComponent ]
@@ -22,4 +23,6 @@ describe('PageNotFoundComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+=======
+>>>>>>> 906d69bcade188037307b78e8184ccd3d8ee07f8
 });
