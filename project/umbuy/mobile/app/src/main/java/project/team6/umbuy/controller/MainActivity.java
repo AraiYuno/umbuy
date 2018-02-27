@@ -1,5 +1,6 @@
 package project.team6.umbuy.controller;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private AdsAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
     private List<Advertisement> list;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         list = new ArrayList<Advertisement>();
         list.add(new Advertisement());
+        context = MainActivity.this;
 
         mRecyclerView = (RecyclerView) findViewById(R.id.listViewAds);
         mRecyclerView.setHasFixedSize(true);
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 //        // specify an adapter (see also next example)
-        mAdapter = new AdsAdapter(list);
+        mAdapter = new AdsAdapter(list, context);
         mRecyclerView.setAdapter(mAdapter);
 
         Retrofit retrofit = ApiClient.getApiClient();
@@ -64,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
 
 }

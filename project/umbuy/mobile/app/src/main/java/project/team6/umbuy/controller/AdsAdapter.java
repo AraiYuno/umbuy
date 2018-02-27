@@ -1,5 +1,7 @@
 package project.team6.umbuy.controller;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
@@ -23,15 +26,17 @@ import project.team6.umbuy.model.Advertisement;
 public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
 
     private List<Advertisement> ads;
+    private Context context;
 
-    AdsAdapter(List<Advertisement> ads){
+    AdsAdapter(List<Advertisement> ads, Context context){
         this.ads = ads;
+        this.context = context;
     }
 
     @Override
     public AdsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View viewItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.ads_card, parent, false);
-        AdsViewHolder adsViewHolder = new AdsViewHolder(viewItem);
+        AdsViewHolder adsViewHolder = new AdsViewHolder(viewItem, context, ads);
         return adsViewHolder;
     }
 
@@ -51,20 +56,24 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
     }
 
 
+
+
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 
 
-    public static class AdsViewHolder extends RecyclerView.ViewHolder {
+    public static class AdsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private CardView cv;
         private ImageView picture;
         private TextView title;
         private TextView price;
         private TextView description;
+        private List<Advertisement> ads;
+        private Context context;
 
-        AdsViewHolder(View itemView) {
+        AdsViewHolder(View itemView, Context context, List<Advertisement> ads) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.card_view);
             picture = (ImageView) itemView.findViewById(R.id.picture);
@@ -72,12 +81,41 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
             price = (TextView)itemView.findViewById(R.id.price);
             description = (TextView)itemView.findViewById(R.id.description);
 
+            itemView.setOnClickListener(this);
+            // Added by Kyle for viewAdInfo
+            this.ads = ads;
+            this.context = context;
+        }
+
+
+        //============================================================================
+        // TODO: User's information is also required on viewAdInfo
+        // Author: Kyle
+        //   this method takes you to viewAdInfo onClick with all the data necessary
+        //   to display on a single advertisement
+        //=============================================================================
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            Advertisement advertisement = this.ads.get(position);
+            Intent intent = new Intent(this.context, ViewAdInfo.class);
+            intent.putExtra("imageUrl", advertisement.getImageUrl());
+            intent.putExtra("title", advertisement.getTitle());
+            String toParse = Double.toString(advertisement.getPrice());
+            intent.putExtra("price", toParse);
+            intent.putExtra("description", advertisement.getDescription());
+            this.context.startActivity(intent);
         }
     }
 
 
 }
 
+
+//===========================================================================
+// Author: Ye
+//    this method allows imageUrl to be rendered in ImageView
+//===========================================================================
 class LoadImage extends AsyncTask<Object, Void, Bitmap>{
 
     private ImageView imv;
