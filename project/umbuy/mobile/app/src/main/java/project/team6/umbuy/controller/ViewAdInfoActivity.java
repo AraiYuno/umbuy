@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import project.team6.umbuy.R;
 
-public class ViewAdInfo extends AppCompatActivity {
+public class ViewAdInfoActivity extends AppCompatActivity {
     ImageView picture;
     TextView txt_title, txt_price, txt_description;
 

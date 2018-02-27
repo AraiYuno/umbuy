@@ -33,6 +33,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
         this.context = context;
     }
 
+
     @Override
     public AdsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View viewItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.ads_card, parent, false);
@@ -98,7 +99,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
         public void onClick(View view) {
             int position = getAdapterPosition();
             Advertisement advertisement = this.ads.get(position);
-            Intent intent = new Intent(this.context, ViewAdInfo.class);
+            Intent intent = new Intent(this.context, ViewAdInfoActivity.class);
             intent.putExtra("imageUrl", advertisement.getImageUrl());
             intent.putExtra("title", advertisement.getTitle());
             String toParse = Double.toString(advertisement.getPrice());
