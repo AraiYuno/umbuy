@@ -66,5 +66,18 @@ public class Advertisement {
     public String getCategory() {
         return category;
     }
+
+    public Advertisement(){
+        this.advertisementId = 1;
+        this.userId = 1;
+        this.title = "lap";
+        this.description="sd";
+        this.price = 1;
+        this.created_on = new Date();
+        this.last_updated = new Date();
+        this.deleted_on = new Date();
+        this.imageUrl = "https://www.google.ca/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
+        this.category = "sda";
+    }
 }
 

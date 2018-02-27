@@ -1,31 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="project.team6.umbuy.controller.MainActivity">
 
-    <include
-        layout="@layout/toolbar" />
 
-    <project.team6.umbuy.controller.CustomTabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:tabIndicatorColor="#51a3df"
-        app:tabIndicatorHeight="3.9dp"
-        android:background="#2c3039"
-        android:layout_marginTop="55dp"
-        app:tabTextColor="#929292"
-        app:tabSelectedTextColor="#fff"
-        android:elevation="6dp" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="110dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-</android.support.design.widget.CoordinatorLayout>
+        android:id="@+id/listViewAds"/>
+</LinearLayout>

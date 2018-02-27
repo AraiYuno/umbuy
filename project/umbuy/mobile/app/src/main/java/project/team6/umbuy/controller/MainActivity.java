@@ -1,12 +1,9 @@
 package project.team6.umbuy.controller;
 
-import android.os.StrictMode;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 
@@ -20,47 +17,52 @@ import project.team6.umbuy.model.Advertisement;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RecyclerView mRecyclerView;
+    private AdsAdapter mAdapter;
+    private LinearLayoutManager mLayoutManager;
+    private List<Advertisement> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //enable netword for main thread
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
+        list = new ArrayList<Advertisement>();
+        list.add(new Advertisement());
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("VIEW ALL"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        mRecyclerView = (RecyclerView) findViewById(R.id.listViewAds);
+        mRecyclerView.setHasFixedSize(true);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), 1);
-        //swich page
-        viewPager.setAdapter( adapter );
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//        // specify an adapter (see also next example)
+        mAdapter = new AdsAdapter(list);
+        mRecyclerView.setAdapter(mAdapter);
+
+        Retrofit retrofit = ApiClient.getApiClient();
+        ApiInterface apiClient = retrofit.create(ApiInterface.class);
+
+        Call<List<Advertisement>> call = apiClient.getAllAdvertisements();
+        call.enqueue(new Callback<List<Advertisement>>() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
+            public void onResponse(Call<List<Advertisement>> call, Response<List<Advertisement>> response) {
+                list.clear();
+                list.addAll(response.body());
+                mRecyclerView.getAdapter().notifyDataSetChanged();
+
+
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
+            public void onFailure(Call<List<Advertisement>> call, Throwable t) {
+                Log.d("errororororororoorororo", "sfdafdsafasdfasddfasdfasddfasdf");
             }
         });
-
     }
 
 
