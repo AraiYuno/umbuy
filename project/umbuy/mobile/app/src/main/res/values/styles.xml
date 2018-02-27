@@ -10,4 +10,11 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+        <style name="MyTheme" parent="Lock.Theme">
+            <item name="Auth0.HeaderLogo">@drawable/logo</item>
+            <item name="Auth0.HeaderTitle">@string/com_auth0_lock_header_title</item>
+            <item name="Auth0.HeaderTitleColor">@color/com_auth0_lock_text</item>
+        </style>
+
+
 </resources>
