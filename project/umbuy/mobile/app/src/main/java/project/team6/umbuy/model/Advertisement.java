@@ -9,7 +9,7 @@ public class Advertisement {
     @SerializedName("advertisementId")
     private int advertisementId;
     @SerializedName("userId")
-    private int userId;
+    private String userId;
     @SerializedName("title")
     private String title;
     @SerializedName("description")
@@ -31,7 +31,7 @@ public class Advertisement {
         return advertisementId;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
@@ -69,7 +69,7 @@ public class Advertisement {
 
     public Advertisement(){
         this.advertisementId = 1;
-        this.userId = 1;
+        this.userId = "1";
         this.title = "lap";
         this.description="sd";
         this.price = 1;

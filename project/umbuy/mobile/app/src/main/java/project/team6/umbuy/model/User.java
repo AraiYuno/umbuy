@@ -2,13 +2,13 @@ package project.team6.umbuy.model;
 
 public class User {
 
-    private int userId;
+    private String userId;
     private String firstName;
     private String lastName;
     private String UmEmail;
     private String phoneNumber;
 
-    public int getUserId(){
+    public String getUserId(){
         return userId;
     }
 
@@ -30,7 +30,7 @@ public class User {
 }
 //        | Field       | Type        | Null | Key | Default | Extra          |
 //        +-------------+-------------+------+-----+---------+----------------+
-//        | userId      | int(11)     | NO   | PRI | NULL    | auto_increment |
+//        | userId      | varchar(50) | NO   | PRI | NULL    | auto_increment |
 //        | firstName   | varchar(50) | NO   |     | NULL    |                |
 //        | lastName    | varchar(50) | NO   |     | NULL    |                |
 //        | UmEmail     | varchar(50) | NO   | UNI | NULL    |                |

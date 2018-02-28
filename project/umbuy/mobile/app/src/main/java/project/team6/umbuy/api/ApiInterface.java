@@ -14,5 +14,5 @@ public interface ApiInterface {
     @GET("/ads")
     Call<List<Advertisement>> getAllAdvertisements();
     @GET("/users/{user}")
-    Call<List<User>> getAllUsers(@Path("user") int id);
+    Call<List<User>> getAllUsers(@Path("user") String id);
 }

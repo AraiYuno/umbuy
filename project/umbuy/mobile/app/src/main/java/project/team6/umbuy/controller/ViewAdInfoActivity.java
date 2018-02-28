@@ -24,8 +24,6 @@ public class ViewAdInfoActivity extends AppCompatActivity {
         txt_price = findViewById(R.id.view_ad_info_price);
         txt_description = findViewById(R.id.view_ad_info_description);
 
-        System.out.println("PRICE: " + getIntent().getStringExtra("price"));
-
         new LoadImage((ImageView)picture, getIntent().getStringExtra("imageUrl")).execute();
         txt_title.setText("Title: " + getIntent().getStringExtra("title"));
         txt_price.setText("Price: £" + getIntent().getStringExtra("price"));
