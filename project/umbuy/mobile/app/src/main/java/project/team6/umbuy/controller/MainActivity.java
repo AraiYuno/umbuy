@@ -1,18 +1,21 @@
 package project.team6.umbuy.controller;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+<<<<<<< HEAD
 import android.view.WindowManager;
+=======
+>>>>>>> e6ace9abb2b119ab5350383eeccde12985386241
 import android.widget.Button;
 import android.widget.EditText;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,7 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
+    private Button createAd;
     private AdsAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
     private List<Advertisement> list;
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        createAd = (Button) findViewById(R.id.main_create_ad);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.listViewAds);
         mRecyclerView.setHasFixedSize(true);
@@ -95,9 +100,30 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("errororororororoorororo", "sfdafdsafasdfasddfasdfasddfasdf");
             }
         });
+
+        // button for createAd Activity
+        createAd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent createAdIntent = new Intent(context,CreateAdActivity.class);
+                context.startActivity(createAdIntent);
+            }
+        });
     }
 
 
+<<<<<<< HEAD
+=======
+    private void filterAds(String s) {
+        ArrayList<Advertisement> filteredList = new ArrayList<>();
+        for (Advertisement advertisement: list){
+            if(advertisement.getTitle().toLowerCase().contains(s.toLowerCase())){
+                filteredList.add(advertisement);
+            }
+        }
+        mAdapter.filterList(filteredList);
+    }
+>>>>>>> e6ace9abb2b119ab5350383eeccde12985386241
 
 
 }
