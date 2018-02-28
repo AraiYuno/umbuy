@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context="project.team6.umbuy.controller.CreateAdActivity">
+
+    <EditText
+        android:id="@+id/create_ad_title_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/create_ad_title"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:background="@color/colorSub"
+        android:inputType="textPersonName"
+        android:textColor="#000000" />
+
+    <EditText
+        android:id="@+id/create_ad_price_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/create_ad_title_field"
+        android:layout_below="@+id/create_ad_price"
+        android:ems="10"
+        android:background="@color/colorSub"
+        android:inputType="numberDecimal"
+        android:textColor="#000000" />
+
+    <EditText
+        android:id="@+id/create_ad_category_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/create_ad_price_field"
+        android:layout_below="@+id/create_ad_category"
+        android:ems="10"
+        android:background="@color/colorSub"
+        android:inputType="textPersonName"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/create_ad_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/create_ad_description_field"
+        android:layout_below="@+id/create_ad_description_field"
+        android:layout_marginTop="29dp"
+        android:text="@string/create_ad_upload" />
+
+    <Button
+        android:id="@+id/create_ad_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/create_ad_upload"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:text="@string/create_ad_submit" />
+
+    <TextView
+        android:id="@+id/create_ad_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/create_ad_title_field"
+        android:layout_marginTop="53dp"
+        android:textColor="#000000"
+        android:text="@string/create_ad_title" />
+
+    <TextView
+        android:id="@+id/create_ad_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/create_ad_price_field"
+        android:layout_below="@+id/create_ad_title_field"
+        android:layout_marginTop="19dp"
+        android:textColor="#000000"
+        android:text="@string/create_ad_price" />
+
+    <TextView
+        android:id="@+id/create_ad_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/create_ad_category_field"
+        android:layout_below="@+id/create_ad_price_field"
+        android:layout_marginTop="18dp"
+        android:textColor="#000000"
+        android:text="@string/create_ad_category" />
+
+    <EditText
+        android:id="@+id/create_ad_description_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/create_ad_description"
+        android:layout_below="@+id/create_ad_category_field"
+        android:layout_marginTop="37dp"
+        android:ems="10"
+        android:background="@color/colorSub"
+        android:textColor="#000000"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/create_ad_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/create_ad_category_field"
+        android:layout_below="@+id/create_ad_category_field"
+        android:layout_marginTop="20dp"
+        android:textColor="#000000"
+        android:text="@string/create_ad_description" />
+</RelativeLayout>
