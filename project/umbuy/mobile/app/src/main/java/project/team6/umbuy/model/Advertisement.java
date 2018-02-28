@@ -94,5 +94,21 @@ public class Advertisement {
         this.imageUrl = imageUrl;
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return "Advertisement{" +
+                "advertisementId=" + advertisementId +
+                ", userId=" + userId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", created_on=" + created_on +
+                ", last_updated=" + last_updated +
+                ", deleted_on=" + deleted_on +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", category='" + category + '\'' +
+                '}';
+    }
 }
 

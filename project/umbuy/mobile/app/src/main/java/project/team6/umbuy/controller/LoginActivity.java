@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-
 import com.auth0.android.Auth0;
 import com.auth0.android.lock.AuthenticationCallback;
 import com.auth0.android.lock.Lock;
 import com.auth0.android.lock.LockCallback;
 import com.auth0.android.lock.utils.LockException;
 import com.auth0.android.result.Credentials;
-
-import project.team6.umbuy.controller.MainActivity;
 
 
 public class LoginActivity extends Activity {
@@ -28,6 +25,8 @@ public class LoginActivity extends Activity {
         mLock = Lock.newBuilder(auth0, mCallback)
                 .withScheme("demo")
                 .withAudience(String.format("https://%s/userinfo", "team6.auth0.com"))
+                .withScope("openid offline_access")
+                .withScope("openid profile email")
                 //Add parameters to the builder
                 .build(this);
         startActivity(mLock.newIntent(this));
@@ -44,6 +43,10 @@ public class LoginActivity extends Activity {
         @Override
         public void onAuthentication(Credentials credentials) {
             Toast.makeText(getApplicationContext(), "Log In - Success", Toast.LENGTH_SHORT).show();
+
+            // Save credentials before starting new activity
+            CredentialsManager.saveCredentials(LoginActivity.this, credentials);
+
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
