@@ -4,8 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="project.team6.umbuy.controller.MainActivity">
+    tools:context="project.team6.umbuy.controller.MainActivity"
+    android:orientation="vertical">
 
+    <include layout="@layout/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listViewAds"

@@ -5,7 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 
 
 import java.util.ArrayList;
@@ -35,6 +38,25 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<Advertisement>();
         list.add(new Advertisement());
         context = MainActivity.this;
+        EditText search_bar = findViewById(R.id.search_bar);
+        search_bar.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filterAds(editable.toString());
+            }
+        });
+
+
 
         mRecyclerView = (RecyclerView) findViewById(R.id.listViewAds);
         mRecyclerView.setHasFixedSize(true);
@@ -68,7 +90,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    private void filterAds(String s) {
+        ArrayList<Advertisement> filteredList = new ArrayList<>();
+        for (Advertisement advertisement: list){
+            if(advertisement.getTitle().toLowerCase().contains(s.toLowerCase())){
+                filteredList.add(advertisement);
+            }
+        }
+    }
 
 
 }

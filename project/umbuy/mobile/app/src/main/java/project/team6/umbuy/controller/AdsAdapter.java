@@ -109,6 +109,10 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
         }
     }
 
+    public void filterList(ArrayList<Advertisement> filteredList){
+         ads = filteredList;
+         notifyDataSetChanged();
+    }
 
 }
 
