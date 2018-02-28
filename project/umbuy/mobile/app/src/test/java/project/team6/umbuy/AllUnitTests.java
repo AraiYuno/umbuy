@@ -3,7 +3,7 @@ package project.team6.umbuy;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import project.team6.umbuy.controller.AdsAdapter;
+import project.team6.umbuy.view.AdsAdapter;
 import project.team6.umbuy.controller.ViewAdInfoActivityTest;
 //=========================================================================
 // AllUnitTests class

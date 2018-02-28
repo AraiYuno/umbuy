@@ -1,7 +1,5 @@
 package project.team6.umbuy.controller;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,8 +7,8 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.List;
 
-import project.team6.umbuy.R;
 import project.team6.umbuy.model.Advertisement;
+import project.team6.umbuy.view.AdsAdapter;
 
 /**
  * Created by Murun on 2/28/2018.

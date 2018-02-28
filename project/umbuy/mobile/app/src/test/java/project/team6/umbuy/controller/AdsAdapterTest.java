@@ -10,6 +10,7 @@ import java.util.List;
 
 import project.team6.umbuy.TestData;
 import project.team6.umbuy.model.Advertisement;
+import project.team6.umbuy.view.AdsAdapter;
 
 import static org.junit.Assert.*;
 

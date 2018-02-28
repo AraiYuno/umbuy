@@ -1,10 +1,7 @@
-package project.team6.umbuy.controller;
+package project.team6.umbuy.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,51 +112,5 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
 }
 
 
-//===========================================================================
-// Author: Ye
-//    this method allows imageUrl to be rendered in ImageView
-//===========================================================================
-class LoadImage extends AsyncTask<Object, Void, Bitmap>{
 
-    private ImageView imv;
-    private String path;
-
-    public LoadImage(ImageView imv, String url) {
-        this.imv = imv;
-        this.path = url;
-    }
-
-    @Override
-    protected Bitmap doInBackground(Object... params) {
-        try {
-            URL url = new URL(path);
-            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            return bmp;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Bitmap bmp = BitmapFactory.decodeResource(null, R.drawable.arrow);
-            return bmp;
-        }
-
-    }
-    @Override
-    protected void onPostExecute(Bitmap result) {
-//        if (!imv.getTag().toString().equals(path)) {
-//               /* The path is not same. This means that this
-//                  image view is handled by some other async task.
-//                  We don't do anything and return. */
-//            return;
-//        }
-//
-//        if(result != null && imv != null){
-//            imv.setVisibility(View.VISIBLE);
-//            imv.setImageBitmap(result);
-//        }else{
-//            imv.setVisibility(View.GONE);
-//        }
-        imv.setImageBitmap(result);
-    }
-
-}
 

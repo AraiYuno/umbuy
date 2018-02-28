@@ -6,15 +6,13 @@ package project.team6.umbuy.controller;
 //   testing. Follow the similar syntax.
 //=========================================================================
 
-import android.view.View;
-
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
 import project.team6.umbuy.TestData;
 import project.team6.umbuy.model.Advertisement;
+import project.team6.umbuy.view.ViewAdInfoActivity;
 
 import static org.junit.Assert.*;
 

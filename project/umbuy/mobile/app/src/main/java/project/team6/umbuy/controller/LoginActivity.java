@@ -3,6 +3,7 @@ package project.team6.umbuy.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.auth0.android.Auth0;
@@ -11,6 +12,8 @@ import com.auth0.android.lock.Lock;
 import com.auth0.android.lock.LockCallback;
 import com.auth0.android.lock.utils.LockException;
 import com.auth0.android.result.Credentials;
+
+import project.team6.umbuy.view.ViewAdsActivity;
 
 
 public class LoginActivity extends Activity {
@@ -46,8 +49,22 @@ public class LoginActivity extends Activity {
 
             // Save credentials before starting new activity
             CredentialsManager.saveCredentials(LoginActivity.this, credentials);
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            Log.d("sdadsas","asfsadgafasdfasdf");
+            startActivity(new Intent(getApplicationContext(), ViewAdsActivity.class));
 
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
 

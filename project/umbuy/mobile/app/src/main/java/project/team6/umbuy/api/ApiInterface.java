@@ -26,4 +26,6 @@ public interface ApiInterface {
                                  @Field("price") double price,
                                  @Field("imageUrl") String imageUrl,
                                  @Field("category") String category);
+    @GET("/ads/{id}")
+    Call<List<Advertisement>> getAdvertisementById(@Path("id") int id);
 }

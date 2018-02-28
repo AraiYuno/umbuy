@@ -1,15 +1,16 @@
 //====================================================================
 // Author: Kyle
 //   this class is for ViewAdInfo which is responsible for displaying
-//   one single advertisement upon click on MainActivity
+//   one single advertisement upon click on ViewAdsActivity
 //====================================================================
-package project.team6.umbuy.controller;
+package project.team6.umbuy.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import project.team6.umbuy.R;
+import project.team6.umbuy.view.LoadImage;
 
 public class ViewAdInfoActivity extends AppCompatActivity {
     ImageView picture;

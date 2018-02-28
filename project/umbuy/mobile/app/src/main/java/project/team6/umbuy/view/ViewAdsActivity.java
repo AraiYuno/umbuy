@@ -1,4 +1,4 @@
-package project.team6.umbuy.controller;
+package project.team6.umbuy.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,10 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-<<<<<<< HEAD
 import android.view.WindowManager;
-=======
->>>>>>> e6ace9abb2b119ab5350383eeccde12985386241
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -23,13 +20,16 @@ import java.util.List;
 import project.team6.umbuy.R;
 import project.team6.umbuy.api.ApiClient;
 import project.team6.umbuy.api.ApiInterface;
+import project.team6.umbuy.controller.AdvertisementService;
+import project.team6.umbuy.controller.CreateAdActivity;
+import project.team6.umbuy.controller.SearchHelper;
 import project.team6.umbuy.model.Advertisement;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MainActivity extends AppCompatActivity {
+public class ViewAdsActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private Button createAd;
@@ -43,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         list = new ArrayList<Advertisement>();
-        list.add(new Advertisement());
-        context = MainActivity.this;
+        context = this;
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         EditText searchText = findViewById(R.id.search_bar);
         Button searchButton = findViewById(R.id.search_button);
@@ -73,23 +72,30 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.listViewAds);
         mRecyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-//        // specify an adapter (see also next example)
         mAdapter = new AdsAdapter(list, context);
         mRecyclerView.setAdapter(mAdapter);
 
-        Retrofit retrofit = ApiClient.getApiClient();
-        ApiInterface apiClient = retrofit.create(ApiInterface.class);
-
-        Call<List<Advertisement>> call = apiClient.getAllAdvertisements();
+        Log.d("sdadsas","asfsadgafasdfasdf");
+        Log.d("sdadsas","asfsadgafasdfasdf");
+        Log.d("sdadsas","asfsadgafasdfasdf");
+        Log.d("sdadsas","asfsadgafasdfasdf");
+        Log.d("sdadsas","asfsadgafasdfasdf");
+        Log.d("sdadsas","asfsadgafasdfasdf");
+        Log.d("sdadsas","asfsadgafasdfasdf");
+        Log.d("sdadsas","asfsadgafasdfasdf");
+        AdvertisementService adService = new AdvertisementService();
+        Call<List<Advertisement>> call = adService.getAllAdvertisements();
         call.enqueue(new Callback<List<Advertisement>>() {
             @Override
             public void onResponse(Call<List<Advertisement>> call, Response<List<Advertisement>> response) {
                 list.clear();
                 list.addAll(response.body());
+                for(Advertisement ad : list){
+                    Log.d("sdadsas","asfsadgafasdfasdf");
+                }
                 mRecyclerView.getAdapter().notifyDataSetChanged();
 
 
@@ -112,18 +118,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-<<<<<<< HEAD
-=======
-    private void filterAds(String s) {
-        ArrayList<Advertisement> filteredList = new ArrayList<>();
-        for (Advertisement advertisement: list){
-            if(advertisement.getTitle().toLowerCase().contains(s.toLowerCase())){
-                filteredList.add(advertisement);
-            }
-        }
-        mAdapter.filterList(filteredList);
-    }
->>>>>>> e6ace9abb2b119ab5350383eeccde12985386241
 
 
 }

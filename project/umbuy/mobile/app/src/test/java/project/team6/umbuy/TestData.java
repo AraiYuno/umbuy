@@ -1,17 +1,11 @@
 package project.team6.umbuy;
 
-import android.content.Context;
-import android.view.View;
-
-import org.mockito.Mock;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import project.team6.umbuy.controller.ViewAdInfoActivity;
 import project.team6.umbuy.model.Advertisement;
-import project.team6.umbuy.controller.AdsAdapter;
+
 /**
  *
  * Created by Kyle on 2/27/2018.
