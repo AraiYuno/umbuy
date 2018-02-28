@@ -8,6 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 
 
@@ -38,8 +41,12 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<Advertisement>();
         list.add(new Advertisement());
         context = MainActivity.this;
-        EditText search_bar = findViewById(R.id.search_bar);
-        search_bar.addTextChangedListener(new TextWatcher() {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        EditText searchText = findViewById(R.id.search_bar);
+        Button searchButton = findViewById(R.id.search_button);
+        final SearchHelper searchHelp = new SearchHelper(searchButton,searchText);
+
+        searchHelp.getSearchText().addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -52,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                filterAds(editable.toString());
+                searchHelp.filterAds(editable.toString(),list,mAdapter);
             }
         });
 
@@ -90,15 +97,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void filterAds(String s) {
-        ArrayList<Advertisement> filteredList = new ArrayList<>();
-        for (Advertisement advertisement: list){
-            if(advertisement.getTitle().toLowerCase().contains(s.toLowerCase())){
-                filteredList.add(advertisement);
-            }
-        }
-        mAdapter.filterList(filteredList);
-    }
+
 
 
 }
