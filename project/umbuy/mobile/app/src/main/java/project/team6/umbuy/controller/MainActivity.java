@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 filteredList.add(advertisement);
             }
         }
+        mAdapter.filterList(filteredList);
     }
 
 
