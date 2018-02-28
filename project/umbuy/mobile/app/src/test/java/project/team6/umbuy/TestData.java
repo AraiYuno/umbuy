@@ -9,7 +9,7 @@ public class TestData {
     //Declaration of mock data access
     private Advertisement advertisement;
     public TestData(){
-        Advertisement advertisement = new Advertisement();
+        this.advertisement = new Advertisement();
     }
 
     // for testing of ViewAdInfoActivity;

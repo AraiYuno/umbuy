@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  */
 public class ViewAdInfoActivityTest {
     private Advertisement advertisement;
-
+    private TestData testData;
     //======================================================================
     // Author: Kyle
     //   here, you need to set up whatever data that are required in order
@@ -23,7 +23,7 @@ public class ViewAdInfoActivityTest {
     //======================================================================
     @Before
     public void setUp() throws Exception{
-        TestData testData = new TestData(); // Once you have this, you have access to mock database
+        this.testData = new TestData(); // Once you have this, you have access to mock database
         this.advertisement = testData.getAdvertisement();  // set up a single advertisement for testing
     }
 
@@ -31,6 +31,7 @@ public class ViewAdInfoActivityTest {
     public void onCreate() throws Exception {
         System.out.println("\nStarting ViewAdInfoActivityTest: onCreate()");
 
+        // Now you have the single advertisement that you needed. You can test your methods here
         System.out.println( this.advertisement.getTitle() );
 
 
