@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context="project.team6.umbuy.controller.CreateAdActivity">
+    tools:context="project.team6.umbuy.view.CreateAdActivity">
 
     <EditText
         android:id="@+id/create_ad_title_field"

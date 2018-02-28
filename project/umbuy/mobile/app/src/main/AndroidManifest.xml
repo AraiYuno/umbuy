@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".controller.LoginActivity"
+            android:name=".view.StartActivity"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity android:name=".view.ViewAdsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
             </intent-filter>
         </activity>
         <activity android:name=".view.ViewAdInfoActivity" />
@@ -40,7 +43,8 @@
             android:theme="@style/MyTheme" />
         <!-- Auth0        Lock End -->
 
-        <activity android:name=".controller.CreateAdActivity"></activity>
+        <activity android:name=".view.CreateAdActivity"></activity>
+        <activity android:name=".view.LoginActivity" />
     </application>
 
 </manifest>

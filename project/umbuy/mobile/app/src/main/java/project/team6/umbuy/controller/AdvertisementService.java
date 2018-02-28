@@ -18,12 +18,11 @@ public class AdvertisementService{
 
     private ApiInterface service;
 
-    public AdvertisementService getService(){
+    public  AdvertisementService (){
         if(service == null){
             Retrofit retrofit = ApiClient.getApiClient();
             service = retrofit.create(ApiInterface.class);
         }
-        return this;
     }
 
 
@@ -31,11 +30,8 @@ public class AdvertisementService{
         return service.getAllAdvertisements();
     }
 
-    public void submitAd(int advertisementId, String title, String userId, String description, double price, String imageUrl, String category){
-        service.submitAd(advertisementId, title, userId, description, price, imageUrl, category);
+    public Call<Advertisement> submitAd(int advertisementId, String title, String userId, String description, double price, String imageUrl, String category){
+        return service.submitAd(advertisementId, title, userId, description, price, imageUrl, category);
     }
 
-    public Call<List<Advertisement>> getAdvertisementById(int id){
-        return service.getAdvertisementById(id);
-    }
 }

@@ -1,4 +1,4 @@
-package project.team6.umbuy.controller;
+package project.team6.umbuy.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,13 +14,14 @@ import com.auth0.android.callback.BaseCallback;
 import com.auth0.android.result.UserProfile;
 
 import project.team6.umbuy.R;
-import project.team6.umbuy.api.ApiClient;
-import project.team6.umbuy.api.ApiInterface;
+
+import project.team6.umbuy.controller.AdvertisementService;
+import project.team6.umbuy.controller.CredentialsManager;
 import project.team6.umbuy.model.Advertisement;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
+
 
 public class CreateAdActivity extends AppCompatActivity {
 
@@ -91,8 +92,7 @@ public class CreateAdActivity extends AppCompatActivity {
 
     private void sendAd() {
 
-        Retrofit retrofit = ApiClient.getApiClient();
-        final ApiInterface apiClient = retrofit.create(ApiInterface.class);
+        AdvertisementService adService = new AdvertisementService();
 
         int advertisementId;
         double price = 0;
@@ -122,7 +122,7 @@ public class CreateAdActivity extends AppCompatActivity {
             price = Double.parseDouble(create_ad_price.getText().toString());
 
             // POST call to update server using RETROFIT API
-            apiClient.submitAd(advertisementId, title, userId, description, price, imageUrl, category).enqueue(new Callback<Advertisement>() {
+            adService.submitAd(advertisementId, title, userId, description, price, imageUrl, category).enqueue(new Callback<Advertisement>() {
                 @Override
                 public void onResponse(Call<Advertisement> call, Response<Advertisement> response) {
                     runOnUiThread(new Runnable() {

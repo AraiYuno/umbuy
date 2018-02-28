@@ -18,16 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
-import project.team6.umbuy.api.ApiClient;
-import project.team6.umbuy.api.ApiInterface;
+
 import project.team6.umbuy.controller.AdvertisementService;
-import project.team6.umbuy.controller.CreateAdActivity;
 import project.team6.umbuy.controller.SearchHelper;
 import project.team6.umbuy.model.Advertisement;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class ViewAdsActivity extends AppCompatActivity {
 
@@ -78,24 +75,14 @@ public class ViewAdsActivity extends AppCompatActivity {
         mAdapter = new AdsAdapter(list, context);
         mRecyclerView.setAdapter(mAdapter);
 
-        Log.d("sdadsas","asfsadgafasdfasdf");
-        Log.d("sdadsas","asfsadgafasdfasdf");
-        Log.d("sdadsas","asfsadgafasdfasdf");
-        Log.d("sdadsas","asfsadgafasdfasdf");
-        Log.d("sdadsas","asfsadgafasdfasdf");
-        Log.d("sdadsas","asfsadgafasdfasdf");
-        Log.d("sdadsas","asfsadgafasdfasdf");
-        Log.d("sdadsas","asfsadgafasdfasdf");
         AdvertisementService adService = new AdvertisementService();
+
         Call<List<Advertisement>> call = adService.getAllAdvertisements();
         call.enqueue(new Callback<List<Advertisement>>() {
             @Override
             public void onResponse(Call<List<Advertisement>> call, Response<List<Advertisement>> response) {
                 list.clear();
                 list.addAll(response.body());
-                for(Advertisement ad : list){
-                    Log.d("sdadsas","asfsadgafasdfasdf");
-                }
                 mRecyclerView.getAdapter().notifyDataSetChanged();
 
 
@@ -103,7 +90,7 @@ public class ViewAdsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Advertisement>> call, Throwable t) {
-                Log.d("errororororororoorororo", "sfdafdsafasdfasddfasdfasddfasdf");
+                Log.d("=================error", "Retrofit connection failed ================");
             }
         });
 
