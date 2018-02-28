@@ -70,14 +70,29 @@ public class Advertisement {
     public Advertisement(){
         this.advertisementId = 1;
         this.userId = "1";
-        this.title = "lap";
-        this.description="sd";
-        this.price = 1;
+        this.title = "iphone";
+        this.description="A great iphone for a great price";
+        this.price = 75.99;
         this.created_on = new Date();
         this.last_updated = new Date();
         this.deleted_on = new Date();
         this.imageUrl = "https://www.google.ca/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
-        this.category = "sda";
+        this.category = "electronics";
+    }
+
+    public Advertisement(int advertisementId, String userId, String title, String description,
+                         double price, Date created_on, Date last_updated, Date deleted_on,
+                         String imageUrl, String category){
+        this.advertisementId = advertisementId;
+        this.userId = userId;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.created_on = created_on;
+        this.last_updated = last_updated;
+        this.deleted_on = deleted_on;
+        this.imageUrl = imageUrl;
+        this.category = category;
     }
 }
 

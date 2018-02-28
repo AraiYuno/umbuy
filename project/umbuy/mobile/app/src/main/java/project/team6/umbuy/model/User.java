@@ -30,7 +30,7 @@ public class User {
 }
 //        | Field       | Type        | Null | Key | Default | Extra          |
 //        +-------------+-------------+------+-----+---------+----------------+
-//        | userId      | varchar(50) | NO   | PRI | NULL    | auto_increment |
+//        | userId      | varchar(50)s | NO   | PRI | NULL    | auto_increment |
 //        | firstName   | varchar(50) | NO   |     | NULL    |                |
 //        | lastName    | varchar(50) | NO   |     | NULL    |                |
 //        | UmEmail     | varchar(50) | NO   | UNI | NULL    |                |
