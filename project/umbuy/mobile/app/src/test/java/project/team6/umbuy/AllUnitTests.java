@@ -3,8 +3,9 @@ package project.team6.umbuy;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import project.team6.umbuy.view.AdsAdapter;
-import project.team6.umbuy.controller.ViewAdInfoActivityTest;
+import project.team6.umbuy.view.ViewAdInfoActivityTest;
+import project.team6.umbuy.view.AdsAdapterTest;
+
 //=========================================================================
 // AllUnitTests class
 //   this contains testSuite for all the unit tests
@@ -12,7 +13,7 @@ import project.team6.umbuy.controller.ViewAdInfoActivityTest;
 //=========================================================================
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        AdsAdapter.class,
+        AdsAdapterTest.class,
         ViewAdInfoActivityTest.class
 })
 
