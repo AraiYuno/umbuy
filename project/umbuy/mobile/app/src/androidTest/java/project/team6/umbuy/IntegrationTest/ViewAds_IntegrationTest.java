@@ -68,10 +68,10 @@ public class ViewAds_IntegrationTest {
     // Test the initial setup for ViewAds
     @Test
     public void testViewAdsPresent() throws Exception {
-        ViewAdsActivity activity = rule.getActivity();
         System.out.println("\nIntegration Tedst: testViewAdsPresent() started");
+        ViewAdsActivity activity = rule.getActivity();
         // check RecyclerView are initiated
-        mRecyclerView = (RecyclerView) activity.findViewById(R.id.listViewAds);
+        mRecyclerView = activity.findViewById(R.id.listViewAds);
         assertNotNull(mRecyclerView);
 
         // Check searchText and searchButtons are initiated
@@ -91,7 +91,7 @@ public class ViewAds_IntegrationTest {
     public void testUpdatedDataInRecyclerView() throws Exception {
         System.out.println("\nIntegration Tedst: testUpdatedDataInRecyclerView() started");
         ViewAdsActivity activity = rule.getActivity();
-        this.testRecyclerView = (RecyclerView)activity.findViewById(R.id.listViewAds);
+        this.testRecyclerView = activity.findViewById(R.id.listViewAds);
         AdsAdapter adsAdapter = new AdsAdapter(this.ads, this.context);
         this.testRecyclerView.setAdapter(adsAdapter);
 

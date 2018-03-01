@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import project.team6.umbuy.R;
-import project.team6.umbuy.view.LoadImage;
 
 public class ViewAdInfoActivity extends AppCompatActivity {
     ImageView picture;
@@ -25,7 +24,7 @@ public class ViewAdInfoActivity extends AppCompatActivity {
         txt_price = findViewById(R.id.view_ad_info_price);
         txt_description = findViewById(R.id.view_ad_info_description);
 
-        new LoadImage((ImageView)picture, getIntent().getStringExtra("imageUrl")).execute();
+        new LoadImage(picture, getIntent().getStringExtra("imageUrl")).execute();
         txt_title.setText("Title: " + getIntent().getStringExtra("title"));
         txt_price.setText("Price: £" + getIntent().getStringExtra("price"));
         txt_description.setText("Description: " + getIntent().getStringExtra("description"));
