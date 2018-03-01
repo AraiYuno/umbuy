@@ -5,6 +5,7 @@ import org.junit.runners.Suite;
 
 import project.team6.umbuy.view.ViewAdInfoActivityTest;
 import project.team6.umbuy.view.AdsAdapterTest;
+import project.team6.umbuy.model.AdvertisementTest;
 
 //=========================================================================
 // AllUnitTests class
@@ -14,7 +15,8 @@ import project.team6.umbuy.view.AdsAdapterTest;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         AdsAdapterTest.class,
-        ViewAdInfoActivityTest.class
+        ViewAdInfoActivityTest.class,
+        AdvertisementTest.class
 })
 
 public class AllUnitTests {
