@@ -24,7 +24,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
     private List<Advertisement> ads;
     private Context context;
 
-    AdsAdapter(List<Advertisement> ads, Context context){
+    public AdsAdapter(List<Advertisement> ads, Context context){
         this.ads = ads;
         this.context = context;
     }
