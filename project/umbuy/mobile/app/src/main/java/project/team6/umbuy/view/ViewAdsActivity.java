@@ -114,4 +114,8 @@ public class ViewAdsActivity extends AppCompatActivity {
         }
         mAdapter.filterList(filteredList);
     }
+
+    public void testAdd(Advertisement ad){
+        this.list.add(ad);
+    }
 }

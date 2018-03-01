@@ -42,6 +42,8 @@ public class ViewAds_IntegrationTest {
     private RecyclerView mRecyclerView;
     private List<Advertisement> ads;
     private TestData testData;
+    private ViewAdsActivity activity2;
+    private int numAds;
 
     @Mock
     private AdvertisementService adService;
@@ -68,7 +70,7 @@ public class ViewAds_IntegrationTest {
     // Test the initial setup for ViewAds
     @Test
     public void testViewAdsPresent() throws Exception {
-        System.out.println("\nIntegration Tedst: testViewAdsPresent() started");
+        System.out.println("\nIntegration Test: testViewAdsPresent() started");
         ViewAdsActivity activity = rule.getActivity();
         // check RecyclerView are initiated
         mRecyclerView = activity.findViewById(R.id.listViewAds);
@@ -89,21 +91,24 @@ public class ViewAds_IntegrationTest {
     // Test loading in ads
     @Test
     public void testUpdatedDataInRecyclerView() throws Exception {
-        System.out.println("\nIntegration Tedst: testUpdatedDataInRecyclerView() started");
-        ViewAdsActivity activity = rule.getActivity();
-        this.testRecyclerView = activity.findViewById(R.id.listViewAds);
-        AdsAdapter adsAdapter = new AdsAdapter(this.ads, this.context);
-        this.testRecyclerView.setAdapter(adsAdapter);
+        System.out.println("\nIntegration Test: testUpdatedDataInRecyclerView() started");
+        // Set up the ViewAdActivity
+        activity2 = rule.getActivity();
+        this.testRecyclerView = activity2.findViewById(R.id.listViewAds);
+        //count the number of ads currently.
+        this.numAds = this.testRecyclerView.getAdapter().getItemCount();
 
-
+        // create mock service for advertisements
         adService = new AdvertisementService();
         Call<List<Advertisement>> call = adService.getAllAdvertisements();
         call.enqueue(new Callback<List<Advertisement>>() {
             @Override // In this case, the recyclerView took a new ad and made the changes
             public void onResponse(Call<List<Advertisement>> call, Response<List<Advertisement>> response) {
-                ads.add( new Advertisement(3, "KyleAhnbest", "LG", "A great LG for a great price", 55.99,
+                // add 1 advertisement and see if it ads in the recyclerView
+                activity2.testAdd( new Advertisement(9999, "KyleAhnbest", "LG", "A great LG for a great price", 55.99,
                         new Date(), new Date(), new Date(), "www.alink.com", "Electronics"));
                 testRecyclerView.getAdapter().notifyDataSetChanged();
+                assertEquals( numAds+1, testRecyclerView.getAdapter().getItemCount());
             }
 
             @Override
@@ -112,6 +117,6 @@ public class ViewAds_IntegrationTest {
                 assertEquals(1, 2); // In this case, we fail the test by force.
             }
         });
-        System.out.println("\nIntegration Tedst: testUpdatedDataInRecyclerView() finished");
+        System.out.println("\nIntegration Test: testUpdatedDataInRecyclerView() finished");
     }
 }
