@@ -9,7 +9,7 @@ export class FilterResultService {
   currentMessage = this.searchResult.asObservable();
 
   constructor(){}
-
+  
   changeMessage(message : Advertisement[]){
     this.searchResult.next(message);
   }

@@ -105,6 +105,13 @@ public class ViewAdsActivity extends AppCompatActivity {
     }
 
 
-
-
+    private void filterAds(String s) {
+        ArrayList<Advertisement> filteredList = new ArrayList<>();
+        for (Advertisement advertisement: list){
+            if(advertisement.getTitle().toLowerCase().contains(s.toLowerCase())){
+                filteredList.add(advertisement);
+            }
+        }
+        mAdapter.filterList(filteredList);
+    }
 }

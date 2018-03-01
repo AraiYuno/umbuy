@@ -1,4 +1,4 @@
-package project.team6.umbuy.controller;
+package project.team6.umbuy.view;
 
 import android.content.Context;
 
