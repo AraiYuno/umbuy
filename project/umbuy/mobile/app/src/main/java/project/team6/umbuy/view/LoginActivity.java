@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.auth0.android.Auth0;
+import com.auth0.android.authentication.AuthenticationAPIClient;
+import com.auth0.android.authentication.AuthenticationException;
+import com.auth0.android.callback.BaseCallback;
 import com.auth0.android.lock.AuthenticationCallback;
 import com.auth0.android.lock.Lock;
 import com.auth0.android.lock.LockCallback;
 import com.auth0.android.lock.utils.LockException;
 import com.auth0.android.result.Credentials;
+import com.auth0.android.result.UserProfile;
 
 import project.team6.umbuy.controller.CredentialsManager;
 
@@ -32,7 +36,34 @@ public class LoginActivity extends Activity {
                 .withScope("openid profile email")
                 //Add parameters to the builder
                 .build(this);
-        startActivity(mLock.newIntent(this));
+        String accessToken = CredentialsManager.getCredentials(this).getAccessToken();
+        if (accessToken == null) {
+            doLogin();
+            //return;
+        }
+        else{
+            AuthenticationAPIClient aClient = new AuthenticationAPIClient(auth0);
+            aClient.userInfo(accessToken)
+                    .start(new BaseCallback<UserProfile, AuthenticationException>() {
+                        @Override
+                        public void onSuccess(final UserProfile payload) {
+                            startActivity(new Intent(LoginActivity.this, ViewAdsActivity.class));
+                            finish();
+                        }
+
+                        @Override
+                        public void onFailure(AuthenticationException error) {
+                            runOnUiThread(new Runnable() {
+
+                                public void run() {
+                                    doLogin();
+                                    Toast.makeText(LoginActivity.this, "Session has Expired, please Log In Again", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            CredentialsManager.deleteCredentials(LoginActivity.this);
+                        }
+                    });
+        }
     }
 
     @Override
@@ -42,11 +73,15 @@ public class LoginActivity extends Activity {
         mLock = null;
     }
 
+    public void doLogin(){
+
+        startActivity(mLock.newIntent(this));
+
+    }
+
     private final LockCallback mCallback = new AuthenticationCallback() {
         @Override
         public void onAuthentication(Credentials credentials) {
-            Toast.makeText(getApplicationContext(), "Log In - Success", Toast.LENGTH_SHORT).show();
-
             // Save credentials before starting new activity
             CredentialsManager.saveCredentials(LoginActivity.this, credentials);
 

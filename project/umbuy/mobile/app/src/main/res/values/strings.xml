@@ -5,6 +5,7 @@
     <string name="userCountry">Country: %1$s</string>
     <string name="edit_hint">Add the country…</string>>
     <string name="login">Log In</string>
+    <string name="logout">LogOut</string>
     <string name="com_auth0_lock_header_title">Umbuy</string>
     <string name="com_auth0_client_id">awHhrmeJ625lGGKkdC6vkNIZ6ulpiEOP</string>
     <string name="com_auth0_domain">team6.auth0.com</string>

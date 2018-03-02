@@ -25,11 +25,13 @@ import project.team6.umbuy.model.Advertisement;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import project.team6.umbuy.controller.CredentialsManager;
 
 public class ViewAdsActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private Button createAd;
+    private Button logoutButton;
     private AdsAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
     private List<Advertisement> list;
@@ -65,6 +67,7 @@ public class ViewAdsActivity extends AppCompatActivity {
 
 
         createAd = (Button) findViewById(R.id.main_create_ad);
+        logoutButton = (Button) findViewById(R.id.main_logout);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.listViewAds);
         mRecyclerView.setHasFixedSize(true);
@@ -102,6 +105,15 @@ public class ViewAdsActivity extends AppCompatActivity {
                 context.startActivity(createAdIntent);
             }
         });
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            logout();
+            }
+        });
+
+
     }
 
 
@@ -114,4 +126,11 @@ public class ViewAdsActivity extends AppCompatActivity {
         }
         mAdapter.filterList(filteredList);
     }
+
+    private void logout() {
+        CredentialsManager.deleteCredentials(this);
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
 }
+
