@@ -127,10 +127,15 @@ public class ViewAdsActivity extends AppCompatActivity {
         mAdapter.filterList(filteredList);
     }
 
+
     private void logout() {
         CredentialsManager.deleteCredentials(this);
         startActivity(new Intent(this, LoginActivity.class));
         finish();
+    }
+
+    public void testAdd(Advertisement ad){
+        this.list.add(ad);
     }
 }
 
