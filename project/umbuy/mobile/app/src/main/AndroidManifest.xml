@@ -12,27 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".view.StartActivity"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity android:name=".view.ViewAdsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+                <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             </intent-filter>
         </activity>
         <activity android:name=".view.ViewAdInfoActivity" />
-
 
         <!-- Auth0 Lock -->
         <activity
@@ -43,8 +38,21 @@
             android:theme="@style/MyTheme" />
         <!-- Auth0        Lock End -->
 
-        <activity android:name=".view.CreateAdActivity"></activity>
+        <activity android:name=".view.CreateAdActivity" />
         <activity android:name=".view.LoginActivity" />
+        <activity
+            android:name=".view.NavigationBar"
+            android:label="@string/title_activity_navigation_bar"
+            android:theme="@style/AppTheme"
+
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
