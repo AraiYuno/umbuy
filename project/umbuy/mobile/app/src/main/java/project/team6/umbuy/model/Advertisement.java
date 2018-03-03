@@ -67,18 +67,19 @@ public class Advertisement {
         return category;
     }
 
-    public Advertisement(){
-        this.advertisementId = 1;
-        this.userId = "1";
-        this.title = "iphone";
-        this.description="A great iphone for a great price";
-        this.price = 75.99;
-        this.created_on = new Date();
-        this.last_updated = new Date();
-        this.deleted_on = new Date();
-        this.imageUrl = "https://www.google.ca/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
-        this.category = "electronics";
-    }
+//    //fixme construction always return a hardcoded set of data?
+//    public Advertisement(){
+//        this.advertisementId = 1;
+//        this.userId = "1";
+//        this.title = "iphone";
+//        this.description="A great iphone for a great price";
+//        this.price = 75.99;
+//        this.created_on = new Date();
+//        this.last_updated = new Date();
+//        this.deleted_on = new Date();
+//        this.imageUrl = "https://www.google.ca/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
+//        this.category = "electronics";
+//    }
 
     public Advertisement(int advertisementId, String userId, String title, String description,
                          double price, Date created_on, Date last_updated, Date deleted_on,

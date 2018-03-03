@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import project.team6.umbuy.IntegrationTest.TestData;
+//import project.team6.umbuy.IntegrationTest.TestData;
 import project.team6.umbuy.R;
 import project.team6.umbuy.controller.AdvertisementService;
 import project.team6.umbuy.model.Advertisement;
@@ -41,7 +41,7 @@ import static org.junit.Assert.*;
 public class ViewAds_IntegrationTest {
     private RecyclerView mRecyclerView;
     private List<Advertisement> ads;
-    private TestData testData;
+    //private TestData testData;
     private ViewAdsActivity activity2;
     private int numAds;
 
@@ -63,8 +63,8 @@ public class ViewAds_IntegrationTest {
 
     @Before
     public void setUp() throws Exception {
-        this.testData = new TestData();
-        this.ads = this.testData.getAdsList();
+        //this.testData = new TestData();
+        //this.ads = this.testData.getAdsList();
     }
 
     // Test the initial setup for ViewAds

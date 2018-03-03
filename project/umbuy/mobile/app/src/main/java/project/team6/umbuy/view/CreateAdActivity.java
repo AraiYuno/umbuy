@@ -13,6 +13,8 @@ import com.auth0.android.authentication.AuthenticationException;
 import com.auth0.android.callback.BaseCallback;
 import com.auth0.android.result.UserProfile;
 
+import java.util.Date;
+
 import project.team6.umbuy.R;
 
 import project.team6.umbuy.controller.AdvertisementService;
@@ -99,10 +101,9 @@ public class CreateAdActivity extends AppCompatActivity {
         String title;
         String userId;
         String description;
-        String imageUrl;
+        String imageUrl = "";
         String category;
 
-        Advertisement ad = new Advertisement();
 
         // get userId profile
         userId = userProfile.getId();
@@ -110,7 +111,7 @@ public class CreateAdActivity extends AppCompatActivity {
         advertisementId = 0;
         title = create_ad_title.getText().toString().trim();
         description = create_ad_description.getText().toString().trim();
-        imageUrl = ad.getImageUrl(); // default for now
+       imageUrl = "http://marcroftmedical.com/wp-content/themes/marcroft/images/default-blog.jpg"; // default for now
         category = create_ad_category.getText().toString().trim();
 
         // input checking
@@ -120,6 +121,9 @@ public class CreateAdActivity extends AppCompatActivity {
             Toast.makeText(this, "Please input a valid price", Toast.LENGTH_SHORT).show();
         } else {
             price = Double.parseDouble(create_ad_price.getText().toString());
+
+            // fix
+            Advertisement ad = new Advertisement( advertisementId,userId,title,description,price, new Date(), new Date(), new Date(),imageUrl, category);
 
             // POST call to update server using RETROFIT API
             adService.submitAd(advertisementId, title, userId, description, price, imageUrl, category).enqueue(new Callback<Advertisement>() {
