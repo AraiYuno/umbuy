@@ -9,32 +9,19 @@
     tools:openDrawer="start">
 
 
-    <include
-        layout="@layout/app_bar_navigation_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
-    <include
-        android:id="@+id/include2"
-        layout="@layout/search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="project.team6.umbuy.view.ViewAdsActivity"
-        android:orientation="vertical">
-
-
-
-
-
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/listViewAds"
@@ -44,20 +31,27 @@
             android:layout_below="@+id/main_create_ad" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true">-->
 
+        <!--</RelativeLayout>-->
 
-
-
-
-        </LinearLayout>
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <include
+                layout="@layout/app_bar_navigation_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <include
+                android:id="@+id/include2"
+                layout="@layout/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/main_create_ad"
@@ -78,7 +72,7 @@
                 android:layout_marginEnd="11dp"
                 android:layout_marginTop="50dp"
                 android:text="@string/logout" />
-        </LinearLayout>
+        </RelativeLayout>
 
 
 
