@@ -34,6 +34,7 @@ public class ViewAdsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private Button createAd;
     private Button logoutButton;
+    private NavigationView logoutView;
     private AdsAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
     private List<Advertisement> list;
@@ -72,6 +73,9 @@ public class ViewAdsActivity extends AppCompatActivity {
 
         createAd = (Button) findViewById(R.id.main_create_ad);
         logoutButton = (Button) findViewById(R.id.main_logout);
+        logoutView = (NavigationView) findViewById(R.id.nav_logout);
+         int nav_logout = R.id.nav_logout;
+
 
         mRecyclerView = (RecyclerView) findViewById(R.id.listViewAds);
         mRecyclerView.setHasFixedSize(true);
@@ -110,6 +114,7 @@ public class ViewAdsActivity extends AppCompatActivity {
             }
         });
 
+
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,14 +129,33 @@ public class ViewAdsActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
-                        menuItem.setChecked(true);
+                        //menuItem.setChecked(true);
                         // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
+
 
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
+                        switch (menuItem.getItemId()) {
+                            case R.id.nav_logout :
+//                                logoutView.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        logout();
+//                                        mDrawerLayout.closeDrawers();
+//                                    }
+//                                });
+                                logout();
+                                mDrawerLayout.closeDrawers();
+                                return true;
 
-                        return true;
+
+                            default:
+                                int navItemIndex = 0;
+                                return false;
+
+                        }
+
+                        //return true;
                     }
                 });
 

@@ -15,18 +15,30 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import project.team6.umbuy.R;
+import project.team6.umbuy.controller.CredentialsManager;
 
 public class NavigationBar extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ListView mDrawerList;
     private ArrayAdapter<String> mAdapter;
+
+    private View logoutView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_bar);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+         logoutView = (View) findViewById(R.id.nav_logout);
+
+        logoutView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -96,4 +108,11 @@ public class NavigationBar extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void logout() {
+        CredentialsManager.deleteCredentials(this);
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
+
 }
