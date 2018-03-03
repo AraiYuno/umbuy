@@ -137,25 +137,20 @@ public class ViewAdsActivity extends AppCompatActivity {
                         // For example, swap UI fragments here
                         switch (menuItem.getItemId()) {
                             case R.id.nav_logout :
-//                                logoutView.setOnClickListener(new View.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View v) {
-//                                        logout();
-//                                        mDrawerLayout.closeDrawers();
-//                                    }
-//                                });
+                                menuItem.setChecked(true);
                                 logout();
+                                menuItem.setChecked(false);
                                 mDrawerLayout.closeDrawers();
                                 return true;
 
-
                             default:
+                                menuItem.setChecked(true);
                                 int navItemIndex = 0;
+                                //menuItem.setChecked(false);
                                 return false;
-
                         }
 
-                        //return true;
+
                     }
                 });
 
