@@ -3,12 +3,15 @@ package project.team6.umbuy.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -35,6 +38,7 @@ public class ViewAdsActivity extends AppCompatActivity {
     private LinearLayoutManager mLayoutManager;
     private List<Advertisement> list;
     private Context context;
+    private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +49,7 @@ public class ViewAdsActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         EditText searchText = findViewById(R.id.search_bar);
         Button searchButton = findViewById(R.id.search_button);
-        View nav_logout = findViewById(R.id.nav_logout);
-        View nav_home = findViewById(R.id.nav_home);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
         final SearchHelper searchHelp = new SearchHelper(searchButton,searchText);
 
         searchHelp.getSearchText().addTextChangedListener(new TextWatcher() {
@@ -113,6 +116,25 @@ public class ViewAdsActivity extends AppCompatActivity {
             logout();
             }
         });
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        // set item as selected to persist highlight
+                        menuItem.setChecked(true);
+                        // close drawer when item is tapped
+                        mDrawerLayout.closeDrawers();
+
+                        // Add code here to update the UI based on the item selected
+                        // For example, swap UI fragments here
+
+                        return true;
+                    }
+                });
+
 
 
     }

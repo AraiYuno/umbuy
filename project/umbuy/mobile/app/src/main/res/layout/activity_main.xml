@@ -14,10 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <include layout="@layout/search_bar"
+    <include
+        android:id="@+id/include2"
+        layout="@layout/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/include2" />
+        android:layout_height="wrap_content" />
 
 
     <FrameLayout
