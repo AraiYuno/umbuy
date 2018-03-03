@@ -1,5 +1,6 @@
 package project.team6.umbuy.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,12 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import project.team6.umbuy.R;
 
 public class NavigationBar extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +79,14 @@ public class NavigationBar extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // show ads
+            View goHome = findViewById(R.id.nav_home);
+            goHome.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(NavigationBar.this, ViewAdsActivity.class));
+
+                }
+            });
 
         } else if (id == R.id.nav_logout) {
 

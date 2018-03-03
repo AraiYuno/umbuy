@@ -18,14 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
-
 import project.team6.umbuy.controller.AdvertisementService;
+import project.team6.umbuy.controller.CredentialsManager;
 import project.team6.umbuy.controller.SearchHelper;
 import project.team6.umbuy.model.Advertisement;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import project.team6.umbuy.controller.CredentialsManager;
 
 public class ViewAdsActivity extends AppCompatActivity {
 
@@ -46,6 +45,8 @@ public class ViewAdsActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         EditText searchText = findViewById(R.id.search_bar);
         Button searchButton = findViewById(R.id.search_button);
+        View nav_logout = findViewById(R.id.nav_logout);
+        View nav_home = findViewById(R.id.nav_home);
         final SearchHelper searchHelp = new SearchHelper(searchButton,searchText);
 
         searchHelp.getSearchText().addTextChangedListener(new TextWatcher() {
@@ -137,5 +138,7 @@ public class ViewAdsActivity extends AppCompatActivity {
     public void testAdd(Advertisement ad){
         this.list.add(ad);
     }
+
+
 }
 
