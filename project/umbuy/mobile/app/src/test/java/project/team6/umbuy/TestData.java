@@ -20,11 +20,11 @@ public class TestData {
     public TestData() {
 
         // single ad
-        advertisement = new Advertisement();
-
+        this.advertisement = new Advertisement(1, "bbc", "iphone", "A great iphone for a great price", 75.99,
+                new Date(), new Date(), new Date(), "www.alink.com", "Electronics");
         // arrayList ads
         ads.add(this.advertisement);
-        ads.add(new Advertisement(1, "abc", "Galaxy", "A great samsung for a great price", 65.99,
+        ads.add(new Advertisement(2, "abc", "Galaxy", "A great samsung for a great price", 65.99,
                 new Date(), new Date(), new Date(), "www.alink.com", "Electronics"));
 
     }

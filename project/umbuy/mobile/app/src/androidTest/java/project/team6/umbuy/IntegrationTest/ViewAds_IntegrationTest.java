@@ -41,7 +41,6 @@ import static org.junit.Assert.*;
 public class ViewAds_IntegrationTest {
     private RecyclerView mRecyclerView;
     private List<Advertisement> ads;
-    //private TestData testData;
     private ViewAdsActivity activity2;
     private int numAds;
 
@@ -61,11 +60,6 @@ public class ViewAds_IntegrationTest {
         }
     };
 
-    @Before
-    public void setUp() throws Exception {
-        //this.testData = new TestData();
-        //this.ads = this.testData.getAdsList();
-    }
 
     // Test the initial setup for ViewAds
     @Test

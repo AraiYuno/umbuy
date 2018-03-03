@@ -18,12 +18,9 @@ import project.team6.umbuy.view.ViewAdInfoActivity;
 import static org.junit.Assert.*;
 
 /**
- * Created by Owner on 2/28/2018.
+ * Created by Kyle on 2/28/2018.
  */
 public class ViewAdInfo_IntegrationTest {
-    //private TestData testData = new TestData();
-
-
     // Set up the exact same environment for the ViewAdInfoActivity intent when user clicks on
     // a single ad on ViewAds page.
     @Rule
