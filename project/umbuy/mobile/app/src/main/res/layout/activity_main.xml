@@ -9,6 +9,15 @@
     tools:openDrawer="start">
 
 
+    <include
+        layout="@layout/app_bar_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include layout="@layout/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/include2" />
 
 
     <FrameLayout
@@ -22,15 +31,9 @@
         android:orientation="vertical">
 
 
-        <include layout="@layout/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/include2" />
 
-        <include
-            layout="@layout/app_bar_navigation_bar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/listViewAds"
@@ -39,27 +42,47 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/main_create_ad" />
 
-        <Button
-            android:id="@+id/main_create_ad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/include2"
-            android:layout_marginStart="21dp"
-            android:text="@string/create_ad_button" />
 
-        <Button
-            android:id="@+id/main_logout"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/include2"
-            android:layout_marginEnd="11dp"
-            android:text="@string/logout" />
+            android:layout_alignParentBottom="true">
+
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/main_create_ad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/search_bar"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/create_ad_button" />
+
+            <Button
+                android:id="@+id/main_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/search_bar"
+                android:layout_marginEnd="11dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/logout" />
+        </LinearLayout>
 
 
 
     </FrameLayout>
+
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
