@@ -70,12 +70,9 @@ public class ViewAdsActivity extends AppCompatActivity {
             }
         });
 
-
         createAd = (Button) findViewById(R.id.main_create_ad);
         logoutButton = (Button) findViewById(R.id.main_logout);
         logoutView = (NavigationView) findViewById(R.id.nav_logout);
-         int nav_logout = R.id.nav_logout;
-
 
         mRecyclerView = (RecyclerView) findViewById(R.id.listViewAds);
         mRecyclerView.setHasFixedSize(true);
@@ -95,8 +92,6 @@ public class ViewAdsActivity extends AppCompatActivity {
                 list.clear();
                 list.addAll(response.body());
                 mRecyclerView.getAdapter().notifyDataSetChanged();
-
-
             }
 
             @Override
@@ -114,7 +109,6 @@ public class ViewAdsActivity extends AppCompatActivity {
             }
         });
 
-
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,36 +122,32 @@ public class ViewAdsActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // set item as selected to persist highlight
-                        //menuItem.setChecked(true);
-                        // close drawer when item is tapped
-
 
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
                         switch (menuItem.getItemId()) {
                             case R.id.nav_logout :
                                 menuItem.setChecked(true);
-                                logout();
-                                menuItem.setChecked(false);
                                 mDrawerLayout.closeDrawers();
-                                return true;
+                                menuItem.setChecked(false);
+                                logout();
+
+
+                            case R.id.nav_home :
+                                menuItem.setChecked(true);
+                                mDrawerLayout.closeDrawers();
 
                             default:
                                 menuItem.setChecked(true);
                                 int navItemIndex = 0;
-                                //menuItem.setChecked(false);
-                                return false;
+                                return true;
                         }
 
 
                     }
                 });
 
-
-
     }
-
 
     private void filterAds(String s) {
         ArrayList<Advertisement> filteredList = new ArrayList<>();
@@ -169,7 +159,6 @@ public class ViewAdsActivity extends AppCompatActivity {
         mAdapter.filterList(filteredList);
     }
 
-
     private void logout() {
         CredentialsManager.deleteCredentials(this);
         startActivity(new Intent(this, LoginActivity.class));
@@ -179,7 +168,6 @@ public class ViewAdsActivity extends AppCompatActivity {
     public void testAdd(Advertisement ad){
         this.list.add(ad);
     }
-
 
 }
 
