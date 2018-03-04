@@ -19,4 +19,10 @@
     <string name="create_ad_category">Category</string>
     <string name="create_ad_description">Description</string>
     <string name="create_ad_submit">Submit Advertisement</string>
+    <string name="title_activity_navigation_bar">NavigationBar</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
