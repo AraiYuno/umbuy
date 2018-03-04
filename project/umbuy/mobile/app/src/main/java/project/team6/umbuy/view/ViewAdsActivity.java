@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -58,6 +59,9 @@ public class ViewAdsActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
+
+
 
         final SearchHelper searchHelp = new SearchHelper(searchButton,searchText);
 
@@ -152,6 +156,9 @@ public class ViewAdsActivity extends AppCompatActivity {
                     }
                 });
 
+
+
+
     }
 
     private void filterAds(String s) {
@@ -172,6 +179,15 @@ public class ViewAdsActivity extends AppCompatActivity {
 
     public void testAdd(Advertisement ad){
         this.list.add(ad);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
