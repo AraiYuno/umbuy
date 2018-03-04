@@ -1,55 +1,33 @@
 var bodyParser = require('body-parser');
-var express = require('express');
 var mysql = require('mysql');
+var express = require('express'); 
 var app = express();
 var sql;
+var request = require("request");
 
-var db_config = {
-    host: 'ec2-18-217-86-148.us-east-2.compute.amazonaws.com',
-    user: 'kyle',
-    password: 'team6best',
-    database: 'sampledb',
-    port: 3306
-};
-
-function handleDisconnect() {
-  connection = mysql.createConnection(db_config); // Recreate the connection, since
-                                                  // the old one cannot be reused.
-
-  connection.connect(function(err) {              // The server is either down
-    if(err) {                                     // or restarting (takes a while sometimes).
-      console.log('error when connecting to db:', err);
-      setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
-    }                                     // to avoid a hot loop, and to allow our node script to
-  });                                     // process asynchronous requests in the meantime.
-                                          // If you're also serving http, display a 503 error.
-  connection.on('error', function(err) {
-    console.log('db error', err);
-    if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
-      handleDisconnect();                         // lost due to either server restart, or a
-    } else {                                      // connnection idle timeout (the wait_timeout
-      throw err;                                  // server variable configures this)
-    }
-  });
-}
-
-handleDisconnect();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use(function(erq, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requrested-With, Content-Type, Accept");
-  next();
+/* This file is used for localhost testing */
+var connection = mysql.createConnection({
+    host: '127.0.0.1',
+    user: '***',
+    password: "**",
+    database: 'project4350',
+    port: '3306'
 });
 
-app.use(express.static(__dirname + '/dist'));
-
-app.get('/', (req, res) => {
-  res.status(200).sendFile(__dirname + '/dist/index.html');
-  console.log(req);
+connection.connect(function(err){
+    if (err) throw err;
+    console.log("good!");
 });
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 app.get('/ads', (req, res) => {
     let sql = 'SELECT * FROM advertisements';
@@ -136,4 +114,4 @@ app.post('/editAd', (req, res) => {
     });
 });
 
-app.listen(9000, () => console.log('Listening on port 9000!'));
+app.listen(3000, () => console.log('Listening on port 3000!'));
