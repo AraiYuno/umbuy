@@ -34,5 +34,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
     compile 'com.auth0.android:lock:2.7.0'
+
     implementation 'com.android.support:cardview-v7:26.1.0'
 }
