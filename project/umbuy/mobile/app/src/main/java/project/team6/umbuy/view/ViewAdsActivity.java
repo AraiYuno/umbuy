@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -51,6 +53,12 @@ public class ViewAdsActivity extends AppCompatActivity {
         EditText searchText = findViewById(R.id.search_bar);
         Button searchButton = findViewById(R.id.search_button);
         mDrawerLayout = findViewById(R.id.drawer_layout);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
         final SearchHelper searchHelp = new SearchHelper(searchButton,searchText);
 
         searchHelp.getSearchText().addTextChangedListener(new TextWatcher() {
@@ -132,14 +140,12 @@ public class ViewAdsActivity extends AppCompatActivity {
                                 menuItem.setChecked(false);
                                 logout();
 
-
                             case R.id.nav_home :
                                 menuItem.setChecked(true);
                                 mDrawerLayout.closeDrawers();
 
                             default:
                                 menuItem.setChecked(true);
-                                int navItemIndex = 0;
                                 return true;
                         }
 

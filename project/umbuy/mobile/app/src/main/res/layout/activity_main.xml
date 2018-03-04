@@ -8,16 +8,9 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-
-
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -29,11 +22,6 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
-
-            <!--<include-->
-                <!--layout="@layout/app_bar_navigation_bar"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent" />-->
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/listViewAds"
@@ -50,7 +38,6 @@
                 android:layout_below="@id/toolbar"
 
                 />
-
 
             <Button
                 android:id="@+id/main_create_ad"
