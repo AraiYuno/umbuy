@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'UmBuy';
   profile: any;
 
-  constructor(public auth: AuthService) {
+  constructor(private auth: AuthService) {
     auth.handleAuthentication();
   }
 
