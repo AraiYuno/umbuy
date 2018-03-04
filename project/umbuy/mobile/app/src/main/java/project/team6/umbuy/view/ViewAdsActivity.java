@@ -143,7 +143,6 @@ public class ViewAdsActivity extends AppCompatActivity {
                                 return true;
                         }
 
-
                     }
                 });
 
