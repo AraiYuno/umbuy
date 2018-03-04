@@ -60,9 +60,6 @@ public class ViewAdsActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
-
-
-
         final SearchHelper searchHelp = new SearchHelper(searchButton,searchText);
 
         searchHelp.getSearchText().addTextChangedListener(new TextWatcher() {
@@ -155,10 +152,6 @@ public class ViewAdsActivity extends AppCompatActivity {
 
                     }
                 });
-
-
-
-
     }
 
     private void filterAds(String s) {
