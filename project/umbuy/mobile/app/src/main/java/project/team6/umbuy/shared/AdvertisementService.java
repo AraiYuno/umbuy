@@ -1,12 +1,12 @@
-package project.team6.umbuy.controller;
+package project.team6.umbuy.shared;
 
 import java.util.List;
 
-import project.team6.umbuy.api.ApiClient;
-import project.team6.umbuy.api.ApiInterface;
+import project.team6.umbuy.persistence.ApiClient;
+import project.team6.umbuy.persistence.ApiInterface;
 
 
-import project.team6.umbuy.model.Advertisement;
+import project.team6.umbuy.data_model.Advertisement;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 

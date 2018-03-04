@@ -1,4 +1,4 @@
-package project.team6.umbuy.view;
+package project.team6.umbuy.presentation;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
-import project.team6.umbuy.model.Advertisement;
+import project.team6.umbuy.data_model.Advertisement;
 
 
 

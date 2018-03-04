@@ -1,4 +1,4 @@
-package project.team6.umbuy.view;
+package project.team6.umbuy.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;

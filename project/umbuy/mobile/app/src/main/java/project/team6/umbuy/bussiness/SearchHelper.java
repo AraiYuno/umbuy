@@ -1,4 +1,4 @@
-package project.team6.umbuy.controller;
+package project.team6.umbuy.bussiness;
 
 import android.view.View;
 import android.widget.Button;
@@ -7,8 +7,8 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.List;
 
-import project.team6.umbuy.model.Advertisement;
-import project.team6.umbuy.view.AdsAdapter;
+import project.team6.umbuy.data_model.Advertisement;
+import project.team6.umbuy.presentation.AdsAdapter;
 
 /**
  * Created by Murun on 2/28/2018.

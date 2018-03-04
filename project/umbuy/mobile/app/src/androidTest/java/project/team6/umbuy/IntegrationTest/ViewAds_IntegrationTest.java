@@ -6,33 +6,26 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.*;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 //import project.team6.umbuy.IntegrationTest.TestData;
 import project.team6.umbuy.R;
-import project.team6.umbuy.controller.AdvertisementService;
-import project.team6.umbuy.model.Advertisement;
-import project.team6.umbuy.view.AdsAdapter;
-import project.team6.umbuy.view.ViewAdsActivity;
+import project.team6.umbuy.shared.AdvertisementService;
+import project.team6.umbuy.data_model.Advertisement;
+import project.team6.umbuy.presentation.AdsAdapter;
+import project.team6.umbuy.presentation.ViewAdsActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.support.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread;
-import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.*;
 
 /**

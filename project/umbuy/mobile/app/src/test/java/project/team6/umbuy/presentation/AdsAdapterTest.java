@@ -1,4 +1,4 @@
-package project.team6.umbuy.view;
+package project.team6.umbuy.presentation;
 
 import android.content.Context;
 
@@ -9,8 +9,7 @@ import org.mockito.Mock;
 import java.util.List;
 
 import project.team6.umbuy.TestData;
-import project.team6.umbuy.model.Advertisement;
-import project.team6.umbuy.view.AdsAdapter;
+import project.team6.umbuy.data_model.Advertisement;
 
 import static org.junit.Assert.*;
 

@@ -3,9 +3,9 @@ package project.team6.umbuy;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import project.team6.umbuy.view.ViewAdInfoActivityTest;
-import project.team6.umbuy.view.AdsAdapterTest;
-import project.team6.umbuy.model.AdvertisementTest;
+import project.team6.umbuy.presentation.ViewAdInfoActivityTest;
+import project.team6.umbuy.presentation.AdsAdapterTest;
+import project.team6.umbuy.data_model.AdvertisementTest;
 
 //=========================================================================
 // AllUnitTests class

@@ -3,7 +3,7 @@
 //   this class is for ViewAdInfo which is responsible for displaying
 //   one single advertisement upon click on ViewAdsActivity
 //====================================================================
-package project.team6.umbuy.view;
+package project.team6.umbuy.presentation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

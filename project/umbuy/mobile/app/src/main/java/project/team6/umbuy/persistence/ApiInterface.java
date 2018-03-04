@@ -1,9 +1,8 @@
-package project.team6.umbuy.api;
+package project.team6.umbuy.persistence;
 
 import java.util.List;
 
-import project.team6.umbuy.model.Advertisement;
-import project.team6.umbuy.model.User;
+import project.team6.umbuy.data_model.Advertisement;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -15,8 +14,7 @@ import retrofit2.http.Path;
 public interface ApiInterface {
     @GET("/ads")
     Call<List<Advertisement>> getAllAdvertisements();
-    @GET("/users/{user}")
-    Call<List<User>> getAllUsers(@Path("user") String id);
+
     @POST("/createAd")
     @FormUrlEncoded
     Call<Advertisement> submitAd(@Field("advertisementId") int advertisementId,

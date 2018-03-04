@@ -1,4 +1,4 @@
-package project.team6.umbuy.view;
+package project.team6.umbuy.presentation;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
+
 import project.team6.umbuy.R;
 
 import com.auth0.android.Auth0;
@@ -20,7 +20,7 @@ import com.auth0.android.lock.utils.LockException;
 import com.auth0.android.result.Credentials;
 import com.auth0.android.result.UserProfile;
 import com.auth0.android.lock.utils.CustomField;
-import project.team6.umbuy.controller.CredentialsManager;
+import project.team6.umbuy.bussiness.CredentialsManager;
 
 
 public class LoginActivity extends Activity {

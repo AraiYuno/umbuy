@@ -1,4 +1,4 @@
-package project.team6.umbuy.api;
+package project.team6.umbuy.persistence;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

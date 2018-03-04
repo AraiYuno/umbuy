@@ -1,4 +1,4 @@
-package project.team6.umbuy.model;
+package project.team6.umbuy.data_model;
 
 import org.junit.Test;
 

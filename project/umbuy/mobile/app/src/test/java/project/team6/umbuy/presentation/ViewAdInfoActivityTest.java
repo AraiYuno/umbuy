@@ -1,4 +1,4 @@
-package project.team6.umbuy.view;
+package project.team6.umbuy.presentation;
 
 //=========================================================================
 // Author: Kyle
@@ -11,8 +11,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 
 import project.team6.umbuy.TestData;
-import project.team6.umbuy.model.Advertisement;
-import project.team6.umbuy.view.ViewAdInfoActivity;
+import project.team6.umbuy.data_model.Advertisement;
 
 import static org.junit.Assert.*;
 

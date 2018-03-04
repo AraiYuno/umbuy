@@ -1,4 +1,4 @@
-package project.team6.umbuy.view;
+package project.team6.umbuy.presentation;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,10 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
-import project.team6.umbuy.controller.AdvertisementService;
-import project.team6.umbuy.controller.CredentialsManager;
-import project.team6.umbuy.controller.SearchHelper;
-import project.team6.umbuy.model.Advertisement;
+import project.team6.umbuy.shared.AdvertisementService;
+import project.team6.umbuy.bussiness.CredentialsManager;
+import project.team6.umbuy.bussiness.SearchHelper;
+import project.team6.umbuy.data_model.Advertisement;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

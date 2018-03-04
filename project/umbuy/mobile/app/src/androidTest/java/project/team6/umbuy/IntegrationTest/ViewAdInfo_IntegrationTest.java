@@ -1,7 +1,6 @@
 package project.team6.umbuy.IntegrationTest;
 
 import android.content.Intent;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,8 +11,8 @@ import org.junit.Test;
 import java.util.Date;
 
 import project.team6.umbuy.R;
-import project.team6.umbuy.model.Advertisement;
-import project.team6.umbuy.view.ViewAdInfoActivity;
+import project.team6.umbuy.data_model.Advertisement;
+import project.team6.umbuy.presentation.ViewAdInfoActivity;
 
 import static org.junit.Assert.*;
 
