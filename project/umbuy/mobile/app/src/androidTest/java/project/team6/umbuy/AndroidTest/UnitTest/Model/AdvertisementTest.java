@@ -1,8 +1,10 @@
-package project.team6.umbuy.model;
+package project.team6.umbuy.AndroidTest.UnitTest.Model;
 
 import org.junit.Test;
 
 import java.util.Date;
+
+import project.team6.umbuy.model.Advertisement;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

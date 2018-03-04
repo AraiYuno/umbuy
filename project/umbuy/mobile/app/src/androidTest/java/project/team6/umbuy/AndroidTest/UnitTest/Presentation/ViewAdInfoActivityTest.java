@@ -1,4 +1,4 @@
-package project.team6.umbuy.AndroidTest.UnitTest.UnitTest.Presentation;
+package project.team6.umbuy.AndroidTest.UnitTest.Presentation;
 
 import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Kyle on 2/28/2018.
  */
-public class ViewAdInfoTest {
+public class ViewAdInfoActivityTest {
     // Set up the exact same environment for the ViewAdInfoActivity intent when user clicks on
     // a single ad on ViewAds page.
     @Rule

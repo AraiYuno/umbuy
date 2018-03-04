@@ -1,4 +1,4 @@
-package project.team6.umbuy.view;
+package project.team6.umbuy.AndroidTest.UnitTest.Presentation;
 
 import android.content.Context;
 
@@ -8,7 +8,7 @@ import org.mockito.Mock;
 
 import java.util.List;
 
-import project.team6.umbuy.TestData;
+import project.team6.umbuy.AndroidTest.UnitTest.Presentation.TestData;
 import project.team6.umbuy.model.Advertisement;
 import project.team6.umbuy.view.AdsAdapter;
 

@@ -1,4 +1,4 @@
-package project.team6.umbuy.AndroidTest.UnitTest.UnitTest.Presentation;
+package project.team6.umbuy.AndroidTest.UnitTest.Presentation;
 
 /**
  * Created by yuanding on 2018-03-04.
