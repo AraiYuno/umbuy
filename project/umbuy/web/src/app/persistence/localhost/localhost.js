@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 var connection = mysql.createConnection({
     host: '127.0.0.1',
     user: '***',
-    password: "**",
+    password: "***",
     database: 'project4350',
     port: '3306'
 });
