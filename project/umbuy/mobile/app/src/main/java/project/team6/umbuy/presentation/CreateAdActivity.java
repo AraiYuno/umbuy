@@ -31,7 +31,7 @@ public class CreateAdActivity extends AppCompatActivity {
     private EditText create_ad_description;
     private EditText create_ad_category;
     private EditText create_ad_price;
-    private Button upload;
+    private Button btn_upload;
     private Button submit;
     private Auth0 auth0;
     private UserProfile userProfile;
@@ -47,13 +47,21 @@ public class CreateAdActivity extends AppCompatActivity {
         create_ad_description = (EditText) this.findViewById(R.id.create_ad_description_field);
         create_ad_category = (EditText) this.findViewById(R.id.create_ad_category_field);
         create_ad_price = (EditText) this.findViewById(R.id.create_ad_price_field);
-        upload = (Button) this.findViewById(R.id.create_ad_upload);
+        btn_upload = (Button) this.findViewById(R.id.create_ad_upload);
         submit = (Button) this.findViewById(R.id.create_ad_submit);
 
         submit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 getUserInfo();
+            }
+        });
+
+        btn_upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(CreateAdActivity.this, "This feature is coming soon...", Toast.LENGTH_LONG).show();
+
             }
         });
     }
@@ -111,7 +119,7 @@ public class CreateAdActivity extends AppCompatActivity {
         advertisementId = 0;
         title = create_ad_title.getText().toString().trim();
         description = create_ad_description.getText().toString().trim();
-       imageUrl = "http://marcroftmedical.com/wp-content/themes/marcroft/images/default-blog.jpg"; // default for now
+        imageUrl = "http://marcroftmedical.com/wp-content/themes/marcroft/images/default-blog.jpg"; // default for now
         category = create_ad_category.getText().toString().trim();
 
         // input checking
