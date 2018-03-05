@@ -111,7 +111,7 @@ public class CreateAdActivity extends AppCompatActivity {
         advertisementId = 0;
         title = create_ad_title.getText().toString().trim();
         description = create_ad_description.getText().toString().trim();
-       imageUrl = "http://marcroftmedical.com/wp-content/themes/marcroft/images/default-blog.jpg"; // default for now
+        imageUrl = "http://marcroftmedical.com/wp-content/themes/marcroft/images/default-blog.jpg"; // default for now
         category = create_ad_category.getText().toString().trim();
 
         // input checking
