@@ -26,7 +26,7 @@ import java.util.List;
 import project.team6.umbuy.R;
 import project.team6.umbuy.shared.AdvertisementService;
 import project.team6.umbuy.bussiness.CredentialsManager;
-import project.team6.umbuy.bussiness.SearchHelper;
+import project.team6.umbuy.bussiness.FilterAds;
 import project.team6.umbuy.data_model.Advertisement;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,16 +43,19 @@ public class ViewAdsActivity extends AppCompatActivity {
     private List<Advertisement> list;
     private Context context;
     private DrawerLayout mDrawerLayout;
+    private EditText searchText;
+    private Button searchButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_view_ads);
         list = new ArrayList<Advertisement>();
         context = this;
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        EditText searchText = findViewById(R.id.search_bar);
-        Button searchButton = findViewById(R.id.search_button);
+        searchText = findViewById(R.id.search_bar);
+        searchButton = findViewById(R.id.search_button);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -60,24 +63,7 @@ public class ViewAdsActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
-        final SearchHelper searchHelp = new SearchHelper(searchButton,searchText);
-
-        searchHelp.getSearchText().addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                }
-
-                @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                searchHelp.filterAds(editable.toString(),list,mAdapter);
-            }
-        });
+        initializeSearchBar();
 
         createAd = (Button) findViewById(R.id.main_create_ad);
         logoutButton = (Button) findViewById(R.id.main_logout);
@@ -154,14 +140,28 @@ public class ViewAdsActivity extends AppCompatActivity {
                 });
     }
 
-    private void filterAds(String s) {
-        ArrayList<Advertisement> filteredList = new ArrayList<>();
-        for (Advertisement advertisement: list){
-            if(advertisement.getTitle().toLowerCase().contains(s.toLowerCase())){
-                filteredList.add(advertisement);
+    private void initializeSearchBar(){
+        searchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
-        }
-        mAdapter.filterList(filteredList);
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(final Editable editable) {
+              //  searchButton.setOnClickListener(new View.OnClickListener(){
+               //     @Override
+                //    public void onClick(View view){
+                        mAdapter.updateList(FilterAds.filterAdsByTitle(editable.toString(),list));
+                    //}
+              //  });
+            }
+        });
     }
 
     private void logout() {
