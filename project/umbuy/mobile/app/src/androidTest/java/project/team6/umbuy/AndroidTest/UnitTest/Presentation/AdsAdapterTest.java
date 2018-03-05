@@ -8,9 +8,8 @@ import org.mockito.Mock;
 
 import java.util.List;
 
-import project.team6.umbuy.AndroidTest.UnitTest.Presentation.TestData;
-import project.team6.umbuy.model.Advertisement;
-import project.team6.umbuy.view.AdsAdapter;
+import project.team6.umbuy.data_model.Advertisement;
+import project.team6.umbuy.presentation.AdsAdapter;
 
 import static org.junit.Assert.*;
 

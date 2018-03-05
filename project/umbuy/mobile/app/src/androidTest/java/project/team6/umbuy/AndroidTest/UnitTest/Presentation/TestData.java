@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import project.team6.umbuy.model.Advertisement;
+import project.team6.umbuy.data_model.Advertisement;
 
 /**
  *

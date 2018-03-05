@@ -16,7 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import project.team6.umbuy.R;
 
-import project.team6.umbuy.view.ViewAdsActivity;
+import project.team6.umbuy.presentation.ViewAdsActivity;
 
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.notNullValue;

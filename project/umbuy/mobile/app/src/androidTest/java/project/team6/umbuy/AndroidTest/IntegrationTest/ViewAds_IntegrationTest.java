@@ -18,10 +18,10 @@ import java.util.List;
 
 //import project.team6.umbuy.IntegrationTest.TestData;
 import project.team6.umbuy.R;
-import project.team6.umbuy.controller.AdvertisementService;
-import project.team6.umbuy.model.Advertisement;
-import project.team6.umbuy.view.AdsAdapter;
-import project.team6.umbuy.view.ViewAdsActivity;
+import project.team6.umbuy.shared.AdvertisementService;
+import project.team6.umbuy.data_model.Advertisement;
+import project.team6.umbuy.presentation.AdsAdapter;
+import project.team6.umbuy.presentation.ViewAdsActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

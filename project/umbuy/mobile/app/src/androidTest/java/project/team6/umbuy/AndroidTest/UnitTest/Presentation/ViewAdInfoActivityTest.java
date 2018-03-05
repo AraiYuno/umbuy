@@ -11,8 +11,8 @@ import org.junit.Test;
 import java.util.Date;
 
 import project.team6.umbuy.R;
-import project.team6.umbuy.model.Advertisement;
-import project.team6.umbuy.view.ViewAdInfoActivity;
+import project.team6.umbuy.data_model.Advertisement;
+import project.team6.umbuy.presentation.ViewAdInfoActivity;
 
 import static org.junit.Assert.*;
 

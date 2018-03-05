@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 //import project.team6.umbuy.AndroidTest.IntegrationTest.ViewAds_IntegrationTest;
 import project.team6.umbuy.AndroidTest.UnitTest.Presentation.ViewAdInfoActivityTest;
 import project.team6.umbuy.AndroidTest.UnitTest.Presentation.ViewAdsActivityTest;
-import project.team6.umbuy.AndroidTest.UnitTest.Model.AdvertisementTest;
+import project.team6.umbuy.AndroidTest.UnitTest.data_model.AdvertisementTest;
 import project.team6.umbuy.AndroidTest.UnitTest.Presentation.AdsAdapterTest;
 
 /**
