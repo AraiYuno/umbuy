@@ -22,9 +22,9 @@ import project.team6.umbuy.AndroidTest.UnitTest.data_model.AdvertisementTest;
         ViewAdsActivityTest.class,
         AdsAdapterTest.class,
         AdvertisementTest.class,
-        CreateAdActivityTest.class
+        CreateAdActivityTest.class,
         AdvertisementTest.class,
-        FilterAdsTest.class,
+        FilterAdsTest.class
 
 })
 

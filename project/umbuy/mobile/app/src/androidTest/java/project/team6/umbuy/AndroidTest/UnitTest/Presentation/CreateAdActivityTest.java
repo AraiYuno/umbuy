@@ -27,7 +27,7 @@ public class CreateAdActivityTest {
     // test for ensuring that all input fields are created
     @Test
     public void testInputFields() throws Exception {
-        System.out.println("\n Test: CreateAdTest started");
+        System.out.println("\n Test: CreateAdTest: testInputFields started");
 
         CreateAdActivity activity = rule.getActivity();
         View ad_title = activity.findViewById(R.id.create_ad_title_field);
@@ -53,5 +53,7 @@ public class CreateAdActivityTest {
         View ad_submit = activity.findViewById(R.id.create_ad_submit);
         assertThat(ad_submit, notNullValue());
         assertThat(ad_submit, instanceOf(Button.class));
+
+        System.out.println("\n Test: CreateAdTest: testInputFields finished");
     }
 }
