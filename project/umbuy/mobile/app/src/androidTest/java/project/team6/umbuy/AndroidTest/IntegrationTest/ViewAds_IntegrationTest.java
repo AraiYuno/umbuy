@@ -16,7 +16,6 @@ import org.mockito.*;
 import java.util.Date;
 import java.util.List;
 
-//import project.team6.umbuy.IntegrationTest.TestData;
 import project.team6.umbuy.R;
 import project.team6.umbuy.shared.AdvertisementService;
 import project.team6.umbuy.data_model.Advertisement;
@@ -81,6 +80,7 @@ public class ViewAds_IntegrationTest {
         System.out.println("\nIntegration Test: testUpdatedDataInRecyclerView() started");
         // Set up the ViewAdActivity
         activity2 = rule.getActivity();
+
         this.testRecyclerView = activity2.findViewById(R.id.listViewAds);
         //count the number of ads currently.
         this.numAds = this.testRecyclerView.getAdapter().getItemCount();

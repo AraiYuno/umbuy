@@ -154,12 +154,12 @@ public class ViewAdsActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(final Editable editable) {
-              //  searchButton.setOnClickListener(new View.OnClickListener(){
-               //     @Override
-                //    public void onClick(View view){
+                searchButton.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
                         mAdapter.updateList(FilterAds.filterAdsByTitle(editable.toString(),list));
-                    //}
-              //  });
+                    }
+                });
             }
         });
     }

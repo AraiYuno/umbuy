@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from '../business/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -20,8 +20,8 @@ import { FilterResultService } from '../shared/filterResult.service';
 import { AllResultService } from '../shared/allResult.service'
 import { Routes, RouterModule } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
-import { UserProfileComponent } from './user-profile.component';
-import { VerifyEmailComponent } from './verify-email.component';
+import { UserProfileComponent } from '../business/user-profile.component';
+import { VerifyEmailComponent } from '../business/verify-email.component';
 
 @NgModule({
   declarations: [
