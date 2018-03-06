@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 /* This file is used for localhost testing */
 var connection = mysql.createConnection({
     host: '127.0.0.1',
-    user: '**',
-    password: "**",
+    user: 'coutures',
+    password: "cherry14",
     database: 'project4350',
     port: '3306'
 });
@@ -96,11 +96,8 @@ app.post('/api/createAd', (req, res) => {
     });
 });
 
-<<<<<<< HEAD:project/umbuy/web/src/app/persistence/localhost.js
+
 app.post('/api/editAd', (req, res) => {
-=======
-app.post('/editAd', (req, res) => {
->>>>>>> fc766a869b20bfae6a995cd0f6b1cacd6a561b19:project/umbuy/web/mysql/app.js
     // code 201 for creating object
     res.status(201).send(req.body);
 
@@ -118,8 +115,5 @@ app.post('/editAd', (req, res) => {
     });
 });
 
-<<<<<<< HEAD:project/umbuy/web/src/app/persistence/localhost.js
 app.listen(3000, () => console.log('Listening on port 3000!'));
-=======
-app.listen(3000, () => console.log('Listening on port 3000!'))
->>>>>>> fc766a869b20bfae6a995cd0f6b1cacd6a561b19:project/umbuy/web/mysql/app.js
+
