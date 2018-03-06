@@ -42,7 +42,7 @@ export class CreateAdComponent implements OnInit {
   createAdSuccess = false;
   postSuccess = false;
 
-  constructor(private _advertisementService : AdvertisementService, private _router: Router, private auth: AuthService) { }
+  constructor(private _advertisementService : AdvertisementService, private _router: Router, public auth: AuthService) { }
 
   ngOnInit() {
     this.auth.getProfile((err, profile) => {

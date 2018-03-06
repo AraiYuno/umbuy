@@ -23,7 +23,7 @@ export class ViewAdsComponent implements OnInit {
   test_shorted_description: string;
   message;
 
-  constructor(private _advertisementService: AdvertisementService, private _filterResultService: FilterResultService, private _allResultService: AllResultService, private auth: AuthService) { }
+  constructor(private _advertisementService: AdvertisementService, private _filterResultService: FilterResultService, private _allResultService: AllResultService, public auth: AuthService) { }
 
   ngOnInit() {
     var currentUrl = window.location.pathname;

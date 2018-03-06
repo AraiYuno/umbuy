@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
   filteredAds: Advertisement[]= [];
   message;
 
-  constructor( private _filterResultService : FilterResultService, private _allResultService : AllResultService, private auth: AuthService) { }
+  constructor( private _filterResultService : FilterResultService, private _allResultService : AllResultService, public auth: AuthService) { }
 
   filter(){
     if(this.allAds !== null){
