@@ -1,16 +1,16 @@
-import { UserProfileComponent } from '../business/user-profile.component';
+import { UserProfileComponent } from '../business/components/user-profile.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
-import { ViewAdsComponent } from '../business/view-ads.component';
-import { PageNotFoundComponent } from '../business/page-not-found.component';
-import { ViewAdInformationComponent } from '../business/view-ad-information.component';
-import { AppComponent } from '../business/app.component';
-import { HomeComponent } from '../business/home.component';
-import { CreateAdComponent } from '../business/create-ad.component';
-import { SearchComponent } from '../business/search.component';
+import { ViewAdsComponent } from '../business/components/view-ads.component';
+import { PageNotFoundComponent } from '../business/components/page-not-found.component';
+import { ViewAdInformationComponent } from '../business/components/view-ad-information.component';
+import { AppComponent } from '../business/components/app.component';
+import { HomeComponent } from '../business/components/home.component';
+import { CreateAdComponent } from '../business/components/create-ad.component';
+import { SearchComponent } from '../business/components/search.component';
 
-import { VerifyEmailComponent } from '../business/verify-email.component';
-import { EditComponent } from '../business/edit.component';
+import { VerifyEmailComponent } from '../business/components/verify-email.component';
+import { EditComponent } from '../business/components/edit.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},

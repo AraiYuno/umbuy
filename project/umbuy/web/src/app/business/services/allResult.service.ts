@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Advertisement } from '../data_model/advertisement';
+import { Advertisement } from '../../data_model/advertisement';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()

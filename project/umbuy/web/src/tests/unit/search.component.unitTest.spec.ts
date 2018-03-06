@@ -1,15 +1,15 @@
-import { SearchComponent } from '../../app/business/search.component';
-import { AdvertisementService } from '../../app/business/advertisement.service';
+import { SearchComponent } from '../../app/business/components/search.component';
+import { AdvertisementService } from '../../app/business/services/advertisement.service';
 import { Observable } from 'rxjs/Observable';
-import { AllResultService } from '../../app/shared/allResult.service';
-import { FilterResultService } from '../../app/shared/filterResult.service';
+import { AllResultService } from '../../app/business/services/allResult.service';
+import { FilterResultService } from '../../app/business/services/filterResult.service';
 import { HttpClient} from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Advertisement } from '../../app/data_model/advertisement';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
-import { AuthService } from '../../app/shared/auth.service';
+import { AuthService } from '../../app/business/services/auth.service';
 
 describe('SearchComponent Unit Tests', () => {
     let component: SearchComponent;

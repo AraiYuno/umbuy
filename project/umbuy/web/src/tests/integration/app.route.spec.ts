@@ -1,10 +1,10 @@
 //to test in the app-routing.module.ts, we have route for proper page
 import { routes } from '../../app/shared/app-routing.module'
-import { ViewAdsComponent } from '../../app/business/view-ads.component';
-import { ViewAdInformationComponent } from '../../app/business/view-ad-information.component';
-import { CreateAdComponent } from '../../app/business/create-ad.component';
-import { HomeComponent } from '../../app/business/home.component';
-import { PageNotFoundComponent } from '../../app/business/page-not-found.component';
+import { ViewAdsComponent } from '../../app/business/components/view-ads.component';
+import { ViewAdInformationComponent } from '../../app/business/components/view-ad-information.component';
+import { CreateAdComponent } from '../../app/business/components/create-ad.component';
+import { HomeComponent } from '../../app/business/components/home.component';
+import { PageNotFoundComponent } from '../../app/business/components/page-not-found.component';
 
 describe('routes testing',()=>{
    it('should contain routes for /ads',()=>{

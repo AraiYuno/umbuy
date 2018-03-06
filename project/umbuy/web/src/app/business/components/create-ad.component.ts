@@ -1,14 +1,14 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { AdvertisementService } from '../business/advertisement.service';
-import { Advertisement } from '../data_model/advertisement';
+import { AdvertisementService } from '../services/advertisement.service';
+import { Advertisement } from '../../data_model/advertisement';
 import { Router } from '@angular/router';
 import * as AWS from 'aws-sdk';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-create-ad',
-  templateUrl: '../presentation/html/create-ad.component.html',
-  styleUrls: ['../presentation/css/create-ad.component.scss']
+  templateUrl: '../../presentation/html/create-ad.component.html',
+  styleUrls: ['../../presentation/css/create-ad.component.scss']
 })
 export class CreateAdComponent implements OnInit {
 

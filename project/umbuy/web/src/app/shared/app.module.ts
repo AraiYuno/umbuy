@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from '../business/app.component';
+import { AppComponent } from '../business/components/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -13,15 +13,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { routingComponents } from './app-routing.module';
 import { routing } from './app-routing.module';
-import { AdvertisementService } from '../business/advertisement.service';
-import { UserService } from '../business/user.service';
+import { AdvertisementService } from '../business/services/advertisement.service';
+import { UserService } from '../business/services/user.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { FilterResultService } from '../shared/filterResult.service';
-import { AllResultService } from '../shared/allResult.service'
+import { FilterResultService } from '../business/services/filterResult.service';
+import { AllResultService } from '../business/services/allResult.service'
 import { Routes, RouterModule } from '@angular/router';
-import { AuthService } from '../shared/auth.service';
-import { UserProfileComponent } from '../business/user-profile.component';
-import { VerifyEmailComponent } from '../business/verify-email.component';
+import { AuthService } from '../business/services/auth.service';
+import { UserProfileComponent } from '../business/components/user-profile.component';
+import { VerifyEmailComponent } from '../business/components/verify-email.component';
 
 @NgModule({
   declarations: [

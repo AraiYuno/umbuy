@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthService } from '../../app/shared/auth.service';
-import { AdvertisementService } from '../../app/business/advertisement.service';
-import { UserService } from '../../app/business/user.service';
-import { EditComponent } from '../../app/business/edit.component';
+import { AuthService } from '../../app/business/services/auth.service';
+import { AdvertisementService } from '../../app/business/services/advertisement.service';
+import { UserService } from '../../app/business/services/user.service';
+import { EditComponent } from '../../app/business/components/edit.component';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
@@ -15,8 +15,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, OnInit } from '@angular/core';
-import { FilterResultService } from '../../app/shared/filterResult.service';
-import { AllResultService } from '../../app/shared/allResult.service';
+import { FilterResultService } from '../../app/business/services/filterResult.service';
+import { AllResultService } from '../../app/business/services/allResult.service';
 
 // fake router
 class RouterStub {

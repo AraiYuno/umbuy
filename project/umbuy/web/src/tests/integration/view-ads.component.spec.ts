@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
-import { AdvertisementService } from '../../app/business/advertisement.service';
+import { AdvertisementService } from '../../app/business/services/advertisement.service';
 import { Advertisement } from '../../app/data_model/advertisement';
-import { FilterResultService } from '../../app/shared/filterResult.service';
-import { AllResultService } from '../../app/shared/allResult.service';
+import { FilterResultService } from '../../app/business/services/filterResult.service';
+import { AllResultService } from '../../app/business/services/allResult.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ViewAdsComponent } from '../../app/business/view-ads.component';
+import { ViewAdsComponent } from '../../app/business/components/view-ads.component';
 import { HttpClient } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { SearchComponent } from '../../app/business/search.component';
+import { SearchComponent } from '../../app/business/components/search.component';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../app/shared/auth.service'
+import { AuthService } from '../../app/business/services/auth.service'
 
 describe('ViewAdsComponent Integration Tests', () => {
     let component: ViewAdsComponent;

@@ -2,7 +2,7 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { AuthService } from '../../app/shared/auth.service';
+import { AuthService } from '../../app/business/services/auth.service';
 
 describe('AuthService', () => {
   beforeEach(() => {

@@ -4,7 +4,7 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { HttpParams } from '@angular/common/http';
-import { User } from '../data_model/user';
+import { User } from '../../data_model/user';
 
 @Injectable()
 export class UserService{

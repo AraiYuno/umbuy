@@ -1,17 +1,17 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { AdvertisementService } from '../../app/business/advertisement.service';
+import { AdvertisementService } from '../../app/business/services/advertisement.service';
 import { Observable } from 'rxjs/Observable';
-import { UserService } from '../../app/business/user.service';
-import { ViewAdInformationComponent } from '../../app/business/view-ad-information.component';
+import { UserService } from '../../app/business/services/user.service';
+import { ViewAdInformationComponent } from '../../app/business/components/view-ad-information.component';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
-import { ViewAdsComponent } from '../../app/business/view-ads.component';
+import { ViewAdsComponent } from '../../app/business/components/view-ads.component';
 import { Advertisement } from '../../app/data_model/advertisement';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
-import { AuthService } from '../../app/shared/auth.service';
+import { AuthService } from '../../app/business/services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ViewAdInformationComponent Unit Tests', () => {

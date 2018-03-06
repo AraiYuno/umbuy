@@ -1,16 +1,16 @@
 import { Component, OnInit, ElementRef} from '@angular/core';
-import { AdvertisementService } from '../business/advertisement.service';
-import { Advertisement } from '../data_model/advertisement';
-import { FilterResultService } from '../shared/filterResult.service';
-import { AllResultService } from '../shared/allResult.service';
+import { AdvertisementService } from '../services/advertisement.service';
+import { Advertisement } from '../../data_model/advertisement';
+import { FilterResultService } from '../services/filterResult.service';
+import { AllResultService } from '../services/allResult.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-view-ads-component',
-  templateUrl: '../presentation/html/view-ads.component.html',
-  styleUrls: ['../presentation/css/view-ads.component.scss']
+  templateUrl: '../../presentation/html/view-ads.component.html',
+  styleUrls: ['../../presentation/css/view-ads.component.scss']
 })
 export class ViewAdsComponent implements OnInit {
 

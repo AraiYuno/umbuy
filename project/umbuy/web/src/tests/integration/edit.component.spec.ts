@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed} from '@angular/core/testing';
 import { Component, OnInit } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { EditComponent } from '../../app/business/edit.component';
-import { AdvertisementService } from '../../app/business/advertisement.service';
-import { UserService } from '../../app/business/user.service';
+import { EditComponent } from '../../app/business/components/edit.component';
+import { AdvertisementService } from '../../app/business/services/advertisement.service';
+import { UserService } from '../../app/business/services/user.service';
 import { Routes, RouterModule, Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { HttpHandler } from '@angular/common/http';
 import { Advertisement } from '../../app/data_model/advertisement';
 import { User } from '../../app/data_model/user';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '../../app/shared/auth.service';
+import { AuthService } from '../../app/business/services/auth.service';
 import { FormsModule } from '@angular/forms';
 
 // fake router

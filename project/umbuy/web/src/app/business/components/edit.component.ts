@@ -1,17 +1,17 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { UserService } from '../business/user.service';
-import { AdvertisementService } from '../business/advertisement.service';
-import { Advertisement } from '../data_model/advertisement';
-import { User } from '../data_model/user';
+import { UserService } from '../services/user.service';
+import { AdvertisementService } from '../services/advertisement.service';
+import { Advertisement } from '../../data_model/advertisement';
+import { User } from '../../data_model/user';
 import { NgIf } from '@angular/common';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../services/auth.service';
 import * as AWS from 'aws-sdk';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
-  templateUrl: '../presentation/html/edit.component.html',
-  styleUrls: ['../presentation/css/edit.component.scss']
+  templateUrl: '../../presentation/html/edit.component.html',
+  styleUrls: ['../../presentation/css/edit.component.scss']
 })
 export class EditComponent implements OnInit {
   advertisement: Advertisement;

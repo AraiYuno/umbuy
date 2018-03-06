@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VerifyEmailComponent } from '../../app/business/verify-email.component';
-import { AuthService } from '../../app/shared/auth.service';
+import { VerifyEmailComponent } from '../../app/business/components/verify-email.component';
+import { AuthService } from '../../app/business/services/auth.service';
 import { Router } from '@angular/router';
 
 describe('VerifyEmailComponent', () => {

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../shared/auth.service';
-//import { SearchComponent } from './search/search.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: '../presentation/html/app.component.html',
-  styleUrls: ['../presentation/css/app.component.scss']
+  templateUrl: '../../presentation/html/app.component.html',
+  styleUrls: ['../../presentation/css/app.component.scss']
 })
 export class AppComponent {
   title = 'UmBuy';

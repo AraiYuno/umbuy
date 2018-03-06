@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeComponent } from '../../app/business/home.component';
-import { SearchComponent } from '../../app/business/search.component';
+import { HomeComponent } from '../../app/business/components/home.component';
+import { SearchComponent } from '../../app/business/components/search.component';
 import { FormsModule } from '@angular/forms';
-import { ViewAdsComponent } from '../../app/business/view-ads.component';
+import { ViewAdsComponent } from '../../app/business/components/view-ads.component';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '../../app/shared/auth.service';
+import { AuthService } from '../../app/business/services/auth.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;

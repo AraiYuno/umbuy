@@ -3,7 +3,7 @@ import { HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
-import { Advertisement } from '../data_model/advertisement';
+import { Advertisement } from '../../data_model/advertisement';
 import { HttpParams } from '@angular/common/http';
 
 @Injectable()

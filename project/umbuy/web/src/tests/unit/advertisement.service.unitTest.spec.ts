@@ -5,7 +5,7 @@ import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { Advertisement } from '../../app/data_model/advertisement';
 import { HttpParams } from '@angular/common/http';
-import { AdvertisementService } from '../../app/business/advertisement.service';
+import { AdvertisementService } from '../../app/business/services/advertisement.service';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/delay';

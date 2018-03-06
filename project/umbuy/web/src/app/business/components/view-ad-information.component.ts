@@ -1,15 +1,15 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { UserService } from '../business/user.service';
-import { AdvertisementService } from '../business/advertisement.service';
-import { Advertisement } from '../data_model/advertisement';
-import { User } from '../data_model/user';
+import { UserService } from '../services/user.service';
+import { AdvertisementService } from '../services/advertisement.service';
+import { Advertisement } from '../../data_model/advertisement';
+import { User } from '../../data_model/user';
 import { NgIf } from '@angular/common';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-view-ad-information',
-  templateUrl: '../presentation/html/view-ad-information.component.html',
-  styleUrls: ['../presentation/css/view-ad-information.component.scss']
+  templateUrl: '../../presentation/html/view-ad-information.component.html',
+  styleUrls: ['../../presentation/css/view-ad-information.component.scss']
 })
 export class ViewAdInformationComponent implements OnInit {
 

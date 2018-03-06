@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser/src/browser/title';
-import { Advertisement } from '../data_model/advertisement';
-import { FilterResultService } from '../shared/filterResult.service';
+import { Advertisement } from '../../data_model/advertisement';
+import { FilterResultService } from '../services/filterResult.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { AllResultService } from '../shared/allResult.service';
-import { AuthService } from '../shared/auth.service';
+import { AllResultService } from '../services/allResult.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-search',
-  templateUrl: '../presentation/html/search.component.html',
-  styleUrls: ['../presentation/css/search.component.scss']
+  templateUrl: '../../presentation/html/search.component.html',
+  styleUrls: ['../../presentation/css/search.component.scss']
 })
 export class SearchComponent implements OnInit {
   query = '';

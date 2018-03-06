@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
-import { AdvertisementService } from '../../app/business/advertisement.service';
+import { AdvertisementService } from '../../app/business/services/advertisement.service';
 import { Advertisement } from '../../app/data_model/advertisement';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Routes, RouterModule, Router } from '@angular/router';
@@ -10,9 +10,9 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../app/shared/auth.service'
-import { UserProfileComponent } from '../../app/business/user-profile.component';
-import { UserService } from '../../app/business/user.service';
+import { AuthService } from '../../app/business/services/auth.service'
+import { UserProfileComponent } from '../../app/business/components/user-profile.component';
+import { UserService } from '../../app/business/services/user.service';
 
 // fake router
 class RouterStub {

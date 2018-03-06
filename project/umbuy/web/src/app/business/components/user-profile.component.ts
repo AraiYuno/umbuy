@@ -1,14 +1,12 @@
-import { AuthService } from './../shared/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
-import { UserService } from '../business/user.service';
-
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-user-profile',
-  templateUrl: '../presentation/html/user-profile.component.html',
-  styleUrls: ['../presentation/css/user-profile.component.scss']
+  templateUrl: '../../presentation/html/user-profile.component.html',
+  styleUrls: ['../../presentation/css/user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
 

@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, OnInit } from '@angular/core';
-import { AdvertisementService } from '../../app/business/advertisement.service';
-import { FilterResultService } from '../../app/shared/filterResult.service';
-import { AllResultService } from '../../app/shared/allResult.service';
-import { ViewAdsComponent } from '../../app/business/view-ads.component';
-import { SearchComponent } from '../../app/business/search.component';
+import { AdvertisementService } from '../../app/business/services/advertisement.service';
+import { FilterResultService } from '../../app/business/services/filterResult.service';
+import { AllResultService } from '../../app/business/services/allResult.service';
+import { ViewAdsComponent } from '../../app/business/components/view-ads.component';
+import { SearchComponent } from '../../app/business/components/search.component';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +14,7 @@ import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/throw';
 import { FormsModule } from '@angular/forms';
-import { AuthService} from '../../app/shared/auth.service';
+import { AuthService} from '../../app/business/services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 

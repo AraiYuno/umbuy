@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 
-import { CreateAdComponent } from '../../app/business/create-ad.component';
+import { CreateAdComponent } from '../../app/business/components/create-ad.component';
 import { Observable } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import 'rxjs/add/observable/from';
@@ -13,10 +13,10 @@ import { HttpHandler } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { AdvertisementService } from '../../app/business/advertisement.service';
+import { AdvertisementService } from '../../app/business/services/advertisement.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { debug } from 'util';
-import { AuthService } from '../../app/shared/auth.service';
+import { AuthService } from '../../app/business/services/auth.service';
 
 // fake router
 class RouterStub {
