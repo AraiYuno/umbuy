@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 /* This file is used for localhost testing */
 var connection = mysql.createConnection({
     host: '127.0.0.1',
-    user: 'coutures',
-    password: "cherry14",
+    user: 'yourusername',
+    password: "yourpassword",
     database: 'project4350',
     port: '3306'
 });
