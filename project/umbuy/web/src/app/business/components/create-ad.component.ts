@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, isDevMode } from '@angular/core';
 import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../../data_model/advertisement';
 import { Router } from '@angular/router';
