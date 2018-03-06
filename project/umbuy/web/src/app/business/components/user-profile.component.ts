@@ -19,7 +19,7 @@ export class UserProfileComponent implements OnInit {
   email: string;
   phoneNumber: string;
 
-  constructor(private auth: AuthService, private _userService: UserService, private router: Router) { }
+  constructor(public auth: AuthService, private _userService: UserService, private router: Router) { }
 
   ngOnInit() {   
     this.auth.getProfile((err, profile) => {

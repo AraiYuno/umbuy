@@ -42,7 +42,7 @@ export class CreateAdComponent implements OnInit {
   createAdSuccess = false;
   postSuccess = false;
 
-  constructor(private _advertisementService : AdvertisementService, private _router: Router, private auth: AuthService) { }
+  constructor(private _advertisementService : AdvertisementService, private _router: Router, public auth: AuthService) { }
 
   ngOnInit() {
     this.auth.getProfile((err, profile) => {
@@ -59,7 +59,7 @@ export class CreateAdComponent implements OnInit {
     this.newAd.price = this.price;
     this.newAd.last_updated = null;
     // TODO: Users should be able to upload multiple images.
-    if( this.hasImage == true )
+    if( this.hasImage == true && !isDevMode )
       this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
     else
       this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/default.jpg';

@@ -3,7 +3,15 @@
 =================================================
 
 
-## Updated on Feb 10, 2018.
+## Updated on Feb 28, 2018.
+  Web: Login, ViewAds, ViewAdInfo, Search, createAd and Edit are completed. All the tests are completed.
+  Mobile: Login, ViewAds, ViewAdInfo, CreateAd and Search are completed. Tests are partially comleted.
+
+
+
+
+
+## Feb 10, 2018
 
  MVP functionalities are all completed. 
  
