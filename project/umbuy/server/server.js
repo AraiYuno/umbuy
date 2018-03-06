@@ -1,17 +1,10 @@
-<<<<<<< HEAD
+
 const bodyParser = require('body-parser');
 const express = require('express');
 const mysql = require('mysql');
 const app = express();
 const api = require('./api');
-=======
-var bodyParser = require('body-parser');
-var express = require('express');
-var mysql = require('mysql');
-var request = require("request");
-var app = express();
-var sql;
->>>>>>> fc766a869b20bfae6a995cd0f6b1cacd6a561b19
+
 
 var db_config = {
     host: 'ec2-18-217-86-148.us-east-2.compute.amazonaws.com',
