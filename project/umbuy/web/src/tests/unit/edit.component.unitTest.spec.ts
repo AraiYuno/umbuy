@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthService } from '../../app/shared/auth.service';
-import { AdvertisementService } from '../../app/persistence/advertisement.service';
-import { UserService } from '../../app/persistence/user.service';
+import { AdvertisementService } from '../../app/business/advertisement.service';
+import { UserService } from '../../app/business/user.service';
 import { EditComponent } from '../../app/business/edit.component';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';

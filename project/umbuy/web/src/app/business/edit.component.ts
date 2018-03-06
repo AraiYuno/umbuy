@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { UserService } from '../persistence/user.service';
-import { AdvertisementService } from '../persistence/advertisement.service';
+import { UserService } from '../business/user.service';
+import { AdvertisementService } from '../business/advertisement.service';
 import { Advertisement } from '../data_model/advertisement';
 import { User } from '../data_model/user';
 import { NgIf } from '@angular/common';

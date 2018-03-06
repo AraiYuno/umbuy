@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef} from '@angular/core';
-import { AdvertisementService } from '../persistence/advertisement.service';
+import { AdvertisementService } from '../business/advertisement.service';
 import { Advertisement } from '../data_model/advertisement';
 import { FilterResultService } from '../shared/filterResult.service';
 import { AllResultService } from '../shared/allResult.service';

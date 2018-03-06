@@ -1,5 +1,5 @@
 import { SearchComponent } from '../../app/business/search.component';
-import { AdvertisementService } from '../../app/persistence/advertisement.service';
+import { AdvertisementService } from '../../app/business/advertisement.service';
 import { Observable } from 'rxjs/Observable';
 import { AllResultService } from '../../app/shared/allResult.service';
 import { FilterResultService } from '../../app/shared/filterResult.service';

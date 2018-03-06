@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { SearchComponent } from '../../app/business/search.component';
-import { AdvertisementService } from '../../app/persistence/advertisement.service';
+import { AdvertisementService } from '../../app/business/advertisement.service';
 import { FilterResultService } from '../../app/shared/filterResult.service';
 import { AuthService } from '../../app/shared/auth.service';
 import { Routes, RouterModule, Router} from '@angular/router';

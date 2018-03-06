@@ -13,8 +13,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { routingComponents } from './app-routing.module';
 import { routing } from './app-routing.module';
-import { AdvertisementService } from '../persistence/advertisement.service';
-import { UserService } from '../persistence/user.service';
+import { AdvertisementService } from '../business/advertisement.service';
+import { UserService } from '../business/user.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FilterResultService } from '../shared/filterResult.service';
 import { AllResultService } from '../shared/allResult.service'

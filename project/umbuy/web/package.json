@@ -26,6 +26,7 @@
     "angular-font-awesome": "^3.1.2",
     "auth0-js": "^9.2.3",
     "aws-sdk": "^2.192.0",
+    "body-parser": "^1.18.2",
     "bootstrap": "^3.3.7",
     "bootswatch": "^4.0.0",
     "core-js": "^2.4.1",

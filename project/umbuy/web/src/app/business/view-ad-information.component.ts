@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { UserService } from '../persistence/user.service';
-import { AdvertisementService } from '../persistence/advertisement.service';
+import { UserService } from '../business/user.service';
+import { AdvertisementService } from '../business/advertisement.service';
 import { Advertisement } from '../data_model/advertisement';
 import { User } from '../data_model/user';
 import { NgIf } from '@angular/common';
@@ -43,6 +43,7 @@ export class ViewAdInformationComponent implements OnInit {
                   err => this.error = err,
                   () => this.auth.getProfile((err, profile) => {
                           var userId = profile.sub;
+                          
                           //if current user made the ad, they can edit it
                           if(userId === this.advertisement.userId){
                             this.editable = true;

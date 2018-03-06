@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { AdvertisementService } from '../../app/persistence/advertisement.service';
+import { AdvertisementService } from '../../app/business/advertisement.service';
 import { Observable } from 'rxjs/Observable';
-import { UserService } from '../../app/persistence/user.service';
+import { UserService } from '../../app/business/user.service';
 import { ViewAdInformationComponent } from '../../app/business/view-ad-information.component';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';

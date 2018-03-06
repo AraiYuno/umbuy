@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { AdvertisementService } from '../persistence/advertisement.service';
+import { AdvertisementService } from '../business/advertisement.service';
 import { Advertisement } from '../data_model/advertisement';
 import { Router } from '@angular/router';
 import * as AWS from 'aws-sdk';

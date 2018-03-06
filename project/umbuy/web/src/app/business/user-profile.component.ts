@@ -2,7 +2,7 @@ import { AuthService } from './../shared/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { UserService } from '../persistence/user.service';
+import { UserService } from '../business/user.service';
 
 
 @Component({

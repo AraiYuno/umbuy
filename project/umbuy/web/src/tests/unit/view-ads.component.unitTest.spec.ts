@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, OnInit } from '@angular/core';
-import { AdvertisementService } from '../../app/persistence/advertisement.service';
+import { AdvertisementService } from '../../app/business/advertisement.service';
 import { FilterResultService } from '../../app/shared/filterResult.service';
 import { AllResultService } from '../../app/shared/allResult.service';
 import { ViewAdsComponent } from '../../app/business/view-ads.component';
