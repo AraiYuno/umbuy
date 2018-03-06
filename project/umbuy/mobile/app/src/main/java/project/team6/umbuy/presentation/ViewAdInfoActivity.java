@@ -17,7 +17,7 @@ import project.team6.umbuy.R;
 
 public class ViewAdInfoActivity extends AppCompatActivity {
     ImageView picture;
-    TextView txt_title, txt_price, txt_description;
+    TextView txt_title, txt_price, txt_category, txt_description;
     Button btn_delete_ad, btn_edit_ad;
 
     @Override
@@ -27,6 +27,7 @@ public class ViewAdInfoActivity extends AppCompatActivity {
         picture = findViewById(R.id.view_ad_info_picture);
         txt_title = findViewById(R.id.view_ad_info_title);
         txt_price = findViewById(R.id.view_ad_info_price);
+        txt_category = findViewById(R.id.view_ad_info_category);
         txt_description = findViewById(R.id.view_ad_info_description);
 
         btn_delete_ad = findViewById(R.id.view_ad_info_delete_btn);
@@ -50,7 +51,8 @@ public class ViewAdInfoActivity extends AppCompatActivity {
 
         new LoadImage(picture, getIntent().getStringExtra("imageUrl")).execute();
         txt_title.setText("Title: " + getIntent().getStringExtra("title"));
-        txt_price.setText("Price: £" + getIntent().getStringExtra("price"));
+        txt_category.setText("Category: " + getIntent().getStringExtra("category"));
+        txt_price.setText("Price: $" + getIntent().getStringExtra("price"));
         txt_description.setText("Description: " + getIntent().getStringExtra("description"));
     }
 

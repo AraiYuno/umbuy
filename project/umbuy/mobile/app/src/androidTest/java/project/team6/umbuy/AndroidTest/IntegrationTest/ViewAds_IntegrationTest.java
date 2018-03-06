@@ -9,10 +9,12 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +53,16 @@ public class ViewAds_IntegrationTest {
             return intent;
         }
     };
+
+    @Before
+    public void setup() throws Exception {
+        // Initialise with two advertisements
+        this.ads = new ArrayList<Advertisement>();
+        this.ads.add(new Advertisement(5555, "kylebest", "iphone", "A great iphone for a great price", 75.99,
+                new Date(), new Date(), new Date(), "www.alink.com", "Electronics"));
+        this.ads.add(new Advertisement(6666, "kylebest2", "Galaxy", "A great Samsung Galaxy for a great price", 65.99,
+                new Date(), new Date(), new Date(), "www.alink.com", "Electronics"));
+    }
 
 
     // Test the initial setup for ViewAds

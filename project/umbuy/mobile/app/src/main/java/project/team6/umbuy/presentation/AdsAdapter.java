@@ -99,6 +99,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
             intent.putExtra("title", advertisement.getTitle());
             String toParse = Double.toString(advertisement.getPrice());
             intent.putExtra("price", toParse);
+            intent.putExtra("category", advertisement.getCategory());
             intent.putExtra("description", advertisement.getDescription());
             this.context.startActivity(intent);
         }
