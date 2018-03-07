@@ -53,7 +53,7 @@ export class EditComponent implements OnInit {
   createAdSuccess = false;
   postSuccess = false;
 
-  constructor(private _advertisementService: AdvertisementService, private _userService: UserService, private auth: AuthService, private _router: Router ) {
+  constructor(private _advertisementService: AdvertisementService, private _userService: UserService, public auth: AuthService, private _router: Router ) {
     this.pathNameUrl = window.location.pathname;
    }
   

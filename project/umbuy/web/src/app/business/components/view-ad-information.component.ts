@@ -43,7 +43,7 @@ export class ViewAdInformationComponent implements OnInit {
                   err => this.error = err,
                   () => this.auth.getProfile((err, profile) => {
                           var userId = profile.sub;
-                          alert("user: " + JSON.stringify(this.user));
+                        
                           //if current user made the ad, they can edit it
                           if(userId === this.advertisement.userId){
                             this.editable = true;
