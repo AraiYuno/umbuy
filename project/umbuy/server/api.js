@@ -35,8 +35,6 @@ var database = require('./database.service');
     });
 
     router.post('/createAd', function(req, res) {
-        //res.status(201).send(req.body);
-        console.log(JSON.stringify(req.body));
         let body = req.body;
         database.createAd(body,(err, response, fields) =>{
             if(err) res.status(400).send(err);
@@ -45,8 +43,7 @@ var database = require('./database.service');
     });
 
     router.post('/editAd', function(req, res) {
-        //res.status(201).send(req.body);
-        let body = req.params.body;
+        let body = req.body;
         database.editAd(body,(err, response, fields) =>{
             if(err) res.status(400).send(err);
             else res.send(response);
