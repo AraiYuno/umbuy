@@ -58,7 +58,7 @@ var database = require('./database.service');
         let userId = req.params.userId;
         database.getUserById(userId,(err, response, fields) =>{
             if(err) res.status(400).send(err);
-            else res.send(response);
+            else res.send(fields);
         });
     });
     
