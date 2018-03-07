@@ -142,6 +142,10 @@ public class CreateAdActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(CreateAdActivity.this, "Advertisement successfully created!", Toast.LENGTH_LONG).show();
+                            create_ad_title.setText("");
+                            create_ad_category.setText("");
+                            create_ad_description.setText("");
+                            create_ad_price.setText("");
                         }
                     });
 
