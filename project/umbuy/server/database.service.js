@@ -39,7 +39,6 @@ var getAdsByTitle = (title, callback) => {
 
 var createAd = (body, callback) => {
     let advertisementId = 0;
-    console.log(JSON.stringify(body));
     let title = body.title;
     let userId = body.userId;
     let description = body.description;

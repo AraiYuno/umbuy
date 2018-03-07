@@ -1,14 +1,15 @@
-const bodyParser = require('body-parser');
-const express = require('express');
-const mysql = require('mysql');
-const app = express();
-const api = require('./api');
+var bodyParser = require('body-parser');
+var express = require('express');
+var mysql = require('mysql');
+var app = express();
+var api = require('./api');
+
 
 var db_config = {
     host: 'ec2-18-217-86-148.us-east-2.compute.amazonaws.com',
     user: 'kyle',
     password: 'team6best',
-    database: 'sampledb',
+    database: 'project4350',
     port: 3306
 };
 
@@ -53,5 +54,10 @@ app.get('*', (req, res) => {
   console.log(req);
 });
 
-app.listen(9000, () => console.log('Listening on port 9000!'));
+app.get('/callback', (req, res) => {
+  res.status(200).sendFile(__dirname + '/dist/index.html');
+  console.log(req);
+});
 
+
+app.listen(9000, () => console.log('Example app listening on port 9000!'));
