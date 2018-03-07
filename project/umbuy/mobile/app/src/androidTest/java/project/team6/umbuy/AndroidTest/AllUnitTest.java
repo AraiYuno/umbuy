@@ -13,12 +13,11 @@ import project.team6.umbuy.AndroidTest.UnitTest.data_model.AdvertisementTest;
 //import project.team6.umbuy.AndroidTest.IntegrationTest.ViewAds_IntegrationTest;
 
 /**
- * Created by ye on 2018-02-28.
+ * Created by Kyle on 2018-02-28.
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         ViewAdInfoActivityTest.class,
-        // ViewAds_IntegrationTest.class,
         ViewAdsActivityTest.class,
         AdsAdapterTest.class,
         AdvertisementTest.class,

@@ -59,7 +59,7 @@ public class ViewAdInfoActivityTest {
 
         // Test whether the data are correct or not.
         assertEquals("Title: iphone", txt_title.getText().toString());
-        assertEquals("Price: £100.0", txt_price.getText().toString());
+        assertEquals("Price: $100.0", txt_price.getText().toString());
         assertEquals("Description: very cheap", txt_description.getText().toString());
         assertNotNull(picture);
 
