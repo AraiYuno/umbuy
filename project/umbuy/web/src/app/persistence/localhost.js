@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 /* This file is used for localhost testing */
 var connection = mysql.createConnection({
     host: '127.0.0.1',
-    user: '***',
-    password: "***",
+    user: 'yourusername',
+    password: "yourpassword",
     database: 'project4350',
     port: '3306'
 });
@@ -96,6 +96,7 @@ app.post('/api/createAd', (req, res) => {
     });
 });
 
+
 app.post('/api/editAd', (req, res) => {
     // code 201 for creating object
     res.status(201).send(req.body);
@@ -115,3 +116,4 @@ app.post('/api/editAd', (req, res) => {
 });
 
 app.listen(3000, () => console.log('Listening on port 3000!'));
+

@@ -12,10 +12,10 @@ import retrofit2.http.Path;
 
 /*fill the () after @GET @POST @DELETE with corresponding path after host url*/
 public interface ApiInterface {
-    @GET("/ads")
+    @GET("/api/ads")
     Call<List<Advertisement>> getAllAdvertisements();
 
-    @POST("/createAd")
+    @POST("/api/createAd")
     @FormUrlEncoded
     Call<Advertisement> submitAd(@Field("advertisementId") int advertisementId,
                                  @Field("title") String title,

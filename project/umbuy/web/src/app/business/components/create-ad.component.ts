@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, isDevMode } from '@angular/core';
 import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../../data_model/advertisement';
 import { Router } from '@angular/router';
@@ -59,9 +59,9 @@ export class CreateAdComponent implements OnInit {
     this.newAd.price = this.price;
     this.newAd.last_updated = null;
     // TODO: Users should be able to upload multiple images.
-    if( this.hasImage == true )
+    if( this.hasImage == true && !isDevMode() )
       this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
-    else
+    else if( !this.hasImage || isDevMode())
       this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/default.jpg';
     this.newAd.category = this.category;
     

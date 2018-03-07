@@ -1,5 +1,6 @@
 package project.team6.umbuy.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -144,6 +145,8 @@ public class CreateAdActivity extends AppCompatActivity {
                         }
                     });
 
+                    startActivity(new Intent(getApplicationContext(), ViewAdsActivity.class));
+                    finish();
                 }
 
                 @Override
