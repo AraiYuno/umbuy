@@ -30,7 +30,6 @@ public class AdvertisementTest {
         assertEquals("price was assigned incorrectly", 1099.99, ad.getPrice(), 0);
         assertEquals("Date created_on was assigned incorrectly", date.toString(), ad.getCreated_on());
         assertEquals("Date last_updated was assigned incorrectly", date, ad.getLast_updated());
-        assertEquals("Date deleted_on was assigned incorrectly", date, ad.getDeleted_on());
         assertEquals("imageUrl was assigned incorrectly", "www.google.com", ad.getImageUrl());
         assertEquals("categoty was assigned incorrectly", "laptop", ad.getCategory());
 

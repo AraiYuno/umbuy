@@ -5,6 +5,7 @@ import { Advertisement } from '../../data_model/advertisement';
 import { User } from '../../data_model/user';
 import { NgIf } from '@angular/common';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-ad-information',
@@ -19,14 +20,14 @@ export class ViewAdInformationComponent implements OnInit {
   currentAdvertisementId: number;
   created_on: string;
   last_updated: string;
-  deleted_on: string;
   isDeleted: boolean;
   message: string;
   userProfile: any;
   editable: boolean = false;
+  deletable: boolean = false;
   error: any;
 
-  constructor(private _advertisementService: AdvertisementService, private _userService: UserService, public auth: AuthService ) {
+  constructor(private _advertisementService: AdvertisementService, private _userService: UserService, public auth: AuthService, private _router: Router ) {
     this.pathNameUrl = window.location.pathname;
    }
 
@@ -47,6 +48,7 @@ export class ViewAdInformationComponent implements OnInit {
                           //if current user made the ad, they can edit it
                           if(userId === this.advertisement.userId){
                             this.editable = true;
+                            this.deletable = true;
                           }   
                         })
                 )}
@@ -75,15 +77,6 @@ export class ViewAdInformationComponent implements OnInit {
   convertDatesToText(advertisement){
     this.created_on = this.convertToTextDate(advertisement.created_on);
     this.last_updated = this.convertToTextDate(advertisement.last_updated);
-
-    if(advertisement.deleted_on != null){
-      this.deleted_on = this.convertToTextDate(advertisement.deleted_on);
-      this.isDeleted = true;
-    }
-    else{
-      this.isDeleted = false;
-    }
-
   }
 
   /* Takes in a string date (string_date) in formate YYYY-MM-DD and convert to MM DD, YYYY such as May 1, 2018 */
@@ -104,6 +97,10 @@ export class ViewAdInformationComponent implements OnInit {
     stringDate = month + " " + day + ", " + year;
     
     return stringDate;
+  }
+
+  backToViewAdsPage(){
+    this._router.navigate(["/view/ads/" + this.currentAdvertisementId]);
   }
 
 }

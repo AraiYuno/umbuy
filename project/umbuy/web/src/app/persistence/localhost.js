@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 /* This file is used for localhost testing */
 var connection = mysql.createConnection({
     host: '127.0.0.1',
-    user: 'yourusername',
-    password: "yourpassword",
+    user: 'coutures',
+    password: "cherry14",
     database: 'project4350',
     port: '3306'
 });
@@ -26,6 +26,7 @@ connection.connect(function(err){
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE');
     next();
   });
 
@@ -40,7 +41,18 @@ app.get('/api/ads', (req, res) => {
 });
 
 app.get('/api/ads/:id(\\d+)', (req, res) => {
+    console.log("hola");
     let sql = 'SELECT * FROM advertisements WHERE advertisementId = ' + req.params.id;
+    let query = connection.query(sql, (err, result)=> {
+        if( err ) throw err;
+        console.log(result);
+        res.send(result);
+    });
+});
+
+app.delete('/api/ads/:id(\\d+)', (req, res) => {
+    console.log("here");
+    let sql = 'DELETE FROM advertisements WHERE advertisementId = ' + req.params.id;
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
         console.log(result);

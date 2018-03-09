@@ -52,7 +52,6 @@ describe('ViewAdsComponent Unit Tests', () => {
       "price": 75,
       "created_on": '2018-01-01',
       "last_updated": '2018-01-01',
-      "deleted_on": null,
       "imageUrl": 'http://alink.com',
       "category": 'electronics'
     }, {
@@ -63,7 +62,6 @@ describe('ViewAdsComponent Unit Tests', () => {
       "price": 75,
       "created_on": '2018-01-01',
       "last_updated": '2018-01-01',
-      "deleted_on": null,
       "imageUrl": 'http://alink.com',
       "category": 'electronics'
     }];

@@ -3,8 +3,8 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      
     </head>
+
     <body *ngIf="auth.isAuthenticated()">
       <div class="jumbotron">
         <div class="container">
@@ -23,10 +23,10 @@
                     <h3 id="last_updated">Last Updated:&emsp;{{last_updated}}</h3>
                     <br><br><br>
                     <button id="editButton" *ngIf="editable" class="btn btn-info" [routerLink]="['/edit', currentAdvertisementId]">Edit advertisement</button>
+                    <button id="deleteButton" *ngIf="deletable" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete advertisement</button>
                 </div>
-              
-                <h3 id="deleted_on" *ngIf="isDeleted">Deleted on:&emsp;{{deleted_on}}</h3>
             </div>
+
             <h3 id="price"><i class="fa fa-tags" aria-hidden="true"></i>{{advertisement?.price}}$</h3>
             <h3 id="category">Category:&emsp;{{advertisement?.category}}</h3>
             <br>
@@ -35,6 +35,27 @@
             <br>
           </div>
         </div>
+      </div>
+
+      <!-- Modal -->
+      <div id="deleteModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Delete Advertisement</h4>
+                  </div>
+                  <div class="modal-body">
+                      <p>Are you sure you want to delete this advertisement?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" [routerLink]="['/delete', currentAdvertisementId]">Delete</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </div>
+              </div>
+          </div>
       </div>
     </body>
 

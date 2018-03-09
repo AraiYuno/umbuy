@@ -46,7 +46,6 @@ describe('ViewAdInformationComponent Integration Tests', () => {
       "price": 75,
       "created_on": '2018-01-01',
       "last_updated": '2018-01-01',
-      "deleted_on": null,
       "imageUrl": 'http://alink.com',
       "category": 'electronics'
     };
@@ -69,8 +68,6 @@ describe('ViewAdInformationComponent Integration Tests', () => {
     component.created_on = component.convertToTextDate(component.advertisement.created_on);
     component.last_updated = component.convertToTextDate(component.advertisement.last_updated);
 
-    //component.advertisement.deleted_on is null
-    component.deleted_on = component.convertToTextDate(component.advertisement.deleted_on);
     fixture.detectChanges();
 
     //ad's title
@@ -102,22 +99,6 @@ describe('ViewAdInformationComponent Integration Tests', () => {
     debugElement = fixture.debugElement.query(By.css('#last_updated'));
     let lastUpdatedOnElement: HTMLElement = debugElement.nativeElement;
     expect(lastUpdatedOnElement.innerText).toContain("January 1, 2018");
-
-    //component.advertisement.deleted_on is null
-    debugElement = fixture.debugElement.query(By.css('#deleted_on'));
-    //element with id deleted_on should be hidden
-    expect(debugElement).toBeNull();
-
-    //display the deleted date if date is not null
-    component.deleted_on = component.convertToTextDate('2018-01-01');
-    component.isDeleted = true;
-
-    fixture.detectChanges();
-
-    debugElement = fixture.debugElement.query(By.css('#deleted_on'));
-    let deletedOnElement: HTMLElement = debugElement.nativeElement;
-    //element with id deleted_on should be visible
-    expect(deletedOnElement.innerHTML).toContain("January 1, 2018");
 
     //ad's price
     debugElement = fixture.debugElement.query(By.css('#price'));

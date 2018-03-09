@@ -46,7 +46,6 @@ describe('ViewAdInformationComponent Unit Tests', () => {
       "price": 75,
       "created_on": '2018-01-01',
       "last_updated": '2018-01-01',
-      "deleted_on": null,
       "imageUrl": 'http://alink.com',
       "category": 'electronics'
     };
@@ -76,7 +75,6 @@ describe('ViewAdInformationComponent Unit Tests', () => {
     //ASSERT: see if the created_on from the component matches with the expected output
     expect(component.created_on).toMatch("January 1, 2018");
     expect(component.last_updated).toMatch('January 1, 2018');
-    expect(component.deleted_on).toMatch('');
     expect(component.isDeleted).toBeFalsy();
   }); // afterEach
   afterEach(()=>{});

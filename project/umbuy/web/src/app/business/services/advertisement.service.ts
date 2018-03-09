@@ -29,6 +29,11 @@ export class AdvertisementService{
         return this.http.post<Advertisement>(this.url, advertisement);
     }
 
+    deleteAdvertisementById(advertisementId){
+        this.url = this.host + "/ads/" + advertisementId;
+        return this.http.delete<Advertisement>(this.url);
+    }
+
     editAdvertisement(advertisement){
         this.url = this.host + "/editAd";
         return this.http.post<Advertisement>(this.url, advertisement);

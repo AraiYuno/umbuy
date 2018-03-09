@@ -33,7 +33,6 @@ export class EditComponent implements OnInit {
   currentAdvertisementId: number;
   created_on: string;
   last_updated: string;
-  deleted_on: string;
   
   // Adding picture to S3
   image;    // this is to store the current image file.
@@ -103,15 +102,6 @@ export class EditComponent implements OnInit {
   convertDatesToText(advertisement){
     this.created_on = this.convertToTextDate(advertisement.created_on);
     this.last_updated = this.convertToTextDate(advertisement.last_updated);
-
-    if(advertisement.deleted_on != null){
-      this.deleted_on = this.convertToTextDate(advertisement.deleted_on);
-      this.isDeleted = true;
-    }
-    else{
-      this.isDeleted = false;
-    }
-
   }
 
   /* Takes in a string date (string_date) in format YYYY-MM-DD and convert to MM DD, YYYY such as May 1, 2018 */
@@ -145,8 +135,8 @@ export class EditComponent implements OnInit {
     }
   }
 
-  backToMyAdsPage(){
-    this._router.navigate(["/view/ads/user/" + this.userId ]);
+  backToViewAdsPage(){
+    this._router.navigate(["/view/ads/" + this.currentAdvertisementId]);
   }
 
   editAdvertisement(){
@@ -164,7 +154,7 @@ export class EditComponent implements OnInit {
     this._advertisementService.editAdvertisement(this.newAd).subscribe(
       res => this.res = res,
       err => this.error = err,
-      ()=> this.backToMyAdsPage()
+      ()=> this.backToViewAdsPage()
     )
 
   }
