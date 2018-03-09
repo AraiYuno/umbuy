@@ -1,77 +1,87 @@
-import { async, getTestBed, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { BaseRequestOptions, Http, Response, ResponseOptions, XHRBackend, JsonpModule } from '@angular/http';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { Injectable, isDevMode } from '@angular/core';
-import { HttpClient, HttpHandler } from '@angular/common/http';
-import { Advertisement } from '../../app/data_model/advertisement';
-import { HttpParams } from '@angular/common/http';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AdvertisementService } from '../../app/business/services/advertisement.service';
+import { DeleteComponent } from '../../app/business/components/delete.component';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/observable/empty';
+import 'rxjs/add/observable/throw';
+import { Advertisement } from '../../app/data_model/advertisement';
+import { HttpClient } from '@angular/common/http';
+import { HttpHandler } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Component, OnInit } from '@angular/core';
 
-import 'rxjs/add/operator/delay';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/do';
+// fake router
+class RouterStub {
+  navigate(params){
+  }
+}
 
+describe('DeleteComponent Unit Tests', () => {
+  let component: DeleteComponent;
+  let fixture: ComponentFixture<DeleteComponent>;
+  let router: Router;
+  let advertisementService: AdvertisementService;
 
-describe('Service: AdvertisementService', () => {
-    let backend: MockBackend;
-    let service: AdvertisementService;
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterModule, FormsModule, RouterTestingModule],
+      declarations: [ DeleteComponent ],
+      providers: [AdvertisementService, HttpClient, HttpHandler,
+        {provide: Router, useClass: RouterStub} ]
+    })
+    .compileComponents();
+  }));
 
-    let tempAds: Advertisement[];
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DeleteComponent);
+    advertisementService = new AdvertisementService(null);
+    router = TestBed.get(Router);
+    component = new DeleteComponent(advertisementService, router);
+    this.tempAd = {
+      "advertisementId": 1,
+      "userId": 'auth0|5a8cfd24f5c8213cb27d5ec2',
+      "title": 'iphone',
+      "description": 'A great iphone for a great price',
+      "price": 75,
+      "created_on": '2018-01-01',
+      "last_updated": '2018-01-01',
+      "imageUrl": 'https://s3.amazonaws.com/kyleteam6best/default.jpg',
+      "category": 'electronics'
+    };
+  });
 
-     // ...testing variables
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [ JsonpModule ],
-            providers: [ BaseRequestOptions, MockBackend, AdvertisementService, HttpClient, HttpHandler,
-                        { deps: [ MockBackend, BaseRequestOptions ], provide: Http,
-                        useFactory: (backend: XHRBackend, defaultOptions: BaseRequestOptions) => {
-                        return new Http(backend, defaultOptions);
-                    }}]
-        }).compileComponents();
-    }));
+  it('current advertisement id should be defined after ngOnInit successfully is called', () => {
+    expect(component.currentAdvertisementId).toBeUndefined();
+    // ARRANGE: set an array of advertisements 
 
-    beforeEach(() => {
-        const testbed = getTestBed();
-        backend = testbed.get(MockBackend);
-        service = testbed.get(AdvertisementService);
-        
-        this.tempAds = [{ 
-          "advertisementId": 1,
-          "userId": 1,
-          "title": 'iphone',
-          "description": 'A great iphone for a great price',
-          "price": 75,
-          "created_on": '2018-01-01',
-          "last_updated": '2018-01-01',
-          "imageUrl": 'http://alink.com',
-          "category": 'electronics'
-        }, {
-          "advertisementId": 2,
-          "userId": 1,
-          "title": 'Galaxy',
-          "description": 'A great Galaxy for a great price',
-          "price": 90,
-          "created_on": '2018-01-01',
-          "last_updated": '2018-01-01',
-          "imageUrl": 'http://alink.com',
-          "category": 'electronics'
-        }];
-
+    // ACT: Call ngOnInit and set the advertisement to be ready
+    let spy=spyOn(component, 'ngOnInit').and.callFake(t => {
+        return this.tempAd.advertisementId;
     });
-    //=============================================================================================
-    // Author: Kyle
-    //   create a utility function that allows us to establish how our fake server will respond.
-    //=============================================================================================
-    function setupConnections(backend: MockBackend, options: any) {
-        backend.connections.subscribe((connection: MockConnection) => {
-            if (connection.request.url === '/ads') {
-                const responseOptions = new ResponseOptions(options);
-                const response = new Response(responseOptions);
 
-                connection.mockRespond(response);
-            }
+    component.currentAdvertisementId = this.tempAd.advertisementId;
+    
+    // ASSERT: make sure that the object's title is iphone as desired
+    expect(component.currentAdvertisementId).toBe(this.tempAd.advertisementId);
+  });
+
+  it('should call advertisement Service deleteAdvertisement to delete ad', () => {
+    let advertisementId = this.tempAd.advertisementId;
+
+    let spy=spyOn(advertisementService, 'deleteAdvertisementById').and.callFake(() => {
+            return Observable.empty();
         });
-    }
+
+    //act
+    component.deleteAdvertisement(advertisementId);
+
+    // assert
+    expect(spy).toHaveBeenCalled();
+  });
+
+  
 });

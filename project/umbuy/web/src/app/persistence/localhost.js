@@ -44,7 +44,6 @@ app.get('/api/ads/:id(\\d+)', (req, res) => {
     let sql = 'SELECT * FROM advertisements WHERE advertisementId = ' + req.params.id;
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
-        console.log(result);
         res.send(result);
     });
 });
@@ -53,7 +52,6 @@ app.delete('/api/ads/:id(\\d+)', (req, res) => {
     let sql = 'DELETE FROM advertisements WHERE advertisementId = ' + req.params.id;
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
-        console.log(result);
         res.send(result);
     });
 });
@@ -86,7 +84,6 @@ app.get('/api/users/:userId', (req, res) => {
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
   
-    console.log(body);
     res.send(body);
   });
 });
