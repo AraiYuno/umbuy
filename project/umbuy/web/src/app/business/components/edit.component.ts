@@ -33,7 +33,6 @@ export class EditComponent implements OnInit {
   currentAdvertisementId: number;
   created_on: string;
   last_updated: string;
-  deleted_on: string;
   
   // Adding picture to S3
   image;    // this is to store the current image file.
@@ -58,7 +57,7 @@ export class EditComponent implements OnInit {
    }
   
    ngOnInit() {
-    this.currentAdvertisementId = parseInt(this.getAdvertisementId(this.pathNameUrl));
+    this.currentAdvertisementId = parseInt(this._advertisementService.getAdvertisementId(this.pathNameUrl));
 
     this._advertisementService.getAdvertisementById(this.currentAdvertisementId)
       .subscribe(
@@ -82,36 +81,9 @@ export class EditComponent implements OnInit {
 
   }
 
-  /* Given the path name of the url (everything in url after port number or host name (if port is not there))
-   * will return the advertisement id from the path name of the url.
-   * Input: Will look something like /view/ads/:id
-   * Output: id
-   */
-  getAdvertisementId(pathnameUrl: string){
-    var splittedParts;
-    var splittedParts_length: number;
-    var id: string;
-   
-    splittedParts = pathnameUrl.split("/");
-    splittedParts_length = splittedParts.length;
-    
-    id = splittedParts[splittedParts_length-1];
-
-    return id;
-  }
-
   convertDatesToText(advertisement){
     this.created_on = this.convertToTextDate(advertisement.created_on);
     this.last_updated = this.convertToTextDate(advertisement.last_updated);
-
-    if(advertisement.deleted_on != null){
-      this.deleted_on = this.convertToTextDate(advertisement.deleted_on);
-      this.isDeleted = true;
-    }
-    else{
-      this.isDeleted = false;
-    }
-
   }
 
   /* Takes in a string date (string_date) in format YYYY-MM-DD and convert to MM DD, YYYY such as May 1, 2018 */
@@ -145,8 +117,8 @@ export class EditComponent implements OnInit {
     }
   }
 
-  backToMyAdsPage(){
-    this._router.navigate(["/view/ads/user/" + this.userId ]);
+  backToViewAdsPage(){
+    this._router.navigate(["/view/ads/" + this.currentAdvertisementId]);
   }
 
   editAdvertisement(){
@@ -164,7 +136,7 @@ export class EditComponent implements OnInit {
     this._advertisementService.editAdvertisement(this.newAd).subscribe(
       res => this.res = res,
       err => this.error = err,
-      ()=> this.backToMyAdsPage()
+      ()=> this.backToViewAdsPage()
     )
 
   }

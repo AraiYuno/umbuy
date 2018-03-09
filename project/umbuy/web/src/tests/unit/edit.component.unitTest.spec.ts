@@ -59,7 +59,6 @@ describe('EditComponent Unit Tests', () => {
       "price": 75,
       "created_on": '2018-01-01',
       "last_updated": '2018-01-01',
-      "deleted_on": null,
       "imageUrl": 'https://s3.amazonaws.com/kyleteam6best/default.jpg',
       "category": 'electronics'
     };
@@ -71,7 +70,6 @@ describe('EditComponent Unit Tests', () => {
       "price": 75,
       "created_on": '2018-01-01',
       "last_updated": '2018-01-02',
-      "deleted_on": '2018-01-03',
       "imageUrl": 'https://s3.amazonaws.com/kyleteam6best/default.jpg',
       "category": 'electronics'
     };
@@ -95,24 +93,16 @@ describe('EditComponent Unit Tests', () => {
   it('should retrieve the id of the advertisement in getAdvertisementId', () => {
     var url = "/view/ads/2";
     
-    var advertisementId = component.getAdvertisementId(url);
+    var advertisementId = advertisementService.getAdvertisementId(url);
 
     expect(advertisementId).toBe('2'); 
   });
 
-  it('should convert the created_on, last_updated and deleted_on dates to string date', () => {
+  it('should convert the created_on and last_updated dates to string date', () => {
     component.convertDatesToText(this.ad2);
     
     expect(component.created_on).toBe("January 1, 2018");
     expect(component.last_updated).toBe("January 2, 2018");
-    expect(component.deleted_on).toBe("January 3, 2018");
-    expect(component.isDeleted).toBe(true); 
-  });
-
-  it('should change isDeleted to false if deleted_on is null', () => {
-    component.convertDatesToText(this.ad1);
-     
-    expect(component.isDeleted).toBe(false); 
   });
 
   it('should return a date in string format for convertToTextDate', () => {

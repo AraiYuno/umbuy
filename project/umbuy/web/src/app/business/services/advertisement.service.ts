@@ -29,6 +29,11 @@ export class AdvertisementService{
         return this.http.post<Advertisement>(this.url, advertisement);
     }
 
+    deleteAdvertisementById(advertisementId){
+        this.url = this.host + "/ads/" + advertisementId;
+        return this.http.delete<Advertisement>(this.url);
+    }
+
     editAdvertisement(advertisement){
         this.url = this.host + "/editAd";
         return this.http.post<Advertisement>(this.url, advertisement);
@@ -50,5 +55,25 @@ export class AdvertisementService{
         this.url = this.host + "/ads/" + advertisementId;
         this.ad = this.http.get<Advertisement>(this.url);
         return this.http.get<Advertisement>(this.url);
+    }
+
+    /* non-database calls, shared among many components */
+    
+    /* Given the path name of the url (everything in url after port number or host name (if port is not there))
+    * will return the advertisement id from the path name of the url.
+    * Input: Will look something like /view/ads/user/:id
+    * Output: id
+    */
+    getAdvertisementId(pathnameUrl: string){
+        var splittedParts;
+        var splittedParts_length: number;
+        var userId: string;
+    
+        splittedParts = pathnameUrl.split("/");
+        splittedParts_length = splittedParts.length;
+        
+        userId = splittedParts[splittedParts_length-1];
+        
+        return userId;
     }
 }

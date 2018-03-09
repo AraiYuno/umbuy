@@ -35,7 +35,6 @@ describe('SearchComponent Unit Tests', () => {
             price: 200,
             created_on: new Date('2018-02-02'),
             last_updated: new Date('2018-02-02'),
-            deleted_on: null,
             imageUrl: 'http',
             category: 'electronic'
         },
@@ -46,7 +45,6 @@ describe('SearchComponent Unit Tests', () => {
             price: 100,
             created_on: new Date('2018-01-02'),
             last_updated: new Date('2018-01-02'),
-            deleted_on: null,
             imageUrl: 'http',
             category: 'education'
         }];

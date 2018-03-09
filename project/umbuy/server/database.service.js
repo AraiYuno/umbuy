@@ -5,6 +5,14 @@ const app = express();
 const request = require('request'); 
 
 /* Advertisement table */
+var deleteAdById = (advertisementId, callback) => {
+    let sql = 'DELETE FROM advertisements WHERE advertisementId = ' + req.params.id;
+    connection.query(sql, (err, res, fields)=> {
+        if( err ) throw err;
+        callback(err, res, fields);
+    });
+};
+
 var getAllAds = (callback) => {
     connection.query("SELECT * FROM advertisements", (err, res, fields)=> {
         if( err ) throw err;
