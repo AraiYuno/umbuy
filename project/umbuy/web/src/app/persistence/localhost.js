@@ -26,7 +26,7 @@ connection.connect(function(err){
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header('Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE');
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     next();
   });
 
@@ -41,7 +41,6 @@ app.get('/api/ads', (req, res) => {
 });
 
 app.get('/api/ads/:id(\\d+)', (req, res) => {
-    console.log("hola");
     let sql = 'SELECT * FROM advertisements WHERE advertisementId = ' + req.params.id;
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
@@ -51,7 +50,6 @@ app.get('/api/ads/:id(\\d+)', (req, res) => {
 });
 
 app.delete('/api/ads/:id(\\d+)', (req, res) => {
-    console.log("here");
     let sql = 'DELETE FROM advertisements WHERE advertisementId = ' + req.params.id;
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;

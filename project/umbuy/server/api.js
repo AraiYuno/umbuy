@@ -3,6 +3,14 @@ var router = express.Router();
 var database = require('./database.service');
 
 /* Advertisement table */
+    router.delete('/ads/:id(\\d+)', function(req, res) {
+        let advertisementId = req.params.id;
+        database.deleteAdById(advertisementId,(err, response, fields) =>{
+            if(err) res.status(400).send(err);
+            else res.send(response);
+        });
+    });
+
     router.get('/ads', function(req, res) {
         database.getAllAds((err, response, fields) =>{
             if(err) res.status(400).send(err);

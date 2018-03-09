@@ -56,4 +56,24 @@ export class AdvertisementService{
         this.ad = this.http.get<Advertisement>(this.url);
         return this.http.get<Advertisement>(this.url);
     }
+
+    /* non-database calls, shared among many components */
+    
+    /* Given the path name of the url (everything in url after port number or host name (if port is not there))
+    * will return the advertisement id from the path name of the url.
+    * Input: Will look something like /view/ads/user/:id
+    * Output: id
+    */
+    getAdvertisementId(pathnameUrl: string){
+        var splittedParts;
+        var splittedParts_length: number;
+        var userId: string;
+    
+        splittedParts = pathnameUrl.split("/");
+        splittedParts_length = splittedParts.length;
+        
+        userId = splittedParts[splittedParts_length-1];
+        
+        return userId;
+    }
 }

@@ -22,6 +22,7 @@ describe('ViewAdInformationComponent Unit Tests', () => {
   let viewAdsComponent: ViewAdsComponent;
   let tempAd: Advertisement;  
   let authService: AuthService;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,7 +38,8 @@ describe('ViewAdInformationComponent Unit Tests', () => {
     advertisementService= TestBed.get(AdvertisementService);
     userService = TestBed.get(UserService);
     authService = TestBed.get(AuthService);
-    component= new ViewAdInformationComponent(advertisementService, userService, authService);
+    router = TestBed.get(Router);
+    component= new ViewAdInformationComponent(advertisementService, userService, authService, router);
     this.tempAd = { 
       "advertisementId": 1,
       "userId": 'auth0|5a8cfd24f5c8213cb27d5ec2',
@@ -58,7 +60,7 @@ describe('ViewAdInformationComponent Unit Tests', () => {
       return Observable.from([this.tempAd]);
       });
       // we should be able to retrieve the advertisementId by calling getAdvertisementId() in the component.
-    expect(component.getAdvertisementId('view/ads/1')).toContain(String(this.tempAd.advertisementId));
+    expect(advertisementService.getAdvertisementId('view/ads/1')).toContain(String(this.tempAd.advertisementId));
   });
 
   afterEach(()=>{});

@@ -93,7 +93,7 @@ describe('EditComponent Unit Tests', () => {
   it('should retrieve the id of the advertisement in getAdvertisementId', () => {
     var url = "/view/ads/2";
     
-    var advertisementId = component.getAdvertisementId(url);
+    var advertisementId = advertisementService.getAdvertisementId(url);
 
     expect(advertisementId).toBe('2'); 
   });

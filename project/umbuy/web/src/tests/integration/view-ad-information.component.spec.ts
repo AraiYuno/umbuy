@@ -187,16 +187,16 @@ describe('ViewAdInformationComponent Integration Tests', () => {
     expect(debugElement).toBeNull(); 
   });
 
-  it('should call router with /edit/1', () => {
+  it('should call router with /edit/ads/1', () => {
     // Arrange: set up component's userId
     var advertisementId = this.tempAd.advertisementId;
     
     // ACT: navigate to 'view/ads'
     let spy = spyOn(router, 'navigate');
-    router.navigate(['/edit/' + advertisementId]);
+    router.navigate(['/edit/ads/' + advertisementId]);
 
     // ASSERTION: router should have been called with /view/ads
-    expect(spy).toHaveBeenCalledWith(['/edit/1']); 
+    expect(spy).toHaveBeenCalledWith(['/edit/ads/1']); 
   });
 
 });

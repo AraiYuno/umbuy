@@ -15,8 +15,8 @@ import { DeleteComponent } from '../business/components/delete.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'delete/:id', component: DeleteComponent},
-  {path: 'edit/:id', component: EditComponent},
+  {path: 'delete/ads/:id', component: DeleteComponent},
+  {path: 'edit/ads/:id', component: EditComponent},
   {path: 'view/ads', component: ViewAdsComponent},
   {path: 'view/ads/:id', component: ViewAdInformationComponent},
   {path: 'view/ads/user/:id', component: ViewAdsComponent},
