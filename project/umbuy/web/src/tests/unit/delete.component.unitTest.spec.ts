@@ -56,8 +56,7 @@ describe('DeleteComponent Unit Tests', () => {
 
   it('current advertisement id should be defined after ngOnInit successfully is called', () => {
     expect(component.currentAdvertisementId).toBeUndefined();
-    // ARRANGE: set an array of advertisements 
-
+     
     // ACT: Call ngOnInit and set the advertisement to be ready
     let spy=spyOn(component, 'ngOnInit').and.callFake(t => {
         return this.tempAd.advertisementId;
@@ -69,7 +68,7 @@ describe('DeleteComponent Unit Tests', () => {
     expect(component.currentAdvertisementId).toBe(this.tempAd.advertisementId);
   });
 
-  it('should call advertisement Service deleteAdvertisement to delete ad', () => {
+  it('should call advertisement Service deleteAdvertisementById to delete ad', () => {
     let advertisementId = this.tempAd.advertisementId;
 
     let spy=spyOn(advertisementService, 'deleteAdvertisementById').and.callFake(() => {

@@ -67,7 +67,7 @@ describe('DeleteComponent Integration Tests', () => {
     
   });
 
-  it('should delete the ad and return from the server', () => {
+  it('should delete the ad and return true', () => {
     // arrange
     let spy = spyOn(advertisementService, 'deleteAdvertisementById').and.returnValue( Observable.from([true]));
 
@@ -78,7 +78,7 @@ describe('DeleteComponent Integration Tests', () => {
     expect(component.res).toBe(true);
   });
   
-  it('should set the message property if server returns an error when adding editing an advertisement', () => {
+  it('should set the error property if server returns an error when deleting an advertisement', () => {
     let error = 'error from the server';
     // arrange
     let spy = spyOn(advertisementService, 'deleteAdvertisementById').and.returnValue( Observable.throw(error)); 

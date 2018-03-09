@@ -59,9 +59,10 @@ export class CreateAdComponent implements OnInit {
     this.newAd.price = this.price;
     this.newAd.last_updated = null;
     // TODO: Users should be able to upload multiple images.
-    if( this.hasImage == true && !isDevMode() )
+    
+    if(this.hasImage == true)
       this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/' + this.image.name; // reference to S3
-    else if( !this.hasImage || isDevMode())
+    else if(!this.hasImage)
       this.newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/default.jpg';
     this.newAd.category = this.category;
     
