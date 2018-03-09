@@ -1,17 +1,14 @@
 import { async, ComponentFixture, TestBed} from '@angular/core/testing';
 import { Component, OnInit } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { EditComponent } from '../../app/business/components/edit.component';
+import { DeleteComponent } from '../../app/business/components/delete.component';
 import { AdvertisementService } from '../../app/business/services/advertisement.service';
-import { UserService } from '../../app/business/services/user.service';
 import { Routes, RouterModule, Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
 import { Advertisement } from '../../app/data_model/advertisement';
-import { User } from '../../app/data_model/user';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '../../app/business/services/auth.service';
 import { FormsModule } from '@angular/forms';
 
 // fake router
@@ -20,28 +17,25 @@ class RouterStub {
   }
 }
 
-describe('EditComponent Integration Tests', () => {
-  let component: EditComponent;
-  let fixture: ComponentFixture<EditComponent>;
+describe('DeleteComponent Integration Tests', () => {
+  let component: DeleteComponent;
+  let fixture: ComponentFixture<DeleteComponent>;
   let advertisementService: AdvertisementService;
-  let authService: AuthService;
-  let userService: UserService;
   let router: Router;
 
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterModule, FormsModule, RouterTestingModule],
-      declarations: [ EditComponent ],
-      providers: [AdvertisementService, AuthService, UserService, User, Advertisement, HttpClient, HttpHandler,
+      declarations: [ DeleteComponent ],
+      providers: [AdvertisementService, Advertisement, HttpClient, HttpHandler,
         { provide: Router, useClass: RouterStub}]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditComponent);
-    authService = TestBed.get(AuthService);
+    fixture = TestBed.createComponent(DeleteComponent);
     advertisementService = TestBed.get(AdvertisementService);
     router = TestBed.get(Router);
     component = fixture.componentInstance;
@@ -58,93 +52,42 @@ describe('EditComponent Integration Tests', () => {
       "category": 'electronics'
     };
 
-    this.tempUser = { 
-      "email":"bob@myumanitoba.ca",
-      "user_metadata":{"FirstName":"Bob",
-                        "LastName":"Bob LeBob",
-                        "phone":"2049876543"},
-      "picture":"http://alink.com",
-      "user_id":"auth0|5a8c83dc5c679b178110477c"
-    };
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
   
-  it('should redirect the user back to my ads page after validating advertisement', () => {
-    component.currentAdvertisementId = this.tempAd.advertisementId;
+  it('should redirect the user back to the home page after deleting an advertisement', () => {
     let spy = spyOn(router, 'navigate');
 
-    component.backToViewAdsPage();
+    component.backToHomePage();
 
-    expect(spy).toHaveBeenCalledWith(['/view/ads/' + this.tempAd.advertisementId]);
+    expect(spy).toHaveBeenCalledWith(['']);
     
   });
 
-  it('should edit the ad and return from the server', () => {
+  it('should delete the ad and return from the server', () => {
     // arrange
-    let spy = spyOn(advertisementService, 'editAdvertisement').and.returnValue( Observable.from([this.tempAd]));
+    let spy = spyOn(advertisementService, 'deleteAdvertisementById').and.returnValue( Observable.from([true]));
 
     // act
-    component.editAdvertisement();
+    component.deleteAdvertisement(this.tempAd.advertisementId);
 
-    // assert
-    expect(component.res).toBe(this.tempAd);
+    // assert true = has been deleted
+    expect(component.res).toBe(true);
   });
   
   it('should set the message property if server returns an error when adding editing an advertisement', () => {
-    let error = 'error from the server'
+    let error = 'error from the server';
     // arrange
-    let spy = spyOn(advertisementService, 'editAdvertisement').and.returnValue( Observable.throw(error)); 
+    let spy = spyOn(advertisementService, 'deleteAdvertisementById').and.returnValue( Observable.throw(error)); 
 
     // act
-    component.editAdvertisement();
+    component.deleteAdvertisement(this.tempAd.advertisementId);
 
     // assert
-    expect(component.error).toBe(error);
+    expect(component.err).toBe(error);
   });
   
-  it('should send the ad information that is rendered on the screen to the database', () => {
-    component.currentAdvertisementId = this.tempAd.advertisementId;
-    component.title = this.tempAd.title;
-    component.description = this.tempAd.description;
-    component.price = this.tempAd.price;
-    component.category = this.tempAd.category;
-    component.imageUrl = this.tempAd.imageUrl;
-    component.editAdvertisement();
-    fixture.detectChanges();
-
-    expect(component.newAd.advertisementId).toBe(this.tempAd.advertisementId);
-    expect(component.newAd.title).toBe(this.tempAd.title);
-    expect(component.newAd.description).toBe(this.tempAd.description);
-    expect(component.newAd.price).toBe(this.tempAd.price);
-    expect(component.newAd.category).toBe(this.tempAd.category);
-    expect(component.newAd.imageUrl).toBe(this.tempAd.imageUrl);
-  });
- 
-  it('should render the user information of the ad', () => {
-    component.editable = true;
-    component.advertisement = this.tempAd;
-    component.user = this.tempUser;
-    spyOn(authService, 'isAuthenticated').and.returnValue(true);
-    
-    fixture.detectChanges();
-    
-    //user's full name
-    let debugElement = fixture.debugElement.query(By.css('#userFullName'));
-    let nameElement: HTMLElement = debugElement.nativeElement;
-    expect(nameElement.innerHTML).toContain("Bob LeBob");
-
-    //user's email
-    debugElement = fixture.debugElement.query(By.css('#userEmail'));
-    let emailElement: HTMLElement = debugElement.nativeElement;
-    expect(emailElement.innerHTML).toContain("bob@myumanitoba.ca");
-
-    //user's phone number
-    debugElement = fixture.debugElement.query(By.css('#userPhoneNumber'));
-    let phoneNumberElement: HTMLElement = debugElement.nativeElement;
-    expect(phoneNumberElement.innerHTML).toContain("2049876543");
-  });
-
 });

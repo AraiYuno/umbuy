@@ -2,7 +2,6 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AdvertisementService } from '../services/advertisement.service';
 import { Advertisement } from '../../data_model/advertisement';
 import { NgIf } from '@angular/common';
-import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,10 +13,11 @@ export class DeleteComponent implements OnInit {
   advertisement: Advertisement;
   pathNameUrl: string;
   isDeleted: boolean;
-  message: string;
   currentAdvertisementId: number;
+  res: any;
+  err: any;
   
-  constructor(private _advertisementService: AdvertisementService, public auth: AuthService, private _router: Router ) {
+  constructor(private _advertisementService: AdvertisementService, private _router: Router ) {
     this.pathNameUrl = window.location.pathname;
    }
   
@@ -34,10 +34,9 @@ export class DeleteComponent implements OnInit {
   deleteAdvertisement(advertisementId){
     this._advertisementService.deleteAdvertisementById(this.currentAdvertisementId)
       .subscribe(
-        res => this.advertisement = res[0],
-        err => this.message = err,
+        res => this.res = res,
+        err => this.err = err,
         () => this.backToHomePage()
-        // () => this._userService.getUserById(this.advertisement.userId) TODO: might need for test
       )
   }
 

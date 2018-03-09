@@ -187,6 +187,33 @@ describe('ViewAdInformationComponent Integration Tests', () => {
     expect(debugElement).toBeNull(); 
   });
 
+  it('should show the delete button if the logged in user made the advertisement', () => {
+    //the user created the advertisement
+    component.deletable = true;
+
+    spyOn(authService, 'isAuthenticated').and.returnValue(true);
+    fixture.detectChanges();
+
+    //delete button should be visible
+    let debugElement = fixture.debugElement.query(By.css('#deleteButton'));
+
+    let deleteElement: HTMLElement = debugElement.nativeElement;
+  
+    expect(debugElement).toBeTruthy();  
+  });
+
+  it('should not show the delete button if the logged in user did not make the advertisement', () => {
+    //the user did not make the advertisement
+    component.deletable = false;
+
+    spyOn(authService, 'isAuthenticated').and.returnValue(true);
+    fixture.detectChanges();
+
+    //delete button should not be visible
+    let debugElement = fixture.debugElement.query(By.css('#deleteButton'));
+    expect(debugElement).toBeNull(); 
+  });
+
   it('should call router with /edit/ads/1', () => {
     // Arrange: set up component's userId
     var advertisementId = this.tempAd.advertisementId;
