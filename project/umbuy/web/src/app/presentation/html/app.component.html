@@ -48,7 +48,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a routerLink="/" *ngIf="auth.isAuthenticated()">Home</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul id="myNavbarRight" class="nav navbar-nav navbar-right">
         <li><a routerLink="/profile" *ngIf="auth.isAuthenticated()"><span class="glyphicon glyphicon-user"></span> User Account</a></li>
         <li><a id="qsLogoutBtn" *ngIf="auth.isAuthenticated()" (click)="auth.logout()" ><span class=" glyphicon glyphicon-log-out"></span> Log Out</a></li>
         <li><a id="qsLogoutBtn" *ngIf="!auth.isAuthenticated()" (click)="auth.login()" ><span class=" glyphicon glyphicon-log-in"></span> Log In</a></li>
