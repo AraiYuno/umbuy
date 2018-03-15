@@ -20,6 +20,8 @@ public class Advertisement {
     private Date created_on;
     @SerializedName("last_updated")
     private Date last_updated;
+    @SerializedName("deleted_on")
+    private Date deleted_on;
     @SerializedName("imageUrl")
     private String imageUrl;
     @SerializedName("category")
@@ -53,6 +55,8 @@ public class Advertisement {
         return last_updated;
     }
 
+    public Date getDeleted_on(){ return deleted_on; }
+
     public String getImageUrl() {
         return imageUrl;
     }
@@ -63,7 +67,7 @@ public class Advertisement {
 
 
     public Advertisement(int advertisementId, String userId, String title, String description,
-                         double price, Date created_on, Date last_updated, String imageUrl, 
+                         double price, Date created_on, Date last_updated, Date deleted_on, String imageUrl,
                          String category){
         this.advertisementId = advertisementId;
         this.userId = userId;
@@ -72,6 +76,7 @@ public class Advertisement {
         this.price = price;
         this.created_on = created_on;
         this.last_updated = last_updated;
+        this.deleted_on = deleted_on;
         this.imageUrl = imageUrl;
         this.category = category;
     }
