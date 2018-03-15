@@ -46,7 +46,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a routerLink="/" *ngIf="auth.isAuthenticated()">Home</a></li>
+        <li id="homeTab" class="active"><a routerLink="/" *ngIf="auth.isAuthenticated()">Home</a></li>
       </ul>
       <ul id="myNavbarRight" class="nav navbar-nav navbar-right">
         <li><a routerLink="/profile" *ngIf="auth.isAuthenticated()"><span class="glyphicon glyphicon-user"></span> User Account</a></li>
