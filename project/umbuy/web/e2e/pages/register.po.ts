@@ -1,10 +1,7 @@
 import { browser, by, element } from 'protractor';
 
 export class RegisterPage {
-  navigateToHomePage() {
-    return browser.get('/');
-  }
-
+  
   getHeader3Text() {
     return element(by.css('div div #signin h3')).getText();
   }
@@ -13,33 +10,13 @@ export class RegisterPage {
     return element(by.css('app-root div div p')).getText();
   }
 
-  getLoginButtonText(){
-    return element(by.css('app-root nav div #myNavbar #myNavbarRight li #qsLogoutBtn')).getText();
+  getSignUpHeaderText(){
+    return element(by.css('#signup h1')).getText();
   }
 
-  clickLoginButtonOnNavbar(){
-    browser.ignoreSynchronization = true;
-    browser.sleep(100);
-
-    element(by.linkText('Log In')).click().then(function () {
-      browser.getCurrentUrl().then(function (url){
-        expect(url).toContain("https://team6.auth0.com");
-      });
-    }); 
-  }
-
-  clickLogoutButtonOnNavbar(){
-    browser.ignoreSynchronization = true;
-    browser.sleep(100);
-
-    element(by.linkText('Log Out')).click().then(function () {
-        browser.sleep(100);
-    }); 
-  }
-
-  clickSignUpButton(){
+  clickSignUpButton(callback){
     element(by.buttonText('SignUP')).click().then(function () {
-      expect(element(by.css('#signup h1')).getText()).toEqual('Sign UP');
+      callback();
     }); 
   }
 
@@ -60,12 +37,16 @@ export class RegisterPage {
     element(by.css('#phone')).sendKeys("2049999999");
   }
 
-  clickToSignUp(){
+  clickToSignUp(callback){
     //click sign up button
     element(by.css('div div #signup form #btn-signup')).click().then(function () {
       browser.sleep(4000);
-      expect(element(by.css('.first-line')).getText()).toEqual('Authorize App');
+      callback();
     });
+  }
+
+  getAuthorizeModalText(){
+    return element(by.css('.first-line')).getText();
   }
 
   clickAuthorizeButton(){
@@ -73,10 +54,6 @@ export class RegisterPage {
     element(by.css('#allow')).click().then(function () {
       browser.sleep(2000);
     });
-  }
-
-  getHomeTabText(){
-    return element(by.css('#homeTab')).getText();
   }
 
   getRandomNumber(min, max) {
