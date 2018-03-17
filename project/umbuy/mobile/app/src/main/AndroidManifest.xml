@@ -39,7 +39,8 @@
 
         <activity android:name=".presentation.CreateAdActivity" />
         <activity android:name=".presentation.LoginActivity" />
-        <activity android:name=".presentation.ProfilePageActivity"></activity>
+        <activity android:name=".presentation.ProfilePageActivity" />
+        <activity android:name=".presentation.MyAds"></activity>
     </application>
 
 </manifest>

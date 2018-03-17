@@ -4,36 +4,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
-import project.team6.umbuy.shared.AdvertisementService;
 import project.team6.umbuy.bussiness.CredentialsManager;
-import project.team6.umbuy.bussiness.FilterAds;
 import project.team6.umbuy.data_model.Advertisement;
+import project.team6.umbuy.shared.AdvertisementService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ViewAdsActivity extends AppCompatActivity {
+
+
+public class MyAds extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private Button createAd;
@@ -47,37 +39,10 @@ public class ViewAdsActivity extends AppCompatActivity {
     private EditText searchText;
     private Button searchButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_ads);
-        list = new ArrayList<Advertisement>();
-        context = this;
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        searchText = findViewById(R.id.search_bar);
-        searchButton = findViewById(R.id.search_button);
-        mDrawerLayout = findViewById(R.id.drawer_layout);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-
-        initializeSearchBar();
-
-        createAd = (Button) findViewById(R.id.main_create_ad);
-        logoutButton = (Button) findViewById(R.id.main_logout);
-        logoutView = (NavigationView) findViewById(R.id.nav_logout);
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.listViewAds);
-        mRecyclerView.setHasFixedSize(true);
-
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mAdapter = new AdsAdapter(list, context);
-        mRecyclerView.setAdapter(mAdapter);
+        setContentView(R.layout.activity_my_ads);
 
         AdvertisementService adService = new AdvertisementService();
 
@@ -96,21 +61,7 @@ public class ViewAdsActivity extends AppCompatActivity {
             }
         });
 
-        // button for createAd Activity
-        createAd.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent createAdIntent = new Intent(context,CreateAdActivity.class);
-                context.startActivity(createAdIntent);
-            }
-        });
 
-        logoutButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            logout();
-            }
-        });
 
         NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -157,31 +108,9 @@ public class ViewAdsActivity extends AppCompatActivity {
 
                     }
                 });
+
     }
 
-    private void initializeSearchBar(){
-        searchText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(final Editable editable) {
-                searchButton.setOnClickListener(new OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        mAdapter.updateList(FilterAds.filterAdsByTitle(editable.toString(),list));
-                    }
-                });
-            }
-        });
-    }
 
     private void logout() {
         CredentialsManager.deleteCredentials(this);
@@ -189,18 +118,6 @@ public class ViewAdsActivity extends AppCompatActivity {
         finish();
     }
 
-    public void testAdd(Advertisement ad){
-        this.list.add(ad);
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     public void navigateToProfilePage(){
         startActivity(new Intent(context, ProfilePageActivity.class));
@@ -210,6 +127,4 @@ public class ViewAdsActivity extends AppCompatActivity {
     public void navigateToMyAds(){
         startActivity(new Intent(context, MyAds.class));
     }
-
 }
-
