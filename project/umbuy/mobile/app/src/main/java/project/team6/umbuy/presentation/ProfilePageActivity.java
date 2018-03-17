@@ -1,8 +1,13 @@
 package project.team6.umbuy.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
 import android.widget.ImageView;
+
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.auth0.android.Auth0;
@@ -27,6 +32,7 @@ public class ProfilePageActivity extends AppCompatActivity {
     private TextView FNameTextView;
     private TextView LNameTextView;
     private TextView PhoneTextView;
+    private Button homeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,15 @@ public class ProfilePageActivity extends AppCompatActivity {
         userEmailTextView = findViewById(R.id.user_Email);
         PhoneTextView = findViewById(R.id.user_phone);
 
+        homeBtn = (Button) findViewById(R.id.goHome);
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goHome();
+            }
+        });
+
+
     }
 
     private void refreshScreenInformation() {
@@ -82,5 +97,11 @@ public class ProfilePageActivity extends AppCompatActivity {
         LNameTextView.setText(String.format("Last Name: %1$s", lastName));
         userEmailTextView.setText(String.format(getString(R.string.useremail), userProfile.getEmail()));
         PhoneTextView.setText(String.format("Phone: %1$s ", phone));
+    }
+
+    public void goHome(){
+        Intent getHome = new Intent(this, ViewAdsActivity.class);
+
+        startActivity(getHome);
     }
 }
