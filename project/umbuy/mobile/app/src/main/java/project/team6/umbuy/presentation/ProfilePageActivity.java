@@ -82,10 +82,10 @@ public class ProfilePageActivity  extends AppCompatActivity {
                 });
 
 
-        FNameTextView = (TextView) findViewById(R.id.user_FName);
-        LNameTextView = (TextView) findViewById(R.id.user_LName);
-        userEmailTextView = (TextView) findViewById(R.id.user_Email);
-        PhoneTextView = (TextView) findViewById(R.id.user_phone);
+        FNameTextView = findViewById(R.id.user_FName);
+        LNameTextView = findViewById(R.id.user_LName);
+        userEmailTextView = findViewById(R.id.user_Email);
+        PhoneTextView = findViewById(R.id.user_phone);
 
     }
 
@@ -96,10 +96,6 @@ public class ProfilePageActivity  extends AppCompatActivity {
         String firstName = (String) metaData.get("FirstName");
         String lastName = (String) metaData.get("LastName");
         String phone = (String) metaData.get("phone");
-
-        Log.d("FirstName",firstName);
-        Log.d("LastName",lastName);
-        Log.d("FirstName",firstName);
 
         FNameTextView.setText(String.format("Fist Name: %1$s", firstName));
         LNameTextView.setText(String.format("Last Name: %1$s", lastName));
