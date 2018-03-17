@@ -19,31 +19,12 @@ import com.auth0.android.Auth0;
 import com.auth0.android.authentication.AuthenticationAPIClient;
 import com.auth0.android.authentication.AuthenticationException;
 import com.auth0.android.callback.BaseCallback;
-import com.auth0.android.lock.AuthenticationCallback;
-import com.auth0.android.lock.Lock;
-import com.auth0.android.lock.LockCallback;
-import com.auth0.android.lock.utils.LockException;
-import com.auth0.android.management.ManagementException;
-import com.auth0.android.management.UsersAPIClient;
-import com.auth0.android.result.Credentials;
 import com.auth0.android.result.UserProfile;
-import com.auth0.android.lock.utils.CustomField;
-import com.google.gson.JsonObject;
 import com.google.gson.internal.LinkedTreeMap;
-
-
-import java.sql.Array;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import com.squareup.picasso.Picasso;
 import project.team6.umbuy.bussiness.CredentialsManager;
 
-import static java.sql.DriverManager.println;
-
-
-public class ProfilePageActivity  extends AppCompatActivity {
+public class ProfilePageActivity extends AppCompatActivity {
 
     private Auth0 auth0;
     private UserProfile userProfile;
@@ -60,11 +41,9 @@ public class ProfilePageActivity  extends AppCompatActivity {
         auth0 = new Auth0(this);
         auth0.setOIDCConformant(true);
 
-        // The process to reclaim the User Information is preceded by an Authentication call.
         AuthenticationAPIClient authenticationClient = new AuthenticationAPIClient(auth0);
         authenticationClient.userInfo(CredentialsManager.getCredentials(this).getAccessToken())
                 .start(new BaseCallback<UserProfile, AuthenticationException>() {
-
                     @Override
                     public void onSuccess(final UserProfile profile) {
                         userProfile = profile;
@@ -74,13 +53,11 @@ public class ProfilePageActivity  extends AppCompatActivity {
                             }
                         });
                     }
-
                     @Override
                     public void onFailure(AuthenticationException error) {
 
                     }
                 });
-
 
         FNameTextView = findViewById(R.id.user_FName);
         LNameTextView = findViewById(R.id.user_LName);
@@ -90,6 +67,15 @@ public class ProfilePageActivity  extends AppCompatActivity {
     }
 
     private void refreshScreenInformation() {
+
+        ImageView userPicture =findViewById(R.id.user_image);
+
+        if (userProfile.getPictureURL() != null) {
+            Picasso.with(this)
+                    .load(userProfile.getPictureURL())
+                    .fit().centerCrop()
+                    .into(userPicture);
+        }
 
         LinkedTreeMap metaData = (LinkedTreeMap) userProfile.getExtraInfo().get("https://metadata/user_metadata");
 
