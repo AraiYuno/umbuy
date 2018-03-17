@@ -34,4 +34,7 @@ public class AdvertisementService{
         return service.submitAd(advertisementId, title, userId, description, price, imageUrl, category);
     }
 
+    public Call<Advertisement> deleteItem(int advertisementId){
+        return service.deleteItem(advertisementId);
+    }
 }

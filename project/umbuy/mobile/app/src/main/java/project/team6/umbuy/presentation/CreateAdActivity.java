@@ -19,7 +19,7 @@ import java.util.Date;
 import project.team6.umbuy.R;
 
 import project.team6.umbuy.shared.AdvertisementService;
-import project.team6.umbuy.bussiness.CredentialsManager;
+import project.team6.umbuy.shared.CredentialsManager;
 import project.team6.umbuy.data_model.Advertisement;
 import retrofit2.Call;
 import retrofit2.Callback;
