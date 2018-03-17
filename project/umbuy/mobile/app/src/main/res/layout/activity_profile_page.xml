@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="project.team6.umbuy.presentation.ProfilePageActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/profileNameTitle"
+            android:layout_width="109dp"
+            android:layout_height="29dp"
+            android:text="Name"
+            tools:layout_editor_absoluteX="41dp"
+            tools:layout_editor_absoluteY="67dp" />
+
+        <TextView
+            android:id="@+id/profilePageName"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            tools:layout_editor_absoluteX="227dp"
+            tools:layout_editor_absoluteY="122dp" />
+
+        <TextView
+            android:id="@+id/profileEmailTitle"
+            android:layout_width="119dp"
+            android:layout_height="31dp"
+            android:text="Email"
+            tools:layout_editor_absoluteX="41dp"
+            tools:layout_editor_absoluteY="131dp" />
+
+        <TextView
+            android:id="@+id/profilePageEmail"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            tools:layout_editor_absoluteX="227dp"
+            tools:layout_editor_absoluteY="47dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

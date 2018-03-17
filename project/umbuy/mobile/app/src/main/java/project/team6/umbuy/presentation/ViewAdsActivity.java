@@ -16,6 +16,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -96,7 +97,7 @@ public class ViewAdsActivity extends AppCompatActivity {
         });
 
         // button for createAd Activity
-        createAd.setOnClickListener(new View.OnClickListener() {
+        createAd.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent createAdIntent = new Intent(context,CreateAdActivity.class);
@@ -104,7 +105,7 @@ public class ViewAdsActivity extends AppCompatActivity {
             }
         });
 
-        logoutButton.setOnClickListener(new View.OnClickListener() {
+        logoutButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
             logout();
@@ -131,6 +132,16 @@ public class ViewAdsActivity extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                 mDrawerLayout.closeDrawers();
 
+                            case R.id.nav_myProfile :
+                                menuItem.setChecked(true);
+                                mDrawerLayout.closeDrawers();
+                                //go to a new intent and activity but call another function
+                                navigateToProfilePage();
+
+                            case R.id.nav_myAds :
+                                menuItem.setChecked(true);
+                                mDrawerLayout.closeDrawers();
+
                             default:
                                 menuItem.setChecked(true);
                                 return true;
@@ -154,7 +165,7 @@ public class ViewAdsActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(final Editable editable) {
-                searchButton.setOnClickListener(new View.OnClickListener(){
+                searchButton.setOnClickListener(new OnClickListener(){
                     @Override
                     public void onClick(View view){
                         mAdapter.updateList(FilterAds.filterAdsByTitle(editable.toString(),list));
@@ -181,6 +192,13 @@ public class ViewAdsActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void navigateToProfilePage(){
+        startActivity(new Intent(context, ProfilePageActivity.class));
+        finish();
+
+
     }
 
 }
