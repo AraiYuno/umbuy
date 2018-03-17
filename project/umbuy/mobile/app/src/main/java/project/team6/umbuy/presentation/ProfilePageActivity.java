@@ -100,8 +100,6 @@ public class ProfilePageActivity extends AppCompatActivity {
     }
 
     public void goHome(){
-        Intent getHome = new Intent(this, ViewAdsActivity.class);
-
-        startActivity(getHome);
+        onBackPressed();
     }
 }

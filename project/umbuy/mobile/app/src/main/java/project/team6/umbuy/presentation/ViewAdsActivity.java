@@ -196,9 +196,6 @@ public class ViewAdsActivity extends AppCompatActivity {
 
     public void navigateToProfilePage(){
         startActivity(new Intent(context, ProfilePageActivity.class));
-        finish();
-
-
     }
 
 }
