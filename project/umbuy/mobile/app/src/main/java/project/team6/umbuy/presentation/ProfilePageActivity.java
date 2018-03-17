@@ -1,19 +1,9 @@
 package project.team6.umbuy.presentation;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
-import project.team6.umbuy.R;
-
 
 import com.auth0.android.Auth0;
 import com.auth0.android.authentication.AuthenticationAPIClient;
@@ -23,8 +13,13 @@ import com.auth0.android.result.UserProfile;
 import com.google.gson.internal.LinkedTreeMap;
 import com.squareup.picasso.Picasso;
 import project.team6.umbuy.bussiness.CredentialsManager;
+import project.team6.umbuy.R;
+import project.team6.umbuy.bussiness.CredentialsManager;
+
 
 public class ProfilePageActivity extends AppCompatActivity {
+
+
 
     private Auth0 auth0;
     private UserProfile userProfile;
@@ -83,7 +78,7 @@ public class ProfilePageActivity extends AppCompatActivity {
         String lastName = (String) metaData.get("LastName");
         String phone = (String) metaData.get("phone");
 
-        FNameTextView.setText(String.format("Fist Name: %1$s", firstName));
+        FNameTextView.setText(String.format("First Name: %1$s", firstName));
         LNameTextView.setText(String.format("Last Name: %1$s", lastName));
         userEmailTextView.setText(String.format(getString(R.string.useremail), userProfile.getEmail()));
         PhoneTextView.setText(String.format("Phone: %1$s ", phone));
