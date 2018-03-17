@@ -48,6 +48,13 @@
             tools:layout_editor_absoluteX="227dp"
             tools:layout_editor_absoluteY="47dp" />
 
+        <Button
+            android:id="@+id/buttonHomeProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Button" />
+
     </LinearLayout>
 
 </LinearLayout>

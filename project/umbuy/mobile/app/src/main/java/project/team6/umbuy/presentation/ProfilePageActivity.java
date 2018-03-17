@@ -1,7 +1,9 @@
 package project.team6.umbuy.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -43,6 +45,7 @@ public class ProfilePageActivity extends AppCompatActivity {
         private TextView LNameTextView;
         private TextView PhoneTextView;
 
+        private Button buttonHomeProfile;
 
     private TextView email ;
         @Override
@@ -76,6 +79,16 @@ public class ProfilePageActivity extends AppCompatActivity {
 
 
             email = (TextView) findViewById(R.id.profilePageEmail);
+            userNameTextView = (TextView)findViewById(R.id.profileNameTitle);
+            buttonHomeProfile = (Button)findViewById(R.id.buttonHomeProfile);
+
+
+            buttonHomeProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goBackHome();
+                }
+            });
 //
 //            FNameTextView = (TextView) findViewById(R.id.user_FName);
 //            LNameTextView = (TextView) findViewById(R.id.user_LName);
@@ -85,10 +98,19 @@ public class ProfilePageActivity extends AppCompatActivity {
         }
 
     private void refreshScreenInformation() {
-//          FNameTextView.setText(String.format("Fist Name: ", userProfile.getUserMetadata().get("FirstName")));
+          //userNameTextView.setText(String.format("Fist Name: ", userProfile.getEmail()));
+        //userNameTextView.setText(userProfile.getEmail());
 //        LNameTextView.setText(String.format("Last Name: ", userProfile.getUserMetadata().get("LastName")));
             email.setText(String.format(getString(R.string.useremail), userProfile.getEmail()));
+
 //        PhoneTextView.setText(String.format("Phone: ", userProfile.getUserMetadata().get("phone")));
+
+    }
+
+
+    private void goBackHome(){
+            Intent homeIntent = new Intent(this, ViewAdsActivity.class);
+            startActivity(homeIntent);
 
     }
 
