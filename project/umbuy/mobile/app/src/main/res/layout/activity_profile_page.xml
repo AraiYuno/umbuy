@@ -4,50 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="project.team6.umbuy.presentation.ProfilePageActivity">
+    tools:context="project.team6.umbuy.presentation.ProfilePageActivity"
+    android:orientation="vertical"
+    >
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/user_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:id="@+id/user_FName"
+        android:text="First Name"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/user_LName"
+        android:text="Last Name"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        />
 
-        </RelativeLayout>
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/user_Email"
+        android:text="Email"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        />
 
 
-        <TextView
-            android:id="@+id/profileNameTitle"
-            android:layout_width="109dp"
-            android:layout_height="29dp"
-            android:text="Name"
-            tools:layout_editor_absoluteX="41dp"
-            tools:layout_editor_absoluteY="67dp" />
-
-        <TextView
-            android:id="@+id/profilePageName"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            tools:layout_editor_absoluteX="227dp"
-            tools:layout_editor_absoluteY="122dp" />
-
-        <TextView
-            android:id="@+id/profileEmailTitle"
-            android:layout_width="119dp"
-            android:layout_height="31dp"
-            android:text="Email"
-            tools:layout_editor_absoluteX="41dp"
-            tools:layout_editor_absoluteY="131dp" />
-
-        <TextView
-            android:id="@+id/profilePageEmail"
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            tools:layout_editor_absoluteX="227dp"
-            tools:layout_editor_absoluteY="47dp" />
-
-    </LinearLayout>
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/user_phone"
+        android:text="Phone"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        />
 
 </LinearLayout>
