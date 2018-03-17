@@ -30,6 +30,10 @@ public class AdvertisementService{
         return service.getAllAdvertisements();
     }
 
+    public Call<List<Advertisement>> getUserAdvertisements(){
+        return service.getUserAdvertisements();
+    }
+
     public Call<Advertisement> submitAd(int advertisementId, String title, String userId, String description, double price, String imageUrl, String category){
         return service.submitAd(advertisementId, title, userId, description, price, imageUrl, category);
     }

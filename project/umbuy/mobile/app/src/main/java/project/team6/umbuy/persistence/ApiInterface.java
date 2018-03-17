@@ -8,12 +8,15 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 
 /*fill the () after @GET @POST @DELETE with corresponding path after host url*/
 public interface ApiInterface {
+
     @GET("/api/ads")
     Call<List<Advertisement>> getAllAdvertisements();
+
+    @GET("/api/ads/user/auth0%7C5a94ac4efbf06a78e8035439")
+    Call<List<Advertisement>> getUserAdvertisements();
 
     @POST("/api/createAd")
     @FormUrlEncoded
