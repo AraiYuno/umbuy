@@ -76,7 +76,7 @@ public class ProfilePageActivity extends AppCompatActivity {
 
 
             email = (TextView) findViewById(R.id.profilePageEmail);
-
+//
 //            FNameTextView = (TextView) findViewById(R.id.user_FName);
 //            LNameTextView = (TextView) findViewById(R.id.user_LName);
 //            userEmailTextView = (TextView) findViewById(R.id.user_Email);
