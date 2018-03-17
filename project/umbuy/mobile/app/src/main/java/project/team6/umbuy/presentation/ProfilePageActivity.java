@@ -1,13 +1,10 @@
 package project.team6.umbuy.presentation;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
-import android.widget.ImageView;
-
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.auth0.android.Auth0;
@@ -17,7 +14,7 @@ import com.auth0.android.callback.BaseCallback;
 import com.auth0.android.result.UserProfile;
 import com.google.gson.internal.LinkedTreeMap;
 import com.squareup.picasso.Picasso;
-import project.team6.umbuy.bussiness.CredentialsManager;
+
 import project.team6.umbuy.R;
 import project.team6.umbuy.bussiness.CredentialsManager;
 
@@ -101,5 +98,6 @@ public class ProfilePageActivity extends AppCompatActivity {
 
     public void goHome(){
         onBackPressed();
+        finish();
     }
 }

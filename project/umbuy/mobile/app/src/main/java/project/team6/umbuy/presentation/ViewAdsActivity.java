@@ -127,24 +127,31 @@ public class ViewAdsActivity extends AppCompatActivity {
                                 mDrawerLayout.closeDrawers();
                                 menuItem.setChecked(false);
                                 logout();
+                                return false;
+
 
                             case R.id.nav_home :
                                 menuItem.setChecked(true);
                                 mDrawerLayout.closeDrawers();
+                                return true;
 
                             case R.id.nav_myProfile :
                                 menuItem.setChecked(true);
                                 mDrawerLayout.closeDrawers();
                                 //go to a new intent and activity but call another function
                                 navigateToProfilePage();
+                                return true;
 
                             case R.id.nav_myAds :
                                 menuItem.setChecked(true);
                                 mDrawerLayout.closeDrawers();
+                                return true;
 
                             default:
                                 menuItem.setChecked(true);
+
                                 return true;
+
                         }
 
                     }
@@ -196,6 +203,7 @@ public class ViewAdsActivity extends AppCompatActivity {
 
     public void navigateToProfilePage(){
         startActivity(new Intent(context, ProfilePageActivity.class));
+
     }
 
 }
