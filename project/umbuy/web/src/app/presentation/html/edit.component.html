@@ -9,7 +9,7 @@
       <div class="jumbotron">
         <div class="container">
           <div>
-            <h1 id="title">Title:</h1><input type="text" class="txt form-control" name="title" [(ngModel)]="title">
+            <h1>Title:</h1><input id="title" type="text" class="txt form-control" name="title" [(ngModel)]="title">
             <br><br>
             <div class="row">
                 <img src="{{imageUrl}}">
@@ -22,8 +22,8 @@
                     <h3 id="created_on">Created on:&emsp;{{created_on}}</h3>
                     <h3 id="last_updated">Last Updated:&emsp;{{last_updated}}</h3>
                     <br><br><br>
-                    <button *ngIf="!createAdSuccess && !postSuccess" class="btn btn-primary" (click)="activateSubmit()" >Validate Advertisement</button>
-                    <button *ngIf="createAdSuccess && !postSuccess" class="btn btn-primary" (click)="editAdvertisement()">Save advertisement</button> <br><br>
+                    <button id="validateAd" *ngIf="!createAdSuccess && !postSuccess" class="btn btn-primary" (click)="activateSubmit()" >Validate Advertisement</button>
+                    <button id="saveAd" *ngIf="createAdSuccess && !postSuccess" class="btn btn-primary" (click)="editAdvertisement()">Save advertisement</button> <br><br>
                     <div id="imageElements">
                         <input type="file" class="btn btn-default" name="imageUpload" 
                         (change)="previewFile()" (change)="uploadFile($event)"#fileInput>
@@ -32,13 +32,13 @@
                     </div>
                     
                 </div>
-                <h3 id="deleted_on" *ngIf="isDeleted">Deleted on:&emsp;{{deleted_on}}</h3>
+                
             </div>
             <h3>Price:</h3><input id="price" type="number" class="double form-control" name="price" [(ngModel)]="price">
             <h3>Category:</h3><input id="category" type="text" class="txt form-control" name="category" [(ngModel)]="category">
             <br>
             <h2>Description:</h2>
-            <textarea class="txt form-control" cols="50" name="description" rows="15" [(ngModel)]="description"></textarea>
+            <textarea id="description" class="txt form-control" cols="50" name="description" rows="15" [(ngModel)]="description"></textarea>
             <br>
           </div>
         </div>

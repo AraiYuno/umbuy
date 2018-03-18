@@ -20,15 +20,10 @@ import { FilterResultService } from '../business/services/filterResult.service';
 import { AllResultService } from '../business/services/allResult.service'
 import { Routes, RouterModule } from '@angular/router';
 import { AuthService } from '../business/services/auth.service';
-import { UserProfileComponent } from '../business/components/user-profile.component';
-import { VerifyEmailComponent } from '../business/components/verify-email.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents,
-    UserProfileComponent,
-    VerifyEmailComponent,
     routingComponents
   ],
   imports: [

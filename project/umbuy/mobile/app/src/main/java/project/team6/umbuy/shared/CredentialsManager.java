@@ -1,4 +1,4 @@
-package project.team6.umbuy.bussiness;
+package project.team6.umbuy.shared;
 
 import android.content.Context;
 import android.content.SharedPreferences;

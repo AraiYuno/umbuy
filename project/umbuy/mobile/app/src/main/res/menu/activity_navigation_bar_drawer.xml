@@ -9,10 +9,16 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Home" />
 
-        <!--<item-->
-            <!--android:id="@+id/nav_logout"-->
-            <!--android:icon="@drawable/com_auth0_lock_header_logo"-->
-            <!--android:title="Log out" />-->
+        <item
+            android:id="@+id/nav_myAds"
+            android:icon="@drawable/com_auth0_lock_ic_social_thecity"
+            android:title="My Ads" />
+
+        <item
+            android:id="@+id/nav_myProfile"
+            android:icon="@drawable/com_auth0_lock_ic_sso"
+            android:title="My Profile" />
+
 
         <item
             android:id="@+id/nav_logout"

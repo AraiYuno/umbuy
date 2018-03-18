@@ -113,7 +113,7 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
         solo.clickOnText("SIGN UP");
 
         //should go to loginActivity
-        assertTrue(solo.waitForActivity(LoginActivity.class));
+       // assertTrue(solo.waitForActivity(ViewAdsActivity.class));
         solo.goBack();
         solo.clickOnText("Log In");
         solo.clearEditText(0);
@@ -167,6 +167,7 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
         solo.clickOnButton(0);
         solo.clearEditText(0);
        assertFalse(solo.searchText("assertw"));
+
 
 
     }

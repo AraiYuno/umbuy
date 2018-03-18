@@ -2,6 +2,7 @@ package project.team6.umbuy.presentation;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 
@@ -29,7 +30,6 @@ class LoadImage extends AsyncTask<Object, Void, Bitmap> {
             URL url = new URL(path);
             Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
             return bmp;
-
         } catch (Exception e) {
             e.printStackTrace();
             Bitmap bmp = BitmapFactory.decodeResource(null, R.drawable.arrow);

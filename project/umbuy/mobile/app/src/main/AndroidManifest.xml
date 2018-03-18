@@ -4,6 +4,8 @@
 
     <!-- add internet permission to enable this app talking to local/remote server -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,18 +13,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".presentation.StartActivity"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".presentation.ViewAdsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,8 +41,8 @@
 
         <activity android:name=".presentation.CreateAdActivity" />
         <activity android:name=".presentation.LoginActivity" />
-
-
+        <activity android:name=".presentation.ProfilePageActivity" />
+        <activity android:name=".presentation.MyAds"></activity>
     </application>
 
 </manifest>

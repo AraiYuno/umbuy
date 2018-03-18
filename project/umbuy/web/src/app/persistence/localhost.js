@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 /* This file is used for localhost testing */
 var connection = mysql.createConnection({
     host: '127.0.0.1',
-    user: 'yourusername',
-    password: "yourpassword",
+    user: 'coutures',
+    password: "cherry14",
     database: 'project4350',
     port: '3306'
 });
@@ -26,12 +26,13 @@ connection.connect(function(err){
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     next();
   });
 
 app.get('/api/ads', (req, res) => {
     let sql = 'SELECT * FROM advertisements';
-    console.log(sql);
+    
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
         console.log(result);
@@ -43,7 +44,14 @@ app.get('/api/ads/:id(\\d+)', (req, res) => {
     let sql = 'SELECT * FROM advertisements WHERE advertisementId = ' + req.params.id;
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
-        console.log(result);
+        res.send(result);
+    });
+});
+
+app.delete('/api/ads/:id(\\d+)', (req, res) => {
+    let sql = 'DELETE FROM advertisements WHERE advertisementId = ' + req.params.id;
+    let query = connection.query(sql, (err, result)=> {
+        if( err ) throw err;
         res.send(result);
     });
 });
@@ -76,14 +84,13 @@ app.get('/api/users/:userId', (req, res) => {
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
   
-    console.log(body);
     res.send(body);
   });
 });
 
 app.post('/api/createAd', (req, res) => {
     // code 201 for creating object
-    res.status(201).send(req.body);
+    //res.status(201).send(req.body);
     var advertisementId = 0;
     var userId = req.body.userId;
     var title = req.body.title;
@@ -92,7 +99,7 @@ app.post('/api/createAd', (req, res) => {
     var url = req.body.imageUrl;
     var cate = req.body.category;
     connection.query("INSERT INTO advertisements (advertisementId, title, userId, description, price, imageUrl, category) VALUES (?, ?, ?, ?, ?, ?, ?)", [advertisementId, title, userId, desc, price, url, cate], (err, result)=>{
-        console.log(result);
+        res.send(result);
     });
 });
 

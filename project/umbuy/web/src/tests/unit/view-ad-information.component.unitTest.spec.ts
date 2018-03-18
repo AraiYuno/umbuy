@@ -22,6 +22,7 @@ describe('ViewAdInformationComponent Unit Tests', () => {
   let viewAdsComponent: ViewAdsComponent;
   let tempAd: Advertisement;  
   let authService: AuthService;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,7 +38,8 @@ describe('ViewAdInformationComponent Unit Tests', () => {
     advertisementService= TestBed.get(AdvertisementService);
     userService = TestBed.get(UserService);
     authService = TestBed.get(AuthService);
-    component= new ViewAdInformationComponent(advertisementService, userService, authService);
+    router = TestBed.get(Router);
+    component= new ViewAdInformationComponent(advertisementService, userService, authService, router);
     this.tempAd = { 
       "advertisementId": 1,
       "userId": 'auth0|5a8cfd24f5c8213cb27d5ec2',
@@ -46,7 +48,6 @@ describe('ViewAdInformationComponent Unit Tests', () => {
       "price": 75,
       "created_on": '2018-01-01',
       "last_updated": '2018-01-01',
-      "deleted_on": null,
       "imageUrl": 'http://alink.com',
       "category": 'electronics'
     };
@@ -59,7 +60,7 @@ describe('ViewAdInformationComponent Unit Tests', () => {
       return Observable.from([this.tempAd]);
       });
       // we should be able to retrieve the advertisementId by calling getAdvertisementId() in the component.
-    expect(component.getAdvertisementId('view/ads/1')).toContain(String(this.tempAd.advertisementId));
+    expect(advertisementService.getAdvertisementId('view/ads/1')).toContain(String(this.tempAd.advertisementId));
   });
 
   afterEach(()=>{});
@@ -76,7 +77,6 @@ describe('ViewAdInformationComponent Unit Tests', () => {
     //ASSERT: see if the created_on from the component matches with the expected output
     expect(component.created_on).toMatch("January 1, 2018");
     expect(component.last_updated).toMatch('January 1, 2018');
-    expect(component.deleted_on).toMatch('');
     expect(component.isDeleted).toBeFalsy();
   }); // afterEach
   afterEach(()=>{});

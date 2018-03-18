@@ -11,10 +11,12 @@ import { SearchComponent } from '../business/components/search.component';
 
 import { VerifyEmailComponent } from '../business/components/verify-email.component';
 import { EditComponent } from '../business/components/edit.component';
+import { DeleteComponent } from '../business/components/delete.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'edit/:id', component: EditComponent},
+  {path: 'delete/ads/:id', component: DeleteComponent},
+  {path: 'edit/ads/:id', component: EditComponent},
   {path: 'view/ads', component: ViewAdsComponent},
   {path: 'view/ads/:id', component: ViewAdInformationComponent},
   {path: 'view/ads/user/:id', component: ViewAdsComponent},
@@ -31,5 +33,5 @@ export const routes: Routes = [
 })
 
 export class AppRoutingModule { }
-export const routingComponents = [HomeComponent, CreateAdComponent, AppComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent, SearchComponent, UserProfileComponent, EditComponent];
+export const routingComponents = [HomeComponent, CreateAdComponent, AppComponent, ViewAdsComponent, ViewAdInformationComponent, PageNotFoundComponent, SearchComponent, UserProfileComponent, EditComponent, DeleteComponent, VerifyEmailComponent];
 export const routing = RouterModule.forRoot(routes);

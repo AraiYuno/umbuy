@@ -55,9 +55,7 @@ public class Advertisement {
         return last_updated;
     }
 
-    public Date getDeleted_on() {
-        return deleted_on;
-    }
+    public Date getDeleted_on(){ return deleted_on; }
 
     public String getImageUrl() {
         return imageUrl;
@@ -69,8 +67,8 @@ public class Advertisement {
 
 
     public Advertisement(int advertisementId, String userId, String title, String description,
-                         double price, Date created_on, Date last_updated, Date deleted_on,
-                         String imageUrl, String category){
+                         double price, Date created_on, Date last_updated, Date deleted_on, String imageUrl,
+                         String category){
         this.advertisementId = advertisementId;
         this.userId = userId;
         this.title = title;
@@ -93,7 +91,6 @@ public class Advertisement {
                 ", price=" + price +
                 ", created_on=" + created_on +
                 ", last_updated=" + last_updated +
-                ", deleted_on=" + deleted_on +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", category='" + category + '\'' +
                 '}';

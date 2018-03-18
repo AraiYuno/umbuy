@@ -5,6 +5,14 @@ const app = express();
 const request = require('request'); 
 
 /* Advertisement table */
+var deleteAdById = (advertisementId, callback) => {
+    let sql = 'DELETE FROM advertisements WHERE advertisementId = ' + advertisementId;;
+    connection.query(sql, (err, res, fields)=> {
+        if( err ) throw err;
+        callback(err, res, fields);
+    });
+};
+
 var getAllAds = (callback) => {
     connection.query("SELECT * FROM advertisements", (err, res, fields)=> {
         if( err ) throw err;
@@ -88,5 +96,6 @@ module.exports = {
     getAdsByTitle: getAdsByTitle,
     getUserById: getUserById,
     createAd: createAd,
-    editAd: editAd
+    editAd: editAd,
+    deleteAdById: deleteAdById,
 }

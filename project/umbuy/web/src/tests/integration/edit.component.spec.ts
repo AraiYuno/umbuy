@@ -54,7 +54,6 @@ describe('EditComponent Integration Tests', () => {
       "price": 75,
       "created_on": '2018-01-01',
       "last_updated": '2018-01-01',
-      "deleted_on": null,
       "imageUrl": 'http://alink.com',
       "category": 'electronics'
     };
@@ -74,12 +73,12 @@ describe('EditComponent Integration Tests', () => {
   });
   
   it('should redirect the user back to my ads page after validating advertisement', () => {
-    component.userId = this.tempUser.user_id;
+    component.currentAdvertisementId = this.tempAd.advertisementId;
     let spy = spyOn(router, 'navigate');
 
-    component.backToMyAdsPage();
+    component.backToViewAdsPage();
 
-    expect(spy).toHaveBeenCalledWith(['/view/ads/user/' + this.tempUser.user_id]);
+    expect(spy).toHaveBeenCalledWith(['/view/ads/' + this.tempAd.advertisementId]);
     
   });
 
