@@ -16,7 +16,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import com.squareup.picasso.Picasso;
 
 import project.team6.umbuy.R;
-import project.team6.umbuy.bussiness.CredentialsManager;
+import project.team6.umbuy.shared.CredentialsManager;
 
 
 public class ProfilePageActivity extends AppCompatActivity {

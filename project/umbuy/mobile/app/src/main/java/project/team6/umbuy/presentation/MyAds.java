@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
-import project.team6.umbuy.bussiness.CredentialsManager;
+import project.team6.umbuy.shared.CredentialsManager;
 import project.team6.umbuy.bussiness.FilterAds;
 import project.team6.umbuy.data_model.Advertisement;
 import project.team6.umbuy.shared.AdvertisementService;
