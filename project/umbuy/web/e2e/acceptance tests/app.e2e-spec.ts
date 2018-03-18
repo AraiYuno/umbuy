@@ -1,5 +1,6 @@
 import { AppPage } from '../pages/app.po';
 import { SharedPage } from '../pages/shared.po';
+import { browser } from 'protractor';
 
 describe('Acceptance Test App Page', () => {
   let page: AppPage;
@@ -9,6 +10,7 @@ describe('Acceptance Test App Page', () => {
     page = new AppPage();
     sharedPage = new SharedPage();
     sharedPage.navigateToHomePage();
+    browser.sleep(4000);
   });
 
   it('should display UMBUY at the top of the page', () => {

@@ -1,5 +1,6 @@
 import { CreatePage } from '../pages/create.po';
 import { SharedPage } from '../pages/shared.po';
+import { browser } from 'protractor';
 
 describe('Acceptance Test Create Page', () => {
   let page: CreatePage;
@@ -13,8 +14,10 @@ describe('Acceptance Test Create Page', () => {
     sharedPage.clickLoginButtonOnNavbar(function callback(url){
       expect(url).toContain("https://team6.auth0.com");
     });
+
     sharedPage.fillInLoginForm();
     sharedPage.submitLoginForm();
+    browser.sleep(4000);
   });
 
   afterEach(() =>{

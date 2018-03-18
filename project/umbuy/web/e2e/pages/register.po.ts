@@ -40,7 +40,7 @@ export class RegisterPage {
   clickToSignUp(callback){
     //click sign up button
     element(by.css('div div #signup form #btn-signup')).click().then(function () {
-      browser.sleep(4000);
+      browser.sleep(5000);
       callback();
     });
   }
@@ -52,7 +52,7 @@ export class RegisterPage {
   clickAuthorizeButton(){
     //click authorize button
     element(by.css('#allow')).click().then(function () {
-      browser.sleep(2000);
+      browser.sleep(5000);
     });
   }
 

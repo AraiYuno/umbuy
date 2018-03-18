@@ -1,8 +1,9 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, element, protractor } from 'protractor';
 import { Advertisement } from '../../src/app/data_model/advertisement';
 var rest = require('restler');
 
 export class SharedPage {
+  EC = protractor.ExpectedConditions;
 
   navigateToHomePage() {
     return browser.get('/');
@@ -14,9 +15,10 @@ export class SharedPage {
 
   clickLoginButtonOnNavbar(callback){
     browser.ignoreSynchronization = true;
-    browser.sleep(100);
+    var loginBtn = element(by.css('a#qsLogoutBtn'));
+    browser.wait(this.EC.elementToBeClickable(loginBtn), 9000);
 
-    element(by.linkText('Log In')).click().then(function () {
+    loginBtn.click().then(function () {
       browser.getCurrentUrl().then(function (url){
         callback(url);
       });
@@ -24,25 +26,31 @@ export class SharedPage {
   }
 
   clickLogoutButtonOnNavbar(){
-    browser.ignoreSynchronization = true;
-    browser.sleep(100);
-
-    element(by.linkText('Log Out')).click().then(function () {
-        browser.sleep(100);
+    var logoutBtn = element(by.css('a#qsLogoutBtn'));
+    browser.wait(this.EC.elementToBeClickable(logoutBtn), 9000);
+    logoutBtn.click().then(function () {
+        browser.sleep(6000);
     }); 
   }
 
   submitLoginForm(){
-    element(by.buttonText('Log In')).click().then(function () {
-      browser.sleep(3000);
+    var submitBtn = element(by.css('button#btn-login.btn.btn-primary.btn-block'));
+    browser.wait(this.EC.elementToBeClickable(submitBtn), 9000);
+    submitBtn.click().then(function () {
+      browser.sleep(6000);
     }); 
   }
 
   fillInLoginForm(){
+    var emailField = element(by.css('input#email.form-control'));
+    var passwordField = element(by.css('input#password.form-control'));
+    browser.wait(this.EC.elementToBeClickable(emailField), 9000);
+    browser.wait(this.EC.elementToBeClickable(passwordField), 9000);
+
     //fill email
-    element(by.css('#email')).sendKeys("stefc2013@gmail.com");
+    emailField.sendKeys("stefc2013@gmail.com");
     //fill password
-    element(by.css('#password')).sendKeys("password");
+    passwordField.sendKeys("password");
   }
 
   getHomeTabText(){
@@ -70,7 +78,9 @@ export class SharedPage {
   }
 
   clickLastAdOnHomePage(callback){
-    element.all(by.css('#ad')).last().click().then(function () {
+    var lastAd = element.all(by.css('a#ad')).last();
+    browser.wait(this.EC.elementToBeClickable(lastAd), 9000);
+    lastAd.click().then(function () {
       browser.getCurrentUrl().then(function (url){
         callback(url);
       });
@@ -80,7 +90,7 @@ export class SharedPage {
   constructAd(){
     var newAd: Advertisement = new Advertisement;
     newAd.userId = "auth0|5a8cfd24f5c8213cb27d5ec2"; //userId of stefc2013@gmail.com
-    newAd.title = "e2e_test_auth0|5a8cfd24f5c8213cb27d5ec2_newAd";
+    newAd.title = "e2e_test_newAd";
     newAd.description = "testAd Description";
     newAd.price = 250.00;
     newAd.imageUrl = 'https://s3.amazonaws.com/kyleteam6best/default.jpg';
@@ -102,9 +112,9 @@ export class SharedPage {
   }
 
   getCurrentUrl(callback){
-    browser.getCurrentUrl().then( function( url ) {
+    browser.getCurrentUrl().then( function( url ){
       callback(url);
-      });
+    });
   }
 
   getAdvertisementId(pathnameUrl: string){
@@ -119,4 +129,36 @@ export class SharedPage {
     
     return adId;
   }
+
+  clickEditBtn(callback){
+    var editBtn = element(by.css('button#editButton'));
+    browser.wait(this.EC.elementToBeClickable(editBtn), 9000);
+
+    editBtn.click().then(function () {
+      browser.getCurrentUrl().then(function (url){
+        callback(url);
+      });
+    }); 
+  }
+
+  clickDeleteBtn(callback){
+    var deleteBtn = element(by.css('button#deleteButton'));
+    browser.wait(this.EC.elementToBeClickable(deleteBtn), 9000);
+    deleteBtn.click().then(function () {
+        browser.sleep(6000);
+        callback();
+    }); 
+  }
+
+  isDeleteModalVisible(){
+    return element(by.css('#deleteModal')).isDisplayed();
+  }
+
+  getAdTitle(){ return element(by.css('h1#title')).getText(); }
+
+  getAdPrice(){ return element(by.css('h3#price')).getText(); }
+
+  getAdDescription(){ return element(by.css('h3#description')).getText(); }
+
+  getAdImageUrl(){ return element(by.css('img#image')).getAttribute('src'); }
 }

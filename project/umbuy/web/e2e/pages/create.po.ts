@@ -17,17 +17,17 @@ export class CreatePage {
     element(by.css('#description')).sendKeys("testAd Description");
   }
 
+  getLastAdTitleOnPage(){
+    return element.all(by.css('#title')).last();
+  }
+
   clickValidateAdButton(){
-    element(by.buttonText('Validate Advertisement')).click();
+    element(by.css('button#postBtn')).click();
   }
 
   clickPostNowButton(){
-    element(by.buttonText('POST NOW')).click();
-    browser.sleep(2000);
-  }
-
-  getLastAdTitleOnPage(){
-    return element.all(by.css('#title')).last();
+    element(by.css('input#postNow')).click();
+    browser.sleep(4000);
   }
 
 }

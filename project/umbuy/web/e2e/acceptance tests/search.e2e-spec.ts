@@ -1,13 +1,13 @@
-import { HomePage } from '../pages/home.po';
+import { SearchPage } from '../pages/search.po';
 import { SharedPage } from '../pages/shared.po';
 import { browser } from 'protractor';
 
-describe('Acceptance Test Home Page', () => {
-  let page: HomePage;
+describe('Acceptance Test Search Page', () => {
+  let page: SearchPage;
   let sharedPage: SharedPage;
 
   beforeEach(() => {
-    page = new HomePage();
+    page = new SearchPage();
     sharedPage = new SharedPage();
     
     //adds an ad to the database before each test
@@ -38,31 +38,12 @@ describe('Acceptance Test Home Page', () => {
     });
   });
 
-  it('should see the create ad button on the page', () => {
+  it('should contain the test ad when you search for a title that exist', () => {
     expect(page.getCreateAdButtonText()).toEqual('Create an Advertisement');
   });
 
-  it('should click the create ad button on the page and end up on the create ad page', () => {
-    sharedPage.clickCreateAdButton(function callback(url){
-      expect(url).toContain("http://localhost:4200/createAd");      
-    });
-    expect(page.getCreateAdHeaderText()).toEqual('Create a New Advertisement');
-  });
-
-  it('should see the User Account button on the navbar', () => {
-    expect(sharedPage.getUserAccountButtonText()).toEqual('User Account');
-  });
-
-  it('should click the User Account button on the navbar and be on the user profile page', () => {
-    sharedPage.clickUserAccountBtnOnNavbar(function callback(url){
-      expect(url).toContain("http://localhost:4200/profile");
-    });
-  });
-
-  it('should click on an ad and be brought to its ad information page', () => {
-    sharedPage.clickLastAdOnHomePage(function callback(url){
-      expect(url).toContain("http://localhost:4200/view/ads/");
-    });
+  it('shouldnt contain the test ad when you search for a title that doesnt exist', () => {
+    expect(page.getCreateAdButtonText()).toEqual('Create an Advertisement');
   });
 
 });

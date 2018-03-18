@@ -1,5 +1,6 @@
 import { RegisterPage } from '../pages/register.po';
 import { SharedPage } from '../pages/shared.po';
+import { browser } from 'protractor';
 
 describe('Acceptance Test Register Page', () => {
   let page: RegisterPage;
@@ -12,7 +13,9 @@ describe('Acceptance Test Register Page', () => {
     sharedPage.navigateToHomePage();
     sharedPage.clickLoginButtonOnNavbar(function callback(url){
         expect(url).toContain("https://team6.auth0.com");
-      });
+    });
+
+    browser.sleep(4000);
   });
 
   it('should display Please Log in to Continue', () => {

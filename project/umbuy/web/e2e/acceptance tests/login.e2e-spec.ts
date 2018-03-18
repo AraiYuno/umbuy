@@ -1,4 +1,5 @@
 import { SharedPage } from '../pages/shared.po';
+import { browser } from 'protractor';
 
 describe('Acceptance Test Login Page', () => {
   let sharedPage: SharedPage;
@@ -6,6 +7,7 @@ describe('Acceptance Test Login Page', () => {
   beforeEach(() => {
     sharedPage = new SharedPage();
     sharedPage.navigateToHomePage();
+    browser.sleep(4000);
   });
 
   it('should fill in login form and click save and end up on home page', () => {
