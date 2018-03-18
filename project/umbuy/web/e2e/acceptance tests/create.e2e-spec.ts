@@ -1,41 +1,41 @@
-import { CreatePage } from '../pages/create.po';
-import { SharedPage } from '../pages/shared.po';
-import { browser } from 'protractor';
+// import { CreatePage } from '../pages/create.po';
+// import { SharedPage } from '../pages/shared.po';
+// import { browser } from 'protractor';
 
-describe('Acceptance Test Create Page', () => {
-  let page: CreatePage;
-  let sharedPage: SharedPage;
+// describe('Acceptance Test Create Page', () => {
+//   let page: CreatePage;
+//   let sharedPage: SharedPage;
 
-  beforeEach(() => {
-    page = new CreatePage();
-    sharedPage = new SharedPage();
+//   beforeEach(() => {
+//     page = new CreatePage();
+//     sharedPage = new SharedPage();
     
-    sharedPage.navigateToHomePage();
-    sharedPage.clickLoginButtonOnNavbar(function callback(url){
-      expect(url).toContain("https://team6.auth0.com");
-    });
+//     sharedPage.navigateToHomePage();
+//     sharedPage.clickLoginButtonOnNavbar(function callback(url){
+//       expect(url).toContain("https://team6.auth0.com");
+//     });
 
-    sharedPage.fillInLoginForm();
-    sharedPage.submitLoginForm();
-    browser.sleep(4000);
-  });
+//     sharedPage.fillInLoginForm();
+//     sharedPage.submitLoginForm();
+//     browser.sleep(4000);
+//   });
 
-  afterEach(() =>{
-    sharedPage.clickLogoutButtonOnNavbar();
-  })
+//   afterEach(() =>{
+//     sharedPage.clickLogoutButtonOnNavbar();
+//   })
 
-  it('should fill the create ad form and once click button to save it, should see it on createAd page', () => {
-    var newAd;
+//   it('should fill the create ad form and once click button to save it, should see it on createAd page', () => {
+//     var newAd;
 
-    sharedPage.clickCreateAdButton(function callback(url){
-      expect(url).toContain("http://localhost:4200/createAd");      
-    });
-    page.fillInCreateAdForm();
-    page.clickValidateAdButton();
-    page.clickPostNowButton();
+//     sharedPage.clickCreateAdButton(function callback(url){
+//       expect(url).toContain("http://localhost:4200/createAd");      
+//     });
+//     page.fillInCreateAdForm();
+//     page.clickValidateAdButton();
+//     page.clickPostNowButton();
 
-    newAd = page.getLastAdTitleOnPage();
-    expect(newAd.getText()).toContain("testAd Title_Create");
-  });
+//     newAd = page.getLastAdTitleOnPage();
+//     expect(newAd.getText()).toContain("testAd Title_Create");
+//   });
 
-});
+// });

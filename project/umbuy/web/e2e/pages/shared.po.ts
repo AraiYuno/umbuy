@@ -161,4 +161,8 @@ export class SharedPage {
   getAdDescription(){ return element(by.css('h3#description')).getText(); }
 
   getAdImageUrl(){ return element(by.css('img#image')).getAttribute('src'); }
+
+  getNumberOfAds(){
+    return element.all(by.css('a#ad')).count();
+  }
 }

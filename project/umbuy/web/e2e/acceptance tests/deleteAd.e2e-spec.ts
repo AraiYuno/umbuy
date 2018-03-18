@@ -22,7 +22,7 @@ describe('Acceptance Test Delete Ad Page', () => {
      sharedPage.submitLoginForm();
 
      //get number of ads before delete
-     this.numOfAdsBeforeDel = page.getNumberOfAds();
+     this.numOfAdsBeforeDel = sharedPage.getNumberOfAds();
      
     //click the last ad on page (the one we just added)
     sharedPage.clickLastAdOnHomePage(function callback(url){
@@ -36,11 +36,14 @@ describe('Acceptance Test Delete Ad Page', () => {
     browser.sleep(4000);
   });
 
+    afterEach(() =>{
+        sharedPage.clickLogoutButtonOnNavbar();
+    });
 
   it('should delete the ad and no longer see the ad', () => {
     var numOfAdsAfterDel;
     page.clickDeleteButton();
-    numOfAdsAfterDel = page.getNumberOfAds();
+    numOfAdsAfterDel = sharedPage.getNumberOfAds();
     expect(this.numOfAdsBeforeDel).toBeGreaterThan(numOfAdsAfterDel);
   });
 

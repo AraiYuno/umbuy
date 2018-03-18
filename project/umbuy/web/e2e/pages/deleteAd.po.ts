@@ -11,7 +11,4 @@ export class DeleteAdPage {
     });
   }
 
-  getNumberOfAds(){
-    return element.all(by.css('a#ad')).count();
-  }
 }

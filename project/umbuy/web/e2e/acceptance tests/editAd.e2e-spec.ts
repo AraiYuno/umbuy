@@ -15,7 +15,7 @@ describe('Acceptance Test Edit Ad Page', () => {
     
     sharedPage.navigateToHomePage();
     sharedPage.clickLoginButtonOnNavbar(function callback(url){
-      console.log(url);
+        expect(url).toContain("https://team6.auth0.com");
     });
      sharedPage.fillInLoginForm();
      sharedPage.submitLoginForm();
