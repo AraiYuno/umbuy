@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 /* This file is used for localhost testing */
 var connection = mysql.createConnection({
     host: '127.0.0.1',
-    user: '***',
-    password: "***",
+    user: 'coutures',
+    password: "cherry14",
     database: 'project4350',
     port: '3306'
 });
@@ -32,7 +32,7 @@ app.use(function(req, res, next) {
 
 app.get('/api/ads', (req, res) => {
     let sql = 'SELECT * FROM advertisements';
-    console.log(sql);
+    
     let query = connection.query(sql, (err, result)=> {
         if( err ) throw err;
         console.log(result);
@@ -90,7 +90,7 @@ app.get('/api/users/:userId', (req, res) => {
 
 app.post('/api/createAd', (req, res) => {
     // code 201 for creating object
-    res.status(201).send(req.body);
+    //res.status(201).send(req.body);
     var advertisementId = 0;
     var userId = req.body.userId;
     var title = req.body.title;
@@ -99,7 +99,7 @@ app.post('/api/createAd', (req, res) => {
     var url = req.body.imageUrl;
     var cate = req.body.category;
     connection.query("INSERT INTO advertisements (advertisementId, title, userId, description, price, imageUrl, category) VALUES (?, ?, ?, ?, ?, ?, ?)", [advertisementId, title, userId, desc, price, url, cate], (err, result)=>{
-        console.log(result);
+        res.send(result);
     });
 });
 

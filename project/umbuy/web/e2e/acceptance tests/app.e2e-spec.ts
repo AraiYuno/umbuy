@@ -1,11 +1,16 @@
 import { AppPage } from '../pages/app.po';
+import { SharedPage } from '../pages/shared.po';
+import { browser } from 'protractor';
 
 describe('Acceptance Test App Page', () => {
   let page: AppPage;
+  let sharedPage: SharedPage;
 
   beforeEach(() => {
     page = new AppPage();
-    page.navigateToHomePage();
+    sharedPage = new SharedPage();
+    sharedPage.navigateToHomePage();
+    browser.sleep(4000);
   });
 
   it('should display UMBUY at the top of the page', () => {
@@ -14,14 +19,6 @@ describe('Acceptance Test App Page', () => {
 
   it('should display Classified Ads... on the page', () => {
     expect(page.getParagraphText()).toEqual('Classified Ads for University of Manitoba');
-  });
-
-  it('should see the Log in button on the page', () => {
-    expect(page.getLoginButtonText()).toEqual('Log In');
-  });
-
-  it('should click the Log In button and end up on the login page', () => {
-    page.clickLoginButton(); 
   });
 
 });
