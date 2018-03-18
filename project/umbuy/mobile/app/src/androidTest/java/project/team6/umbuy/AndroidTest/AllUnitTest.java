@@ -7,6 +7,7 @@ import project.team6.umbuy.AndroidTest.UnitTest.Presentation.AdsAdapterTest;
 import project.team6.umbuy.AndroidTest.UnitTest.Presentation.CreateAdActivityTest;
 import project.team6.umbuy.AndroidTest.UnitTest.Presentation.ViewAdInfoActivityTest;
 import project.team6.umbuy.AndroidTest.UnitTest.Presentation.ViewAdsActivityTest;
+import project.team6.umbuy.AndroidTest.UnitTest.Presentation.ProfilePageActivityTest;
 import project.team6.umbuy.AndroidTest.UnitTest.business.FilterAdsTest;
 import project.team6.umbuy.AndroidTest.UnitTest.data_model.AdvertisementTest;
 
@@ -23,7 +24,8 @@ import project.team6.umbuy.AndroidTest.UnitTest.data_model.AdvertisementTest;
         AdvertisementTest.class,
         CreateAdActivityTest.class,
         AdvertisementTest.class,
-        FilterAdsTest.class
+        FilterAdsTest.class,
+        ProfilePageActivityTest.class
 
 })
 
