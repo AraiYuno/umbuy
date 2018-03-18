@@ -10,7 +10,6 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.Url;
 
 /*fill the () after @GET @POST @DELETE with corresponding path after host url*/
 public interface ApiInterface {
@@ -19,12 +18,8 @@ public interface ApiInterface {
     Call<List<Advertisement>> getAllAdvertisements();
 
 
-    @GET
-    Call<List<Advertisement>> getUserAdvertisements(
-
-             @Url String userId
-
-    );
+    @GET("/api/ads/user/{userId}")
+    Call<List<Advertisement>> getUserAdvertisements(@Path("userId") String userId);
 
     @POST("/api/createAd")
     @FormUrlEncoded
