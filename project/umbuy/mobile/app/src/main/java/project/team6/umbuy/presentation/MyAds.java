@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -29,10 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
-import project.team6.umbuy.shared.CredentialsManager;
 import project.team6.umbuy.bussiness.FilterAds;
 import project.team6.umbuy.data_model.Advertisement;
 import project.team6.umbuy.shared.AdvertisementService;
+import project.team6.umbuy.shared.CredentialsManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,7 +53,7 @@ public class MyAds extends AppCompatActivity {
     private Button searchButton;
     private Auth0 auth0;
     private UserProfile userProfile;
-    private Button homeBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -223,6 +224,16 @@ public class MyAds extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
