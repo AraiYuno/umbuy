@@ -53,12 +53,16 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
 
         userId = getIntent().getStringExtra("userId");
         advertisementId = getIntent().getIntExtra("adId", 0);
+
+        // hide delete button first
         btn_delete_ad.setVisibility(View.INVISIBLE);
         getUserInfo();
 
         btn_delete_ad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // show message dialog to continue with the deletion of the advertisment
                 showDeleteDialog();
             }
         });
@@ -114,9 +118,9 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
     public void deleteAd(){
         currentUser = userProfile.getId();
 
+        // show delete button if current user is the creator of the add
         if (currentUser.equals(userId)){
             btn_delete_ad.setVisibility(View.VISIBLE);
-
         }
     }
 
@@ -125,6 +129,7 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
         dialog.show(getFragmentManager(), "delete");
     }
 
+    // if yes is clicked, delete ad using the api service
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         AdvertisementService advertisementService = new AdvertisementService();
@@ -155,6 +160,7 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
         });
     }
 
+    // if no, do nothing ~~ the dialog window closes at default
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
 
