@@ -208,7 +208,7 @@ public class MyAds extends AppCompatActivity {
 
     public void userHelper(AdvertisementService adService){
 
-        Call<List<Advertisement>> call = adService.getUserAdvertisements("/api/ads/user/"+userProfile.getId());;
+        Call<List<Advertisement>> call = adService.getUserAdvertisements(userProfile.getId());;
         call.enqueue(new Callback<List<Advertisement>>() {
             @Override
             public void onResponse(Call<List<Advertisement>> call, Response<List<Advertisement>> response) {
