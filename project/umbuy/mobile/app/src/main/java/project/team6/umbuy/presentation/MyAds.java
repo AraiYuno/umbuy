@@ -16,6 +16,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.auth0.android.Auth0;
+import com.auth0.android.authentication.AuthenticationAPIClient;
+import com.auth0.android.authentication.AuthenticationException;
+import com.auth0.android.callback.BaseCallback;
+import com.auth0.android.result.UserProfile;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +32,6 @@ import project.team6.umbuy.shared.AdvertisementService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 
 
 public class MyAds extends AppCompatActivity {
@@ -42,6 +47,9 @@ public class MyAds extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private EditText searchText;
     private Button searchButton;
+    private Auth0 auth0;
+    private UserProfile userProfile;
+    private String finalUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,30 +79,34 @@ public class MyAds extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        AdvertisementService adService = new AdvertisementService();
+        final AdvertisementService adService = new AdvertisementService();
 
         mAdapter = new AdsAdapter(list, context);
         mRecyclerView.setAdapter(mAdapter);
 
-        Call<List<Advertisement>> call = adService.getUserAdvertisements();
 
 
-        call.enqueue(new Callback<List<Advertisement>>() {
-            @Override
-            public void onResponse(Call<List<Advertisement>> call, Response<List<Advertisement>> response) {
-                list.clear();
-                list.addAll(response.body());
 
-                response.body();
+        auth0 = new Auth0(this);
+        auth0.setOIDCConformant(true);
 
-                mRecyclerView.getAdapter().notifyDataSetChanged();
-            }
+        AuthenticationAPIClient authenticationClient = new AuthenticationAPIClient(auth0);
+        authenticationClient.userInfo(CredentialsManager.getCredentials(this).getAccessToken())
+                .start(new BaseCallback<UserProfile, AuthenticationException>() {
+                    @Override
+                    public void onSuccess(final UserProfile profile) {
+                        userProfile = profile;
+                        //System.out.println(userProfile.getId());
+                        userHelper(adService);
+                        //finalUrl =  "/api/ads/user/"+userProfile.getId();
 
-            @Override
-            public void onFailure(Call<List<Advertisement>> call, Throwable t) {
-                Log.d("=================error", "Retrofit connection failed ================");
-            }
-        });
+                    }
+                    @Override
+                    public void onFailure(AuthenticationException error) {
+
+                    }
+                });
+
 
 
 
@@ -157,6 +169,33 @@ public class MyAds extends AppCompatActivity {
         startActivity(new Intent(context, ProfilePageActivity.class));
 
     }
+
+    public void userHelper(AdvertisementService adService){
+
+
+
+        Call<List<Advertisement>> call = adService.getUserAdvertisements("/api/ads/user/"+userProfile.getId());;
+
+
+        call.enqueue(new Callback<List<Advertisement>>() {
+            @Override
+            public void onResponse(Call<List<Advertisement>> call, Response<List<Advertisement>> response) {
+                list.clear();
+                list.addAll(response.body());
+
+                response.body();
+
+                mRecyclerView.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<Advertisement>> call, Throwable t) {
+                Log.d("=================error", "Retrofit connection failed ================");
+            }
+        });
+
+    }
+
 
 
 }
