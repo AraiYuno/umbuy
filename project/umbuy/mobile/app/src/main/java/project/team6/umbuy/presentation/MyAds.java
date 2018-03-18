@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,24 +15,29 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.auth0.android.Auth0;
+import com.auth0.android.authentication.AuthenticationAPIClient;
+import com.auth0.android.authentication.AuthenticationException;
+import com.auth0.android.callback.BaseCallback;
+import com.auth0.android.result.UserProfile;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
-import project.team6.umbuy.shared.AdvertisementService;
-import project.team6.umbuy.shared.CredentialsManager;
+import project.team6.umbuy.bussiness.CredentialsManager;
 import project.team6.umbuy.bussiness.FilterAds;
 import project.team6.umbuy.data_model.Advertisement;
+import project.team6.umbuy.shared.AdvertisementService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ViewAdsActivity extends AppCompatActivity {
+public class MyAds extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private Button createAd;
@@ -46,7 +50,9 @@ public class ViewAdsActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private EditText searchText;
     private Button searchButton;
-
+    private Auth0 auth0;
+    private UserProfile userProfile;
+    private Button homeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +75,7 @@ public class ViewAdsActivity extends AppCompatActivity {
         createAd = (Button) findViewById(R.id.main_create_ad);
         logoutButton = (Button) findViewById(R.id.main_logout);
         logoutView = (NavigationView) findViewById(R.id.nav_logout);
+        searchText = findViewById(R.id.search_bar);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.listViewAds);
         mRecyclerView.setHasFixedSize(true);
@@ -76,28 +83,21 @@ public class ViewAdsActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        final AdvertisementService adService = new AdvertisementService();
+
         mAdapter = new AdsAdapter(list, context);
         mRecyclerView.setAdapter(mAdapter);
+        createAd = (Button) findViewById(R.id.main_create_ad);
+        logoutButton = (Button) findViewById(R.id.main_logout);
 
-        AdvertisementService adService = new AdvertisementService();
-
-        Call<List<Advertisement>> call = adService.getAllAdvertisements();
-        call.enqueue(new Callback<List<Advertisement>>() {
+        logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<List<Advertisement>> call, Response<List<Advertisement>> response) {
-                list.clear();
-                list.addAll(response.body());
-                mRecyclerView.getAdapter().notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(Call<List<Advertisement>> call, Throwable t) {
-                Log.d("=================error", "Retrofit connection failed ================");
+            public void onClick(View v) {
+                logout();
             }
         });
 
-        // button for createAd Activity
-        createAd.setOnClickListener(new OnClickListener() {
+        createAd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent createAdIntent = new Intent(context,CreateAdActivity.class);
@@ -105,15 +105,24 @@ public class ViewAdsActivity extends AppCompatActivity {
             }
         });
 
-        logoutButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            logout();
-            }
-        });
+        auth0 = new Auth0(this);
+        auth0.setOIDCConformant(true);
+
+        AuthenticationAPIClient authenticationClient = new AuthenticationAPIClient(auth0);
+        authenticationClient.userInfo(CredentialsManager.getCredentials(this).getAccessToken())
+                .start(new BaseCallback<UserProfile, AuthenticationException>() {
+                    @Override
+                    public void onSuccess(final UserProfile profile) {
+                        userProfile = profile;
+                        userHelper(adService);
+                    }
+                    @Override
+                    public void onFailure(AuthenticationException error) {
+
+                    }
+                });
 
         NavigationView navigationView = findViewById(R.id.nav_view);
-
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -133,6 +142,7 @@ public class ViewAdsActivity extends AppCompatActivity {
                             case R.id.nav_home :
                                 menuItem.setChecked(true);
                                 mDrawerLayout.closeDrawers();
+                                goHome();
                                 return true;
 
                             case R.id.nav_myProfile :
@@ -145,18 +155,31 @@ public class ViewAdsActivity extends AppCompatActivity {
                             case R.id.nav_myAds :
                                 menuItem.setChecked(true);
                                 mDrawerLayout.closeDrawers();
-                                navigateToMyAds();
                                 return true;
 
                             default:
                                 menuItem.setChecked(true);
 
                                 return true;
-
                         }
-
                     }
                 });
+    }
+
+    private void logout() {
+        CredentialsManager.deleteCredentials(this);
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
+
+    public void navigateToProfilePage(){
+        startActivity(new Intent(context, ProfilePageActivity.class));
+        finish();
+    }
+
+    public void goHome(){
+        onBackPressed();
+        finish();
     }
 
     private void initializeSearchBar(){
@@ -173,7 +196,7 @@ public class ViewAdsActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(final Editable editable) {
-                searchButton.setOnClickListener(new OnClickListener(){
+                searchButton.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
                         mAdapter.updateList(FilterAds.filterAdsByTitle(editable.toString(),list));
@@ -183,33 +206,23 @@ public class ViewAdsActivity extends AppCompatActivity {
         });
     }
 
-    private void logout() {
-        CredentialsManager.deleteCredentials(this);
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
-    }
+    public void userHelper(AdvertisementService adService){
 
-    public void testAdd(Advertisement ad){
-        this.list.add(ad);
-    }
+        Call<List<Advertisement>> call = adService.getUserAdvertisements("/api/ads/user/"+userProfile.getId());;
+        call.enqueue(new Callback<List<Advertisement>>() {
+            @Override
+            public void onResponse(Call<List<Advertisement>> call, Response<List<Advertisement>> response) {
+                list.clear();
+                list.addAll(response.body());
+                response.body();
+                mRecyclerView.getAdapter().notifyDataSetChanged();
+            }
+            @Override
+            public void onFailure(Call<List<Advertisement>> call, Throwable t) {
+                Log.d("=================error", "Retrofit connection failed ================");
+            }
+        });
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void navigateToProfilePage(){
-        startActivity(new Intent(context, ProfilePageActivity.class));
-
-    }
-
-    public void navigateToMyAds(){
-        startActivity(new Intent(context, MyAds.class));
     }
 
 }
-

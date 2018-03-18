@@ -2,11 +2,9 @@ package project.team6.umbuy.shared;
 
 import java.util.List;
 
+import project.team6.umbuy.data_model.Advertisement;
 import project.team6.umbuy.persistence.ApiClient;
 import project.team6.umbuy.persistence.ApiInterface;
-
-
-import project.team6.umbuy.data_model.Advertisement;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -14,9 +12,10 @@ import retrofit2.Retrofit;
  * Created by ye on 2018-02-28.
  */
 
-public class AdvertisementService{
+public class AdvertisementService {
 
     private ApiInterface service;
+
 
     public  AdvertisementService (){
         if(service == null){
@@ -28,6 +27,11 @@ public class AdvertisementService{
 
     public Call<List<Advertisement>> getAllAdvertisements(){
         return service.getAllAdvertisements();
+    }
+
+    public Call<List<Advertisement>> getUserAdvertisements(String id){
+
+        return service.getUserAdvertisements(id);
     }
 
     public Call<Advertisement> submitAd(int advertisementId, String title, String userId, String description, double price, String imageUrl, String category){
