@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 /* This file is used for localhost testing */
 var connection = mysql.createConnection({
     host: '127.0.0.1',
-    user: '***',
-    password: "***",
+    user: 'root',
+    password: "yy283689291yy",
     database: 'project4350',
     port: '3306'
 });
@@ -90,7 +90,9 @@ app.get('/api/users/:userId', (req, res) => {
 
 app.post('/api/createAd', (req, res) => {
     // code 201 for creating object
+    console.log("create?")
     res.status(201).send(req.body);
+
     var advertisementId = 0;
     var userId = req.body.userId;
     var title = req.body.title;

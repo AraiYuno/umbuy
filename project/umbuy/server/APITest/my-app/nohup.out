@@ -1,0 +1,66 @@
+Listening on port 3000!
+/Users/ye/Desktop/umbuy/project/umbuy/server/APITest/my-app/src/main/resources/localhost.js:22
+    if (err) throw err;
+             ^
+
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1182:14)
+    --------------------
+    at Protocol._enqueue (/Users/ye/Desktop/umbuy/project/umbuy/server/APITest/my-app/src/main/resources/node_modules/mysql/lib/protocol/Protocol.js:145:48)
+    at Protocol.handshake (/Users/ye/Desktop/umbuy/project/umbuy/server/APITest/my-app/src/main/resources/node_modules/mysql/lib/protocol/Protocol.js:52:23)
+    at Connection.connect (/Users/ye/Desktop/umbuy/project/umbuy/server/APITest/my-app/src/main/resources/node_modules/mysql/lib/Connection.js:130:18)
+    at Object.<anonymous> (/Users/ye/Desktop/umbuy/project/umbuy/server/APITest/my-app/src/main/resources/localhost.js:21:12)
+    at Module._compile (module.js:643:30)
+    at Object.Module._extensions..js (module.js:654:10)
+    at Module.load (module.js:556:32)
+    at tryModuleLoad (module.js:499:12)
+    at Function.Module._load (module.js:491:3)
+    at Function.Module.runMain (module.js:684:10)
+Listening on port 3000!
+/Users/ye/Desktop/umbuy/project/umbuy/server/APITest/my-app/src/main/resources/localhost.js:22
+    if (err) throw err;
+             ^
+
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1182:14)
+    --------------------
+    at Protocol._enqueue (/Users/ye/Desktop/umbuy/project/umbuy/server/APITest/my-app/src/main/resources/node_modules/mysql/lib/protocol/Protocol.js:145:48)
+    at Protocol.handshake (/Users/ye/Desktop/umbuy/project/umbuy/server/APITest/my-app/src/main/resources/node_modules/mysql/lib/protocol/Protocol.js:52:23)
+    at Connection.connect (/Users/ye/Desktop/umbuy/project/umbuy/server/APITest/my-app/src/main/resources/node_modules/mysql/lib/Connection.js:130:18)
+    at Object.<anonymous> (/Users/ye/Desktop/umbuy/project/umbuy/server/APITest/my-app/src/main/resources/localhost.js:21:12)
+    at Module._compile (module.js:643:30)
+    at Object.Module._extensions..js (module.js:654:10)
+    at Module.load (module.js:556:32)
+    at tryModuleLoad (module.js:499:12)
+    at Function.Module._load (module.js:491:3)
+    at Function.Module.runMain (module.js:684:10)
+Listening on port 3000!
+/Users/ye/Desktop/umbuy/project/umbuy/server/APITest/my-app/src/main/resources/localhost.js:22
+    if (err) throw err;
+             ^
+
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1182:14)
+    --------------------
+    at Protocol._enqueue (/Users/ye/node_modules/mysql/lib/protocol/Protocol.js:145:48)
+    at Protocol.handshake (/Users/ye/node_modules/mysql/lib/protocol/Protocol.js:52:23)
+    at Connection.connect (/Users/ye/node_modules/mysql/lib/Connection.js:130:18)
+    at Object.<anonymous> (/Users/ye/Desktop/umbuy/project/umbuy/server/APITest/my-app/src/main/resources/localhost.js:21:12)
+    at Module._compile (module.js:643:30)
+    at Object.Module._extensions..js (module.js:654:10)
+    at Module.load (module.js:556:32)
+    at tryModuleLoad (module.js:499:12)
+    at Function.Module._load (module.js:491:3)
+    at Function.Module.runMain (module.js:684:10)
+Listening on port 3000!
+good!
+Listening on port 3000!
+good!
+SELECT * FROM advertisements
+[]
