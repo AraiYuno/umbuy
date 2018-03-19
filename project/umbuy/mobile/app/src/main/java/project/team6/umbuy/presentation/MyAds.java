@@ -20,15 +20,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.auth0.android.Auth0;
-import com.auth0.android.authentication.AuthenticationAPIClient;
-import com.auth0.android.authentication.AuthenticationException;
-import com.auth0.android.callback.BaseCallback;
 import com.auth0.android.result.UserProfile;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
+import project.team6.umbuy.data_model.User;
 import project.team6.umbuy.shared.CredentialsManager;
 import project.team6.umbuy.bussiness.FilterAds;
 import project.team6.umbuy.data_model.Advertisement;
@@ -50,8 +48,6 @@ public class MyAds extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private EditText searchText;
     private Button searchButton;
-    private Auth0 auth0;
-    private UserProfile userProfile;
     private Button homeBtn;
 
     @Override
@@ -105,22 +101,7 @@ public class MyAds extends AppCompatActivity {
             }
         });
 
-        auth0 = new Auth0(this);
-        auth0.setOIDCConformant(true);
-
-        AuthenticationAPIClient authenticationClient = new AuthenticationAPIClient(auth0);
-        authenticationClient.userInfo(CredentialsManager.getCredentials(this).getAccessToken())
-                .start(new BaseCallback<UserProfile, AuthenticationException>() {
-                    @Override
-                    public void onSuccess(final UserProfile profile) {
-                        userProfile = profile;
-                        userHelper(adService);
-                    }
-                    @Override
-                    public void onFailure(AuthenticationException error) {
-
-                    }
-                });
+        userHelper(adService);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
@@ -208,7 +189,7 @@ public class MyAds extends AppCompatActivity {
 
     public void userHelper(AdvertisementService adService){
 
-        Call<List<Advertisement>> call = adService.getUserAdvertisements(userProfile.getId());;
+        Call<List<Advertisement>> call = adService.getUserAdvertisements(User.getUserProfile().getId());;
         call.enqueue(new Callback<List<Advertisement>>() {
             @Override
             public void onResponse(Call<List<Advertisement>> call, Response<List<Advertisement>> response) {

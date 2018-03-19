@@ -33,11 +33,7 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
-import com.auth0.android.Auth0;
-import com.auth0.android.authentication.AuthenticationAPIClient;
-import com.auth0.android.authentication.AuthenticationException;
-import com.auth0.android.callback.BaseCallback;
-import com.auth0.android.result.UserProfile;
+
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -48,6 +44,7 @@ import java.util.UUID;
 
 import project.team6.umbuy.R;
 
+import project.team6.umbuy.data_model.User;
 import project.team6.umbuy.shared.AdvertisementService;
 import project.team6.umbuy.shared.CredentialsManager;
 import project.team6.umbuy.data_model.Advertisement;
@@ -74,9 +71,6 @@ public class CreateAdActivity extends AppCompatActivity {
     private EditText create_ad_price;
     private Button btn_upload;
     private Button submit;
-    private Auth0 auth0;
-    private UserProfile userProfile;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +97,7 @@ public class CreateAdActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                getUserInfo();
+                sendAd();
             }
         });
 
@@ -115,39 +109,6 @@ public class CreateAdActivity extends AppCompatActivity {
         });
     }
 
-
-    public void getUserInfo(){
-
-        auth0 = new Auth0(this);
-        auth0.setOIDCConformant(true);
-
-        AuthenticationAPIClient authenticationAPIClient = new AuthenticationAPIClient(auth0);
-        authenticationAPIClient.userInfo(CredentialsManager.getCredentials(this).getAccessToken())
-                .start(new BaseCallback<UserProfile, AuthenticationException>() {
-                    @Override
-                    public void onSuccess(UserProfile payload) {
-                        userProfile = payload;
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                sendAd();
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onFailure(AuthenticationException error) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(CreateAdActivity.this, "User Profile Request Failed", Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                    }
-                });
-
-    }
 
     private void sendAd() {
 
@@ -163,7 +124,7 @@ public class CreateAdActivity extends AppCompatActivity {
 
 
         // get userId profile
-        userId = userProfile.getId();
+        userId = User.getUserProfile().getId();
         advertisementId = 0;
         title = create_ad_title.getText().toString().trim();
         description = create_ad_description.getText().toString().trim();

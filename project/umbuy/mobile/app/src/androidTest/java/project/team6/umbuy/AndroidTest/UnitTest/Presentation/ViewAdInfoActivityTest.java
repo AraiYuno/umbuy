@@ -32,7 +32,7 @@ public class ViewAdInfoActivityTest {
     //====================================================================================
     @Test
     public void testViewAdInfoData() throws Exception {
-        System.out.println("\nIntegration Tedst: testViewAdInfoData() started");
+        System.out.println("\nIntegration Test: testViewAdInfoData() started");
         Date date = new Date(155);
 
 
