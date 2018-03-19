@@ -1,8 +1,5 @@
 package project.team6.umbuy.AndroidTest;
 
-/**
- * Created by yuanding on 2018-03-04.
- */
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
