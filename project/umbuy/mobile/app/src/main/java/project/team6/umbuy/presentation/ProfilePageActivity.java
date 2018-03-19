@@ -8,15 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.auth0.android.Auth0;
-import com.auth0.android.authentication.AuthenticationAPIClient;
-import com.auth0.android.authentication.AuthenticationException;
-import com.auth0.android.callback.BaseCallback;
 import com.auth0.android.result.UserProfile;
 import com.google.gson.internal.LinkedTreeMap;
 import com.squareup.picasso.Picasso;
 
 import project.team6.umbuy.R;
-import project.team6.umbuy.shared.CredentialsManager;
+import project.team6.umbuy.data_model.User;
 
 
 public class ProfilePageActivity extends AppCompatActivity {
@@ -36,31 +33,12 @@ public class ProfilePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
 
-        auth0 = new Auth0(this);
-        auth0.setOIDCConformant(true);
-
-        AuthenticationAPIClient authenticationClient = new AuthenticationAPIClient(auth0);
-        authenticationClient.userInfo(CredentialsManager.getCredentials(this).getAccessToken())
-                .start(new BaseCallback<UserProfile, AuthenticationException>() {
-                    @Override
-                    public void onSuccess(final UserProfile profile) {
-                        userProfile = profile;
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                refreshScreenInformation();
-                            }
-                        });
-                    }
-                    @Override
-                    public void onFailure(AuthenticationException error) {
-
-                    }
-                });
-
         FNameTextView = findViewById(R.id.user_FName);
         LNameTextView = findViewById(R.id.user_LName);
         userEmailTextView = findViewById(R.id.user_Email);
         PhoneTextView = findViewById(R.id.user_phone);
+        userProfile = User.getUserProfile();
+        refreshScreenInformation();
 
         homeBtn = (Button) findViewById(R.id.goHome);
         homeBtn.setOnClickListener(new View.OnClickListener() {

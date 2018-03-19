@@ -41,4 +41,8 @@ public class AdvertisementService {
     public Call<Advertisement> deleteItem(int advertisementId){
         return service.deleteItem(advertisementId);
     }
+
+    public Call<Advertisement> editAd(int advertisementId, String title, String description, double price, String imageUrl, String category){
+        return service.editAd(advertisementId, title, description, price, imageUrl, category);
+    }
 }

@@ -15,16 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.auth0.android.Auth0;
-import com.auth0.android.authentication.AuthenticationAPIClient;
-import com.auth0.android.authentication.AuthenticationException;
-import com.auth0.android.callback.BaseCallback;
 import com.auth0.android.result.UserProfile;
 
 import project.team6.umbuy.R;
 import project.team6.umbuy.data_model.Advertisement;
+import project.team6.umbuy.data_model.User;
 import project.team6.umbuy.shared.AdvertisementService;
-import project.team6.umbuy.shared.CredentialsManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,10 +29,9 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
     ImageView picture;
     TextView txt_title, txt_price, txt_category, txt_description;
     Button btn_delete_ad, btn_edit_ad;
-    String userId, currentUser;
-    int advertisementId;
+    String userId, currentUser,imageUrl, title, price, category, description;
     UserProfile userProfile;
-    Auth0 auth0;
+    int advertisementId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +46,19 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
         btn_delete_ad = findViewById(R.id.view_ad_info_delete_btn);
         btn_edit_ad = findViewById(R.id.view_ad_info_edit_btn);
 
+        userProfile = User.getUserProfile();
         userId = getIntent().getStringExtra("userId");
         advertisementId = getIntent().getIntExtra("adId", 0);
+        imageUrl = getIntent().getStringExtra("imageUrl");
+        title = getIntent().getStringExtra("title");
+        category = getIntent().getStringExtra("category");
+        price = getIntent().getStringExtra("price");
+        description = getIntent().getStringExtra("description");
 
         // hide delete button first
         btn_delete_ad.setVisibility(View.INVISIBLE);
-        getUserInfo();
+        btn_edit_ad.setVisibility(View.INVISIBLE);
+        deleteAd();
 
         btn_delete_ad.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,57 +72,36 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
         btn_edit_ad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ViewAdInfoActivity.this, "This feature is coming soon...", Toast.LENGTH_LONG).show();
 
+                Intent intent = new Intent(getApplicationContext(), EditAdInfoActivity.class);
+                intent.putExtra("adId", advertisementId);
+                intent.putExtra("imageUrl", imageUrl);
+                intent.putExtra("title", title);
+                intent.putExtra("price", price);
+                intent.putExtra("category", category);
+                intent.putExtra("description", description);
+                startActivity(intent);
             }
         });
 
-        new LoadImage(picture, getIntent().getStringExtra("imageUrl")).execute();
-        txt_title.setText("Title: " + getIntent().getStringExtra("title"));
-        txt_category.setText("Category: " + getIntent().getStringExtra("category"));
-        txt_price.setText("Price: $" + getIntent().getStringExtra("price"));
-        txt_description.setText("Description: " + getIntent().getStringExtra("description"));
+        new LoadImage(picture, imageUrl).execute();
+        txt_title.setText("Title: " + title);
+        txt_category.setText("Category: " + category);
+        txt_price.setText("Price: $" + price);
+        txt_description.setText("Description: " + description);
     }
 
 
-    public void getUserInfo(){
-
-        auth0 = new Auth0(this);
-        auth0.setOIDCConformant(true);
-
-        AuthenticationAPIClient authenticationAPIClient = new AuthenticationAPIClient(auth0);
-        authenticationAPIClient.userInfo(CredentialsManager.getCredentials(this).getAccessToken())
-                .start(new BaseCallback<UserProfile, AuthenticationException>() {
-                    @Override
-                    public void onSuccess(UserProfile payload) {
-                        userProfile = payload;
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                deleteAd();
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onFailure(AuthenticationException error) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(ViewAdInfoActivity.this, "User Profile Request Failed", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                    }
-                });
-    }
 
     public void deleteAd(){
-        currentUser = userProfile.getId();
+        if(userProfile!=null) {
+            currentUser = userProfile.getId();
 
-        // show delete button if current user is the creator of the add
-        if (currentUser.equals(userId)){
-            btn_delete_ad.setVisibility(View.VISIBLE);
+            // show delete button if current user is the creator of the add
+            if (userId.equals(currentUser)){
+                btn_delete_ad.setVisibility(View.VISIBLE);
+                btn_edit_ad.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -133,7 +114,6 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         AdvertisementService advertisementService = new AdvertisementService();
-
         advertisementService.deleteItem(advertisementId).enqueue(new Callback<Advertisement>() {
             @Override
             public void onResponse(Call<Advertisement> call, Response<Advertisement> response) {

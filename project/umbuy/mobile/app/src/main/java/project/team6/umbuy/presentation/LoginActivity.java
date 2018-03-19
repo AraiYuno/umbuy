@@ -20,12 +20,14 @@ import com.auth0.android.result.UserProfile;
 import java.util.ArrayList;
 
 import project.team6.umbuy.R;
+import project.team6.umbuy.data_model.User;
 import project.team6.umbuy.shared.CredentialsManager;
 
 
 public class LoginActivity extends Activity {
 
     private Lock mLock;
+
 
     ArrayList<CustomField> customFields = new ArrayList<>();
 
@@ -69,6 +71,7 @@ public class LoginActivity extends Activity {
                         @Override
                         public void onSuccess(final UserProfile payload) {
                             startActivity(new Intent(LoginActivity.this, ViewAdsActivity.class));
+                            User.initializeUserProfile(getApplicationContext());
                             finish();
                         }
 

@@ -34,4 +34,12 @@ public interface ApiInterface {
     @DELETE("/api/ads/{id}")
     Call<Advertisement> deleteItem(@Path("id") int advertisementId);
 
+    @POST("/api/editAd")
+    @FormUrlEncoded
+    Call<Advertisement> editAd(@Field("advertisementId") int advertisementId,
+                               @Field("title") String title,
+                               @Field("description") String description,
+                               @Field("price") double price,
+                               @Field("imageUrl") String imageUrl,
+                               @Field("category") String category);
 }
