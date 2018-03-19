@@ -9,11 +9,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.auth0.android.result.UserProfile;
+
 
 import project.team6.umbuy.R;
 import project.team6.umbuy.data_model.Advertisement;
-import project.team6.umbuy.data_model.User;
 import project.team6.umbuy.shared.AdvertisementService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -76,9 +75,6 @@ public class EditAdInfoActivity extends AppCompatActivity {
             title = txt_title.getText().toString().trim();
         }
         if(!txt_price.getText().toString().trim().isEmpty()){
-            System.out.println("TEEEXT HERE "+txt_price.getText().toString().trim()+"BLABLABLA");
-            System.out.println("TEEEXT HERE "+txt_price.getText().toString().trim()+"BLABLABLA");
-            System.out.println("TEEEXT HERE "+txt_price.getText().toString().trim()+"BLABLABLA");
             priceDouble = Double.parseDouble(txt_price.getText().toString());
         }
         else{
