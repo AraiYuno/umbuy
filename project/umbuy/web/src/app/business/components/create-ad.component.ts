@@ -85,6 +85,7 @@ export class CreateAdComponent implements OnInit {
   //===========================================================================================
   backToHomePage(){
     this._router.navigate([""]);
+    window.location.reload(); //so newly created ad displays on page
   }
 
   //===========================================================================================
