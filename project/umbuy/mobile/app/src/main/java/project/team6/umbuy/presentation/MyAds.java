@@ -27,15 +27,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
-<<<<<<< HEAD
-=======
 import project.team6.umbuy.data_model.User;
 import project.team6.umbuy.shared.CredentialsManager;
->>>>>>> 33db0a0f2f82031fe5ec8e2756cffee5b70dfe45
 import project.team6.umbuy.bussiness.FilterAds;
 import project.team6.umbuy.data_model.Advertisement;
 import project.team6.umbuy.shared.AdvertisementService;
-import project.team6.umbuy.shared.CredentialsManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
