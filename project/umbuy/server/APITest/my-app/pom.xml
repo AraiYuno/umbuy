@@ -10,7 +10,7 @@
   <url>http://maven.apache.org</url>
   <build>
     <plugins>
-    <!-- npm install -->
+      <!-- npm install -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -59,87 +59,100 @@
               <goal>execute</goal>
             </goals>
             <configuration>
-             
               <url>jdbc:mysql://localhost:3306/project4350?&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false</url>
               <autocommit>true</autocommit>
               <sqlCommand>delete from advertisements where advertisementId >= 0</sqlCommand>
-              
               <onError>continue</onError>
             </configuration>
           </execution>
-
         </executions>
       </plugin>
+
       <plugin>
-        <artifactId>maven-clean-plugin</artifactId>
-        <version>2.5</version>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
         <executions>
           <execution>
-            <id>default-clean</id>
-            <phase>pre-clean</phase>
-            <goals>
-              <goal>clean</goal>
-            </goals>
+            <id>exec-npm-install</id>
+            <phase>test-compile</phase>
             <configuration>
-              <filesets>
-                
-
-                  
-                  <fileset>
-                    <directory>${project.basedir}/bin/</directory>
-                    <followSymlinks>false</followSymlinks>
-                    <useDefaultExcludes>false</useDefaultExcludes>
-                  </fileset>
-                <fileset>
-                  <directory>${project.basedir}/src/main/resources</directory>
-                  <followSymlinks>false</followSymlinks>
-                  <useDefaultExcludes>true</useDefaultExcludes>
-                  <excludes>
-                    <exclude>localhost.js</exclude>
-                    <exclude>package.json</exclude>
-                  </excludes>
-                </fileset>
-                
-              </filesets>
+              <workingDirectory>${project.basedir}/src/main/resources</workingDirectory>
+              <async>true</async>
+              <executable>node</executable>
+              <arguments>
+                <argument>localhost.js</argument>
+              </arguments>
             </configuration>
+            <goals>
+              <goal>exec</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
-    </plugins>
-  </build>
-  <dependencies>
-    <dependency>
-      <groupId>io.rest-assured</groupId>
-      <artifactId>rest-assured</artifactId>
-      <version>3.0.7</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.rest-assured</groupId>
-      <artifactId>json-path</artifactId>
-      <version>3.0.7</version>
-    </dependency>
-    <dependency>
-      <groupId>io.rest-assured</groupId>
-      <artifactId>json-schema-validator</artifactId>
-      <version>3.0.7</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.8.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20180130</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.9.0</version>
-    </dependency>
-  </dependencies>
-</project>
+
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>2.5</version>
+          <executions>
+            <execution>
+              <id>default-clean</id>
+              <phase>pre-clean</phase>
+              <goals>
+                <goal>clean</goal>
+              </goals>
+              <configuration>
+                <filesets>
+                  
+                  <fileset>
+                    <directory>${project.basedir}/src/main/resources</directory>
+                    <followSymlinks>false</followSymlinks>
+                    <useDefaultExcludes>true</useDefaultExcludes>
+                    <excludes>
+                      <exclude>localhost.js</exclude>
+                      <exclude>package.json</exclude>
+                    </excludes>
+                  </fileset>
+                </filesets>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </build>
+    <dependencies>
+      <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>3.0.7</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>json-path</artifactId>
+        <version>3.0.7</version>
+      </dependency>
+      <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>json-schema-validator</artifactId>
+        <version>3.0.7</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.8.2</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20180130</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.9.0</version>
+      </dependency>
+    </dependencies>
+  </project>
