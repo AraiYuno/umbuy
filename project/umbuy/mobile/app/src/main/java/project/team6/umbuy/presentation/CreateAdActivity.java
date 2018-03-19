@@ -57,7 +57,7 @@ public class CreateAdActivity extends AppCompatActivity {
     //AWS S3
     private static final Integer READ_EXST = 0x1;
     private static final String AWS_KEY = "CHECK DOCUMENTATION";
-    private static final String AWS_SECRET = "CHECK DOCUMENTATION;
+    private static final String AWS_SECRET = "CHECK DOCUMENTATION";
     private static final String AWS_BUCKET = "kyleteam6best";
     private static String uploadingFileName;
     private static String uploadingFileExtension;
