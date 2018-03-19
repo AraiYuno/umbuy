@@ -38,6 +38,7 @@ public class ProfilePageActivity extends AppCompatActivity {
         userEmailTextView = findViewById(R.id.user_Email);
         PhoneTextView = findViewById(R.id.user_phone);
         userProfile = User.getUserProfile();
+        refreshScreenInformation();
 
         homeBtn = (Button) findViewById(R.id.goHome);
         homeBtn.setOnClickListener(new View.OnClickListener() {

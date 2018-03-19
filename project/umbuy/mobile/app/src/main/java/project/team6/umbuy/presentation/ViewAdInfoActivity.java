@@ -29,7 +29,7 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
     ImageView picture;
     TextView txt_title, txt_price, txt_category, txt_description;
     Button btn_delete_ad, btn_edit_ad;
-    String userId, currentUser;
+    String userId, currentUser,imageUrl, title, price, category, description;
     UserProfile userProfile;
     int advertisementId;
 
@@ -49,9 +49,15 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
         userProfile = User.getUserProfile();
         userId = getIntent().getStringExtra("userId");
         advertisementId = getIntent().getIntExtra("adId", 0);
+        imageUrl = getIntent().getStringExtra("imageUrl");
+        title = getIntent().getStringExtra("title");
+        category = getIntent().getStringExtra("category");
+        price = getIntent().getStringExtra("price");
+        description = getIntent().getStringExtra("description");
 
         // hide delete button first
         btn_delete_ad.setVisibility(View.INVISIBLE);
+        btn_edit_ad.setVisibility(View.INVISIBLE);
         deleteAd();
 
         btn_delete_ad.setOnClickListener(new View.OnClickListener() {
@@ -66,16 +72,23 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
         btn_edit_ad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ViewAdInfoActivity.this, "This feature is coming soon...", Toast.LENGTH_LONG).show();
 
+                Intent intent = new Intent(getApplicationContext(), EditAdInfoActivity.class);
+                intent.putExtra("adId", advertisementId);
+                intent.putExtra("imageUrl", imageUrl);
+                intent.putExtra("title", title);
+                intent.putExtra("price", price);
+                intent.putExtra("category", category);
+                intent.putExtra("description", description);
+                startActivity(intent);
             }
         });
 
-        new LoadImage(picture, getIntent().getStringExtra("imageUrl")).execute();
-        txt_title.setText("Title: " + getIntent().getStringExtra("title"));
-        txt_category.setText("Category: " + getIntent().getStringExtra("category"));
-        txt_price.setText("Price: $" + getIntent().getStringExtra("price"));
-        txt_description.setText("Description: " + getIntent().getStringExtra("description"));
+        new LoadImage(picture, imageUrl).execute();
+        txt_title.setText("Title: " + title);
+        txt_category.setText("Category: " + category);
+        txt_price.setText("Price: $" + price);
+        txt_description.setText("Description: " + description);
     }
 
 
@@ -87,6 +100,7 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
             // show delete button if current user is the creator of the add
             if (userId.equals(currentUser)){
                 btn_delete_ad.setVisibility(View.VISIBLE);
+                btn_edit_ad.setVisibility(View.VISIBLE);
             }
         }
     }

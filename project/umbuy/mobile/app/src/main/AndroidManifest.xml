@@ -43,6 +43,7 @@
         <activity android:name=".presentation.LoginActivity" />
         <activity android:name=".presentation.ProfilePageActivity" />
         <activity android:name=".presentation.MyAds"></activity>
+        <activity android:name=".presentation.EditAdInfoActivity"></activity>
     </application>
 
 </manifest>

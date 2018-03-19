@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
+import project.team6.umbuy.data_model.User;
 import project.team6.umbuy.shared.AdvertisementService;
 import project.team6.umbuy.shared.CredentialsManager;
 import project.team6.umbuy.bussiness.FilterAds;
@@ -185,6 +186,7 @@ public class ViewAdsActivity extends AppCompatActivity {
 
     private void logout() {
         CredentialsManager.deleteCredentials(this);
+        User.resetUserProfile();
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }

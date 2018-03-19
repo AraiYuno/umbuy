@@ -33,6 +33,7 @@ public class User{
                     });
         }
     }
+    public static void resetUserProfile(){userProfile = null;    }
 
     public static com.auth0.android.result.UserProfile getUserProfile(){return userProfile;}
 }
