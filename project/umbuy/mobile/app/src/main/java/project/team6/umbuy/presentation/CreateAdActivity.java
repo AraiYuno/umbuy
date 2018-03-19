@@ -56,8 +56,8 @@ import retrofit2.Response;
 public class CreateAdActivity extends AppCompatActivity {
     //AWS S3
     private static final Integer READ_EXST = 0x1;
-    private static final String AWS_KEY = "AKIAJBS2VOW7TD2WCG7A";
-    private static final String AWS_SECRET = "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";
+    private static final String AWS_KEY = "CHECK DOCUMENTATION";
+    private static final String AWS_SECRET = "CHECK DOCUMENTATION;
     private static final String AWS_BUCKET = "kyleteam6best";
     private static String uploadingFileName;
     private static String uploadingFileExtension;
