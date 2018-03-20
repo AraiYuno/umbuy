@@ -46,7 +46,7 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
         btn_delete_ad = findViewById(R.id.view_ad_info_delete_btn);
         btn_edit_ad = findViewById(R.id.view_ad_info_edit_btn);
 
-        userProfile = User.getUserProfile();
+        userProfile = User.getUserProfile(getApplicationContext());
         userId = getIntent().getStringExtra("userId");
         advertisementId = getIntent().getIntExtra("adId", 0);
         imageUrl = getIntent().getStringExtra("imageUrl");
@@ -58,7 +58,7 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
         // hide delete button first
         btn_delete_ad.setVisibility(View.INVISIBLE);
         btn_edit_ad.setVisibility(View.INVISIBLE);
-        deleteAd();
+        buttonVisibility();
 
         btn_delete_ad.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,16 +93,16 @@ public class ViewAdInfoActivity extends FragmentActivity implements DeleteDialog
 
 
 
-    public void deleteAd(){
+    public void buttonVisibility(){
         if(userProfile!=null) {
             currentUser = userProfile.getId();
-
             // show delete button if current user is the creator of the add
-            if (userId.equals(currentUser)){
+            if (currentUser.equals(userId)) {
                 btn_delete_ad.setVisibility(View.VISIBLE);
                 btn_edit_ad.setVisibility(View.VISIBLE);
             }
         }
+
     }
 
     public void showDeleteDialog(){
