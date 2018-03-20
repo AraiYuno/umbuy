@@ -37,7 +37,7 @@ public class ProfilePageActivity extends AppCompatActivity {
         LNameTextView = findViewById(R.id.user_LName);
         userEmailTextView = findViewById(R.id.user_Email);
         PhoneTextView = findViewById(R.id.user_phone);
-        userProfile = User.getUserProfile();
+        userProfile = User.getUserProfile(getApplicationContext());
         if(userProfile!= null) {
             refreshScreenInformation();
         }

@@ -180,7 +180,7 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
         //click the first Item in the recyclerviewList
         solo.clickInRecyclerView(0);
       solo.waitForActivity(ViewAdInfoActivity.class);
-        solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
+        solo.assertCurrentActivity("Expected ViewAdInfoActivity", ViewAdInfoActivity.class);
         assertTrue(solo.getView(R.id.view_ad_info_title) != null);
         assertTrue(solo.getView(R.id.view_ad_info_category) != null);
         assertTrue(solo.getView(R.id.view_ad_info_price) != null);
@@ -230,8 +230,10 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
         solo.clickOnText("Submit Advertisement");
         assertTrue(solo.waitForActivity(ViewAdsActivity.class));
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
+        solo.sleep(1000);
         solo.enterText(0, "AcceptanceTest");
         solo.clickOnButton(0);
+
         solo.clearEditText(0);
         assertTrue(solo.searchText("AcceptanceTest"));
         assertTrue(solo.searchText("100"));
@@ -241,6 +243,7 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
         solo.clickOnButton(1);
         assertTrue(solo.waitForActivity(CreateAdActivity.class));
         solo.assertCurrentActivity("Expected CreatedAdsActivity", CreateAdActivity.class);
+        solo.sleep(1000);
         solo.enterText(0, "RobotiumTest");
         assertTrue(solo.searchText("RobotiumTest"));
 
@@ -257,6 +260,7 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
 
         assertTrue(solo.waitForActivity(ViewAdsActivity.class));
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
+        solo.sleep(1000);
         solo.enterText(0, "RobotiumTest");
         solo.clickOnButton(0);
         solo.clearEditText(0);
@@ -310,16 +314,17 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
 
        //test for search in myAds
 
-//        solo.enterText(0, "Acc");
-//        assertTrue(solo.searchText("Acc"));
-//        solo.clickOnButton(0);
-//        assertTrue(solo.searchText("AcceptanceTest"));
-//        assertTrue(solo.searchText("100"));
+       solo.enterText(0, "Acc");
+        assertTrue(solo.searchText("Acc"));
+        solo.clickOnButton(0);
+        assertTrue(solo.searchText("AcceptanceTest"));
+        assertTrue(solo.searchText("100"));
 
        //test for create in my Ads
         solo.clickOnButton(1);
         assertTrue(solo.waitForActivity(CreateAdActivity.class));
         solo.assertCurrentActivity("Expected CreatedAdsActivity", CreateAdActivity.class);
+        solo.sleep(1000);
         solo.enterText(0, "Group6");
         assertTrue(solo.searchText("Group6"));
 
