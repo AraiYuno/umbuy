@@ -5,6 +5,7 @@ import org.junit.runners.Suite;
 
 import project.team6.umbuy.AndroidTest.UnitTest.Presentation.AdsAdapterTest;
 import project.team6.umbuy.AndroidTest.UnitTest.Presentation.CreateAdActivityTest;
+import project.team6.umbuy.AndroidTest.UnitTest.Presentation.EditAdInfoActivityTest;
 import project.team6.umbuy.AndroidTest.UnitTest.Presentation.ViewAdInfoActivityTest;
 import project.team6.umbuy.AndroidTest.UnitTest.Presentation.ViewAdsActivityTest;
 import project.team6.umbuy.AndroidTest.UnitTest.Presentation.ProfilePageActivityTest;
@@ -25,7 +26,8 @@ import project.team6.umbuy.AndroidTest.UnitTest.data_model.AdvertisementTest;
         CreateAdActivityTest.class,
         AdvertisementTest.class,
         FilterAdsTest.class,
-        ProfilePageActivityTest.class
+        ProfilePageActivityTest.class,
+        EditAdInfoActivityTest.class
 
 })
 

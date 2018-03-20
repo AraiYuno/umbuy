@@ -207,7 +207,6 @@ public class MyAds extends AppCompatActivity {
                 Log.d("=================error", "Retrofit connection failed ================");
             }
         });
-
     }
 
     @Override
