@@ -74,42 +74,46 @@ public class EditAdInfoActivity extends AppCompatActivity {
         if(!txt_title.getText().toString().trim().isEmpty()){
             title = txt_title.getText().toString().trim();
         }
-        if(!txt_price.getText().toString().trim().isEmpty()){
-            priceDouble = Double.parseDouble(txt_price.getText().toString());
+        if(txt_price.getText().toString().trim().equals(".") || txt_price.getText().toString().trim().equals(",")){
+            Toast.makeText(this, "Please input a valid price", Toast.LENGTH_SHORT).show();
         }
-        else{
-            priceDouble = Double.parseDouble(price);
-        }
-        if(!txt_category.getText().toString().trim().isEmpty()){
-            category = txt_category.getText().toString().trim();
-        }
-        if(!txt_category.getText().toString().trim().isEmpty()){
-            description = txt_category.getText().toString().trim();
-        }
-
-        adService.editAd(adId, title, description, priceDouble, imageUrl, category).enqueue(new Callback<Advertisement>() {
-            @Override
-            public void onResponse(Call<Advertisement> call, Response<Advertisement> response) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(EditAdInfoActivity.this, "Editted Successfully!", Toast.LENGTH_LONG).show();
-                    }
-                });
-                startActivity(new Intent(getApplicationContext(), ViewAdsActivity.class));
-                finish();
+        else {
+            if (!txt_price.getText().toString().trim().isEmpty()) {
+                priceDouble = Double.parseDouble(txt_price.getText().toString());
+            } else {
+                priceDouble = Double.parseDouble(price);
+            }
+            if (!txt_category.getText().toString().trim().isEmpty()) {
+                category = txt_category.getText().toString().trim();
+            }
+            if (!txt_category.getText().toString().trim().isEmpty()) {
+                description = txt_category.getText().toString().trim();
             }
 
-            @Override
-            public void onFailure(Call<Advertisement> call, Throwable t) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(EditAdInfoActivity.this, "Edit Failed!", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        });
+            adService.editAd(adId, title, description, priceDouble, imageUrl, category).enqueue(new Callback<Advertisement>() {
+                @Override
+                public void onResponse(Call<Advertisement> call, Response<Advertisement> response) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(EditAdInfoActivity.this, "Editted Successfully!", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    startActivity(new Intent(getApplicationContext(), ViewAdsActivity.class));
+                    finish();
+                }
+
+                @Override
+                public void onFailure(Call<Advertisement> call, Throwable t) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(EditAdInfoActivity.this, "Edit Failed!", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            });
+        }
 
 
 

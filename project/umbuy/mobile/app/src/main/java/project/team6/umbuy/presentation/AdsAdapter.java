@@ -32,7 +32,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
     @Override
     public AdsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View viewItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.ads_card, parent, false);
-        AdsViewHolder adsViewHolder = new AdsViewHolder(viewItem, context, ads);
+        AdsViewHolder adsViewHolder = new AdsViewHolder(viewItem, this.context, this);
         return adsViewHolder;
     }
 
@@ -51,12 +51,19 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
         return ads.size();
     }
 
+    public List<Advertisement> getAds(){return this.ads;}
+
 
 
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    public void updateList(ArrayList<Advertisement> filteredList){
+        this.ads = filteredList;
+        this.notifyDataSetChanged();
     }
 
 
@@ -66,20 +73,20 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
         private TextView title;
         private TextView price;
         private TextView description;
-        private List<Advertisement> ads;
         private Context context;
+        private AdsAdapter mAdapter;
 
-        AdsViewHolder(View itemView, Context context, List<Advertisement> ads) {
+        AdsViewHolder(View itemView, Context context ,AdsAdapter mAdapter) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.card_view);
             picture = (ImageView) itemView.findViewById(R.id.picture);
             title = (TextView)itemView.findViewById(R.id.title);
             price = (TextView)itemView.findViewById(R.id.price);
             description = (TextView)itemView.findViewById(R.id.description);
+            this.mAdapter = mAdapter;
 
             itemView.setOnClickListener(this);
             // Added by Kyle for viewAdInfo
-            this.ads = ads;
             this.context = context;
         }
 
@@ -93,7 +100,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            Advertisement advertisement = this.ads.get(position);
+            Advertisement advertisement = mAdapter.getAds().get(position);
             Intent intent = new Intent(this.context, ViewAdInfoActivity.class);
             intent.putExtra("userId", advertisement.getUserId());
             intent.putExtra("adId", advertisement.getAdvertisementId());
@@ -105,11 +112,6 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
             intent.putExtra("description", advertisement.getDescription());
             this.context.startActivity(intent);
         }
-    }
-
-    public void updateList(ArrayList<Advertisement> filteredList){
-         this.ads = filteredList;
-         notifyDataSetChanged();
     }
 }
 
