@@ -22,8 +22,9 @@ export class ViewAdsComponent implements OnInit {
   //Testing Purposes
   test_shorted_description: string;
   message;
+  
 
-  constructor(private _advertisementService: AdvertisementService, private _filterResultService: FilterResultService, private _allResultService: AllResultService, public auth: AuthService) { }
+  constructor(private _advertisementService: AdvertisementService, private _filterResultService: FilterResultService, private _allResultService: AllResultService, public auth: AuthService) {}
 
   ngOnInit() {
     var currentUrl = window.location.pathname;
@@ -42,12 +43,13 @@ export class ViewAdsComponent implements OnInit {
       ); 
     }
     else{
+
       this._advertisementService.getAllAdvertisements()
       .subscribe(
         res => this.advertisements = this.filteredAds = res,
         err => this.message = err,
         () => {this._filterResultService.changeMessage(this.filteredAds);
-                this._allResultService.changeMessage(this.advertisements)}
+                this._allResultService.changeMessage(this.advertisements);}
       ); 
     }
     

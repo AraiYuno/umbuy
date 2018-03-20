@@ -32,7 +32,6 @@ import project.team6.umbuy.shared.CredentialsManager;
 import project.team6.umbuy.bussiness.FilterAds;
 import project.team6.umbuy.data_model.Advertisement;
 import project.team6.umbuy.shared.AdvertisementService;
-import project.team6.umbuy.shared.CredentialsManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -72,6 +71,7 @@ public class MyAds extends AppCompatActivity {
 
         initializeSearchBar();
 
+        userProfile = User.getUserProfile(getApplicationContext());
         createAd = (Button) findViewById(R.id.main_create_ad);
         logoutButton = (Button) findViewById(R.id.main_logout);
         logoutView = (NavigationView) findViewById(R.id.nav_logout);
@@ -193,7 +193,7 @@ public class MyAds extends AppCompatActivity {
 
     public void userHelper(AdvertisementService adService){
 
-        Call<List<Advertisement>> call = adService.getUserAdvertisements(User.getUserProfile().getId());;
+        Call<List<Advertisement>> call = adService.getUserAdvertisements(userProfile.getId());;
         call.enqueue(new Callback<List<Advertisement>>() {
             @Override
             public void onResponse(Call<List<Advertisement>> call, Response<List<Advertisement>> response) {
@@ -207,7 +207,6 @@ public class MyAds extends AppCompatActivity {
                 Log.d("=================error", "Retrofit connection failed ================");
             }
         });
-
     }
 
     @Override

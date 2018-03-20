@@ -89,8 +89,6 @@ app.get('/api/users/:userId', (req, res) => {
 });
 
 app.post('/api/createAd', (req, res) => {
-    // code 201 for creating object
-    //res.status(201).send(req.body);
     var advertisementId = 0;
     var userId = req.body.userId;
     var title = req.body.title;

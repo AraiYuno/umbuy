@@ -37,8 +37,10 @@ public class ProfilePageActivity extends AppCompatActivity {
         LNameTextView = findViewById(R.id.user_LName);
         userEmailTextView = findViewById(R.id.user_Email);
         PhoneTextView = findViewById(R.id.user_phone);
-        userProfile = User.getUserProfile();
-        refreshScreenInformation();
+        userProfile = User.getUserProfile(getApplicationContext());
+        if(userProfile!= null) {
+            refreshScreenInformation();
+        }
 
         homeBtn = (Button) findViewById(R.id.goHome);
         homeBtn.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +56,6 @@ public class ProfilePageActivity extends AppCompatActivity {
     private void refreshScreenInformation() {
 
         ImageView userPicture =findViewById(R.id.user_image);
-
         if (userProfile.getPictureURL() != null) {
             Picasso.with(this)
                     .load(userProfile.getPictureURL())
@@ -72,6 +73,8 @@ public class ProfilePageActivity extends AppCompatActivity {
         LNameTextView.setText(String.format("Last Name: %1$s", lastName));
         userEmailTextView.setText(String.format(getString(R.string.useremail), userProfile.getEmail()));
         PhoneTextView.setText(String.format("Phone: %1$s ", phone));
+
+
     }
 
     public void goHome(){

@@ -33,6 +33,7 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
+import com.auth0.android.result.UserProfile;
 
 
 import java.io.File;
@@ -56,11 +57,17 @@ import retrofit2.Response;
 public class CreateAdActivity extends AppCompatActivity {
     //AWS S3
     private static final Integer READ_EXST = 0x1;
+<<<<<<< HEAD
     private static final String AWS_KEY = "CHECK DOCUMENTATION";
     private static final String AWS_SECRET = "CHECK DOCUMENTATION";
     private static final String AWS_BUCKET = "kyleteam6best";
+=======
+>>>>>>> c02aa8c2f2ec153da3b93a5fe2e0602e20327fdc
     private static String uploadingFileName;
     private static String uploadingFileExtension;
+    private String AWS_KEY;
+    private String AWS_SECRET;
+    private String AWS_BUCKET;
     private boolean pictureUploaded;
     private ImageView mImage;
     private ProgressDialog pd;
@@ -71,6 +78,7 @@ public class CreateAdActivity extends AppCompatActivity {
     private EditText create_ad_price;
     private Button btn_upload;
     private Button submit;
+    private UserProfile userProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +90,7 @@ public class CreateAdActivity extends AppCompatActivity {
         create_ad_category = (EditText) this.findViewById(R.id.create_ad_category_field);
         create_ad_price = (EditText) this.findViewById(R.id.create_ad_price_field);
         submit = (Button) this.findViewById(R.id.create_ad_submit);
-
+        userProfile = User.getUserProfile(getApplicationContext());
         //AWS S3
         askForPermission(Manifest.permission.READ_EXTERNAL_STORAGE,READ_EXST);
         pd = new ProgressDialog(CreateAdActivity.this);
@@ -92,7 +100,9 @@ public class CreateAdActivity extends AppCompatActivity {
         uploadingFileExtension = "";
         uploadingFileName = "";
         pictureUploaded = false;
-
+        AWS_KEY = this.getString(R.string.parse_aws_access_key);
+        AWS_SECRET = this.getString(R.string.parse_aws_secret_key);
+        AWS_BUCKET = this.getString(R.string.parse_aws_bucket_name);
 
         submit.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -124,7 +134,7 @@ public class CreateAdActivity extends AppCompatActivity {
 
 
         // get userId profile
-        userId = User.getUserProfile().getId();
+        userId = userProfile.getId();
         advertisementId = 0;
         title = create_ad_title.getText().toString().trim();
         description = create_ad_description.getText().toString().trim();

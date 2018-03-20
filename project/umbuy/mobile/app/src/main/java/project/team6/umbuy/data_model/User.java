@@ -9,17 +9,19 @@ import android.content.Context;
 
 import project.team6.umbuy.shared.CredentialsManager;
 
+import static java.lang.Thread.sleep;
+
 public class User{
     private static com.auth0.android.result.UserProfile userProfile = null;
     private static Auth0 auth0;
 
-    public static void initializeUserProfile(Context loginContext) {
+    public static void initializeUserProfile(Context context){
         if(userProfile == null) {
-            auth0 = new Auth0(loginContext);
+            auth0 = new Auth0(context);
             auth0.setOIDCConformant(true);
 
             AuthenticationAPIClient authenticationAPIClient = new AuthenticationAPIClient(auth0);
-            authenticationAPIClient.userInfo(CredentialsManager.getCredentials(loginContext).getAccessToken())
+            authenticationAPIClient.userInfo(CredentialsManager.getCredentials(context).getAccessToken())
                     .start(new BaseCallback<com.auth0.android.result.UserProfile, AuthenticationException>() {
                         @Override
                         public void onSuccess(com.auth0.android.result.UserProfile payload) {
@@ -31,9 +33,20 @@ public class User{
 
                         }
                     });
+            while(userProfile==null){
+                try {
+                    sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
     public static void resetUserProfile(){userProfile = null;    }
 
-    public static com.auth0.android.result.UserProfile getUserProfile(){return userProfile;}
+    public static com.auth0.android.result.UserProfile getUserProfile(Context context) {
+        if(userProfile == null){
+            initializeUserProfile(context);
+        }
+        return userProfile;}
 }
