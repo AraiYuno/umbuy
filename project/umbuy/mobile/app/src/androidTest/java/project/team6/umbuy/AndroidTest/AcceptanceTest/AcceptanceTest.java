@@ -13,6 +13,7 @@ import com.robotium.solo.Solo;
 
 import project.team6.umbuy.R;
 import project.team6.umbuy.presentation.CreateAdActivity;
+import project.team6.umbuy.presentation.EditAdInfoActivity;
 import project.team6.umbuy.presentation.LoginActivity;
 import project.team6.umbuy.presentation.MyAds;
 import project.team6.umbuy.presentation.ProfilePageActivity;
@@ -133,7 +134,7 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
 
         // *********Testing for ViewAdsActivity******************************************
         solo.waitForActivity(ViewAdsActivity.class);
-       // solo.sleep(3000);
+        solo.sleep(1000);
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
         assertTrue(solo.waitForView(RecyclerView.class));
         View viewAdsView=solo.getCurrentActivity().findViewById(R.id.listViewAds);
@@ -341,7 +342,8 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
 
         //also search in the viewAdsList
         assertTrue(solo.waitForActivity(ViewAdsActivity.class));
-        solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
+     solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
+        solo.sleep(1000);
         solo.enterText(0, "Gr");
         solo.clickOnButton(0);
         solo.clearEditText(0);
@@ -360,9 +362,14 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
         assertTrue(solo.searchText("1100000"));
 
 
-        //delete the ads in the myAds list
-        //bug why delete group 6 always delete the 1st item
-        solo.clickOnText("Group6");
+        //************delete the ads in the myAds list*******************
+        solo.clearEditText(0);
+        solo.enterText(0, "AcceptanceTest");
+        solo.clickOnButton(0);
+         solo.clearEditText(0);
+         assertTrue(solo.searchText("AcceptanceTest"));
+
+        solo.clickOnText("AcceptanceTest");
         solo.waitForActivity(ViewAdInfoActivity.class);
         assertTrue(solo.waitForText("Title"));
         assertTrue(solo.waitForText("Price"));
@@ -370,13 +377,112 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
         assertTrue(solo.searchText("Are you sure you want to delete this advertisement?"));
         solo.clickOnButton("Yes");
 
-        //search for delete ads in the viewAdsList
+        //search for deleted ads in the viewAdsList
         assertTrue(solo.waitForActivity(ViewAdsActivity.class));
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
-        solo.enterText(0, "Group6");
+        solo.sleep(1000);
+        solo.enterText(0, "AcceptanceTest");
         solo.clickOnButton(0);
         solo.clearEditText(0);
-       assertFalse(solo.searchText("Group6"));
+        solo.sleep(1000);
+
+        //search for the deleted ads in the myAds
+
+        solo.clickOnActionBarHomeButton();
+        solo.clickOnText("My Ads");
+        assertTrue(solo.waitForActivity(MyAds.class));
+        solo.assertCurrentActivity("Expected MyAds", MyAds.class);
+        solo.enterText(0, "AcceptanceTest");
+        assertTrue(solo.searchText("AcceptanceTest"));
+        solo.clickOnButton(0);
+        solo.clearEditText(0);
+
+
+        //*************Test for EditActitivy**************************
+        //click on Robotium test info
+        solo.enterText(0, "RobotiumTest");
+        assertTrue(solo.searchText("RobotiumTest"));
+        solo.clickOnButton(0);
+        solo.clearEditText(0);
+        solo.clickOnText("RobotiumTest");
+        solo.waitForActivity(ViewAdInfoActivity.class);
+        solo.sleep(1000);
+        assertTrue(solo.waitForText("Title"));
+        assertTrue(solo.waitForText("Price"));
+        solo.clickOnText("Edit");
+
+        //test for cancel button
+        assertTrue(solo.waitForActivity(EditAdInfoActivity.class));
+        solo.assertCurrentActivity("Expected EditAds page", EditAdInfoActivity.class);
+        solo.sleep(1000);
+        assertTrue(solo.waitForText("Title: RobotiumTest"));
+        assertTrue(solo.waitForText("Category: test"));
+        assertTrue(solo.waitForText("Price: 500.0"));
+        assertTrue(solo.waitForText("Description: best test"));
+
+        assertTrue(solo.searchText("Description: best test"));
+        assertTrue(solo.searchText("Edit Advertisement"));
+        assertTrue(solo.searchText("Cancel"));
+        solo.clickOnText("Cancel");
+
+        //should go to viewAdsList
+        solo.waitForActivity(ViewAdsActivity.class);
+        solo.sleep(1000);
+        solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
+        assertTrue(solo.waitForView(RecyclerView.class));
+
+        //should go back to editActivity
+        solo.goBack();
+        solo.sleep(1000);
+        assertTrue(solo.waitForText("Title: RobotiumTest"));
+        assertTrue(solo.waitForText("Category: test"));
+        assertTrue(solo.waitForText("Price: 500.0"));
+        assertTrue(solo.waitForText("Description: best test"));
+        assertTrue(solo.searchText("Price: 500.0"));
+        assertTrue(solo.searchText("Edit Advertisement"));
+
+        //start edit ads
+        solo.enterText(0, "abcd");
+        assertTrue(solo.searchText("abcd"));
+
+        solo.enterText(1, "xyz");
+        assertTrue(solo.searchText("xyz"));
+
+        solo.enterText(2, "100");
+        assertTrue(solo.searchText("100"));
+
+        solo.clickOnText("Edit Advertisement");
+
+        //check the edited ads in the viewadslist
+        solo.waitForActivity(ViewAdsActivity.class);
+        solo.sleep(1000);
+        solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
+        assertTrue(solo.waitForView(RecyclerView.class));
+
+        solo.enterText(0, "abcd");
+        solo.clickOnButton(0);
+        solo.clearEditText(0);
+        assertTrue(solo.searchText("abcd"));
+        assertTrue(solo.searchText("xyz"));
+
+        //check in myAds
+        solo.clickOnActionBarHomeButton();
+        solo.clickOnText("My Ads");
+        assertTrue(solo.waitForActivity(MyAds.class));
+        solo.assertCurrentActivity("Expected MyAds", MyAds.class);
+        solo.enterText(0, "abcd");
+        solo.clickOnButton(0);
+        solo.clearEditText(0);
+        assertTrue(solo.searchText("abcd"));
+
+
+        solo.clickOnText("abcd");
+        solo.waitForActivity(ViewAdInfoActivity.class);
+        assertTrue(solo.waitForText("Title: abcd"));
+        assertTrue(solo.waitForText("Category: xyz"));
+        solo.clickOnText("Delete");
+        assertTrue(solo.searchText("Are you sure you want to delete this advertisement?"));
+        solo.clickOnButton("Yes");
 
 
 
@@ -384,7 +490,18 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
 
 
 
-        //EDIT
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
