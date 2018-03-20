@@ -217,6 +217,8 @@ public class AcceptanceTest extends ActivityInstrumentationTestCase2<LoginActivi
         assertTrue(solo.searchText("Upload"));
         assertTrue(solo.searchText("Submit Advertisement"));
 
+
+
         //Submit the newAds without edit anything
          solo.clickOnText("Submit Advertisement");
         assertTrue(solo.searchText("Please fill in all required field (*)"));
