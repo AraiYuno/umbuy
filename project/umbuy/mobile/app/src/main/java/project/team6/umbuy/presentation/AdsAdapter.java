@@ -92,7 +92,6 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
 
 
         //============================================================================
-        // TODO: User's information is also required on viewAdInfo
         // Author: Kyle
         //   this method takes you to viewAdInfo onClick with all the data necessary
         //   to display on a single advertisement
