@@ -32,6 +32,8 @@
           </execution>
         </executions>
       </plugin>
+
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>sql-maven-plugin</artifactId>
@@ -74,7 +76,7 @@
         <version>1.6.0</version>
         <executions>
           <execution>
-            <id>exec-npm-install</id>
+            <id>run-server</id>
             <phase>test-compile</phase>
             <configuration>
               <workingDirectory>${project.basedir}/src/main/resources</workingDirectory>
