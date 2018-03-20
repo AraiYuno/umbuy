@@ -8,6 +8,7 @@ import com.robotium.solo.Solo;
 
 import project.team6.umbuy.R;
 import project.team6.umbuy.presentation.CreateAdActivity;
+import project.team6.umbuy.presentation.LoginActivity;
 import project.team6.umbuy.presentation.MyAds;
 import project.team6.umbuy.presentation.ViewAdsActivity;
 
@@ -15,11 +16,11 @@ import project.team6.umbuy.presentation.ViewAdsActivity;
  * Created by yuanding on 2018-03-20.
  */
 
-public class MyAdsTest extends ActivityInstrumentationTestCase2<ViewAdsActivity> {
+public class MyAdsTest extends ActivityInstrumentationTestCase2<LoginActivity> {
     private Solo solo;
 
     public  MyAdsTest() {
-        super(ViewAdsActivity.class);
+        super(LoginActivity.class);
     }
 
     public void setUp() throws Exception {
@@ -32,10 +33,27 @@ public class MyAdsTest extends ActivityInstrumentationTestCase2<ViewAdsActivity>
     }
 
 
-    public void testSearchAdForMyAds() throws InterruptedException {
+    public void testMyAds() throws InterruptedException {
+
+        solo.assertCurrentActivity("Login activity", LoginActivity.class);
+        assertTrue(solo.waitForText("Log In"));
+        assertTrue(solo.waitForText("Sign Up"));
+        assertTrue(solo.waitForText("Email"));
+        assertTrue(solo.waitForText("Password"));
+
+        solo.searchEditText("Email");
+        solo.enterText(0, "1@1.com");
+        assertTrue(solo.searchText("1@1.com"));
+        solo.searchEditText("Password");
+        solo.enterText(1, "1");
+        assertTrue(solo.searchText("1"));
+        solo.clickOnText("LOG IN");
+
+
         solo.waitForActivity(ViewAdsActivity.class);
         solo.sleep(1000);
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
+
         solo.clickOnActionBarHomeButton();
         solo.clickOnText("My Ads");
         assertTrue(solo.waitForActivity(MyAds.class));
@@ -56,10 +74,7 @@ public class MyAdsTest extends ActivityInstrumentationTestCase2<ViewAdsActivity>
         solo.clickOnButton(0);
         assertTrue(solo.searchText("AcceptanceTest"));
         assertTrue(solo.searchText("100"));
-    }
 
-
-    public void testCreateAdForMyAds() throws InterruptedException {
         //test for create in my Ads
         solo.clickOnButton(1);
         assertTrue(solo.waitForActivity(CreateAdActivity.class));
@@ -101,6 +116,13 @@ public class MyAdsTest extends ActivityInstrumentationTestCase2<ViewAdsActivity>
         solo.clickOnButton(0);
         assertTrue(solo.searchText("Group6"));
         assertTrue(solo.searchText("1100000"));
+
+        //test the logout button in navigationDrawer
+        solo.clickOnActionBarHomeButton();
+        solo.clickOnText("Log out");
+        assertTrue(solo.waitForActivity(LoginActivity.class));
+        solo.assertCurrentActivity("Login activity", LoginActivity.class);
+
     }
 
 }

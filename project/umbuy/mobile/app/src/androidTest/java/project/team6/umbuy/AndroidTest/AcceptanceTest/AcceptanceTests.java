@@ -22,7 +22,7 @@ public class AcceptanceTests {
         suite.addTestSuite(MyAdsTest.class);
         suite.addTestSuite(DelteAdsTest.class);
         suite.addTestSuite(EditAdsTest.class);
-        suite.addTestSuite(LogoutTest.class);
+
 
         return suite;
     }

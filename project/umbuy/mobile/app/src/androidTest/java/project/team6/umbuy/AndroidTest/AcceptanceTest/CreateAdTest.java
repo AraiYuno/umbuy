@@ -6,17 +6,18 @@ import com.robotium.solo.Solo;
 
 import project.team6.umbuy.R;
 import project.team6.umbuy.presentation.CreateAdActivity;
+import project.team6.umbuy.presentation.LoginActivity;
 import project.team6.umbuy.presentation.ViewAdsActivity;
 
 /**
  * Created by yuanding on 2018-03-20.
  */
 
-public class CreateAdTest extends ActivityInstrumentationTestCase2<ViewAdsActivity> {
+public class CreateAdTest extends ActivityInstrumentationTestCase2<LoginActivity> {
     private Solo solo;
 
     public CreateAdTest() {
-        super(ViewAdsActivity.class);
+        super(LoginActivity.class);
     }
 
     public void setUp() throws Exception {
@@ -30,9 +31,27 @@ public class CreateAdTest extends ActivityInstrumentationTestCase2<ViewAdsActivi
 
 
     public void testCreateAdsWithIncompletedForm() throws InterruptedException {
+        solo.assertCurrentActivity("Login activity", LoginActivity.class);
+        assertTrue(solo.waitForText("Log In"));
+        assertTrue(solo.waitForText("Sign Up"));
+        assertTrue(solo.waitForText("Email"));
+        assertTrue(solo.waitForText("Password"));
+
+        solo.searchEditText("Email");
+        solo.enterText(0, "1@1.com");
+        assertTrue(solo.searchText("1@1.com"));
+        solo.searchEditText("Password");
+        solo.enterText(1, "1");
+        assertTrue(solo.searchText("1"));
+        solo.clickOnText("LOG IN");
+
+
         solo.waitForActivity(ViewAdsActivity.class);
         solo.sleep(1000);
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
+        solo.clearEditText(0);
+        solo.clickOnButton(0);
+
 
         solo.clickOnButton(1);
         assertTrue(solo.waitForActivity(CreateAdActivity.class));
@@ -76,8 +95,8 @@ public class CreateAdTest extends ActivityInstrumentationTestCase2<ViewAdsActivi
         assertTrue(solo.searchText("AcceptanceTest"));
         assertTrue(solo.searchText("100"));
 
-    }
-    public void testCreateAdsWithCompletedForm() throws InterruptedException {
+
+
         //submit with  completed form then sumbit
 
         solo.clickOnButton(1);
@@ -106,6 +125,11 @@ public class CreateAdTest extends ActivityInstrumentationTestCase2<ViewAdsActivi
         solo.clearEditText(0);
         assertTrue(solo.searchText("RobotiumTest"));
         assertTrue(solo.searchText("500"));
+
+        //test for logout
+        solo.clickOnButton(2);
+        assertTrue(solo.waitForActivity(LoginActivity.class));
+        solo.assertCurrentActivity("Login activity", LoginActivity.class);
 
     }
 }

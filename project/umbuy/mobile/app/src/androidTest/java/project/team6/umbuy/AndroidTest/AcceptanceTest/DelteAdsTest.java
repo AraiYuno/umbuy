@@ -4,6 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
 
+import project.team6.umbuy.presentation.LoginActivity;
 import project.team6.umbuy.presentation.MyAds;
 import project.team6.umbuy.presentation.ViewAdInfoActivity;
 import project.team6.umbuy.presentation.ViewAdsActivity;
@@ -12,11 +13,11 @@ import project.team6.umbuy.presentation.ViewAdsActivity;
  * Created by yuanding on 2018-03-20.
  */
 
-public class DelteAdsTest extends ActivityInstrumentationTestCase2<ViewAdsActivity> {
+public class DelteAdsTest extends ActivityInstrumentationTestCase2<LoginActivity> {
     private Solo solo;
 
     public  DelteAdsTest() {
-        super(ViewAdsActivity.class);
+        super(LoginActivity.class);
     }
 
     public void setUp() throws Exception {
@@ -31,9 +32,25 @@ public class DelteAdsTest extends ActivityInstrumentationTestCase2<ViewAdsActivi
 
     public void testDeleteAds() throws InterruptedException {
         //************delete the ads in the myAds list*******************
+
+        solo.assertCurrentActivity("Login activity", LoginActivity.class);
+        assertTrue(solo.waitForText("Log In"));
+        assertTrue(solo.waitForText("Sign Up"));
+        assertTrue(solo.waitForText("Email"));
+        assertTrue(solo.waitForText("Password"));
+
+        solo.searchEditText("Email");
+        solo.enterText(0, "1@1.com");
+        assertTrue(solo.searchText("1@1.com"));
+        solo.searchEditText("Password");
+        solo.enterText(1, "1");
+        assertTrue(solo.searchText("1"));
+        solo.clickOnText("LOG IN");
+
         solo.waitForActivity(ViewAdsActivity.class);
         solo.sleep(1000);
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
+
         solo.clickOnActionBarHomeButton();
         solo.clickOnText("My Ads");
         assertTrue(solo.waitForActivity(MyAds.class));
@@ -70,6 +87,11 @@ public class DelteAdsTest extends ActivityInstrumentationTestCase2<ViewAdsActivi
         assertTrue(solo.searchText("AcceptanceTest"));
         solo.clickOnButton(0);
         solo.clearEditText(0);
+        solo.sleep(500);
+        //test for logout
+        solo.clickOnButton(2);
+        assertTrue(solo.waitForActivity(LoginActivity.class));
+        solo.assertCurrentActivity("Login activity", LoginActivity.class);
 
     }
 }

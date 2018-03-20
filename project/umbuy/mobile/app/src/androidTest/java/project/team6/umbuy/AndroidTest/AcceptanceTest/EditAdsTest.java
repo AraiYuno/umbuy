@@ -6,6 +6,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import com.robotium.solo.Solo;
 
 import project.team6.umbuy.presentation.EditAdInfoActivity;
+import project.team6.umbuy.presentation.LoginActivity;
 import project.team6.umbuy.presentation.MyAds;
 import project.team6.umbuy.presentation.ViewAdInfoActivity;
 import project.team6.umbuy.presentation.ViewAdsActivity;
@@ -14,11 +15,11 @@ import project.team6.umbuy.presentation.ViewAdsActivity;
  * Created by yuanding on 2018-03-20.
  */
 
-public class EditAdsTest  extends ActivityInstrumentationTestCase2<ViewAdsActivity> {
+public class EditAdsTest  extends ActivityInstrumentationTestCase2<LoginActivity> {
     private Solo solo;
 
     public  EditAdsTest() {
-        super(ViewAdsActivity.class);
+        super(LoginActivity.class);
     }
 
     public void setUp() throws Exception {
@@ -31,7 +32,20 @@ public class EditAdsTest  extends ActivityInstrumentationTestCase2<ViewAdsActivi
     }
 
 
-    public void testEditAdsWithCancel() throws InterruptedException {
+    public void testEditAds() throws InterruptedException {
+        solo.assertCurrentActivity("Login activity", LoginActivity.class);
+        assertTrue(solo.waitForText("Log In"));
+        assertTrue(solo.waitForText("Sign Up"));
+        assertTrue(solo.waitForText("Email"));
+        assertTrue(solo.waitForText("Password"));
+
+        solo.searchEditText("Email");
+        solo.enterText(0, "1@1.com");
+        assertTrue(solo.searchText("1@1.com"));
+        solo.searchEditText("Password");
+        solo.enterText(1, "1");
+        assertTrue(solo.searchText("1"));
+        solo.clickOnText("LOG IN");
 
         solo.waitForActivity(ViewAdsActivity.class);
         solo.sleep(1000);
@@ -47,7 +61,7 @@ public class EditAdsTest  extends ActivityInstrumentationTestCase2<ViewAdsActivi
         solo.clearEditText(0);
         solo.clickOnText("RobotiumTest");
         solo.waitForActivity(ViewAdInfoActivity.class);
-        solo.sleep(1000);
+        solo.sleep(500);
         assertTrue(solo.waitForText("Title"));
         assertTrue(solo.waitForText("Price"));
         solo.clickOnText("Edit");
@@ -55,7 +69,7 @@ public class EditAdsTest  extends ActivityInstrumentationTestCase2<ViewAdsActivi
         //test for cancel button
         assertTrue(solo.waitForActivity(EditAdInfoActivity.class));
         solo.assertCurrentActivity("Expected EditAds page", EditAdInfoActivity.class);
-        solo.sleep(1000);
+
         assertTrue(solo.waitForText("Title: RobotiumTest"));
         assertTrue(solo.waitForText("Category: test"));
         assertTrue(solo.waitForText("Price: 500.0"));
@@ -68,15 +82,14 @@ public class EditAdsTest  extends ActivityInstrumentationTestCase2<ViewAdsActivi
 
         //should go to viewAdsList
         solo.waitForActivity(ViewAdsActivity.class);
-        solo.sleep(1000);
+        solo.sleep(500);
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
         assertTrue(solo.waitForView(RecyclerView.class));
 
-    }
-    public void testEditAds() throws InterruptedException{
+
         //should go back to editActivity
         solo.goBack();
-        solo.sleep(1000);
+        solo.sleep(500);
         assertTrue(solo.waitForText("Title: RobotiumTest"));
         assertTrue(solo.waitForText("Category: test"));
         assertTrue(solo.waitForText("Price: 500.0"));
@@ -98,7 +111,7 @@ public class EditAdsTest  extends ActivityInstrumentationTestCase2<ViewAdsActivi
 
         //check the edited ads in the viewadslist
         solo.waitForActivity(ViewAdsActivity.class);
-        solo.sleep(1000);
+        solo.sleep(500);
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
         assertTrue(solo.waitForView(RecyclerView.class));
 
@@ -128,13 +141,11 @@ public class EditAdsTest  extends ActivityInstrumentationTestCase2<ViewAdsActivi
         assertTrue(solo.searchText("Are you sure you want to delete this advertisement?"));
         solo.clickOnButton("Yes");
 
-        solo.sleep(1000);
+        solo.sleep(500);
         assertTrue(solo.waitForActivity(ViewAdsActivity.class));
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
 
-    }
 
-    public void testEditAdsAndDelete() throws InterruptedException{
         //edit the Group6 and delete
         solo.clickOnActionBarHomeButton();
         solo.clickOnText("My Ads");
@@ -145,14 +156,14 @@ public class EditAdsTest  extends ActivityInstrumentationTestCase2<ViewAdsActivi
         solo.clickOnButton(0);
         solo.clickOnText("Group6");
         solo.waitForActivity(ViewAdInfoActivity.class);
-        solo.sleep(1000);
+        solo.sleep(500);
         assertTrue(solo.waitForText("Title"));
         assertTrue(solo.waitForText("Price"));
         solo.clickOnText("Edit");
 
         assertTrue(solo.waitForActivity(EditAdInfoActivity.class));
         solo.assertCurrentActivity("Expected EditAds page", EditAdInfoActivity.class);
-        solo.sleep(1000);
+        solo.sleep(500);
 
         solo.enterText(0, "AcceptanceDone");
         assertTrue(solo.searchText("AcceptanceDone"));
@@ -169,7 +180,7 @@ public class EditAdsTest  extends ActivityInstrumentationTestCase2<ViewAdsActivi
         solo.clickOnText("Edit Advertisement");
 
         solo.waitForActivity(ViewAdsActivity.class);
-        solo.sleep(1000);
+        solo.sleep(500);
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
         assertTrue(solo.waitForView(RecyclerView.class));
 
@@ -179,7 +190,7 @@ public class EditAdsTest  extends ActivityInstrumentationTestCase2<ViewAdsActivi
         assertTrue(solo.searchText("AcceptanceDone"));
         solo.sleep(200);
         solo.clickOnText("AcceptanceDone");
-        solo.sleep(1000);
+        solo.sleep(500);
         solo.waitForActivity(ViewAdInfoActivity.class);
         solo.assertCurrentActivity("Expected ViewAdInfoActivity", ViewAdInfoActivity.class);
 
@@ -188,14 +199,14 @@ public class EditAdsTest  extends ActivityInstrumentationTestCase2<ViewAdsActivi
 
         solo.goBack();
         solo.waitForActivity(ViewAdsActivity.class);
-        solo.sleep(1000);
+        solo.sleep(500);
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
         assertTrue(solo.waitForView(RecyclerView.class));
         solo.clickOnActionBarHomeButton();
         solo.clickOnText("My Ads");
         assertTrue(solo.waitForActivity(MyAds.class));
         solo.assertCurrentActivity("Expected MyAds", MyAds.class);
-        solo.sleep(1000);
+        solo.sleep(400);
         solo.enterText(0, "Accep");
         solo.clickOnButton(0);
 
@@ -207,6 +218,12 @@ public class EditAdsTest  extends ActivityInstrumentationTestCase2<ViewAdsActivi
         solo.clickOnText("Delete");
         assertTrue(solo.searchText("Are you sure you want to delete this advertisement?"));
         solo.clickOnButton("Yes");
+
+        solo.sleep(500);
+        //test for logout
+        solo.clickOnButton(2);
+        assertTrue(solo.waitForActivity(LoginActivity.class));
+        solo.assertCurrentActivity("Login activity", LoginActivity.class);
 
 
     }

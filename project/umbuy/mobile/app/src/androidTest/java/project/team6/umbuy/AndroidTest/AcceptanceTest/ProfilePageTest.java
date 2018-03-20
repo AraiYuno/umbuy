@@ -6,6 +6,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import com.robotium.solo.Solo;
 
 import project.team6.umbuy.R;
+import project.team6.umbuy.presentation.LoginActivity;
 import project.team6.umbuy.presentation.ProfilePageActivity;
 import project.team6.umbuy.presentation.ViewAdsActivity;
 
@@ -13,11 +14,11 @@ import project.team6.umbuy.presentation.ViewAdsActivity;
  * Created by yuanding on 2018-03-20.
  */
 
-public class ProfilePageTest extends ActivityInstrumentationTestCase2<ViewAdsActivity> {
+public class ProfilePageTest extends ActivityInstrumentationTestCase2<LoginActivity> {
     private Solo solo;
 
     public  ProfilePageTest() {
-        super(ViewAdsActivity.class);
+        super(LoginActivity.class);
     }
 
     public void setUp() throws Exception {
@@ -31,10 +32,27 @@ public class ProfilePageTest extends ActivityInstrumentationTestCase2<ViewAdsAct
 
 
     public void testUserProfile() throws InterruptedException {
-        // *********Testing for Navigation ******************************************
+
+        solo.assertCurrentActivity("Login activity", LoginActivity.class);
+        assertTrue(solo.waitForText("Log In"));
+        assertTrue(solo.waitForText("Sign Up"));
+        assertTrue(solo.waitForText("Email"));
+        assertTrue(solo.waitForText("Password"));
+
+        solo.searchEditText("Email");
+        solo.enterText(0, "1@1.com");
+        assertTrue(solo.searchText("1@1.com"));
+        solo.searchEditText("Password");
+        solo.enterText(1, "1");
+        assertTrue(solo.searchText("1"));
+        solo.clickOnText("LOG IN");
+
+
         solo.waitForActivity(ViewAdsActivity.class);
         solo.sleep(1000);
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
+
+        // *********Testing for Navigation ******************************************
         //*******test for Home*******
         NavigationView nagView = (NavigationView)solo.getView(R.id.nav_view);
         solo.clickOnActionBarHomeButton();
@@ -63,6 +81,10 @@ public class ProfilePageTest extends ActivityInstrumentationTestCase2<ViewAdsAct
         solo.clickOnText("Go Home");
         assertTrue(solo.waitForActivity(ViewAdsActivity.class));
         solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
+        //test for logout
+        solo.clickOnButton(2);
+        assertTrue(solo.waitForActivity(LoginActivity.class));
+        solo.assertCurrentActivity("Login activity", LoginActivity.class);
 
     }
 }

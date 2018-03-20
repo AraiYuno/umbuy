@@ -35,20 +35,16 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.auth0.android.result.UserProfile;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.UUID;
 
-
 import project.team6.umbuy.R;
-
+import project.team6.umbuy.data_model.Advertisement;
 import project.team6.umbuy.data_model.User;
 import project.team6.umbuy.shared.AdvertisementService;
-import project.team6.umbuy.shared.CredentialsManager;
-import project.team6.umbuy.data_model.Advertisement;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
