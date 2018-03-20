@@ -57,13 +57,11 @@ import retrofit2.Response;
 public class CreateAdActivity extends AppCompatActivity {
     //AWS S3
     private static final Integer READ_EXST = 0x1;
-
-    private static final String AWS_KEY = "CHECK DOCUMENTATION";
-    private static final String AWS_SECRET = "CHECK DOCUMENTATION";
-
-    private static final String AWS_BUCKET = "kyleteam6best";
     private static String uploadingFileName;
     private static String uploadingFileExtension;
+    private String AWS_KEY;
+    private String AWS_SECRET;
+    private String AWS_BUCKET;
     private boolean pictureUploaded;
     private ImageView mImage;
     private ProgressDialog pd;
@@ -96,7 +94,9 @@ public class CreateAdActivity extends AppCompatActivity {
         uploadingFileExtension = "";
         uploadingFileName = "";
         pictureUploaded = false;
-
+        AWS_KEY = this.getString(R.string.parse_aws_access_key);
+        AWS_SECRET = this.getString(R.string.parse_aws_secret_key);
+        AWS_BUCKET = this.getString(R.string.parse_aws_bucket_name);
 
         submit.setOnClickListener(new View.OnClickListener(){
             @Override
