@@ -51,7 +51,7 @@
           <driver>com.mysql.jdbc.Driver</driver>
           <url>jdbc:mysql://localhost:3306/project4350?&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false</url>
           <username>root</username>
-          <password>yy283689291yy</password>
+          <password>Tmxk15908*</password>
         </configuration>
         <executions>
           <execution>
