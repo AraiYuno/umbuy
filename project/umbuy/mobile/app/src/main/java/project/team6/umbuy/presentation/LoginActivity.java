@@ -5,10 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
-import project.team6.umbuy.R;
-
 import com.auth0.android.Auth0;
 import com.auth0.android.authentication.AuthenticationAPIClient;
 import com.auth0.android.authentication.AuthenticationException;
@@ -16,16 +12,22 @@ import com.auth0.android.callback.BaseCallback;
 import com.auth0.android.lock.AuthenticationCallback;
 import com.auth0.android.lock.Lock;
 import com.auth0.android.lock.LockCallback;
+import com.auth0.android.lock.utils.CustomField;
 import com.auth0.android.lock.utils.LockException;
 import com.auth0.android.result.Credentials;
 import com.auth0.android.result.UserProfile;
-import com.auth0.android.lock.utils.CustomField;
-import project.team6.umbuy.bussiness.CredentialsManager;
+
+import java.util.ArrayList;
+
+import project.team6.umbuy.R;
+import project.team6.umbuy.data_model.User;
+import project.team6.umbuy.shared.CredentialsManager;
 
 
 public class LoginActivity extends Activity {
 
     private Lock mLock;
+
 
     ArrayList<CustomField> customFields = new ArrayList<>();
 
@@ -69,6 +71,7 @@ public class LoginActivity extends Activity {
                         @Override
                         public void onSuccess(final UserProfile payload) {
                             startActivity(new Intent(LoginActivity.this, ViewAdsActivity.class));
+                            User.initializeUserProfile(getApplicationContext());
                             finish();
                         }
 

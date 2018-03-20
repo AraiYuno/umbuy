@@ -8,7 +8,7 @@
       <app-search *ngIf="specificUser"></app-search>
       <div class="jumbotron">
         <div class="container">
-            <a *ngFor="let ad of filteredAds" [routerLink]="['/view', 'ads', ad.advertisementId]">
+            <a id="ad" *ngFor="let ad of filteredAds" [routerLink]="['/view', 'ads', ad.advertisementId]">
               <div class="row">
                   <div class="well well-lg">
                     <div id="displayPrice">

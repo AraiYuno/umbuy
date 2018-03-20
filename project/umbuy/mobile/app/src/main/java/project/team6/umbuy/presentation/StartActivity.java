@@ -13,7 +13,9 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+
         Intent lockIntent = new Intent(this, LoginActivity.class);
         startActivity(lockIntent);
     }
+
 }

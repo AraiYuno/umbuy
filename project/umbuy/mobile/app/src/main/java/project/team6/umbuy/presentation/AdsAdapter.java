@@ -95,6 +95,8 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
             int position = getAdapterPosition();
             Advertisement advertisement = this.ads.get(position);
             Intent intent = new Intent(this.context, ViewAdInfoActivity.class);
+            intent.putExtra("userId", advertisement.getUserId());
+            intent.putExtra("adId", advertisement.getAdvertisementId());
             intent.putExtra("imageUrl", advertisement.getImageUrl());
             intent.putExtra("title", advertisement.getTitle());
             String toParse = Double.toString(advertisement.getPrice());
@@ -106,7 +108,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder>{
     }
 
     public void updateList(ArrayList<Advertisement> filteredList){
-         ads = filteredList;
+         this.ads = filteredList;
          notifyDataSetChanged();
     }
 }

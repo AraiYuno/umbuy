@@ -1,10 +1,8 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, element, protractor } from 'protractor';
 
 export class RegisterPage {
-  navigateToHomePage() {
-    return browser.get('/');
-  }
-
+  EC = protractor.ExpectedConditions;
+  
   getHeader3Text() {
     return element(by.css('div div #signin h3')).getText();
   }
@@ -13,70 +11,70 @@ export class RegisterPage {
     return element(by.css('app-root div div p')).getText();
   }
 
-  getLoginButtonText(){
-    return element(by.css('app-root nav div #myNavbar #myNavbarRight li #qsLogoutBtn')).getText();
+  getSignUpHeaderText(){
+    return element(by.css('#signup h1')).getText();
   }
 
-  clickLoginButtonOnNavbar(){
-    browser.ignoreSynchronization = true;
-    browser.sleep(100);
-
-    element(by.linkText('Log In')).click().then(function () {
-      browser.getCurrentUrl().then(function (url){
-        expect(url).toContain("https://team6.auth0.com");
-      });
-    }); 
-  }
-
-  clickLogoutButtonOnNavbar(){
-    browser.ignoreSynchronization = true;
-    browser.sleep(100);
-
-    element(by.linkText('Log Out')).click().then(function () {
-        browser.sleep(100);
-    }); 
-  }
-
-  clickSignUpButton(){
-    element(by.buttonText('SignUP')).click().then(function () {
-      expect(element(by.css('#signup h1')).getText()).toEqual('Sign UP');
+  clickSignUpButton(callback){
+    var signUpBtn = element(by.buttonText('SignUP'));
+    browser.wait(this.EC.elementToBeClickable(signUpBtn), 9000);
+    signUpBtn.click().then(function () {
+      callback();
     }); 
   }
 
   fillInSignUpForm(){
+    var emailElement = element(by.css('#email1'));
+    var passwordElement = element(by.css('#password1'));
+    var firstNameElement = element(by.css('#FirstName'));
+    var lastNameElement = element(by.css('#LastName'));
+    var phoneElement = element(by.css('#phone'));
+
+    browser.wait(this.EC.elementToBeClickable(emailElement), 9000);
+    browser.wait(this.EC.elementToBeClickable(passwordElement), 9000);
+    browser.wait(this.EC.elementToBeClickable(firstNameElement), 9000);
+    browser.wait(this.EC.elementToBeClickable(lastNameElement), 9000);
+    browser.wait(this.EC.elementToBeClickable(phoneElement), 9000);
+
     //generate a random email so there is no duplicates and the test will always pass.
     var email ="e2e" + this.getRandomNumber(0,600) + "test" + this.getRandomNumber(0,600) +
                   "fakeEmail" + this.getRandomNumber(0,600) + "softEng" +
                   this.getRandomNumber(0,600) + "@gmail.com";
     //fill email
-    element(by.css('#email1')).sendKeys(email);
+    emailElement.sendKeys(email);
     //fill password
-    element(by.css('#password1')).sendKeys("acceptancetest");
+    passwordElement.sendKeys("acceptancetest");
     //fill first name
-    element(by.css('#FirstName')).sendKeys("Team6");
+    firstNameElement.sendKeys("Team6");
     //fill last name
-    element(by.css('#LastName')).sendKeys("UMBUY");
+    lastNameElement.sendKeys("UMBUY");
     //fill phone number
-    element(by.css('#phone')).sendKeys("2049999999");
+    phoneElement.sendKeys("2049999999");
   }
 
-  clickToSignUp(){
+  clickToSignUp(callback){
     //click sign up button
-    element(by.css('div div #signup form #btn-signup')).click().then(function () {
-      browser.sleep(4000);
-      expect(element(by.css('.first-line')).getText()).toEqual('Authorize App');
+    var signUpBtn = element(by.css('div div #signup form #btn-signup'));
+    browser.wait(this.EC.elementToBeClickable(signUpBtn), 9000);
+    signUpBtn.click().then(function () {
+      browser.sleep(5000);
+      callback();
     });
+  }
+
+  getAuthorizeModalText(){
+    var firstLineElement = element(by.css('.first-line'));
+    browser.wait(this.EC.presenceOf(firstLineElement), 9000);
+    return firstLineElement.getText();
   }
 
   clickAuthorizeButton(){
+    var authorizeElement = element(by.css('#allow'));
+    browser.wait(this.EC.elementToBeClickable(authorizeElement), 9000);
     //click authorize button
-    element(by.css('#allow')).click().then(function () {
-      browser.sleep(2000);
+    authorizeElement.click().then(function () {
+      browser.sleep(5000);
     });
-  }
-
-  getHomeTabText(){
-    return element(by.css('#homeTab')).getText();
   }
 
   getRandomNumber(min, max) {

@@ -16,6 +16,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,8 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.team6.umbuy.R;
+import project.team6.umbuy.data_model.User;
 import project.team6.umbuy.shared.AdvertisementService;
-import project.team6.umbuy.bussiness.CredentialsManager;
+import project.team6.umbuy.shared.CredentialsManager;
 import project.team6.umbuy.bussiness.FilterAds;
 import project.team6.umbuy.data_model.Advertisement;
 import retrofit2.Call;
@@ -96,7 +98,7 @@ public class ViewAdsActivity extends AppCompatActivity {
         });
 
         // button for createAd Activity
-        createAd.setOnClickListener(new View.OnClickListener() {
+        createAd.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent createAdIntent = new Intent(context,CreateAdActivity.class);
@@ -104,7 +106,7 @@ public class ViewAdsActivity extends AppCompatActivity {
             }
         });
 
-        logoutButton.setOnClickListener(new View.OnClickListener() {
+        logoutButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
             logout();
@@ -126,14 +128,32 @@ public class ViewAdsActivity extends AppCompatActivity {
                                 mDrawerLayout.closeDrawers();
                                 menuItem.setChecked(false);
                                 logout();
+                                return false;
+
 
                             case R.id.nav_home :
                                 menuItem.setChecked(true);
                                 mDrawerLayout.closeDrawers();
+                                return true;
+
+                            case R.id.nav_myProfile :
+                                menuItem.setChecked(true);
+                                mDrawerLayout.closeDrawers();
+                                //go to a new intent and activity but call another function
+                                navigateToProfilePage();
+                                return true;
+
+                            case R.id.nav_myAds :
+                                menuItem.setChecked(true);
+                                mDrawerLayout.closeDrawers();
+                                navigateToMyAds();
+                                return true;
 
                             default:
                                 menuItem.setChecked(true);
+
                                 return true;
+
                         }
 
                     }
@@ -154,7 +174,7 @@ public class ViewAdsActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(final Editable editable) {
-                searchButton.setOnClickListener(new View.OnClickListener(){
+                searchButton.setOnClickListener(new OnClickListener(){
                     @Override
                     public void onClick(View view){
                         mAdapter.updateList(FilterAds.filterAdsByTitle(editable.toString(),list));
@@ -166,6 +186,7 @@ public class ViewAdsActivity extends AppCompatActivity {
 
     private void logout() {
         CredentialsManager.deleteCredentials(this);
+        User.resetUserProfile();
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
@@ -181,6 +202,15 @@ public class ViewAdsActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void navigateToProfilePage(){
+        startActivity(new Intent(context, ProfilePageActivity.class));
+
+    }
+
+    public void navigateToMyAds(){
+        startActivity(new Intent(context, MyAds.class));
     }
 
 }
