@@ -1,10 +1,9 @@
-package project.team6.umbuy.AndroidTest.UnitTest.Presentation;
+package UnitTest.UnitTest.Presentation;
 
 import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,7 +13,6 @@ import java.util.Date;
 import project.team6.umbuy.R;
 import project.team6.umbuy.data_model.Advertisement;
 import project.team6.umbuy.presentation.EditAdInfoActivity;
-import project.team6.umbuy.presentation.ViewAdInfoActivity;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;

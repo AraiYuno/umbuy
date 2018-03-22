@@ -1,4 +1,4 @@
-package project.team6.umbuy.AndroidTest.UnitTest.Presentation;
+package UnitTest.UnitTest.Presentation;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.v7.widget.RecyclerView;

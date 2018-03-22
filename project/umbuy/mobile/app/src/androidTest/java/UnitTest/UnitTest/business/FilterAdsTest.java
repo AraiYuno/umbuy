@@ -1,4 +1,4 @@
-package project.team6.umbuy.AndroidTest.UnitTest.business;
+package UnitTest.UnitTest.business;
 
 import org.junit.Before;
 import org.junit.Test;
