@@ -3,6 +3,15 @@ package project.team6.umbuy.AndroidTest.AcceptanceTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import project.team6.umbuy.AndroidTest.AcceptanceTest.CreateAdTest;
+import project.team6.umbuy.AndroidTest.AcceptanceTest.DelteAdsTest;
+import project.team6.umbuy.AndroidTest.AcceptanceTest.EditAdsTest;
+import project.team6.umbuy.AndroidTest.AcceptanceTest.LoginTest;
+import project.team6.umbuy.AndroidTest.AcceptanceTest.MyAdsTest;
+import project.team6.umbuy.AndroidTest.AcceptanceTest.ProfilePageTest;
+import project.team6.umbuy.AndroidTest.AcceptanceTest.ViewAdInfoTest;
+import project.team6.umbuy.AndroidTest.AcceptanceTest.ViewAdsTest;
+
 /**
  * Created by yuanding on 2018-03-20.
  */

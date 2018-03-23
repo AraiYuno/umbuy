@@ -1,4 +1,4 @@
-package UnitTest.UnitTest.Presentation;
+package project.team6.umbuy.Test.UnitTest.Presentation;
 
 import android.content.Context;
 
@@ -37,14 +37,6 @@ public class AdsAdapterTest {
         this.adsAdapter = new AdsAdapter(this.ads, this.mContext);
     }
 
-/*
-    @Test
-    public void onBindViewHolder() throws Exception {
-
-    }
-*/
-
-
     //===================================================================
     // getItemCount
     //   tests getItemCount counts a right size of the list of ads.
@@ -53,9 +45,5 @@ public class AdsAdapterTest {
     public void getItemCount() throws Exception {
         assertEquals( this.adsAdapter.getItemCount(), 5);
     }
-
-   /* @Test
-    public void onAttachedToRecyclerView() throws Exception {
-    }*/
 
 }
