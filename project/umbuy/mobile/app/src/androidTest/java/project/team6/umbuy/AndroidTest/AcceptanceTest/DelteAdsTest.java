@@ -32,25 +32,7 @@ public class DelteAdsTest extends ActivityInstrumentationTestCase2<LoginActivity
 
     public void testDeleteAds() throws InterruptedException {
         //************delete the ads in the myAds list*******************
-
-        solo.assertCurrentActivity("Login activity", LoginActivity.class);
-        assertTrue(solo.waitForText("Log In"));
-        assertTrue(solo.waitForText("Sign Up"));
-        assertTrue(solo.waitForText("Email"));
-        assertTrue(solo.waitForText("Password"));
-
-        solo.searchEditText("Email");
-        solo.enterText(0, "1@1.com");
-        assertTrue(solo.searchText("1@1.com"));
-        solo.searchEditText("Password");
-        solo.enterText(1, "1");
-        assertTrue(solo.searchText("1"));
-        solo.clickOnText("LOG IN");
-
-        solo.waitForActivity(ViewAdsActivity.class);
-        solo.sleep(1000);
-        solo.assertCurrentActivity("Expected ViewAdsActivity", ViewAdsActivity.class);
-
+        AcceptanceTestHelper.login(solo);
         solo.clickOnActionBarHomeButton();
         solo.clickOnText("My Ads");
         assertTrue(solo.waitForActivity(MyAds.class));

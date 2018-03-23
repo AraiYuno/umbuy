@@ -23,6 +23,7 @@ public class AllAcceptanceTest {
     public static Test suite()
     {
         suite = new TestSuite("Acceptance tests");
+
         suite.addTestSuite(LoginTest.class);
         suite.addTestSuite(ViewAdsTest.class);
         suite.addTestSuite(ViewAdInfoTest.class);
