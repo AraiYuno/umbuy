@@ -8,12 +8,11 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e --port 4200",
-    "localhost": "npm-run-all database start",
+    "e2e": "start ng e2e --port 4200",
+    "localhost": "start npm run start && node ./src/app/persistence/localhost.js",
     "webdriver-update": "webdriver-manager update",
     "webdriver-start": "start webdriver-manager start",
-    "database": "start node ./src/app/persistence/localhost.js",
-    "systemTests": "npm-run-all webdriver-update webdriver-start database e2e"
+    "systemTests": "npm run webdriver-start && npm run e2e && node ./src/app/persistence/localhost.js"
   },
   "private": true,
   "dependencies": {
@@ -60,7 +59,6 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "npm-run-all": "^4.1.2",
     "protractor": "~5.1.2",
     "restler": "^3.4.0",
     "ts-node": "~3.2.0",
