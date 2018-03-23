@@ -3,7 +3,7 @@
 =================================================
 ## Updated on March 18, 2018
 ### Web Application is completed with all the proper testing.
-### Mobile Application is 90% completed.
+## Mobile is completed with all the proper testing
 
 
 
