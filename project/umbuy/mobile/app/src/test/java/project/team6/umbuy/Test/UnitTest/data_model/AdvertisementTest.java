@@ -1,4 +1,4 @@
-package project.team6.umbuy.AndroidTest.UnitTest.data_model;
+package project.team6.umbuy.Test.UnitTest.data_model;
 
 import org.junit.Test;
 

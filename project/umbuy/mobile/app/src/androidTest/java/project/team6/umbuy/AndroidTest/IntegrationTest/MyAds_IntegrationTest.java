@@ -1,4 +1,4 @@
-package project.team6.umbuy.AndroidTest.UnitTest.Presentation;
+package project.team6.umbuy.AndroidTest.IntegrationTest;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +20,7 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by bhaulikpatel on 2018-03-18.
  */
-public class MyAdsTest {
+public class MyAds_IntegrationTest {
     @Rule
     public ActivityTestRule<MyAds> rule = new ActivityTestRule<MyAds>(MyAds.class);
 

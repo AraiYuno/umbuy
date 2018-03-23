@@ -1,4 +1,4 @@
-package project.team6.umbuy.AndroidTest.UnitTest.Presentation;
+package project.team6.umbuy.AndroidTest.IntegrationTest;
 
 import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Kyle on 2/28/2018.
  */
-public class ViewAdInfoActivityTest {
+public class ViewAdInfoActivity_IntegrationTest {
     // Set up the exact same environment for the ViewAdInfoActivity intent when user clicks on
     // a single ad on ViewAds page.
     @Rule
@@ -79,10 +79,10 @@ public class ViewAdInfoActivityTest {
         activity = rule.getActivity();
 
         // Retrieve the data just like the ViewAdInfo Activity
-         txt_title = activity.findViewById(R.id.view_ad_info_title);
-         txt_price = activity.findViewById(R.id.view_ad_info_price);
-         txt_description = activity.findViewById(R.id.view_ad_info_description);
-         picture = activity.findViewById(R.id.view_ad_info_picture);
+        txt_title = activity.findViewById(R.id.view_ad_info_title);
+        txt_price = activity.findViewById(R.id.view_ad_info_price);
+        txt_description = activity.findViewById(R.id.view_ad_info_description);
+        picture = activity.findViewById(R.id.view_ad_info_picture);
 
         assertNotEquals("Title: iphone", txt_title.getText().toString());
 
@@ -180,6 +180,4 @@ public class ViewAdInfoActivityTest {
         assertEquals( "Title: null", txt_title.getText().toString());
         assertEquals("Description: null", txt_description.getText().toString());
     }
-
-
 }

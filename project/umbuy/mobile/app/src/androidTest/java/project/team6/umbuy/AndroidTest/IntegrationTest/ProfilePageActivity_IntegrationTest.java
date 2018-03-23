@@ -1,12 +1,10 @@
-package project.team6.umbuy.AndroidTest.UnitTest.Presentation;
+package project.team6.umbuy.AndroidTest.IntegrationTest;
 
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import junit.framework.TestCase;
@@ -26,7 +24,7 @@ import static org.junit.Assert.assertThat;
 
 
 
-public class ProfilePageActivityTest extends TestCase{
+public class ProfilePageActivity_IntegrationTest extends TestCase{
 
     @Rule
     public ActivityTestRule<ProfilePageActivity> rule = new ActivityTestRule<ProfilePageActivity>(ProfilePageActivity.class);

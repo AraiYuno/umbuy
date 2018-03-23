@@ -1,4 +1,4 @@
-package project.team6.umbuy.AndroidTest.UnitTest.Presentation;
+package project.team6.umbuy.AndroidTest.IntegrationTest;
 
 /**
  * Created by yuanding on 2018-03-04.
@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
-public class ViewAdsActivityTest extends TestCase {
+public class ViewAdsActivity_IntegrationTest extends TestCase {
 
     @Rule
     public ActivityTestRule<ViewAdsActivity> rule = new ActivityTestRule<ViewAdsActivity>(ViewAdsActivity.class);

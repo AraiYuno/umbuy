@@ -1,4 +1,4 @@
-package project.team6.umbuy.AndroidTest.UnitTest.Presentation;
+package project.team6.umbuy.AndroidTest.IntegrationTest;
 
 import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
@@ -21,13 +21,10 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * Created by User on 3/19/2018.
+ * Created by Kyle on 3/19/2018.
  */
 
-public class EditAdInfoActivityTest {
-
-
-
+public class EditAdInfoActivity_IntegrationTest {
     @Rule
     public ActivityTestRule<EditAdInfoActivity> rule = new ActivityTestRule<EditAdInfoActivity>(EditAdInfoActivity.class, false, false);
 
