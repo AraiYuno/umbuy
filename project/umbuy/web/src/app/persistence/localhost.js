@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 /* This file is used for localhost testing */
 var connection = mysql.createConnection({
     host: '127.0.0.1',
-    user: '***',
-    password: "***",
+    user: process.argv[2],
+    password: process.argv[3],
     database: 'project4350',
     port: '3306'
 });
@@ -120,5 +120,5 @@ app.post('/api/editAd', (req, res) => {
     });
 });
 
-app.listen(3000, () => console.log('Listening on port 3000!'));
+app.listen(3000, '0.0.0.0', () => console.log('Listening on port 3000!'));
 
