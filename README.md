@@ -18,4 +18,4 @@
  
  UMBuy website: http://ec2-18-217-86-148.us-east-2.compute.amazonaws.com:9000
  
- How to set up local workstation: Refer to Documentation on how to run the project.docx
+ How to set up local workstation: Refer to Documentation
