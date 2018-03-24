@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { AdvertisementService } from '../../app/business/services/advertisement.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Location } from '@angular/common';
 
 describe('CreateAdComponent Unit Tests', () => {
   let component: CreateAdComponent;
@@ -22,12 +23,13 @@ describe('CreateAdComponent Unit Tests', () => {
   let service: AdvertisementService;
   let authService: AuthService;
   let newAd;
+  let location: Location;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterModule, FormsModule, RouterTestingModule],
       declarations: [ CreateAdComponent ],
-      providers: [AdvertisementService, AuthService, User, Advertisement, HttpClient, HttpHandler]
+      providers: [AdvertisementService, AuthService, Location, User, Advertisement, HttpClient, HttpHandler]
     })
     .compileComponents();
   }));
@@ -37,7 +39,8 @@ describe('CreateAdComponent Unit Tests', () => {
     service = new AdvertisementService(null);
     authService = new AuthService(null);
     router = TestBed.get(Router);
-    component = new CreateAdComponent(service, router, authService);
+    location = TestBed.get(Location);
+    component = new CreateAdComponent(service, router, authService, location);
     newAd = { 
       "userId": 'auth0|5a8cfd24f5c8213cb27d5ec2', 
       "title": 'luffy', 
@@ -46,10 +49,6 @@ describe('CreateAdComponent Unit Tests', () => {
       "imageUrl": 'https://s3.amazonaws.com/kyleteam6best/default.jpg',
       "category": ' test'
     };
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should call server to save the changes when an advertisement is created', () => {
