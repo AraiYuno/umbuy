@@ -1,5 +1,5 @@
 =================================================
-# UMBUY E-Commerce Project
+# UMBUY Ads Platform
 =================================================
 ## Updated on March 23, 2018
 ### Web Application is completed with all the proper testing.
