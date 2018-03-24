@@ -8,9 +8,9 @@ export class EditAdPage {
     var priceField = element(by.css('input#price'));
     var descriptionField = element(by.css('textarea#description'));
 
-    browser.wait(this.EC.elementToBeClickable(titleField), 9000);
-    browser.wait(this.EC.elementToBeClickable(priceField), 9000);
-    browser.wait(this.EC.elementToBeClickable(descriptionField), 9000);
+    browser.wait(this.EC.elementToBeClickable(titleField), 12000);
+    browser.wait(this.EC.elementToBeClickable(priceField), 12000);
+    browser.wait(this.EC.elementToBeClickable(descriptionField), 12000);
 
     titleField.clear().then(function() {
       //fill title
@@ -35,14 +35,14 @@ export class EditAdPage {
 
   clickPostNowButton(){
     element(by.css('button#saveAd')).click();
-    browser.sleep(5000);
+    browser.sleep(9000);
   }
   
   clickDeleteButton(){
     var deleteBtn = element(by.css('button#confirmDelete.btn.btn-danger'));
-    browser.wait(this.EC.elementToBeClickable(deleteBtn), 9000);
+    browser.wait(this.EC.elementToBeClickable(deleteBtn), 12000);
     deleteBtn.click().then(function () {
-        browser.sleep(5000);
+        browser.sleep(9000);
     });
   }
 

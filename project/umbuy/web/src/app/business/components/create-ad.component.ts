@@ -4,6 +4,7 @@ import { Advertisement } from '../../data_model/advertisement';
 import { Router } from '@angular/router';
 import * as AWS from 'aws-sdk';
 import { AuthService } from '../services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-ad',
@@ -42,7 +43,7 @@ export class CreateAdComponent implements OnInit {
   createAdSuccess = false;
   postSuccess = false;
 
-  constructor(private _advertisementService : AdvertisementService, private _router: Router, public auth: AuthService) { }
+  constructor(private _advertisementService : AdvertisementService, private _router: Router, public auth: AuthService, private location: Location) { }
 
   ngOnInit() {
     this.auth.getProfile((err, profile) => {
@@ -84,8 +85,7 @@ export class CreateAdComponent implements OnInit {
   //   this function routes users back to the home page
   //===========================================================================================
   backToHomePage(){
-    this._router.navigate([""]);
-    window.location.reload(); //so newly created ad displays on page
+    this.location.back();
   }
 
   //===========================================================================================

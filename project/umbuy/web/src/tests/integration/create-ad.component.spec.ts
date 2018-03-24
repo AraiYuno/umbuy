@@ -17,6 +17,7 @@ import { AdvertisementService } from '../../app/business/services/advertisement.
 import { RouterTestingModule } from '@angular/router/testing';
 import { debug } from 'util';
 import { AuthService } from '../../app/business/services/auth.service';
+import { Location } from '@angular/common';
 
 // fake router
 class RouterStub {
@@ -31,12 +32,13 @@ describe('CreateAdComponent Integration Tests', () => {
   let advertisementService: AdvertisementService;
   let authService: AuthService;
   let newAd;
+  let location: Location;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterModule, FormsModule, RouterTestingModule],
       declarations: [ CreateAdComponent ],
-      providers: [AdvertisementService, AuthService, User, Advertisement, HttpClient, HttpHandler,
+      providers: [AdvertisementService, AuthService, Location, User, Advertisement, HttpClient, HttpHandler,
         { provide: Router, useClass: RouterStub}
       ]
     })
@@ -48,6 +50,7 @@ describe('CreateAdComponent Integration Tests', () => {
     advertisementService = TestBed.get(AdvertisementService);
     router = TestBed.get(Router);
     authService = TestBed.get(AuthService);
+    location = TestBed.get(Location);
     component = fixture.componentInstance;
 
     newAd = { 
@@ -65,11 +68,11 @@ describe('CreateAdComponent Integration Tests', () => {
   });
   
   it('should redirect the user back to the home page after validating advertisement', () => {
-    let spy = spyOn(router, 'navigate');
+    let spy = spyOn(location, 'back');
 
     component.backToHomePage();
 
-    expect(spy).toHaveBeenCalledWith(['']);
+    expect(spy).toHaveBeenCalled();
     
   });
 
