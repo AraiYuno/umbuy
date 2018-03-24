@@ -12,16 +12,16 @@ export class ViewAdInfoPage {
   }
 
   isEditButtonOnPage(){
-    browser.sleep(6000);
+    browser.sleep(9000);
     var editBtn = element(by.css('button#editButton'));
-    browser.wait(this.EC.presenceOf(editBtn), 12000);
+    browser.wait(this.EC.presenceOf(editBtn), 14000);
     return editBtn.isPresent();
   }
 
   isDeleteButtonOnPage(){
-    browser.sleep(6000);
+    browser.sleep(9000);
     var deleteBtn = element(by.css('button#deleteButton'));
-    browser.wait(this.EC.presenceOf(deleteBtn), 12000);
+    browser.wait(this.EC.presenceOf(deleteBtn), 14000);
     return deleteBtn.isPresent();
   }
 
