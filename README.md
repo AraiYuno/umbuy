@@ -12,10 +12,9 @@
   Web: Login, ViewAds, ViewAdInfo, Search, createAd and Edit are completed. All the tests are completed.
   Mobile: Login, ViewAds, ViewAdInfo, CreateAd and Search are completed.
 
-
  
  Working app in the Master branch
- 
- UMBuy website: http://ec2-18-217-86-148.us-east-2.compute.amazonaws.com:9000
- 
  How to set up local workstation: Refer to Documentation
+ 
+ ## Licenese
+ This project was planned and completed as a learning opportunity. This project is an open source code. We wish this project helps you in your learning as well.
